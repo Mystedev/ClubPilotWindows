@@ -7,3 +7,6 @@ ClubPilot/bin/Debug/ClubPilot.pdb
 ClubPilot/obj/Debug/ClubPilot.pdb
 ClubPilot/obj/Debug/ClubPilot.exe
 ClubPilot/obj/Debug/ClubPilot.csproj.GenerateResource.cache
+*.cache
+.vs/
+ClubPilot/obj/Debug/
