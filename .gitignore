@@ -15,3 +15,6 @@ ClubPilot/obj/Debug/ClubPilot.Accounts.resources
 ClubPilot/obj/Debug/TempPE/Properties.Resources.Designer.cs.dll
 ClubPilot/obj/Release/.NETFramework,Version=v4.7.2.AssemblyAttributes.cs
 ClubPilot/obj/Release/ClubPilot.csproj.AssemblyReference.cache
+*.cache
+.vs/
+ClubPilot/obj/Debug/
