@@ -40,10 +40,21 @@ namespace ClubPilot
                 comboBox1.Visible = true;
                 label3.Visible= true;
                 button2.Visible= true;
+                label4.Visible= true;
+                comboBox2.Visible= true;
+
                 comboBox1.Items.Add("equip1");
                 comboBox1.Items.Add("equip2");
                 comboBox1.Items.Add("equip3");
                 comboBox1.Items.Add("equip4");
+
+
+                comboBox2.Items.Add("club1");
+                comboBox2.Items.Add("club2");
+                comboBox2.Items.Add("club3");
+                comboBox2.Items.Add("club4");
+
+
             }
         }
 
@@ -58,6 +69,11 @@ namespace ClubPilot
         }
 
         private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
         {
 
         }
