@@ -6,3 +6,17 @@ ClubPilot/bin/Debug/ClubPilot.pdb
 *.vsidx
 ClubPilot/obj/Debug/ClubPilot.pdb
 ClubPilot/obj/Debug/ClubPilot.exe
+ClubPilot/obj/Debug/ClubPilot.csproj.GenerateResource.cache
+.vs/slnx.sqlite
+.vs/VSWorkspaceState.json
+.vs/ClubPilotWindows/v17/.wsuo
+.vs/ClubPilotWindows/v17/DocumentLayout.json
+ClubPilot/obj/Debug/ClubPilot.Accounts.resources
+ClubPilot/obj/Debug/TempPE/Properties.Resources.Designer.cs.dll
+ClubPilot/obj/Release/.NETFramework,Version=v4.7.2.AssemblyAttributes.cs
+ClubPilot/obj/Release/ClubPilot.csproj.AssemblyReference.cache
+*.cache
+.vs/
+ClubPilot/obj/Debug/
+bin/
+obj/

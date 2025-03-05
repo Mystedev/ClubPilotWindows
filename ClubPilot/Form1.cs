@@ -15,6 +15,7 @@ namespace ClubPilot
         public Form1()
         {
             InitializeComponent();
+            textBox2.PasswordChar = '*';
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -76,6 +77,11 @@ namespace ClubPilot
         private void label4_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            //entrar a la aplicació
         }
     }
 }
