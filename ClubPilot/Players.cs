@@ -17,7 +17,6 @@ namespace ClubPilot
             InitializeComponent();
         }
 
-        private List<Player> playerList = new List<Player>();
 
         private void Players_Load(object sender, EventArgs e)
         {
