@@ -1,13 +1,3 @@
-C:\Users\lakia\OneDrive\Documentos\ClubPilotWindows\ClubPilot\obj\Debug\ClubPilot.csproj.AssemblyReference.cache
-C:\Users\lakia\OneDrive\Documentos\ClubPilotWindows\ClubPilot\obj\Debug\ClubPilot.Form1.resources
-C:\Users\lakia\OneDrive\Documentos\ClubPilotWindows\ClubPilot\obj\Debug\ClubPilot.Properties.Resources.resources
-C:\Users\lakia\OneDrive\Documentos\ClubPilotWindows\ClubPilot\obj\Debug\ClubPilot.csproj.GenerateResource.cache
-C:\Users\lakia\OneDrive\Documentos\ClubPilotWindows\ClubPilot\obj\Debug\ClubPilot.csproj.CoreCompileInputs.cache
-C:\Users\lakia\OneDrive\Documentos\ClubPilotWindows\ClubPilot\bin\Debug\ClubPilot.exe.config
-C:\Users\lakia\OneDrive\Documentos\ClubPilotWindows\ClubPilot\bin\Debug\ClubPilot.exe
-C:\Users\lakia\OneDrive\Documentos\ClubPilotWindows\ClubPilot\bin\Debug\ClubPilot.pdb
-C:\Users\lakia\OneDrive\Documentos\ClubPilotWindows\ClubPilot\obj\Debug\ClubPilot.exe
-C:\Users\lakia\OneDrive\Documentos\ClubPilotWindows\ClubPilot\obj\Debug\ClubPilot.pdb
 C:\Users\Dennys\Documents\DAM_2\M013_Projecte DAM\Projecte_DAM2\WindowsApp\ClubPilotWindows\ClubPilot\bin\Debug\ClubPilot.exe.config
 C:\Users\Dennys\Documents\DAM_2\M013_Projecte DAM\Projecte_DAM2\WindowsApp\ClubPilotWindows\ClubPilot\bin\Debug\ClubPilot.exe
 C:\Users\Dennys\Documents\DAM_2\M013_Projecte DAM\Projecte_DAM2\WindowsApp\ClubPilotWindows\ClubPilot\bin\Debug\ClubPilot.pdb
@@ -33,3 +23,20 @@ C:\Users\Cesc\ClubPilot\ClubPilotWindows\ClubPilot\obj\Debug\ClubPilot.csproj.Co
 C:\Users\Cesc\ClubPilot\ClubPilotWindows\ClubPilot\obj\Debug\ClubPilot.exe
 C:\Users\Cesc\ClubPilot\ClubPilotWindows\ClubPilot\obj\Debug\ClubPilot.pdb
 C:\Users\Dennys\Documents\DAM_2\M013_Projecte DAM\Projecte_DAM2\WindowsApp\ClubPilotWindows\ClubPilot\obj\Debug\ClubPilot.clubs.resources
+C:\Users\lakia\OneDrive\Documentos\ClubPilotWindows\ClubPilot\obj\Debug\ClubPilot.csproj.AssemblyReference.cache
+C:\Users\lakia\OneDrive\Documentos\ClubPilotWindows\ClubPilot\obj\Debug\ClubPilot.Accounts.resources
+C:\Users\lakia\OneDrive\Documentos\ClubPilotWindows\ClubPilot\obj\Debug\ClubPilot.Clubs.resources
+C:\Users\lakia\OneDrive\Documentos\ClubPilotWindows\ClubPilot\obj\Debug\ClubPilot.CrearClub.resources
+C:\Users\lakia\OneDrive\Documentos\ClubPilotWindows\ClubPilot\obj\Debug\ClubPilot.Form1.resources
+C:\Users\lakia\OneDrive\Documentos\ClubPilotWindows\ClubPilot\obj\Debug\ClubPilot.Players.resources
+C:\Users\lakia\OneDrive\Documentos\ClubPilotWindows\ClubPilot\obj\Debug\ClubPilot.Properties.Resources.resources
+C:\Users\lakia\OneDrive\Documentos\ClubPilotWindows\ClubPilot\obj\Debug\ClubPilot.csproj.GenerateResource.cache
+C:\Users\lakia\OneDrive\Documentos\ClubPilotWindows\ClubPilot\obj\Debug\ClubPilot.csproj.CoreCompileInputs.cache
+C:\Users\lakia\OneDrive\Documentos\ClubPilotWindows\ClubPilot\obj\Debug\ClubPilot.AddAccount.resources
+C:\Users\lakia\OneDrive\Documentos\ClubPilotWindows\ClubPilot\obj\Debug\ClubPilot.Add_New.resources
+C:\Users\lakia\OneDrive\Documentos\ClubPilotWindows\ClubPilot\bin\Debug\ClubPilot.exe.config
+C:\Users\lakia\OneDrive\Documentos\ClubPilotWindows\ClubPilot\bin\Debug\ClubPilot.exe
+C:\Users\lakia\OneDrive\Documentos\ClubPilotWindows\ClubPilot\bin\Debug\ClubPilot.pdb
+C:\Users\lakia\OneDrive\Documentos\ClubPilotWindows\ClubPilot\obj\Debug\ClubPilot.Forum.resources
+C:\Users\lakia\OneDrive\Documentos\ClubPilotWindows\ClubPilot\obj\Debug\ClubPilot.exe
+C:\Users\lakia\OneDrive\Documentos\ClubPilotWindows\ClubPilot\obj\Debug\ClubPilot.pdb
