@@ -18,3 +18,5 @@ C:\Users\Dennys\Documents\DAM_2\M013_Projecte DAM\Projecte_DAM2\WindowsApp\ClubP
 C:\Users\Dennys\Documents\DAM_2\M013_Projecte DAM\Projecte_DAM2\WindowsApp\ClubPilotWindows\ClubPilot\obj\Debug\ClubPilot.csproj.CoreCompileInputs.cache
 C:\Users\Dennys\Documents\DAM_2\M013_Projecte DAM\Projecte_DAM2\WindowsApp\ClubPilotWindows\ClubPilot\obj\Debug\ClubPilot.exe
 C:\Users\Dennys\Documents\DAM_2\M013_Projecte DAM\Projecte_DAM2\WindowsApp\ClubPilotWindows\ClubPilot\obj\Debug\ClubPilot.pdb
+C:\Users\Dennys\Documents\DAM_2\M013_Projecte DAM\Projecte_DAM2\WindowsApp\ClubPilotWindows\ClubPilot\obj\Debug\ClubPilot.Accounts.resources
+C:\Users\Dennys\Documents\DAM_2\M013_Projecte DAM\Projecte_DAM2\WindowsApp\ClubPilotWindows\ClubPilot\obj\Debug\ClubPilot.Players.resources
