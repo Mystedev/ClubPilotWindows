@@ -32,3 +32,5 @@ C:\Users\Cesc\ClubPilot\ClubPilotWindows\ClubPilot\obj\Debug\ClubPilot.csproj.Ge
 C:\Users\Cesc\ClubPilot\ClubPilotWindows\ClubPilot\obj\Debug\ClubPilot.csproj.CoreCompileInputs.cache
 C:\Users\Cesc\ClubPilot\ClubPilotWindows\ClubPilot\obj\Debug\ClubPilot.exe
 C:\Users\Cesc\ClubPilot\ClubPilotWindows\ClubPilot\obj\Debug\ClubPilot.pdb
+C:\Users\Cesc\ClubPilot\ClubPilotWindows\ClubPilot\obj\Debug\ClubPilot.AddAccount.resources
+C:\Users\Cesc\ClubPilot\ClubPilotWindows\ClubPilot\obj\Debug\ClubPilot.Clubs.resources

@@ -40,7 +40,8 @@
             // 
             // menuStrip1
             // 
-            this.menuStrip1.BackColor = System.Drawing.Color.Transparent;
+            this.menuStrip1.BackColor = System.Drawing.Color.MidnightBlue;
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.jugadorsToolStripMenuItem,
             this.esdevenimentsToolStripMenuItem,
@@ -48,37 +49,41 @@
             this.noticiesToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1049, 40);
+            this.menuStrip1.Size = new System.Drawing.Size(1399, 49);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
             // jugadorsToolStripMenuItem
             // 
-            this.jugadorsToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.jugadorsToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI Semibold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.jugadorsToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.jugadorsToolStripMenuItem.Name = "jugadorsToolStripMenuItem";
-            this.jugadorsToolStripMenuItem.Size = new System.Drawing.Size(121, 36);
+            this.jugadorsToolStripMenuItem.Size = new System.Drawing.Size(156, 45);
             this.jugadorsToolStripMenuItem.Text = "Jugadors";
             // 
             // esdevenimentsToolStripMenuItem
             // 
-            this.esdevenimentsToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.esdevenimentsToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI Semibold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.esdevenimentsToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.esdevenimentsToolStripMenuItem.Name = "esdevenimentsToolStripMenuItem";
-            this.esdevenimentsToolStripMenuItem.Size = new System.Drawing.Size(186, 36);
+            this.esdevenimentsToolStripMenuItem.Size = new System.Drawing.Size(237, 45);
             this.esdevenimentsToolStripMenuItem.Text = "Esdeveniments";
             // 
             // comptesToolStripMenuItem
             // 
-            this.comptesToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comptesToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI Semibold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comptesToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.comptesToolStripMenuItem.Name = "comptesToolStripMenuItem";
-            this.comptesToolStripMenuItem.Size = new System.Drawing.Size(121, 36);
+            this.comptesToolStripMenuItem.Size = new System.Drawing.Size(154, 45);
             this.comptesToolStripMenuItem.Text = "Comptes";
             // 
             // noticiesToolStripMenuItem
             // 
-            this.noticiesToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.noticiesToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI Semibold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.noticiesToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.noticiesToolStripMenuItem.Name = "noticiesToolStripMenuItem";
-            this.noticiesToolStripMenuItem.Size = new System.Drawing.Size(112, 36);
+            this.noticiesToolStripMenuItem.Size = new System.Drawing.Size(143, 45);
             this.noticiesToolStripMenuItem.Text = "Noticies";
             // 
             // button1
@@ -87,9 +92,10 @@
             this.button1.FlatAppearance.BorderSize = 0;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(12, 52);
+            this.button1.Location = new System.Drawing.Point(16, 64);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(127, 33);
+            this.button1.Size = new System.Drawing.Size(169, 41);
             this.button1.TabIndex = 1;
             this.button1.Text = "Futbol";
             this.button1.UseVisualStyleBackColor = true;
@@ -99,9 +105,10 @@
             // 
             this.button2.FlatAppearance.BorderSize = 0;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(160, 52);
+            this.button2.Location = new System.Drawing.Point(213, 64);
+            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(127, 33);
+            this.button2.Size = new System.Drawing.Size(169, 41);
             this.button2.TabIndex = 2;
             this.button2.Text = "Basketball";
             this.button2.UseVisualStyleBackColor = true;
@@ -109,14 +116,15 @@
             // 
             // Players
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SeaShell;
-            this.ClientSize = new System.Drawing.Size(1049, 591);
+            this.ClientSize = new System.Drawing.Size(1399, 727);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Players";
             this.Text = "Players";
             this.Load += new System.EventHandler(this.Players_Load);
