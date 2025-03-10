@@ -96,7 +96,10 @@
     <None Include="Resources\icons8-añadir-30.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\icons8-editar-30.png" />
+    <None Include="Resources\icons8-guardar-30.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-modificar-30.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
