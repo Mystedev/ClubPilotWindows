@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace ClubPilot
 {
-    public partial class clubs : Form
+    public partial class Clubs : Form
     {
-        public clubs()
+        public Clubs()
         {
             InitializeComponent();
         }
