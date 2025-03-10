@@ -34,7 +34,7 @@ namespace ClubPilot
 
         private void btn_cancel_Click(object sender, EventArgs e)
         {
-            new Accounts().Show();
+            new Accounts().Show();  
         }
     }
 }
