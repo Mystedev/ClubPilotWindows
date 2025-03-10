@@ -103,9 +103,11 @@
     <EmbeddedResource Include="AddAccount.resx">
       <DependentUpon>AddAccount.cs</DependentUpon>
     </EmbeddedResource>
+
     <EmbeddedResource Include="Add_New.resx">
       <DependentUpon>Add_New.cs</DependentUpon>
     </EmbeddedResource>
+
     <EmbeddedResource Include="clubs.resx">
       <DependentUpon>clubs.cs</DependentUpon>
     </EmbeddedResource>
@@ -155,6 +157,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icons8-modificar-30.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-cancelar-30.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-aceptar-30.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
