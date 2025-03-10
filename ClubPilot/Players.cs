@@ -17,6 +17,8 @@ namespace ClubPilot
             InitializeComponent();
         }
 
+        private List<Player> playerList = new List<Player>();
+
         private void Players_Load(object sender, EventArgs e)
         {
 
@@ -35,6 +37,11 @@ namespace ClubPilot
         private void button2_Click(object sender, EventArgs e)
         {
             // Boto de equip de basketball
+        }
+
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+            
         }
 
     }
