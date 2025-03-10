@@ -16,5 +16,25 @@ namespace ClubPilot
         {
             InitializeComponent();
         }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtBoxEmail1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_add_account_Click(object sender, EventArgs e)
+        {
+            new Accounts().Show();
+        }
+
+        private void btn_cancel_Click(object sender, EventArgs e)
+        {
+            new Accounts().Show();
+        }
     }
 }

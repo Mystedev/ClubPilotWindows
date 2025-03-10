@@ -58,7 +58,7 @@ namespace ClubPilot
 
         private void btn_add_conta_Click(object sender, EventArgs e)
         {
-            
+            new AddAccount().Show();
         }
     }
     public class Usuari : Form

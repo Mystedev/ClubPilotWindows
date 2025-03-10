@@ -30,13 +30,6 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.btn_gua_conta6 = new System.Windows.Forms.Button();
-            this.btn_gua_conta5 = new System.Windows.Forms.Button();
-            this.btn_gua_conta4 = new System.Windows.Forms.Button();
-            this.btn_gua_conta3 = new System.Windows.Forms.Button();
-            this.btn_gua_conta2 = new System.Windows.Forms.Button();
-            this.btn_mod_conta5 = new System.Windows.Forms.Button();
-            this.btn_mod_conta4 = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
             this.txtBoxEmail5 = new System.Windows.Forms.TextBox();
             this.label22 = new System.Windows.Forms.Label();
@@ -55,7 +48,6 @@
             this.txtBoxUsername4 = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
-            this.btn_gua_conta1 = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.txtBoxEmail3 = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
@@ -92,6 +84,29 @@
             this.label24 = new System.Windows.Forms.Label();
             this.txtBoxUsername6 = new System.Windows.Forms.TextBox();
             this.label23 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
+            this.txtBoxRol1 = new System.Windows.Forms.TextBox();
+            this.label28 = new System.Windows.Forms.Label();
+            this.txtBoxRol2 = new System.Windows.Forms.TextBox();
+            this.label29 = new System.Windows.Forms.Label();
+            this.txtBoxRol3 = new System.Windows.Forms.TextBox();
+            this.label30 = new System.Windows.Forms.Label();
+            this.txtBoxRol4 = new System.Windows.Forms.TextBox();
+            this.label31 = new System.Windows.Forms.Label();
+            this.txtBoxRol5 = new System.Windows.Forms.TextBox();
+            this.label32 = new System.Windows.Forms.Label();
+            this.txtBoxRol6 = new System.Windows.Forms.TextBox();
+            this.label33 = new System.Windows.Forms.Label();
+            this.btn_add_conta = new System.Windows.Forms.Button();
+            this.btn_gua_conta6 = new System.Windows.Forms.Button();
+            this.btn_gua_conta5 = new System.Windows.Forms.Button();
+            this.btn_gua_conta4 = new System.Windows.Forms.Button();
+            this.btn_gua_conta3 = new System.Windows.Forms.Button();
+            this.btn_gua_conta2 = new System.Windows.Forms.Button();
+            this.btn_mod_conta5 = new System.Windows.Forms.Button();
+            this.btn_mod_conta4 = new System.Windows.Forms.Button();
+            this.btn_gua_conta1 = new System.Windows.Forms.Button();
             this.btn_mod_conta3 = new System.Windows.Forms.Button();
             this.btn_mod_conta6 = new System.Windows.Forms.Button();
             this.btn_mod_conta2 = new System.Windows.Forms.Button();
@@ -102,9 +117,6 @@
             this.btn_eli_conta5 = new System.Windows.Forms.Button();
             this.btn_eli_conta6 = new System.Windows.Forms.Button();
             this.btn_mod_conta1 = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.btn_add_conta = new System.Windows.Forms.Button();
-            this.label27 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -116,9 +128,10 @@
             // 
             // label1
             // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Cascadia Code", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(414, 69);
+            this.label1.Location = new System.Drawing.Point(516, 56);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(323, 40);
             this.label1.TabIndex = 0;
@@ -157,7 +170,7 @@
             this.tableLayoutPanel1.Controls.Add(this.btn_eli_conta6, 3, 5);
             this.tableLayoutPanel1.Controls.Add(this.btn_mod_conta1, 1, 0);
             this.tableLayoutPanel1.Font = new System.Drawing.Font("Cascadia Code", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(37, 183);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 183);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 6;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
@@ -166,87 +179,14 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1093, 440);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1310, 440);
             this.tableLayoutPanel1.TabIndex = 1;
             this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
             // 
-            // btn_gua_conta6
-            // 
-            this.btn_gua_conta6.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btn_gua_conta6.Enabled = false;
-            this.btn_gua_conta6.Image = global::ClubPilot.Properties.Resources.icons8_guardar_30;
-            this.btn_gua_conta6.Location = new System.Drawing.Point(990, 382);
-            this.btn_gua_conta6.Name = "btn_gua_conta6";
-            this.btn_gua_conta6.Size = new System.Drawing.Size(40, 40);
-            this.btn_gua_conta6.TabIndex = 21;
-            this.btn_gua_conta6.UseVisualStyleBackColor = true;
-            // 
-            // btn_gua_conta5
-            // 
-            this.btn_gua_conta5.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btn_gua_conta5.Enabled = false;
-            this.btn_gua_conta5.Image = global::ClubPilot.Properties.Resources.icons8_guardar_30;
-            this.btn_gua_conta5.Location = new System.Drawing.Point(990, 308);
-            this.btn_gua_conta5.Name = "btn_gua_conta5";
-            this.btn_gua_conta5.Size = new System.Drawing.Size(40, 40);
-            this.btn_gua_conta5.TabIndex = 20;
-            this.btn_gua_conta5.UseVisualStyleBackColor = true;
-            // 
-            // btn_gua_conta4
-            // 
-            this.btn_gua_conta4.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btn_gua_conta4.Enabled = false;
-            this.btn_gua_conta4.Image = global::ClubPilot.Properties.Resources.icons8_guardar_30;
-            this.btn_gua_conta4.Location = new System.Drawing.Point(990, 235);
-            this.btn_gua_conta4.Name = "btn_gua_conta4";
-            this.btn_gua_conta4.Size = new System.Drawing.Size(40, 40);
-            this.btn_gua_conta4.TabIndex = 19;
-            this.btn_gua_conta4.UseVisualStyleBackColor = true;
-            // 
-            // btn_gua_conta3
-            // 
-            this.btn_gua_conta3.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btn_gua_conta3.Enabled = false;
-            this.btn_gua_conta3.Image = global::ClubPilot.Properties.Resources.icons8_guardar_30;
-            this.btn_gua_conta3.Location = new System.Drawing.Point(990, 162);
-            this.btn_gua_conta3.Name = "btn_gua_conta3";
-            this.btn_gua_conta3.Size = new System.Drawing.Size(40, 40);
-            this.btn_gua_conta3.TabIndex = 18;
-            this.btn_gua_conta3.UseVisualStyleBackColor = true;
-            // 
-            // btn_gua_conta2
-            // 
-            this.btn_gua_conta2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btn_gua_conta2.Enabled = false;
-            this.btn_gua_conta2.Image = global::ClubPilot.Properties.Resources.icons8_guardar_30;
-            this.btn_gua_conta2.Location = new System.Drawing.Point(990, 89);
-            this.btn_gua_conta2.Name = "btn_gua_conta2";
-            this.btn_gua_conta2.Size = new System.Drawing.Size(40, 40);
-            this.btn_gua_conta2.TabIndex = 17;
-            this.btn_gua_conta2.UseVisualStyleBackColor = true;
-            // 
-            // btn_mod_conta5
-            // 
-            this.btn_mod_conta5.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btn_mod_conta5.Image = global::ClubPilot.Properties.Resources.icons8_modificar_30;
-            this.btn_mod_conta5.Location = new System.Drawing.Point(936, 308);
-            this.btn_mod_conta5.Name = "btn_mod_conta5";
-            this.btn_mod_conta5.Size = new System.Drawing.Size(40, 40);
-            this.btn_mod_conta5.TabIndex = 12;
-            this.btn_mod_conta5.UseVisualStyleBackColor = true;
-            // 
-            // btn_mod_conta4
-            // 
-            this.btn_mod_conta4.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btn_mod_conta4.Image = global::ClubPilot.Properties.Resources.icons8_modificar_30;
-            this.btn_mod_conta4.Location = new System.Drawing.Point(936, 235);
-            this.btn_mod_conta4.Name = "btn_mod_conta4";
-            this.btn_mod_conta4.Size = new System.Drawing.Size(40, 40);
-            this.btn_mod_conta4.TabIndex = 10;
-            this.btn_mod_conta4.UseVisualStyleBackColor = true;
-            // 
             // panel5
             // 
+            this.panel5.Controls.Add(this.txtBoxRol5);
+            this.panel5.Controls.Add(this.label32);
             this.panel5.Controls.Add(this.txtBoxEmail5);
             this.panel5.Controls.Add(this.label22);
             this.panel5.Controls.Add(this.txtBoxCognoms5);
@@ -257,7 +197,7 @@
             this.panel5.Controls.Add(this.label19);
             this.panel5.Location = new System.Drawing.Point(3, 295);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(923, 67);
+            this.panel5.Size = new System.Drawing.Size(1107, 67);
             this.panel5.TabIndex = 5;
             // 
             // txtBoxEmail5
@@ -342,6 +282,8 @@
             // 
             // panel4
             // 
+            this.panel4.Controls.Add(this.txtBoxRol4);
+            this.panel4.Controls.Add(this.label31);
             this.panel4.Controls.Add(this.txtBoxEmail4);
             this.panel4.Controls.Add(this.label18);
             this.panel4.Controls.Add(this.txtBoxCognoms4);
@@ -352,7 +294,7 @@
             this.panel4.Controls.Add(this.label15);
             this.panel4.Location = new System.Drawing.Point(3, 222);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(923, 67);
+            this.panel4.Size = new System.Drawing.Size(1107, 67);
             this.panel4.TabIndex = 5;
             // 
             // txtBoxEmail4
@@ -435,20 +377,10 @@
             this.label15.TabIndex = 18;
             this.label15.Text = "Username:";
             // 
-            // btn_gua_conta1
-            // 
-            this.btn_gua_conta1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btn_gua_conta1.Enabled = false;
-            this.btn_gua_conta1.Image = global::ClubPilot.Properties.Resources.icons8_guardar_30;
-            this.btn_gua_conta1.Location = new System.Drawing.Point(990, 16);
-            this.btn_gua_conta1.Name = "btn_gua_conta1";
-            this.btn_gua_conta1.Size = new System.Drawing.Size(40, 40);
-            this.btn_gua_conta1.TabIndex = 16;
-            this.btn_gua_conta1.UseVisualStyleBackColor = true;
-            this.btn_gua_conta1.Click += new System.EventHandler(this.btn_gua_conta1_Click);
-            // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.txtBoxRol3);
+            this.panel2.Controls.Add(this.label30);
             this.panel2.Controls.Add(this.txtBoxEmail3);
             this.panel2.Controls.Add(this.label14);
             this.panel2.Controls.Add(this.txtBoxCognoms3);
@@ -459,7 +391,7 @@
             this.panel2.Controls.Add(this.label11);
             this.panel2.Location = new System.Drawing.Point(3, 149);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(923, 66);
+            this.panel2.Size = new System.Drawing.Size(1107, 66);
             this.panel2.TabIndex = 5;
             // 
             // txtBoxEmail3
@@ -544,6 +476,8 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.txtBoxRol2);
+            this.panel3.Controls.Add(this.label29);
             this.panel3.Controls.Add(this.txtBoxEmail2);
             this.panel3.Controls.Add(this.label10);
             this.panel3.Controls.Add(this.txtBoxCognoms2);
@@ -554,7 +488,7 @@
             this.panel3.Controls.Add(this.label7);
             this.panel3.Location = new System.Drawing.Point(3, 76);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(923, 66);
+            this.panel3.Size = new System.Drawing.Size(1107, 66);
             this.panel3.TabIndex = 5;
             // 
             // txtBoxEmail2
@@ -639,6 +573,8 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.txtBoxRol1);
+            this.panel1.Controls.Add(this.label28);
             this.panel1.Controls.Add(this.txtBoxEmail1);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.txtBoxCognoms1);
@@ -649,7 +585,7 @@
             this.panel1.Controls.Add(this.label3);
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(923, 65);
+            this.panel1.Size = new System.Drawing.Size(1107, 65);
             this.panel1.TabIndex = 4;
             // 
             // txtBoxEmail1
@@ -735,6 +671,8 @@
             // 
             // panel6
             // 
+            this.panel6.Controls.Add(this.txtBoxRol6);
+            this.panel6.Controls.Add(this.label33);
             this.panel6.Controls.Add(this.txtBoxEmail6);
             this.panel6.Controls.Add(this.txtBoxCognoms6);
             this.panel6.Controls.Add(this.label26);
@@ -745,7 +683,7 @@
             this.panel6.Controls.Add(this.label23);
             this.panel6.Location = new System.Drawing.Point(3, 368);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(923, 69);
+            this.panel6.Size = new System.Drawing.Size(1107, 69);
             this.panel6.TabIndex = 5;
             // 
             // txtBoxEmail6
@@ -828,107 +766,6 @@
             this.label23.TabIndex = 22;
             this.label23.Text = "Username:";
             // 
-            // btn_mod_conta3
-            // 
-            this.btn_mod_conta3.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btn_mod_conta3.Image = global::ClubPilot.Properties.Resources.icons8_modificar_30;
-            this.btn_mod_conta3.Location = new System.Drawing.Point(936, 162);
-            this.btn_mod_conta3.Name = "btn_mod_conta3";
-            this.btn_mod_conta3.Size = new System.Drawing.Size(40, 40);
-            this.btn_mod_conta3.TabIndex = 8;
-            this.btn_mod_conta3.UseVisualStyleBackColor = true;
-            // 
-            // btn_mod_conta6
-            // 
-            this.btn_mod_conta6.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btn_mod_conta6.Image = global::ClubPilot.Properties.Resources.icons8_modificar_30;
-            this.btn_mod_conta6.Location = new System.Drawing.Point(936, 382);
-            this.btn_mod_conta6.Name = "btn_mod_conta6";
-            this.btn_mod_conta6.Size = new System.Drawing.Size(40, 40);
-            this.btn_mod_conta6.TabIndex = 14;
-            this.btn_mod_conta6.UseVisualStyleBackColor = true;
-            // 
-            // btn_mod_conta2
-            // 
-            this.btn_mod_conta2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btn_mod_conta2.Image = global::ClubPilot.Properties.Resources.icons8_modificar_30;
-            this.btn_mod_conta2.Location = new System.Drawing.Point(936, 89);
-            this.btn_mod_conta2.Name = "btn_mod_conta2";
-            this.btn_mod_conta2.Size = new System.Drawing.Size(40, 40);
-            this.btn_mod_conta2.TabIndex = 6;
-            this.btn_mod_conta2.UseVisualStyleBackColor = true;
-            // 
-            // btn_eli_conta1
-            // 
-            this.btn_eli_conta1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btn_eli_conta1.Image = global::ClubPilot.Properties.Resources.icons8_eliminar_30;
-            this.btn_eli_conta1.Location = new System.Drawing.Point(1045, 16);
-            this.btn_eli_conta1.Name = "btn_eli_conta1";
-            this.btn_eli_conta1.Size = new System.Drawing.Size(40, 40);
-            this.btn_eli_conta1.TabIndex = 4;
-            this.btn_eli_conta1.UseVisualStyleBackColor = true;
-            // 
-            // btn_eli_conta2
-            // 
-            this.btn_eli_conta2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btn_eli_conta2.Image = global::ClubPilot.Properties.Resources.icons8_eliminar_30;
-            this.btn_eli_conta2.Location = new System.Drawing.Point(1045, 89);
-            this.btn_eli_conta2.Name = "btn_eli_conta2";
-            this.btn_eli_conta2.Size = new System.Drawing.Size(40, 40);
-            this.btn_eli_conta2.TabIndex = 7;
-            this.btn_eli_conta2.UseVisualStyleBackColor = true;
-            // 
-            // btn_eli_conta3
-            // 
-            this.btn_eli_conta3.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btn_eli_conta3.Image = global::ClubPilot.Properties.Resources.icons8_eliminar_30;
-            this.btn_eli_conta3.Location = new System.Drawing.Point(1045, 162);
-            this.btn_eli_conta3.Name = "btn_eli_conta3";
-            this.btn_eli_conta3.Size = new System.Drawing.Size(40, 40);
-            this.btn_eli_conta3.TabIndex = 9;
-            this.btn_eli_conta3.UseVisualStyleBackColor = true;
-            // 
-            // btn_eli_conta4
-            // 
-            this.btn_eli_conta4.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btn_eli_conta4.Image = global::ClubPilot.Properties.Resources.icons8_eliminar_30;
-            this.btn_eli_conta4.Location = new System.Drawing.Point(1045, 235);
-            this.btn_eli_conta4.Name = "btn_eli_conta4";
-            this.btn_eli_conta4.Size = new System.Drawing.Size(40, 40);
-            this.btn_eli_conta4.TabIndex = 11;
-            this.btn_eli_conta4.UseVisualStyleBackColor = true;
-            // 
-            // btn_eli_conta5
-            // 
-            this.btn_eli_conta5.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btn_eli_conta5.Image = global::ClubPilot.Properties.Resources.icons8_eliminar_30;
-            this.btn_eli_conta5.Location = new System.Drawing.Point(1045, 308);
-            this.btn_eli_conta5.Name = "btn_eli_conta5";
-            this.btn_eli_conta5.Size = new System.Drawing.Size(40, 40);
-            this.btn_eli_conta5.TabIndex = 13;
-            this.btn_eli_conta5.UseVisualStyleBackColor = true;
-            // 
-            // btn_eli_conta6
-            // 
-            this.btn_eli_conta6.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btn_eli_conta6.Image = global::ClubPilot.Properties.Resources.icons8_eliminar_30;
-            this.btn_eli_conta6.Location = new System.Drawing.Point(1045, 382);
-            this.btn_eli_conta6.Name = "btn_eli_conta6";
-            this.btn_eli_conta6.Size = new System.Drawing.Size(40, 40);
-            this.btn_eli_conta6.TabIndex = 15;
-            this.btn_eli_conta6.UseVisualStyleBackColor = true;
-            // 
-            // btn_mod_conta1
-            // 
-            this.btn_mod_conta1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btn_mod_conta1.Image = global::ClubPilot.Properties.Resources.icons8_modificar_30;
-            this.btn_mod_conta1.Location = new System.Drawing.Point(936, 16);
-            this.btn_mod_conta1.Name = "btn_mod_conta1";
-            this.btn_mod_conta1.Size = new System.Drawing.Size(40, 40);
-            this.btn_mod_conta1.TabIndex = 1;
-            this.btn_mod_conta1.UseVisualStyleBackColor = true;
-            this.btn_mod_conta1.Click += new System.EventHandler(this.btn_mod_conta1_Click);
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -940,32 +777,340 @@
             this.label2.Text = "Informació comptes";
             this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Font = new System.Drawing.Font("Cascadia Code", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label27.Location = new System.Drawing.Point(1091, 138);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(168, 27);
+            this.label27.TabIndex = 4;
+            this.label27.Text = "Afegir compte";
+            // 
+            // txtBoxRol1
+            // 
+            this.txtBoxRol1.Enabled = false;
+            this.txtBoxRol1.Font = new System.Drawing.Font("Cascadia Code", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBoxRol1.Location = new System.Drawing.Point(957, 21);
+            this.txtBoxRol1.Name = "txtBoxRol1";
+            this.txtBoxRol1.Size = new System.Drawing.Size(133, 23);
+            this.txtBoxRol1.TabIndex = 14;
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Font = new System.Drawing.Font("Cascadia Code", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label28.Location = new System.Drawing.Point(922, 24);
+            this.label28.Margin = new System.Windows.Forms.Padding(3, 15, 3, 0);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(40, 17);
+            this.label28.TabIndex = 13;
+            this.label28.Text = "Rol:";
+            // 
+            // txtBoxRol2
+            // 
+            this.txtBoxRol2.Enabled = false;
+            this.txtBoxRol2.Font = new System.Drawing.Font("Cascadia Code", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBoxRol2.Location = new System.Drawing.Point(957, 20);
+            this.txtBoxRol2.Name = "txtBoxRol2";
+            this.txtBoxRol2.Size = new System.Drawing.Size(133, 23);
+            this.txtBoxRol2.TabIndex = 16;
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Font = new System.Drawing.Font("Cascadia Code", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label29.Location = new System.Drawing.Point(922, 23);
+            this.label29.Margin = new System.Windows.Forms.Padding(3, 15, 3, 0);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(40, 17);
+            this.label29.TabIndex = 15;
+            this.label29.Text = "Rol:";
+            // 
+            // txtBoxRol3
+            // 
+            this.txtBoxRol3.Enabled = false;
+            this.txtBoxRol3.Font = new System.Drawing.Font("Cascadia Code", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBoxRol3.Location = new System.Drawing.Point(957, 17);
+            this.txtBoxRol3.Name = "txtBoxRol3";
+            this.txtBoxRol3.Size = new System.Drawing.Size(133, 23);
+            this.txtBoxRol3.TabIndex = 18;
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Font = new System.Drawing.Font("Cascadia Code", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label30.Location = new System.Drawing.Point(922, 20);
+            this.label30.Margin = new System.Windows.Forms.Padding(3, 15, 3, 0);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(40, 17);
+            this.label30.TabIndex = 17;
+            this.label30.Text = "Rol:";
+            // 
+            // txtBoxRol4
+            // 
+            this.txtBoxRol4.Enabled = false;
+            this.txtBoxRol4.Font = new System.Drawing.Font("Cascadia Code", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBoxRol4.Location = new System.Drawing.Point(957, 19);
+            this.txtBoxRol4.Name = "txtBoxRol4";
+            this.txtBoxRol4.Size = new System.Drawing.Size(133, 23);
+            this.txtBoxRol4.TabIndex = 20;
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Font = new System.Drawing.Font("Cascadia Code", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label31.Location = new System.Drawing.Point(922, 22);
+            this.label31.Margin = new System.Windows.Forms.Padding(3, 15, 3, 0);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(40, 17);
+            this.label31.TabIndex = 19;
+            this.label31.Text = "Rol:";
+            // 
+            // txtBoxRol5
+            // 
+            this.txtBoxRol5.Enabled = false;
+            this.txtBoxRol5.Font = new System.Drawing.Font("Cascadia Code", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBoxRol5.Location = new System.Drawing.Point(957, 20);
+            this.txtBoxRol5.Name = "txtBoxRol5";
+            this.txtBoxRol5.Size = new System.Drawing.Size(133, 23);
+            this.txtBoxRol5.TabIndex = 22;
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Font = new System.Drawing.Font("Cascadia Code", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label32.Location = new System.Drawing.Point(922, 23);
+            this.label32.Margin = new System.Windows.Forms.Padding(3, 15, 3, 0);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(40, 17);
+            this.label32.TabIndex = 21;
+            this.label32.Text = "Rol:";
+            // 
+            // txtBoxRol6
+            // 
+            this.txtBoxRol6.Enabled = false;
+            this.txtBoxRol6.Font = new System.Drawing.Font("Cascadia Code", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBoxRol6.Location = new System.Drawing.Point(957, 21);
+            this.txtBoxRol6.Name = "txtBoxRol6";
+            this.txtBoxRol6.Size = new System.Drawing.Size(133, 23);
+            this.txtBoxRol6.TabIndex = 24;
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Font = new System.Drawing.Font("Cascadia Code", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label33.Location = new System.Drawing.Point(922, 24);
+            this.label33.Margin = new System.Windows.Forms.Padding(3, 15, 3, 0);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(40, 17);
+            this.label33.TabIndex = 23;
+            this.label33.Text = "Rol:";
+            // 
             // btn_add_conta
             // 
             this.btn_add_conta.Image = global::ClubPilot.Properties.Resources.icons8_añadir_30;
-            this.btn_add_conta.Location = new System.Drawing.Point(1087, 133);
+            this.btn_add_conta.Location = new System.Drawing.Point(1265, 133);
             this.btn_add_conta.Name = "btn_add_conta";
             this.btn_add_conta.Size = new System.Drawing.Size(43, 44);
             this.btn_add_conta.TabIndex = 3;
             this.btn_add_conta.UseVisualStyleBackColor = true;
             this.btn_add_conta.Click += new System.EventHandler(this.btn_add_conta_Click);
             // 
-            // label27
+            // btn_gua_conta6
             // 
-            this.label27.AutoSize = true;
-            this.label27.Font = new System.Drawing.Font("Cascadia Code", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label27.Location = new System.Drawing.Point(913, 138);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(168, 27);
-            this.label27.TabIndex = 4;
-            this.label27.Text = "Afegir compte";
+            this.btn_gua_conta6.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btn_gua_conta6.Enabled = false;
+            this.btn_gua_conta6.Image = global::ClubPilot.Properties.Resources.icons8_guardar_30;
+            this.btn_gua_conta6.Location = new System.Drawing.Point(1190, 382);
+            this.btn_gua_conta6.Name = "btn_gua_conta6";
+            this.btn_gua_conta6.Size = new System.Drawing.Size(40, 40);
+            this.btn_gua_conta6.TabIndex = 21;
+            this.btn_gua_conta6.UseVisualStyleBackColor = true;
+            // 
+            // btn_gua_conta5
+            // 
+            this.btn_gua_conta5.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btn_gua_conta5.Enabled = false;
+            this.btn_gua_conta5.Image = global::ClubPilot.Properties.Resources.icons8_guardar_30;
+            this.btn_gua_conta5.Location = new System.Drawing.Point(1190, 308);
+            this.btn_gua_conta5.Name = "btn_gua_conta5";
+            this.btn_gua_conta5.Size = new System.Drawing.Size(40, 40);
+            this.btn_gua_conta5.TabIndex = 20;
+            this.btn_gua_conta5.UseVisualStyleBackColor = true;
+            // 
+            // btn_gua_conta4
+            // 
+            this.btn_gua_conta4.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btn_gua_conta4.Enabled = false;
+            this.btn_gua_conta4.Image = global::ClubPilot.Properties.Resources.icons8_guardar_30;
+            this.btn_gua_conta4.Location = new System.Drawing.Point(1190, 235);
+            this.btn_gua_conta4.Name = "btn_gua_conta4";
+            this.btn_gua_conta4.Size = new System.Drawing.Size(40, 40);
+            this.btn_gua_conta4.TabIndex = 19;
+            this.btn_gua_conta4.UseVisualStyleBackColor = true;
+            // 
+            // btn_gua_conta3
+            // 
+            this.btn_gua_conta3.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btn_gua_conta3.Enabled = false;
+            this.btn_gua_conta3.Image = global::ClubPilot.Properties.Resources.icons8_guardar_30;
+            this.btn_gua_conta3.Location = new System.Drawing.Point(1190, 162);
+            this.btn_gua_conta3.Name = "btn_gua_conta3";
+            this.btn_gua_conta3.Size = new System.Drawing.Size(40, 40);
+            this.btn_gua_conta3.TabIndex = 18;
+            this.btn_gua_conta3.UseVisualStyleBackColor = true;
+            // 
+            // btn_gua_conta2
+            // 
+            this.btn_gua_conta2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btn_gua_conta2.Enabled = false;
+            this.btn_gua_conta2.Image = global::ClubPilot.Properties.Resources.icons8_guardar_30;
+            this.btn_gua_conta2.Location = new System.Drawing.Point(1190, 89);
+            this.btn_gua_conta2.Name = "btn_gua_conta2";
+            this.btn_gua_conta2.Size = new System.Drawing.Size(40, 40);
+            this.btn_gua_conta2.TabIndex = 17;
+            this.btn_gua_conta2.UseVisualStyleBackColor = true;
+            // 
+            // btn_mod_conta5
+            // 
+            this.btn_mod_conta5.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btn_mod_conta5.Image = global::ClubPilot.Properties.Resources.icons8_modificar_30;
+            this.btn_mod_conta5.Location = new System.Drawing.Point(1125, 308);
+            this.btn_mod_conta5.Name = "btn_mod_conta5";
+            this.btn_mod_conta5.Size = new System.Drawing.Size(40, 40);
+            this.btn_mod_conta5.TabIndex = 12;
+            this.btn_mod_conta5.UseVisualStyleBackColor = true;
+            // 
+            // btn_mod_conta4
+            // 
+            this.btn_mod_conta4.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btn_mod_conta4.Image = global::ClubPilot.Properties.Resources.icons8_modificar_30;
+            this.btn_mod_conta4.Location = new System.Drawing.Point(1125, 235);
+            this.btn_mod_conta4.Name = "btn_mod_conta4";
+            this.btn_mod_conta4.Size = new System.Drawing.Size(40, 40);
+            this.btn_mod_conta4.TabIndex = 10;
+            this.btn_mod_conta4.UseVisualStyleBackColor = true;
+            // 
+            // btn_gua_conta1
+            // 
+            this.btn_gua_conta1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btn_gua_conta1.Enabled = false;
+            this.btn_gua_conta1.Image = global::ClubPilot.Properties.Resources.icons8_guardar_30;
+            this.btn_gua_conta1.Location = new System.Drawing.Point(1190, 16);
+            this.btn_gua_conta1.Name = "btn_gua_conta1";
+            this.btn_gua_conta1.Size = new System.Drawing.Size(40, 40);
+            this.btn_gua_conta1.TabIndex = 16;
+            this.btn_gua_conta1.UseVisualStyleBackColor = true;
+            this.btn_gua_conta1.Click += new System.EventHandler(this.btn_gua_conta1_Click);
+            // 
+            // btn_mod_conta3
+            // 
+            this.btn_mod_conta3.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btn_mod_conta3.Image = global::ClubPilot.Properties.Resources.icons8_modificar_30;
+            this.btn_mod_conta3.Location = new System.Drawing.Point(1125, 162);
+            this.btn_mod_conta3.Name = "btn_mod_conta3";
+            this.btn_mod_conta3.Size = new System.Drawing.Size(40, 40);
+            this.btn_mod_conta3.TabIndex = 8;
+            this.btn_mod_conta3.UseVisualStyleBackColor = true;
+            // 
+            // btn_mod_conta6
+            // 
+            this.btn_mod_conta6.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btn_mod_conta6.Image = global::ClubPilot.Properties.Resources.icons8_modificar_30;
+            this.btn_mod_conta6.Location = new System.Drawing.Point(1125, 382);
+            this.btn_mod_conta6.Name = "btn_mod_conta6";
+            this.btn_mod_conta6.Size = new System.Drawing.Size(40, 40);
+            this.btn_mod_conta6.TabIndex = 14;
+            this.btn_mod_conta6.UseVisualStyleBackColor = true;
+            // 
+            // btn_mod_conta2
+            // 
+            this.btn_mod_conta2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btn_mod_conta2.Image = global::ClubPilot.Properties.Resources.icons8_modificar_30;
+            this.btn_mod_conta2.Location = new System.Drawing.Point(1125, 89);
+            this.btn_mod_conta2.Name = "btn_mod_conta2";
+            this.btn_mod_conta2.Size = new System.Drawing.Size(40, 40);
+            this.btn_mod_conta2.TabIndex = 6;
+            this.btn_mod_conta2.UseVisualStyleBackColor = true;
+            // 
+            // btn_eli_conta1
+            // 
+            this.btn_eli_conta1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btn_eli_conta1.Image = global::ClubPilot.Properties.Resources.icons8_eliminar_30;
+            this.btn_eli_conta1.Location = new System.Drawing.Point(1256, 16);
+            this.btn_eli_conta1.Name = "btn_eli_conta1";
+            this.btn_eli_conta1.Size = new System.Drawing.Size(40, 40);
+            this.btn_eli_conta1.TabIndex = 4;
+            this.btn_eli_conta1.UseVisualStyleBackColor = true;
+            // 
+            // btn_eli_conta2
+            // 
+            this.btn_eli_conta2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btn_eli_conta2.Image = global::ClubPilot.Properties.Resources.icons8_eliminar_30;
+            this.btn_eli_conta2.Location = new System.Drawing.Point(1256, 89);
+            this.btn_eli_conta2.Name = "btn_eli_conta2";
+            this.btn_eli_conta2.Size = new System.Drawing.Size(40, 40);
+            this.btn_eli_conta2.TabIndex = 7;
+            this.btn_eli_conta2.UseVisualStyleBackColor = true;
+            // 
+            // btn_eli_conta3
+            // 
+            this.btn_eli_conta3.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btn_eli_conta3.Image = global::ClubPilot.Properties.Resources.icons8_eliminar_30;
+            this.btn_eli_conta3.Location = new System.Drawing.Point(1256, 162);
+            this.btn_eli_conta3.Name = "btn_eli_conta3";
+            this.btn_eli_conta3.Size = new System.Drawing.Size(40, 40);
+            this.btn_eli_conta3.TabIndex = 9;
+            this.btn_eli_conta3.UseVisualStyleBackColor = true;
+            // 
+            // btn_eli_conta4
+            // 
+            this.btn_eli_conta4.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btn_eli_conta4.Image = global::ClubPilot.Properties.Resources.icons8_eliminar_30;
+            this.btn_eli_conta4.Location = new System.Drawing.Point(1256, 235);
+            this.btn_eli_conta4.Name = "btn_eli_conta4";
+            this.btn_eli_conta4.Size = new System.Drawing.Size(40, 40);
+            this.btn_eli_conta4.TabIndex = 11;
+            this.btn_eli_conta4.UseVisualStyleBackColor = true;
+            // 
+            // btn_eli_conta5
+            // 
+            this.btn_eli_conta5.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btn_eli_conta5.Image = global::ClubPilot.Properties.Resources.icons8_eliminar_30;
+            this.btn_eli_conta5.Location = new System.Drawing.Point(1256, 308);
+            this.btn_eli_conta5.Name = "btn_eli_conta5";
+            this.btn_eli_conta5.Size = new System.Drawing.Size(40, 40);
+            this.btn_eli_conta5.TabIndex = 13;
+            this.btn_eli_conta5.UseVisualStyleBackColor = true;
+            // 
+            // btn_eli_conta6
+            // 
+            this.btn_eli_conta6.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btn_eli_conta6.Image = global::ClubPilot.Properties.Resources.icons8_eliminar_30;
+            this.btn_eli_conta6.Location = new System.Drawing.Point(1256, 382);
+            this.btn_eli_conta6.Name = "btn_eli_conta6";
+            this.btn_eli_conta6.Size = new System.Drawing.Size(40, 40);
+            this.btn_eli_conta6.TabIndex = 15;
+            this.btn_eli_conta6.UseVisualStyleBackColor = true;
+            // 
+            // btn_mod_conta1
+            // 
+            this.btn_mod_conta1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btn_mod_conta1.Image = global::ClubPilot.Properties.Resources.icons8_modificar_30;
+            this.btn_mod_conta1.Location = new System.Drawing.Point(1125, 16);
+            this.btn_mod_conta1.Name = "btn_mod_conta1";
+            this.btn_mod_conta1.Size = new System.Drawing.Size(40, 40);
+            this.btn_mod_conta1.TabIndex = 1;
+            this.btn_mod_conta1.UseVisualStyleBackColor = true;
+            this.btn_mod_conta1.Click += new System.EventHandler(this.btn_mod_conta1_Click);
             // 
             // Accounts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SeaShell;
-            this.ClientSize = new System.Drawing.Size(1190, 654);
+            this.ClientSize = new System.Drawing.Size(1334, 654);
             this.Controls.Add(this.label27);
             this.Controls.Add(this.btn_add_conta);
             this.Controls.Add(this.tableLayoutPanel1);
@@ -1071,5 +1216,17 @@
         private System.Windows.Forms.Button btn_gua_conta3;
         private System.Windows.Forms.Button btn_gua_conta2;
         private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.TextBox txtBoxRol1;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.TextBox txtBoxRol5;
+        private System.Windows.Forms.Label label32;
+        private System.Windows.Forms.TextBox txtBoxRol4;
+        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.TextBox txtBoxRol3;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.TextBox txtBoxRol2;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.TextBox txtBoxRol6;
+        private System.Windows.Forms.Label label33;
     }
 }

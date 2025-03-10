@@ -63,9 +63,29 @@ namespace ClubPilot.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_aceptar_30 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-aceptar-30", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_añadir_30 {
             get {
                 object obj = ResourceManager.GetObject("icons8-añadir-30", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_cancelar_30 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-cancelar-30", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
