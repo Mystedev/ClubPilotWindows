@@ -62,6 +62,7 @@
             this.jugadorsToolStripMenuItem.Name = "jugadorsToolStripMenuItem";
             this.jugadorsToolStripMenuItem.Size = new System.Drawing.Size(156, 45);
             this.jugadorsToolStripMenuItem.Text = "Jugadors";
+            this.jugadorsToolStripMenuItem.Click += new System.EventHandler(this.jugadorsToolStripMenuItem_Click);
             // 
             // esdevenimentsToolStripMenuItem
             // 
@@ -94,13 +95,9 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.Location = new System.Drawing.Point(16, 64);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
-<<<<<<< HEAD
             this.button1.Size = new System.Drawing.Size(169, 41);
-=======
-            this.button1.Size = new System.Drawing.Size(82, 33);
->>>>>>> 5877a0f429329c2c2be1aa82705661943d900472
             this.button1.TabIndex = 1;
             this.button1.Text = "Futbol";
             this.button1.UseVisualStyleBackColor = true;
@@ -110,16 +107,10 @@
             // 
             this.button2.FlatAppearance.BorderSize = 0;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-<<<<<<< HEAD
             this.button2.Location = new System.Drawing.Point(213, 64);
-            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(169, 41);
-=======
-            this.button2.Location = new System.Drawing.Point(100, 52);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(90, 33);
->>>>>>> 5877a0f429329c2c2be1aa82705661943d900472
             this.button2.TabIndex = 2;
             this.button2.Text = "Basketball";
             this.button2.UseVisualStyleBackColor = true;
@@ -149,17 +140,12 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SeaShell;
-<<<<<<< HEAD
             this.ClientSize = new System.Drawing.Size(1399, 727);
-=======
-            this.ClientSize = new System.Drawing.Size(1049, 591);
-            this.Controls.Add(this.tableLayoutPanel1);
->>>>>>> 5877a0f429329c2c2be1aa82705661943d900472
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Players";
             this.Text = "Players";
             this.Load += new System.EventHandler(this.Players_Load);
