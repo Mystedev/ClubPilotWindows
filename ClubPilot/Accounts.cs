@@ -41,11 +41,24 @@ namespace ClubPilot
 
         private void btn_mod_conta1_Click(object sender, EventArgs e)
         {
+            btn_mod_conta1.Enabled = false;
             txtBoxUsername1.Enabled = true;
             txtBoxNom1.Enabled = true;
             txtBoxCognoms1.Enabled = true;
             txtBoxEmail1.Enabled = true;
+            btn_gua_conta1.Enabled = true;
 
+        }
+
+        private void btn_gua_conta1_Click(object sender, EventArgs e)
+        {
+            btn_gua_conta1.Enabled = false;
+            btn_mod_conta1.Enabled = true;
+        }
+
+        private void btn_add_conta_Click(object sender, EventArgs e)
+        {
+            
         }
     }
     public class Usuari : Form

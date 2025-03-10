@@ -73,9 +73,9 @@ namespace ClubPilot.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icons8_editar_30 {
+        internal static System.Drawing.Bitmap icons8_eliminar_30 {
             get {
-                object obj = ResourceManager.GetObject("icons8-editar-30", resourceCulture);
+                object obj = ResourceManager.GetObject("icons8-eliminar-30", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -83,9 +83,19 @@ namespace ClubPilot.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icons8_eliminar_30 {
+        internal static System.Drawing.Bitmap icons8_guardar_30 {
             get {
-                object obj = ResourceManager.GetObject("icons8-eliminar-30", resourceCulture);
+                object obj = ResourceManager.GetObject("icons8-guardar-30", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_modificar_30 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-modificar-30", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
