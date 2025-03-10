@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btn_gua_conta1 = new System.Windows.Forms.Button();
             this.btn_eli_conta1 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.txtBoxEmail1 = new System.Windows.Forms.TextBox();
@@ -38,6 +39,7 @@
             this.txtBoxUsername1 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -47,6 +49,7 @@
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.button9 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
@@ -56,6 +59,7 @@
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.textBox7 = new System.Windows.Forms.TextBox();
@@ -65,6 +69,7 @@
             this.textBox9 = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.button3 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.textBox10 = new System.Windows.Forms.TextBox();
@@ -73,11 +78,6 @@
             this.label14 = new System.Windows.Forms.Label();
             this.textBox12 = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
-            this.btn_gua_conta1 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -106,6 +106,18 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(728, 58);
             this.panel1.TabIndex = 5;
+            // 
+            // btn_gua_conta1
+            // 
+            this.btn_gua_conta1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btn_gua_conta1.Enabled = false;
+            this.btn_gua_conta1.Image = global::ClubPilot.Properties.Resources.icons8_guardar_30;
+            this.btn_gua_conta1.Location = new System.Drawing.Point(632, 9);
+            this.btn_gua_conta1.Margin = new System.Windows.Forms.Padding(2);
+            this.btn_gua_conta1.Name = "btn_gua_conta1";
+            this.btn_gua_conta1.Size = new System.Drawing.Size(30, 36);
+            this.btn_gua_conta1.TabIndex = 19;
+            this.btn_gua_conta1.UseVisualStyleBackColor = true;
             // 
             // btn_eli_conta1
             // 
@@ -208,6 +220,18 @@
             this.panel2.Size = new System.Drawing.Size(728, 58);
             this.panel2.TabIndex = 14;
             // 
+            // button1
+            // 
+            this.button1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.button1.Enabled = false;
+            this.button1.Image = global::ClubPilot.Properties.Resources.icons8_guardar_30;
+            this.button1.Location = new System.Drawing.Point(632, 9);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(30, 36);
+            this.button1.TabIndex = 20;
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // button5
             // 
             this.button5.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -306,6 +330,18 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(728, 58);
             this.panel3.TabIndex = 15;
+            // 
+            // button9
+            // 
+            this.button9.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.button9.Enabled = false;
+            this.button9.Image = global::ClubPilot.Properties.Resources.icons8_guardar_30;
+            this.button9.Location = new System.Drawing.Point(632, 9);
+            this.button9.Margin = new System.Windows.Forms.Padding(2);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(30, 36);
+            this.button9.TabIndex = 21;
+            this.button9.UseVisualStyleBackColor = true;
             // 
             // button6
             // 
@@ -406,6 +442,18 @@
             this.panel4.Size = new System.Drawing.Size(728, 58);
             this.panel4.TabIndex = 16;
             // 
+            // button2
+            // 
+            this.button2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.button2.Enabled = false;
+            this.button2.Image = global::ClubPilot.Properties.Resources.icons8_guardar_30;
+            this.button2.Location = new System.Drawing.Point(632, 9);
+            this.button2.Margin = new System.Windows.Forms.Padding(2);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(30, 36);
+            this.button2.TabIndex = 22;
+            this.button2.UseVisualStyleBackColor = true;
+            // 
             // button7
             // 
             this.button7.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -505,6 +553,18 @@
             this.panel5.Size = new System.Drawing.Size(728, 58);
             this.panel5.TabIndex = 17;
             // 
+            // button3
+            // 
+            this.button3.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.button3.Enabled = false;
+            this.button3.Image = global::ClubPilot.Properties.Resources.icons8_guardar_30;
+            this.button3.Location = new System.Drawing.Point(632, 9);
+            this.button3.Margin = new System.Windows.Forms.Padding(2);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(30, 36);
+            this.button3.TabIndex = 23;
+            this.button3.UseVisualStyleBackColor = true;
+            // 
             // button8
             // 
             this.button8.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -587,70 +647,11 @@
             this.label15.TabIndex = 5;
             this.label15.Text = "Club name:";
             // 
-            // btn_gua_conta1
-            // 
-            this.btn_gua_conta1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btn_gua_conta1.Enabled = false;
-            this.btn_gua_conta1.Image = global::ClubPilot.Properties.Resources.icons8_guardar_30;
-            this.btn_gua_conta1.Location = new System.Drawing.Point(632, 9);
-            this.btn_gua_conta1.Margin = new System.Windows.Forms.Padding(2);
-            this.btn_gua_conta1.Name = "btn_gua_conta1";
-            this.btn_gua_conta1.Size = new System.Drawing.Size(30, 36);
-            this.btn_gua_conta1.TabIndex = 19;
-            this.btn_gua_conta1.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            this.button1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.button1.Enabled = false;
-            this.button1.Image = global::ClubPilot.Properties.Resources.icons8_guardar_30;
-            this.button1.Location = new System.Drawing.Point(632, 9);
-            this.button1.Margin = new System.Windows.Forms.Padding(2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(30, 36);
-            this.button1.TabIndex = 20;
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // button9
-            // 
-            this.button9.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.button9.Enabled = false;
-            this.button9.Image = global::ClubPilot.Properties.Resources.icons8_guardar_30;
-            this.button9.Location = new System.Drawing.Point(632, 9);
-            this.button9.Margin = new System.Windows.Forms.Padding(2);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(30, 36);
-            this.button9.TabIndex = 21;
-            this.button9.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.button2.Enabled = false;
-            this.button2.Image = global::ClubPilot.Properties.Resources.icons8_guardar_30;
-            this.button2.Location = new System.Drawing.Point(632, 9);
-            this.button2.Margin = new System.Windows.Forms.Padding(2);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(30, 36);
-            this.button2.TabIndex = 22;
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            this.button3.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.button3.Enabled = false;
-            this.button3.Image = global::ClubPilot.Properties.Resources.icons8_guardar_30;
-            this.button3.Location = new System.Drawing.Point(632, 9);
-            this.button3.Margin = new System.Windows.Forms.Padding(2);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(30, 36);
-            this.button3.TabIndex = 23;
-            this.button3.UseVisualStyleBackColor = true;
-            // 
             // clubs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.SeaShell;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel4);
