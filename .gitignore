@@ -1,24 +1,25 @@
-ClubPilot/bin/Debug/ClubPilot.exe
-ClubPilot/bin/Debug/ClubPilot.pdb
-.vs/ClubPilot/v17/.suo
-.vs/ClubPilot/v17/DocumentLayout.backup.json
-.vs/ClubPilot/v17/DocumentLayout.json
-*.vsidx
-ClubPilot/obj/Debug/ClubPilot.pdb
-ClubPilot/obj/Debug/ClubPilot.exe
-ClubPilot/obj/Debug/ClubPilot.csproj.GenerateResource.cache
-.vs/slnx.sqlite
-.vs/VSWorkspaceState.json
-.vs/ClubPilotWindows/v17/.wsuo
-.vs/ClubPilotWindows/v17/DocumentLayout.json
-ClubPilot/obj/Debug/ClubPilot.Accounts.resources
-ClubPilot/obj/Debug/TempPE/Properties.Resources.Designer.cs.dll
-ClubPilot/obj/Release/.NETFramework,Version=v4.7.2.AssemblyAttributes.cs
-ClubPilot/obj/Release/ClubPilot.csproj.AssemblyReference.cache
-*.cache
+# Visual Studio archivos de configuración
 .vs/
-ClubPilot/obj/Debug/
+*.suo
+*.user
+*.userosscache
+*.slnx.sqlite
+*.vscode/
+
+# Archivos de compilación
 bin/
 obj/
-.vs/
-.vs/
+*.cache
+*.pdb
+*.exe
+*.dll
+*.log
+*.csproj.user
+*.csprojAssemblyReference.cache
+
+# Archivos temporales
+ClubPilot/obj/
+ClubPilot/bin/
+ClubPilot/obj/Debug/
+ClubPilot/obj/Release/
+
