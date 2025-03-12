@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace ClubPilot
 {
-    public class Noticia
+    public class News : Panel
     {
         public string Titulo { get; set; }
         public string Texto { get; set; }
@@ -16,14 +16,13 @@ namespace ClubPilot
         public string Imagen { get; set; }
         public Panel Panel { get; set; }
 
-        public Noticia(string titulo, string texto, DateTime fecha, string autor, string imagen, Panel panel)
+        public News(string titulo, string texto, DateTime fecha, string autor, string imagen)
         {
             Titulo = titulo;
             Texto = texto;
             Fecha = fecha;
             Autor = autor;
             Imagen = imagen;
-            Panel = new Panel();
         }
 
         

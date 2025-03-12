@@ -4,33 +4,34 @@ using System.Windows.Forms;
 
 namespace ClubPilot
 {
-    public partial class Forum : Form
+    public partial class News_Tab : Form
     {
-        public Noticia noticia { get; set; }
+        public News Noticia { get; set; }
 
-        public Forum()
+        public News_Tab()
         {
-            InitializeComponent();
-
-            List<Noticia> noticias = new List<Noticia>();
+            List<News> noticias = new List<News>();
 
 
 
-            if (noticia != null)
+            if (Noticia != null)
             {
-                noticias.Add(noticia);
+                noticias.Add(Noticia);
                 //flowLayoutPanel1.Controls.Add(noticia.Panel);
-                noticia.Panel.Show();
+                Noticia.Panel.Show();
                 //Controls.Add(noticia.Panel);
             }
             else
             {
                 MessageBox.Show("No hay panel para mostrar.");
+                new Add_New().Show();
             }
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+
+
+        private void button1_Click_1(object sender, EventArgs e)
         {
             new Add_New().Show();
         }

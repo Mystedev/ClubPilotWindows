@@ -52,6 +52,12 @@
     <Compile Include="Accounts.Designer.cs">
       <DependentUpon>Accounts.cs</DependentUpon>
     </Compile>
+    <Compile Include="Add_News.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Add_News.Designer.cs">
+      <DependentUpon>Add_News.cs</DependentUpon>
+    </Compile>
     <Compile Include="clubs.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -64,6 +70,15 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="News.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="News_Tab.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="News_Tab.Designer.cs">
+      <DependentUpon>News_Tab.cs</DependentUpon>
+    </Compile>
     <Compile Include="Players.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -75,11 +90,18 @@
     <EmbeddedResource Include="Accounts.resx">
       <DependentUpon>Accounts.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Add_News.resx">
+      <DependentUpon>Add_News.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="clubs.resx">
       <DependentUpon>clubs.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forum.resx" />
+    <EmbeddedResource Include="News_Tab.resx">
+      <DependentUpon>News_Tab.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Players.resx">
       <DependentUpon>Players.cs</DependentUpon>

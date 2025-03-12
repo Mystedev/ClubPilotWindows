@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace ClubPilot
 {
@@ -37,7 +38,7 @@ namespace ClubPilot
 
         private void textBox_descripcion_TextChanged(object sender, EventArgs e)
         {
-            texto = textBox_descripcion.Text;   
+            texto = textBox_descripcion.Text;
         }
 
         private void textBox_autor_TextChanged(object sender, EventArgs e)
@@ -52,9 +53,9 @@ namespace ClubPilot
         private void boton_CrearNoticia_Click_1(object sender, EventArgs e)
         {
             Panel panel = new Panel();
-            Noticia noticia = new Noticia(titulo, texto, fecha, autor, imagen, panel);
-            Forum forum = new Forum();
-            forum.noticia = noticia;
+            News noticia = new News(titulo, texto, fecha, autor, imagen);
+            News_Tab forum = new News_Tab();
+            forum.Noticia = noticia;
             forum.Show();
 
         }
