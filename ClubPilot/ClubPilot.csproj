@@ -122,6 +122,7 @@
     <Compile Include="clubs.Designer.cs">
       <DependentUpon>clubs.cs</DependentUpon>
     </Compile>
+    <Compile Include="Connection.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
