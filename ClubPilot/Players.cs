@@ -17,6 +17,7 @@ namespace ClubPilot
             InitializeComponent();
         }
 
+
         private void Players_Load(object sender, EventArgs e)
         {
 
@@ -37,5 +38,14 @@ namespace ClubPilot
             // Boto de equip de basketball
         }
 
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+            
+        }
+
+        private void jugadorsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using ClubPilot.Properties;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,6 +18,13 @@ namespace ClubPilot
         public Accounts()
         {
             InitializeComponent();
+            Connection myConnection = new Connection();
+            myConnection.OpenConnection();
+
+
+            // Realiza operaciones con la base de datos...
+
+            myConnection.CloseConnection();
         }
 
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
@@ -36,7 +44,7 @@ namespace ClubPilot
 
         private void Accounts_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         private void btn_mod_conta1_Click(object sender, EventArgs e)
@@ -58,7 +66,7 @@ namespace ClubPilot
 
         private void btn_add_conta_Click(object sender, EventArgs e)
         {
-            
+            new AddAccount().Show();
         }
     }
     public class Usuari : Form

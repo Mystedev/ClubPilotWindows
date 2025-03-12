@@ -83,5 +83,12 @@ namespace ClubPilot
         {
             //entrar a la aplicació
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            CrearClub crearClub = new CrearClub();
+            crearClub.Show();
+
+        }
     }
 }
