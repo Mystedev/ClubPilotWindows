@@ -43,5 +43,9 @@ namespace ClubPilot
             
         }
 
+        private void jugadorsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
