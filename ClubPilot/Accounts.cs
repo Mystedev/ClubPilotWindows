@@ -1,5 +1,5 @@
 ﻿using ClubPilot.Properties;
-using MySql.Data.MySqlClient;
+//using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,13 +18,13 @@ namespace ClubPilot
         public Accounts()
         {
             InitializeComponent();
-            Connection myConnection = new Connection();
-            myConnection.OpenConnection();
+            //Connection myConnection = new Connection();
+            //myConnection.OpenConnection();
 
 
             // Realiza operaciones con la base de datos...
 
-            myConnection.CloseConnection();
+            //myConnection.CloseConnection();
         }
 
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
