@@ -134,7 +134,6 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-<<<<<<< HEAD
     <Compile Include="News.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -144,7 +143,6 @@
     <Compile Include="News_Tab.Designer.cs">
       <DependentUpon>News_Tab.cs</DependentUpon>
     </Compile>
-=======
     <Compile Include="CrearClub.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -158,7 +156,6 @@
       <DependentUpon>Forum.cs</DependentUpon>
     </Compile>
     <Compile Include="Noticia.cs" />
->>>>>>> 833b371b500ee484a8e8a5d975d3a0373258034f
     <Compile Include="Players.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -170,11 +167,9 @@
     <EmbeddedResource Include="Accounts.resx">
       <DependentUpon>Accounts.cs</DependentUpon>
     </EmbeddedResource>
-<<<<<<< HEAD
     <EmbeddedResource Include="Add_News.resx">
       <DependentUpon>Add_News.cs</DependentUpon>
     </EmbeddedResource>
-=======
     <EmbeddedResource Include="AddAccount.resx">
       <DependentUpon>AddAccount.cs</DependentUpon>
     </EmbeddedResource>
@@ -183,7 +178,6 @@
       <DependentUpon>Add_New.cs</DependentUpon>
     </EmbeddedResource>
 
->>>>>>> 833b371b500ee484a8e8a5d975d3a0373258034f
     <EmbeddedResource Include="clubs.resx">
       <DependentUpon>clubs.cs</DependentUpon>
     </EmbeddedResource>
@@ -193,14 +187,11 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-<<<<<<< HEAD
     <EmbeddedResource Include="Forum.resx" />
     <EmbeddedResource Include="News_Tab.resx">
       <DependentUpon>News_Tab.cs</DependentUpon>
-=======
     <EmbeddedResource Include="Forum.resx">
       <DependentUpon>Forum.cs</DependentUpon>
->>>>>>> 833b371b500ee484a8e8a5d975d3a0373258034f
     </EmbeddedResource>
     <EmbeddedResource Include="Players.resx">
       <DependentUpon>Players.cs</DependentUpon>
