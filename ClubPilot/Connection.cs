@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
-//using MySql.Data.MySqlClient;
+using MySql.Data.MySqlClient;
 
 namespace ClubPilot
 {
@@ -40,7 +40,7 @@ namespace ClubPilot
         // Método para inicializar la conexión
         private void InitializeConnection()
         {
-            string connectionString = $"Server={server};Database={database};Port={port};User Id={user_id};Password={password};";
+            //string connectionString = $"Server={server};Database={database};Port={port};User Id={user_id};Password={password};";
             //connection = new MySqlConnection(connectionString);
         }
 
