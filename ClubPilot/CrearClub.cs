@@ -34,25 +34,25 @@ namespace ClubPilot
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
-
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Archius d'imatge (*.png)"; // Filtros opcionales
+            openFileDialog.Filter = "Archivos de imagen (*.png)|*.png";// Filtros opcionales
             openFileDialog.Title = "Selecciona un archiu";
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 string rutaArchivo = openFileDialog.FileName;
-                MessageBox.Show("Archivu seleccionat: " + rutaArchivo);
+                MessageBox.Show("Archiu seleccionat: " + rutaArchivo);
             }
         }
-
         private void button2_Click(object sender, EventArgs e)
         {
-
+            //Insert implementació base de dades
+            MessageBox.Show("Club creat");
         }
-    }
+    }   
 }
