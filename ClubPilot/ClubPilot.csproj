@@ -123,6 +123,12 @@
       <DependentUpon>clubs.cs</DependentUpon>
     </Compile>
     <Compile Include="Connection.cs" />
+    <Compile Include="Esdeveniments.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Esdeveniments.Designer.cs">
+      <DependentUpon>Esdeveniments.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -156,16 +162,17 @@
     <EmbeddedResource Include="AddAccount.resx">
       <DependentUpon>AddAccount.cs</DependentUpon>
     </EmbeddedResource>
-
     <EmbeddedResource Include="Add_New.resx">
       <DependentUpon>Add_New.cs</DependentUpon>
     </EmbeddedResource>
-
     <EmbeddedResource Include="clubs.resx">
       <DependentUpon>clubs.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CrearClub.resx">
       <DependentUpon>CrearClub.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Esdeveniments.resx">
+      <DependentUpon>Esdeveniments.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

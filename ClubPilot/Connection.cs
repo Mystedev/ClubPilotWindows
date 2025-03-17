@@ -11,7 +11,7 @@ namespace ClubPilot
         private string port = "3306";
         private string user_id = "root";
         private string password = "1234";
-        private MySqlConnection connection;
+        //private MySqlConnection connection;
 
         // Constructor por defecto
         public Connection()
@@ -40,8 +40,8 @@ namespace ClubPilot
         // Método para inicializar la conexión
         private void InitializeConnection()
         {
-            string connectionString = $"Server={server};Database={database};Port={port};User Id={user_id};Password={password};";
-            connection = new MySqlConnection(connectionString);
+            //string connectionString = $"Server={server};Database={database};Port={port};User Id={user_id};Password={password};";
+            //connection = new MySqlConnection(connectionString);
         }
 
         // Método para abrir la conexión
@@ -49,7 +49,7 @@ namespace ClubPilot
         {
             try
             {
-                connection.Open();
+                //connection.Open();
                 MessageBox.Show("Conectado");
             }
             catch (Exception ex)
@@ -63,7 +63,7 @@ namespace ClubPilot
         {
             try
             {
-                connection.Close();
+                //connection.Close();
                 MessageBox.Show("Conexión cerrada");
             }
             catch (Exception ex)
