@@ -1,0 +1,77 @@
+C:\Users\Dennys\Documents\DAM_2\M013_Projecte DAM\Projecte_DAM2\WindowsApp\ClubPilotWindows\ClubPilot\bin\Debug\ClubPilot.exe.config
+C:\Users\Dennys\Documents\DAM_2\M013_Projecte DAM\Projecte_DAM2\WindowsApp\ClubPilotWindows\ClubPilot\bin\Debug\ClubPilot.exe
+C:\Users\Dennys\Documents\DAM_2\M013_Projecte DAM\Projecte_DAM2\WindowsApp\ClubPilotWindows\ClubPilot\bin\Debug\ClubPilot.pdb
+C:\Users\Dennys\Documents\DAM_2\M013_Projecte DAM\Projecte_DAM2\WindowsApp\ClubPilotWindows\ClubPilot\obj\Debug\ClubPilot.csproj.AssemblyReference.cache
+C:\Users\Dennys\Documents\DAM_2\M013_Projecte DAM\Projecte_DAM2\WindowsApp\ClubPilotWindows\ClubPilot\obj\Debug\ClubPilot.Form1.resources
+C:\Users\Dennys\Documents\DAM_2\M013_Projecte DAM\Projecte_DAM2\WindowsApp\ClubPilotWindows\ClubPilot\obj\Debug\ClubPilot.Properties.Resources.resources
+C:\Users\Dennys\Documents\DAM_2\M013_Projecte DAM\Projecte_DAM2\WindowsApp\ClubPilotWindows\ClubPilot\obj\Debug\ClubPilot.csproj.GenerateResource.cache
+C:\Users\Dennys\Documents\DAM_2\M013_Projecte DAM\Projecte_DAM2\WindowsApp\ClubPilotWindows\ClubPilot\obj\Debug\ClubPilot.csproj.CoreCompileInputs.cache
+C:\Users\Dennys\Documents\DAM_2\M013_Projecte DAM\Projecte_DAM2\WindowsApp\ClubPilotWindows\ClubPilot\obj\Debug\ClubPilot.exe
+C:\Users\Dennys\Documents\DAM_2\M013_Projecte DAM\Projecte_DAM2\WindowsApp\ClubPilotWindows\ClubPilot\obj\Debug\ClubPilot.pdb
+C:\Users\Dennys\Documents\DAM_2\M013_Projecte DAM\Projecte_DAM2\WindowsApp\ClubPilotWindows\ClubPilot\obj\Debug\ClubPilot.Accounts.resources
+C:\Users\Dennys\Documents\DAM_2\M013_Projecte DAM\Projecte_DAM2\WindowsApp\ClubPilotWindows\ClubPilot\obj\Debug\ClubPilot.Players.resources
+C:\Users\Cesc\ClubPilot\ClubPilotWindows\ClubPilot\bin\Debug\ClubPilot.exe.config
+C:\Users\Cesc\ClubPilot\ClubPilotWindows\ClubPilot\bin\Debug\ClubPilot.exe
+C:\Users\Cesc\ClubPilot\ClubPilotWindows\ClubPilot\bin\Debug\ClubPilot.pdb
+C:\Users\Cesc\ClubPilot\ClubPilotWindows\ClubPilot\obj\Debug\ClubPilot.csproj.AssemblyReference.cache
+C:\Users\Cesc\ClubPilot\ClubPilotWindows\ClubPilot\obj\Debug\ClubPilot.Accounts.resources
+C:\Users\Cesc\ClubPilot\ClubPilotWindows\ClubPilot\obj\Debug\ClubPilot.Form1.resources
+C:\Users\Cesc\ClubPilot\ClubPilotWindows\ClubPilot\obj\Debug\ClubPilot.Players.resources
+C:\Users\Cesc\ClubPilot\ClubPilotWindows\ClubPilot\obj\Debug\ClubPilot.Properties.Resources.resources
+C:\Users\Cesc\ClubPilot\ClubPilotWindows\ClubPilot\obj\Debug\ClubPilot.csproj.GenerateResource.cache
+C:\Users\Cesc\ClubPilot\ClubPilotWindows\ClubPilot\obj\Debug\ClubPilot.csproj.CoreCompileInputs.cache
+C:\Users\Cesc\ClubPilot\ClubPilotWindows\ClubPilot\obj\Debug\ClubPilot.exe
+C:\Users\Cesc\ClubPilot\ClubPilotWindows\ClubPilot\obj\Debug\ClubPilot.pdb
+C:\Users\Dennys\Documents\DAM_2\M013_Projecte DAM\Projecte_DAM2\WindowsApp\ClubPilotWindows\ClubPilot\obj\Debug\ClubPilot.clubs.resources
+C:\Users\lakia\OneDrive\Documentos\ClubPilotWindows\ClubPilot\obj\Debug\ClubPilot.csproj.AssemblyReference.cache
+C:\Users\lakia\OneDrive\Documentos\ClubPilotWindows\ClubPilot\obj\Debug\ClubPilot.Accounts.resources
+C:\Users\lakia\OneDrive\Documentos\ClubPilotWindows\ClubPilot\obj\Debug\ClubPilot.Clubs.resources
+C:\Users\lakia\OneDrive\Documentos\ClubPilotWindows\ClubPilot\obj\Debug\ClubPilot.CrearClub.resources
+C:\Users\lakia\OneDrive\Documentos\ClubPilotWindows\ClubPilot\obj\Debug\ClubPilot.Form1.resources
+C:\Users\lakia\OneDrive\Documentos\ClubPilotWindows\ClubPilot\obj\Debug\ClubPilot.Players.resources
+C:\Users\lakia\OneDrive\Documentos\ClubPilotWindows\ClubPilot\obj\Debug\ClubPilot.Properties.Resources.resources
+C:\Users\lakia\OneDrive\Documentos\ClubPilotWindows\ClubPilot\obj\Debug\ClubPilot.csproj.GenerateResource.cache
+C:\Users\lakia\OneDrive\Documentos\ClubPilotWindows\ClubPilot\obj\Debug\ClubPilot.csproj.CoreCompileInputs.cache
+C:\Users\lakia\OneDrive\Documentos\ClubPilotWindows\ClubPilot\obj\Debug\ClubPilot.AddAccount.resources
+C:\Users\lakia\OneDrive\Documentos\ClubPilotWindows\ClubPilot\obj\Debug\ClubPilot.Add_New.resources
+C:\Users\lakia\OneDrive\Documentos\ClubPilotWindows\ClubPilot\bin\Debug\ClubPilot.exe.config
+C:\Users\lakia\OneDrive\Documentos\ClubPilotWindows\ClubPilot\bin\Debug\ClubPilot.exe
+C:\Users\lakia\OneDrive\Documentos\ClubPilotWindows\ClubPilot\bin\Debug\ClubPilot.pdb
+C:\Users\lakia\OneDrive\Documentos\ClubPilotWindows\ClubPilot\obj\Debug\ClubPilot.Forum.resources
+C:\Users\lakia\OneDrive\Documentos\ClubPilotWindows\ClubPilot\obj\Debug\ClubPilot.exe
+C:\Users\lakia\OneDrive\Documentos\ClubPilotWindows\ClubPilot\obj\Debug\ClubPilot.pdb
+C:\Users\Dennys\Documents\DAM_2\M013_Projecte DAM\Projecte_DAM2\WindowsApp\ClubPilotWindows\ClubPilot\obj\Debug\ClubPilot.AddAccount.resources
+C:\Users\Dennys\Documents\DAM_2\M013_Projecte DAM\Projecte_DAM2\WindowsApp\ClubPilotWindows\ClubPilot\obj\Debug\ClubPilot.CrearClub.resources
+C:\Users\Dennys\Documents\DAM_2\M013_Projecte DAM\Projecte_DAM2\WindowsApp\ClubPilotWindows\ClubPilot\bin\Debug\BouncyCastle.Cryptography.dll
+C:\Users\Dennys\Documents\DAM_2\M013_Projecte DAM\Projecte_DAM2\WindowsApp\ClubPilotWindows\ClubPilot\bin\Debug\Google.Protobuf.dll
+C:\Users\Dennys\Documents\DAM_2\M013_Projecte DAM\Projecte_DAM2\WindowsApp\ClubPilotWindows\ClubPilot\bin\Debug\K4os.Compression.LZ4.dll
+C:\Users\Dennys\Documents\DAM_2\M013_Projecte DAM\Projecte_DAM2\WindowsApp\ClubPilotWindows\ClubPilot\bin\Debug\K4os.Compression.LZ4.Streams.dll
+C:\Users\Dennys\Documents\DAM_2\M013_Projecte DAM\Projecte_DAM2\WindowsApp\ClubPilotWindows\ClubPilot\bin\Debug\K4os.Hash.xxHash.dll
+C:\Users\Dennys\Documents\DAM_2\M013_Projecte DAM\Projecte_DAM2\WindowsApp\ClubPilotWindows\ClubPilot\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\Dennys\Documents\DAM_2\M013_Projecte DAM\Projecte_DAM2\WindowsApp\ClubPilotWindows\ClubPilot\bin\Debug\MySql.Data.dll
+C:\Users\Dennys\Documents\DAM_2\M013_Projecte DAM\Projecte_DAM2\WindowsApp\ClubPilotWindows\ClubPilot\bin\Debug\System.Buffers.dll
+C:\Users\Dennys\Documents\DAM_2\M013_Projecte DAM\Projecte_DAM2\WindowsApp\ClubPilotWindows\ClubPilot\bin\Debug\System.Configuration.ConfigurationManager.dll
+C:\Users\Dennys\Documents\DAM_2\M013_Projecte DAM\Projecte_DAM2\WindowsApp\ClubPilotWindows\ClubPilot\bin\Debug\System.Diagnostics.DiagnosticSource.dll
+C:\Users\Dennys\Documents\DAM_2\M013_Projecte DAM\Projecte_DAM2\WindowsApp\ClubPilotWindows\ClubPilot\bin\Debug\System.IO.Pipelines.dll
+C:\Users\Dennys\Documents\DAM_2\M013_Projecte DAM\Projecte_DAM2\WindowsApp\ClubPilotWindows\ClubPilot\bin\Debug\System.Memory.dll
+C:\Users\Dennys\Documents\DAM_2\M013_Projecte DAM\Projecte_DAM2\WindowsApp\ClubPilotWindows\ClubPilot\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\Dennys\Documents\DAM_2\M013_Projecte DAM\Projecte_DAM2\WindowsApp\ClubPilotWindows\ClubPilot\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\Dennys\Documents\DAM_2\M013_Projecte DAM\Projecte_DAM2\WindowsApp\ClubPilotWindows\ClubPilot\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Users\Dennys\Documents\DAM_2\M013_Projecte DAM\Projecte_DAM2\WindowsApp\ClubPilotWindows\ClubPilot\bin\Debug\ZstdSharp.dll
+C:\Users\Dennys\Documents\DAM_2\M013_Projecte DAM\Projecte_DAM2\WindowsApp\ClubPilotWindows\ClubPilot\bin\Debug\BouncyCastle.Cryptography.xml
+C:\Users\Dennys\Documents\DAM_2\M013_Projecte DAM\Projecte_DAM2\WindowsApp\ClubPilotWindows\ClubPilot\bin\Debug\Google.Protobuf.pdb
+C:\Users\Dennys\Documents\DAM_2\M013_Projecte DAM\Projecte_DAM2\WindowsApp\ClubPilotWindows\ClubPilot\bin\Debug\Google.Protobuf.xml
+C:\Users\Dennys\Documents\DAM_2\M013_Projecte DAM\Projecte_DAM2\WindowsApp\ClubPilotWindows\ClubPilot\bin\Debug\K4os.Compression.LZ4.xml
+C:\Users\Dennys\Documents\DAM_2\M013_Projecte DAM\Projecte_DAM2\WindowsApp\ClubPilotWindows\ClubPilot\bin\Debug\K4os.Compression.LZ4.Streams.xml
+C:\Users\Dennys\Documents\DAM_2\M013_Projecte DAM\Projecte_DAM2\WindowsApp\ClubPilotWindows\ClubPilot\bin\Debug\K4os.Hash.xxHash.xml
+C:\Users\Dennys\Documents\DAM_2\M013_Projecte DAM\Projecte_DAM2\WindowsApp\ClubPilotWindows\ClubPilot\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
+C:\Users\Dennys\Documents\DAM_2\M013_Projecte DAM\Projecte_DAM2\WindowsApp\ClubPilotWindows\ClubPilot\bin\Debug\MySql.Data.xml
+C:\Users\Dennys\Documents\DAM_2\M013_Projecte DAM\Projecte_DAM2\WindowsApp\ClubPilotWindows\ClubPilot\bin\Debug\System.Buffers.xml
+C:\Users\Dennys\Documents\DAM_2\M013_Projecte DAM\Projecte_DAM2\WindowsApp\ClubPilotWindows\ClubPilot\bin\Debug\System.Configuration.ConfigurationManager.xml
+C:\Users\Dennys\Documents\DAM_2\M013_Projecte DAM\Projecte_DAM2\WindowsApp\ClubPilotWindows\ClubPilot\bin\Debug\System.Diagnostics.DiagnosticSource.xml
+C:\Users\Dennys\Documents\DAM_2\M013_Projecte DAM\Projecte_DAM2\WindowsApp\ClubPilotWindows\ClubPilot\bin\Debug\System.IO.Pipelines.xml
+C:\Users\Dennys\Documents\DAM_2\M013_Projecte DAM\Projecte_DAM2\WindowsApp\ClubPilotWindows\ClubPilot\bin\Debug\System.Memory.xml
+C:\Users\Dennys\Documents\DAM_2\M013_Projecte DAM\Projecte_DAM2\WindowsApp\ClubPilotWindows\ClubPilot\bin\Debug\System.Numerics.Vectors.xml
+C:\Users\Dennys\Documents\DAM_2\M013_Projecte DAM\Projecte_DAM2\WindowsApp\ClubPilotWindows\ClubPilot\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\Dennys\Documents\DAM_2\M013_Projecte DAM\Projecte_DAM2\WindowsApp\ClubPilotWindows\ClubPilot\bin\Debug\System.Threading.Tasks.Extensions.xml
+C:\Users\Dennys\Documents\DAM_2\M013_Projecte DAM\Projecte_DAM2\WindowsApp\ClubPilotWindows\ClubPilot\obj\Debug\ClubPilot.csproj.Up2Date
