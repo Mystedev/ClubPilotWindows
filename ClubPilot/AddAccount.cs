@@ -29,12 +29,12 @@ namespace ClubPilot
 
         private void btn_add_account_Click(object sender, EventArgs e)
         {
-            new Accounts().Show();
+            this.Close();
         }
 
         private void btn_cancel_Click(object sender, EventArgs e)
         {
-            new Accounts().Show();  
+            this.Close();
         }
     }
 }

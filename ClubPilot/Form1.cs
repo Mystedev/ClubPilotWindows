@@ -30,9 +30,8 @@ namespace ClubPilot
 
         private void button1_Click(object sender, EventArgs e)
         {
-
-            //if((textBox1.Text.Equals("usuario1"))&&(textBox2.Text.Equals("contraseña1")))
-            //{ 
+            /*if((textBox1.Text.Equals("usuario1"))&&(textBox2.Text.Equals("contraseña1")))
+            { */
                 label1.Visible = false;
                 label2.Visible = false;
                 textBox1.Visible = false;

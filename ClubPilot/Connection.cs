@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 
@@ -11,7 +12,7 @@ namespace ClubPilot
         private string port = "3306";
         private string user_id = "root";
         private string password = "1234";
-        //private MySqlConnection connection;
+        private MySqlConnection connection;
 
         // Constructor por defecto
         public Connection()
@@ -40,11 +41,11 @@ namespace ClubPilot
         // Método para inicializar la conexión
         private void InitializeConnection()
         {
-            //string connectionString = $"Server={server};Database={database};Port={port};User Id={user_id};Password={password};";
-            //connection = new MySqlConnection(connectionString);
+            string connectionString = $"Server={server};Database={database};Port={port};User Id={user_id};Password={password};";
+            connection = new MySqlConnection(connectionString);
         }
 
-        // Método para abrir la conexión
+        // Metodo para abrir la conexión
         public void OpenConnection()
         {
             try
@@ -58,7 +59,7 @@ namespace ClubPilot
             }
         }
 
-        // Método para cerrar la conexión
+        // Metodo para cerrar la conexión
         public void CloseConnection()
         {
             try
@@ -69,6 +70,248 @@ namespace ClubPilot
             catch (Exception ex)
             {
                 MessageBox.Show("Error al cerrar la conexión: " + ex.Message);
+            }
+        }
+
+        // Metodo para exportar la base de datos a un .txt
+        public void exportNoticia()
+        {
+            string selectClub = "SELECT * FROM club";
+            string selectEquip = "SELECT * FROM equip";
+            string selecteEsdeveniment = "SELECT * FROM esdeveniment";
+            string selectNoticia = "SELECT * FROM noticia";
+            string selectTipusEsdeveniment = "SELECT * FROM tipus_esdeveniment";
+            string selectUsuari = "SELECT * FROM usuari";
+
+            string connectionString = $"Server={server};Database={database};Port={port};User Id={user_id};Password={password};";
+
+            string filePath = "C:\\Intel\\exportedNoticia.txt";
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                {
+                    conn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(selectNoticia, conn))
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    using (StreamWriter writer = new StreamWriter(filePath))
+                    {
+                        while (reader.Read())
+                        {
+                            string line = "";
+                            for (int i = 0; i < reader.FieldCount; i++)
+                            {
+                                line += reader[i].ToString() + "#"; // Separa por tabulaciones
+                            }
+                            writer.WriteLine(line.Trim());
+                        }
+                    }
+                }
+
+                MessageBox.Show("Exportación exitosa");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al exportar: " + ex.Message);
+            }
+        }
+        public void exportClub()
+        {
+            string selectClub = "SELECT * FROM club";
+            string selectEquip = "SELECT * FROM equip";
+            string selecteEsdeveniment = "SELECT * FROM esdeveniment";
+            string selectNoticia = "SELECT * FROM noticia";
+            string selectTipusEsdeveniment = "SELECT * FROM tipus_esdeveniment";
+            string selectUsuari = "SELECT * FROM usuari";
+
+            string connectionString = $"Server={server};Database={database};Port={port};User Id={user_id};Password={password};";
+
+            string filePath = "C:\\Intel\\exportedClub.txt";
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                {
+                    conn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(selectClub, conn))
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    using (StreamWriter writer = new StreamWriter(filePath))
+                    {
+                        while (reader.Read())
+                        {
+                            string line = "";
+                            for (int i = 0; i < reader.FieldCount; i++)
+                            {
+                                line += reader[i].ToString() + "#"; // Separa por tabulaciones
+                            }
+                            writer.WriteLine(line.Trim());
+                        }
+                    }
+                }
+
+                MessageBox.Show("Exportación exitosa");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al exportar: " + ex.Message);
+            }
+        }
+        public void exportedEquip()
+        {
+            string selectClub = "SELECT * FROM club";
+            string selectEquip = "SELECT * FROM equip";
+            string selecteEsdeveniment = "SELECT * FROM esdeveniment";
+            string selectNoticia = "SELECT * FROM noticia";
+            string selectTipusEsdeveniment = "SELECT * FROM tipus_esdeveniment";
+            string selectUsuari = "SELECT * FROM usuari";
+
+            string connectionString = $"Server={server};Database={database};Port={port};User Id={user_id};Password={password};";
+
+            string filePath = "C:\\Intel\\exportedEquip.txt";
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                {
+                    conn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(selectNoticia, conn))
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    using (StreamWriter writer = new StreamWriter(filePath))
+                    {
+                        while (reader.Read())
+                        {
+                            string line = "";
+                            for (int i = 0; i < reader.FieldCount; i++)
+                            {
+                                line += reader[i].ToString() + "#"; // Separa por tabulaciones
+                            }
+                            writer.WriteLine(line.Trim());
+                        }
+                    }
+                }
+
+                MessageBox.Show("Exportación exitosa");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al exportar: " + ex.Message);
+            }
+        }
+        public void exportEsdeveniment()
+        {
+            string selectClub = "SELECT * FROM club";
+            string selectEquip = "SELECT * FROM equip";
+            string selecteEsdeveniment = "SELECT * FROM esdeveniment";
+            string selectNoticia = "SELECT * FROM noticia";
+            string selectTipusEsdeveniment = "SELECT * FROM tipus_esdeveniment";
+            string selectUsuari = "SELECT * FROM usuari";
+
+            string connectionString = $"Server={server};Database={database};Port={port};User Id={user_id};Password={password};";
+
+            string filePath = "C:\\Intel\\exportedEsdeveniments.txt";
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                {
+                    conn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(selectNoticia, conn))
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    using (StreamWriter writer = new StreamWriter(filePath))
+                    {
+                        while (reader.Read())
+                        {
+                            string line = "";
+                            for (int i = 0; i < reader.FieldCount; i++)
+                            {
+                                line += reader[i].ToString() + "#"; // Separa por tabulaciones
+                            }
+                            writer.WriteLine(line.Trim());
+                        }
+                    }
+                }
+
+                MessageBox.Show("Exportación exitosa");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al exportar: " + ex.Message);
+            }
+        }
+        public void exportTipusEsdeveniment()
+        {
+            string selectClub = "SELECT * FROM club";
+            string selectEquip = "SELECT * FROM equip";
+            string selecteEsdeveniment = "SELECT * FROM esdeveniment";
+            string selectNoticia = "SELECT * FROM noticia";
+            string selectTipusEsdeveniment = "SELECT * FROM tipus_esdeveniment";
+            string selectUsuari = "SELECT * FROM usuari";
+
+            string connectionString = $"Server={server};Database={database};Port={port};User Id={user_id};Password={password};";
+
+            string filePath = "C:\\Intel\\exportedTipusEsdeveniment.txt";
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                {
+                    conn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(selectNoticia, conn))
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    using (StreamWriter writer = new StreamWriter(filePath))
+                    {
+                        while (reader.Read())
+                        {
+                            string line = "";
+                            for (int i = 0; i < reader.FieldCount; i++)
+                            {
+                                line += reader[i].ToString() + "#"; // Separa por tabulaciones
+                            }
+                            writer.WriteLine(line.Trim());
+                        }
+                    }
+                }
+
+                MessageBox.Show("Exportación exitosa");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al exportar: " + ex.Message);
+            }
+        }
+        public void exportUsuari()
+        {
+            string selectClub = "SELECT * FROM club";
+            string selectEquip = "SELECT * FROM equip";
+            string selecteEsdeveniment = "SELECT * FROM esdeveniment";
+            string selectNoticia = "SELECT * FROM noticia";
+            string selectTipusEsdeveniment = "SELECT * FROM tipus_esdeveniment";
+            string selectUsuari = "SELECT * FROM usuari";
+
+            string connectionString = $"Server={server};Database={database};Port={port};User Id={user_id};Password={password};";
+
+            string filePath = "C:\\Intel\\exportedUsuari.txt";
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                {
+                    conn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(selectNoticia, conn))
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    using (StreamWriter writer = new StreamWriter(filePath))
+                    {
+                        while (reader.Read())
+                        {
+                            string line = "";
+                            for (int i = 0; i < reader.FieldCount; i++)
+                            {
+                                line += reader[i].ToString() + "#"; // Separa por tabulaciones
+                            }
+                            writer.WriteLine(line.Trim());
+                        }
+                    }
+                }
+
+                MessageBox.Show("Exportación exitosa");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al exportar: " + ex.Message);
             }
         }
     }
