@@ -22,7 +22,7 @@ namespace ClubPilot
         {
             InitializeComponent();
             this.WindowState = FormWindowState.Maximized;
-            
+
             Connection myConnection = new Connection();
             myConnection.exportNoticia();
             myConnection.exportUsuari();
@@ -66,17 +66,17 @@ namespace ClubPilot
             };
 
             lblAfegir.Location = new Point(this.ClientSize.Width - 200, 50); // Ajusta la posició segons sigui necessari
-            
+
             Button botoAfegir = new Button { Image = Properties.Resources.icons8_añadir_30, Width = 40, Height = 40 };
             botoAfegir.Location = new Point(this.ClientSize.Width - 10, 50);
             botoAfegir.Click += (sender, e) =>
             {
                 new AddAccount().Show();
 
-      
-    };
 
-            
+            };
+
+
             scrollPanel = new Panel
             {
                 Dock = DockStyle.Fill,
@@ -215,7 +215,7 @@ namespace ClubPilot
 
             panellIntern.ResumeLayout();
 
-           
+
 
             // Crear botons
             Button btnModificar = new Button { Image = Properties.Resources.icons8_modificar_30, Width = 40, Height = 40 };

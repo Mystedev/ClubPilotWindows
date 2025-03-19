@@ -135,11 +135,6 @@
     <Compile Include="CrearClub.Designer.cs">
       <DependentUpon>CrearClub.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forum.cs" />
-    <Compile Include="Forum.Designer.cs">
-      <DependentUpon>Forum.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Noticia.cs" />
     <Compile Include="Players.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -154,9 +149,6 @@
     <EmbeddedResource Include="AddAccount.resx">
       <DependentUpon>AddAccount.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Add_New.resx">
-      <DependentUpon>Add_New.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="clubs.resx">
       <DependentUpon>clubs.cs</DependentUpon>
     </EmbeddedResource>
@@ -168,9 +160,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forum.resx">
-      <DependentUpon>Forum.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Players.resx">
       <DependentUpon>Players.cs</DependentUpon>
