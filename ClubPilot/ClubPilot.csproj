@@ -110,11 +110,11 @@
     <Compile Include="AddAccount.Designer.cs">
       <DependentUpon>AddAccount.cs</DependentUpon>
     </Compile>
-    <Compile Include="Add_New.cs">
+    <Compile Include="Add_News.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Add_New.Designer.cs">
-      <DependentUpon>Add_New.cs</DependentUpon>
+    <Compile Include="Add_News.Designer.cs">
+      <DependentUpon>Add_News.cs</DependentUpon>
     </Compile>
     <Compile Include="clubs.cs">
       <SubType>Form</SubType>
@@ -135,13 +135,15 @@
     <Compile Include="CrearClub.Designer.cs">
       <DependentUpon>CrearClub.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forum.cs">
+    <Compile Include="News.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="News_Tab.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forum.Designer.cs">
-      <DependentUpon>Forum.cs</DependentUpon>
+    <Compile Include="News_Tab.Designer.cs">
+      <DependentUpon>News_Tab.cs</DependentUpon>
     </Compile>
-    <Compile Include="Noticia.cs" />
     <Compile Include="Players.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -156,11 +158,9 @@
     <EmbeddedResource Include="AddAccount.resx">
       <DependentUpon>AddAccount.cs</DependentUpon>
     </EmbeddedResource>
-
-    <EmbeddedResource Include="Add_New.resx">
-      <DependentUpon>Add_New.cs</DependentUpon>
+    <EmbeddedResource Include="Add_News.resx">
+      <DependentUpon>Add_News.cs</DependentUpon>
     </EmbeddedResource>
-
     <EmbeddedResource Include="clubs.resx">
       <DependentUpon>clubs.cs</DependentUpon>
     </EmbeddedResource>
@@ -170,8 +170,8 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forum.resx">
-      <DependentUpon>Forum.cs</DependentUpon>
+    <EmbeddedResource Include="News_Tab.resx">
+      <DependentUpon>News_Tab.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Players.resx">
       <DependentUpon>Players.cs</DependentUpon>
