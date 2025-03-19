@@ -1,5 +1,5 @@
 ﻿using ClubPilot.Properties;
-//using MySql.Data.MySqlClient;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,9 +13,10 @@ using System.Windows.Forms;
 
 namespace ClubPilot
 {
-
     public partial class Accounts : Form
     {
+
+
 
         private List<Compte> comptes;
         private TableLayoutPanel layout;
@@ -37,6 +38,7 @@ namespace ClubPilot
 
             //myConnection.CloseConnection();
             Font fontCascadiaCode = new Font("Cascadia Code", 10);
+
 
             Label lblTitulo = new Label
             {
@@ -73,7 +75,9 @@ namespace ClubPilot
             botoAfegir.Click += (sender, e) =>
             {
                 new AddAccount().Show();
-            };
+
+      
+    };
 
             
             scrollPanel = new Panel
@@ -113,6 +117,10 @@ namespace ClubPilot
                 new Compte("usuari2", "Nom2", "Cognoms2", "email2@example.com", "Rol2"),
                 // Afegir més comptes segons sigui necessari
             };
+        }
+        private void Accounts_Load(object sender, EventArgs e)
+        {
+
         }
         private void CarregarComptes()
         {
@@ -255,11 +263,6 @@ namespace ClubPilot
             panell.Controls.Add(btnModificar, 1, indexFila);
             panell.Controls.Add(btnGuardar, 2, indexFila);
             panell.Controls.Add(btnEsborrar, 3, indexFila);
-        }
-
-        private void Accounts_Load(object sender, EventArgs e)
-        {
-
         }
     }
 

@@ -44,20 +44,19 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Cascadia Code", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(324, 88);
+            this.label3.Font = new System.Drawing.Font("Cascadia Code", 12.25F);
+            this.label3.Location = new System.Drawing.Point(344, 64);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 12, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(55, 15);
+            this.label3.Size = new System.Drawing.Size(90, 22);
             this.label3.TabIndex = 6;
             this.label3.Text = "Nom club";
             this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // txtBoxEmail1
             // 
-            this.txtBoxEmail1.Enabled = false;
             this.txtBoxEmail1.Font = new System.Drawing.Font("Cascadia Code", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBoxEmail1.Location = new System.Drawing.Point(284, 239);
+            this.txtBoxEmail1.Location = new System.Drawing.Point(314, 221);
             this.txtBoxEmail1.Margin = new System.Windows.Forms.Padding(2);
             this.txtBoxEmail1.Name = "txtBoxEmail1";
             this.txtBoxEmail1.Size = new System.Drawing.Size(142, 20);
@@ -66,19 +65,18 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Cascadia Code", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(324, 210);
+            this.label6.Font = new System.Drawing.Font("Cascadia Code", 12.25F);
+            this.label6.Location = new System.Drawing.Point(344, 192);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 12, 2, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(55, 15);
+            this.label6.Size = new System.Drawing.Size(90, 22);
             this.label6.TabIndex = 11;
             this.label6.Text = "Fundador";
             // 
             // txtBoxNom1
             // 
-            this.txtBoxNom1.Enabled = false;
             this.txtBoxNom1.Font = new System.Drawing.Font("Cascadia Code", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBoxNom1.Location = new System.Drawing.Point(284, 176);
+            this.txtBoxNom1.Location = new System.Drawing.Point(314, 158);
             this.txtBoxNom1.Margin = new System.Windows.Forms.Padding(2);
             this.txtBoxNom1.Name = "txtBoxNom1";
             this.txtBoxNom1.Size = new System.Drawing.Size(142, 20);
@@ -87,19 +85,18 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Cascadia Code", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(305, 150);
+            this.label4.Font = new System.Drawing.Font("Cascadia Code", 12.25F);
+            this.label4.Location = new System.Drawing.Point(310, 122);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 12, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(97, 15);
+            this.label4.Size = new System.Drawing.Size(160, 22);
             this.label4.TabIndex = 7;
             this.label4.Text = "Data de creació";
             // 
             // txtBoxUsername1
             // 
-            this.txtBoxUsername1.Enabled = false;
             this.txtBoxUsername1.Font = new System.Drawing.Font("Cascadia Code", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBoxUsername1.Location = new System.Drawing.Point(284, 116);
+            this.txtBoxUsername1.Location = new System.Drawing.Point(314, 98);
             this.txtBoxUsername1.Margin = new System.Windows.Forms.Padding(2);
             this.txtBoxUsername1.Name = "txtBoxUsername1";
             this.txtBoxUsername1.Size = new System.Drawing.Size(142, 20);
@@ -108,10 +105,10 @@
             // 
             // button1
             // 
-            this.button1.Font = new System.Drawing.Font("Cascadia Code", 7.8F);
-            this.button1.Location = new System.Drawing.Point(284, 280);
+            this.button1.Font = new System.Drawing.Font("Cascadia Code", 12.25F);
+            this.button1.Location = new System.Drawing.Point(292, 262);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(142, 23);
+            this.button1.Size = new System.Drawing.Size(178, 35);
             this.button1.TabIndex = 13;
             this.button1.Text = "Escollir imatge";
             this.button1.UseVisualStyleBackColor = true;
@@ -119,10 +116,10 @@
             // 
             // button2
             // 
-            this.button2.Font = new System.Drawing.Font("Cascadia Code", 7.8F);
-            this.button2.Location = new System.Drawing.Point(284, 321);
+            this.button2.Font = new System.Drawing.Font("Cascadia Code", 12.25F);
+            this.button2.Location = new System.Drawing.Point(314, 303);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(142, 23);
+            this.button2.Size = new System.Drawing.Size(142, 33);
             this.button2.TabIndex = 14;
             this.button2.Text = "Guardar club";
             this.button2.UseVisualStyleBackColor = true;
@@ -132,6 +129,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.SeaShell;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
