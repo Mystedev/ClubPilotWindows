@@ -18,13 +18,8 @@ namespace ClubPilot
 
     public partial class Accounts : Form
     {
-<<<<<<< HEAD
-       
-        public Accounts()
-        {
-         
-        }
-=======
+
+
 
         private List<Compte> comptes;
         private TableLayoutPanel layout;
@@ -42,7 +37,7 @@ namespace ClubPilot
 
             //myConnection.CloseConnection();
             Font fontCascadiaCode = new Font("Cascadia Code", 10);
->>>>>>> 21f84036a0de0ab26d5af775f8be19251b0eb2aa
+
 
             Label lblTitulo = new Label
             {
@@ -79,7 +74,9 @@ namespace ClubPilot
             botoAfegir.Click += (sender, e) =>
             {
                 new AddAccount().Show();
-            };
+
+      
+    };
 
             
             scrollPanel = new Panel
@@ -119,6 +116,10 @@ namespace ClubPilot
                 new Compte("usuari2", "Nom2", "Cognoms2", "email2@example.com", "Rol2"),
                 // Afegir més comptes segons sigui necessari
             };
+        }
+        private void Accounts_Load(object sender, EventArgs e)
+        {
+
         }
         private void CarregarComptes()
         {

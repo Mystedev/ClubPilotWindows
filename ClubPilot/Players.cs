@@ -60,7 +60,7 @@ namespace ClubPilot
 
         private void noticiesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new Forum().Show();
+            //new News().Show();
         }
 
         private void esdevenimentsToolStripMenuItem_Click(object sender, EventArgs e)
