@@ -29,16 +29,16 @@
         private void InitializeComponent()
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.jugadorsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.esdevenimentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sollicitudsDeClubsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.clubToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.equipsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.comptesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.noticiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.jugadorsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.esdevenimentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.clubToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.equipsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sollicitudsDeClubsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -60,23 +60,33 @@
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
-            // jugadorsToolStripMenuItem
+            // sollicitudsDeClubsToolStripMenuItem
             // 
-            this.jugadorsToolStripMenuItem.Font = new System.Drawing.Font("Cascadia Code", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.jugadorsToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.jugadorsToolStripMenuItem.Name = "jugadorsToolStripMenuItem";
-            this.jugadorsToolStripMenuItem.Size = new System.Drawing.Size(175, 44);
-            this.jugadorsToolStripMenuItem.Text = "Jugadors";
-            this.jugadorsToolStripMenuItem.Click += new System.EventHandler(this.jugadorsToolStripMenuItem_Click);
+            this.sollicitudsDeClubsToolStripMenuItem.Font = new System.Drawing.Font("Cascadia Code", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sollicitudsDeClubsToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.sollicitudsDeClubsToolStripMenuItem.Name = "sollicitudsDeClubsToolStripMenuItem";
+            this.sollicitudsDeClubsToolStripMenuItem.Size = new System.Drawing.Size(409, 44);
+            this.sollicitudsDeClubsToolStripMenuItem.Text = "Sol·licituds de clubs";
+            this.sollicitudsDeClubsToolStripMenuItem.Click += new System.EventHandler(this.sollicitudsDeClubsToolStripMenuItem_Click);
             // 
-            // esdevenimentsToolStripMenuItem
+            // clubToolStripMenuItem
             // 
-            this.esdevenimentsToolStripMenuItem.Font = new System.Drawing.Font("Cascadia Code", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.esdevenimentsToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.esdevenimentsToolStripMenuItem.Name = "esdevenimentsToolStripMenuItem";
-            this.esdevenimentsToolStripMenuItem.Size = new System.Drawing.Size(265, 44);
-            this.esdevenimentsToolStripMenuItem.Text = "Esdeveniments";
-            this.esdevenimentsToolStripMenuItem.Click += new System.EventHandler(this.esdevenimentsToolStripMenuItem_Click);
+            this.clubToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.equipsToolStripMenuItem});
+            this.clubToolStripMenuItem.Font = new System.Drawing.Font("Cascadia Code", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.clubToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.clubToolStripMenuItem.Name = "clubToolStripMenuItem";
+            this.clubToolStripMenuItem.Size = new System.Drawing.Size(103, 44);
+            this.clubToolStripMenuItem.Text = "Club";
+            this.clubToolStripMenuItem.Click += new System.EventHandler(this.clubToolStripMenuItem_Click);
+            // 
+            // equipsToolStripMenuItem
+            // 
+            this.equipsToolStripMenuItem.BackColor = System.Drawing.Color.MidnightBlue;
+            this.equipsToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.equipsToolStripMenuItem.Name = "equipsToolStripMenuItem";
+            this.equipsToolStripMenuItem.Size = new System.Drawing.Size(216, 44);
+            this.equipsToolStripMenuItem.Text = "Equips";
             // 
             // comptesToolStripMenuItem
             // 
@@ -95,6 +105,24 @@
             this.noticiesToolStripMenuItem.Size = new System.Drawing.Size(175, 44);
             this.noticiesToolStripMenuItem.Text = "Noticies";
             this.noticiesToolStripMenuItem.Click += new System.EventHandler(this.noticiesToolStripMenuItem_Click);
+            // 
+            // jugadorsToolStripMenuItem
+            // 
+            this.jugadorsToolStripMenuItem.Font = new System.Drawing.Font("Cascadia Code", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.jugadorsToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.jugadorsToolStripMenuItem.Name = "jugadorsToolStripMenuItem";
+            this.jugadorsToolStripMenuItem.Size = new System.Drawing.Size(175, 44);
+            this.jugadorsToolStripMenuItem.Text = "Jugadors";
+            this.jugadorsToolStripMenuItem.Click += new System.EventHandler(this.jugadorsToolStripMenuItem_Click);
+            // 
+            // esdevenimentsToolStripMenuItem
+            // 
+            this.esdevenimentsToolStripMenuItem.Font = new System.Drawing.Font("Cascadia Code", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.esdevenimentsToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.esdevenimentsToolStripMenuItem.Name = "esdevenimentsToolStripMenuItem";
+            this.esdevenimentsToolStripMenuItem.Size = new System.Drawing.Size(265, 44);
+            this.esdevenimentsToolStripMenuItem.Text = "Esdeveniments";
+            this.esdevenimentsToolStripMenuItem.Click += new System.EventHandler(this.esdevenimentsToolStripMenuItem_Click);
             // 
             // button1
             // 
@@ -133,7 +161,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 153F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 156F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 154F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 155F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 156F));
             this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 108);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
@@ -142,34 +170,6 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1256, 471);
             this.tableLayoutPanel1.TabIndex = 3;
             this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
-            // 
-            // clubToolStripMenuItem
-            // 
-            this.clubToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.equipsToolStripMenuItem});
-            this.clubToolStripMenuItem.Font = new System.Drawing.Font("Cascadia Code", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.clubToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.clubToolStripMenuItem.Name = "clubToolStripMenuItem";
-            this.clubToolStripMenuItem.Size = new System.Drawing.Size(103, 44);
-            this.clubToolStripMenuItem.Text = "Club";
-            this.clubToolStripMenuItem.Click += new System.EventHandler(this.clubToolStripMenuItem_Click);
-            // 
-            // equipsToolStripMenuItem
-            // 
-            this.equipsToolStripMenuItem.BackColor = System.Drawing.Color.MidnightBlue;
-            this.equipsToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.equipsToolStripMenuItem.Name = "equipsToolStripMenuItem";
-            this.equipsToolStripMenuItem.Size = new System.Drawing.Size(224, 44);
-            this.equipsToolStripMenuItem.Text = "Equips";
-            // 
-            // sollicitudsDeClubsToolStripMenuItem
-            // 
-            this.sollicitudsDeClubsToolStripMenuItem.Font = new System.Drawing.Font("Cascadia Code", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sollicitudsDeClubsToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.sollicitudsDeClubsToolStripMenuItem.Name = "sollicitudsDeClubsToolStripMenuItem";
-            this.sollicitudsDeClubsToolStripMenuItem.Size = new System.Drawing.Size(409, 44);
-            this.sollicitudsDeClubsToolStripMenuItem.Text = "Sol·licituds de clubs";
-            this.sollicitudsDeClubsToolStripMenuItem.Click += new System.EventHandler(this.sollicitudsDeClubsToolStripMenuItem_Click);
             // 
             // Players
             // 

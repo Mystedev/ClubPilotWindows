@@ -65,7 +65,7 @@ namespace ClubPilot
 
         private void esdevenimentsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            new Esdeveniments().Show();
         }
 
         private void sollicitudsDeClubsToolStripMenuItem_Click(object sender, EventArgs e)
