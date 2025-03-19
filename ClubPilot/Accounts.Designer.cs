@@ -35,11 +35,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SeaShell;
-<<<<<<< HEAD
+
             this.ClientSize = new System.Drawing.Size(1000, 531);
-=======
-            this.ClientSize = new System.Drawing.Size(1000, 142);
->>>>>>> 5d75048faca0da8edfe78ed81f32e52f8718135f
+
             this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Accounts";
             this.Text = "Accounts";
