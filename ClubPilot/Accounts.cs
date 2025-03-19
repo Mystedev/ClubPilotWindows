@@ -15,9 +15,6 @@ namespace ClubPilot
 {
     public partial class Accounts : Form
     {
-
-
-
         private List<Compte> comptes;
         private TableLayoutPanel layout;
         private Panel scrollPanel;
