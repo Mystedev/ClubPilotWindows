@@ -40,15 +40,19 @@ namespace ClubPilot
         private void button1_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Archivos de texto (*.txt)|*.txt|Todos los archivos (*.*)|*.*"; // Filtros opcionales
-            openFileDialog.Title = "Selecciona un archivo";
+            openFileDialog.Filter = "Archius d'imatge (*.png)"; // Filtros opcionales
+            openFileDialog.Title = "Selecciona un archiu";
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 string rutaArchivo = openFileDialog.FileName;
-                MessageBox.Show("Archivo seleccionado: " + rutaArchivo);
+                MessageBox.Show("Archivu seleccionat: " + rutaArchivo);
             }
         }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
