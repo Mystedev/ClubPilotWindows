@@ -38,10 +38,18 @@ namespace ClubPilot
         public bool Login(string username, string password)
         {
             bool isValidUser = false;
+            bool isAdmin = false;
+
             try
             {
                 OpenConnection();
-                string query = "SELECT * FROM `usuari` WHERE `username` = @username AND `password` = @password;";
+                string query = @"
+                   use clubpilot;
+		           SELECT u.id, a.id_usuari AS id_usuari 
+		           FROM usuari u 
+		           LEFT JOIN administrador a ON u.id = a.id_usuari
+                   WHERE u.username = @username AND u.password = @password;";
+
                 using (MySqlCommand cmd = new MySqlCommand(query, connection))
                 {
                     cmd.Parameters.AddWithValue("@username", username);
@@ -49,7 +57,11 @@ namespace ClubPilot
 
                     using (MySqlDataReader reader = cmd.ExecuteReader())
                     {
-                        isValidUser = reader.HasRows;
+                        if (reader.Read())
+                        {
+                            isValidUser = true;
+                            isAdmin = !reader.IsDBNull(reader.GetOrdinal("admin_id")); 
+                        }
                     }
                 }
             }
@@ -62,36 +74,6 @@ namespace ClubPilot
                 CloseConnection();
             }
             return isValidUser;
-        }
-
-        public DataTable ExecuteQuery(string query, params MySqlParameter[] parameters)
-        {
-            DataTable dataTable = new DataTable();
-            try
-            {
-                OpenConnection();
-                using (MySqlCommand cmd = new MySqlCommand(query, connection))
-                {
-                    if (parameters != null)
-                    {
-                        cmd.Parameters.AddRange(parameters);
-                    }
-
-                    using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
-                    {
-                        adapter.Fill(dataTable);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error ejecutando consulta: {ex.Message}");
-            }
-            finally
-            {
-                CloseConnection();
-            }
-            return dataTable;
         }
     }
 }
