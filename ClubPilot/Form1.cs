@@ -82,13 +82,13 @@ namespace ClubPilot
         private void button2_Click(object sender, EventArgs e)
         {
             //entrar a la aplicació
+            new Players().Show();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             CrearClub crearClub = new CrearClub();
             crearClub.Show();
-
         }
     }
 }
