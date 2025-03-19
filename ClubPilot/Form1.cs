@@ -45,6 +45,7 @@ namespace ClubPilot
             {
                 MessageBox.Show("Login exitoso");
 
+
                 label1.Visible = false;
                 label2.Visible = false;
                 textBox1.Visible = false;
@@ -56,6 +57,7 @@ namespace ClubPilot
                 label4.Visible = true;
                 comboBox2.Visible = true;
 
+
                 comboBox1.Items.AddRange(new string[] { "equip1", "equip2", "equip3", "equip4" });
                 comboBox2.Items.AddRange(new string[] { "club1", "club2", "club3", "club4" });
             }
@@ -63,6 +65,7 @@ namespace ClubPilot
             {
                 MessageBox.Show("Usuario o contraseña incorrectos");
             }
+
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -88,6 +91,7 @@ namespace ClubPilot
         private void button2_Click(object sender, EventArgs e)
         {
             //entrar a la aplicació
+            new Players().Show();
         }
 
         private void button3_Click(object sender, EventArgs e)

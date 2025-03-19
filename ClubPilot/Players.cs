@@ -47,5 +47,30 @@ namespace ClubPilot
         {
 
         }
+
+        private void clubToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new CrearClub().Show();
+        }
+
+        private void comptesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new Accounts().Show();
+        }
+
+        private void noticiesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new Forum().Show();
+        }
+
+        private void esdevenimentsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new Esdeveniments().Show();
+        }
+
+        private void sollicitudsDeClubsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new Clubs().Show();
+        }
     }
 }
