@@ -16,7 +16,7 @@ namespace ClubPilot
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Esdeveniments());
+            Application.Run(new Form1());
         }
     }
 }
