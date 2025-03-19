@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,15 +8,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace ClubPilot
 {
     public partial class Form1 : Form
     {
+     
+        private DatabaseConnection db;
         public Form1()
         {
             InitializeComponent();
+       
+            db = new DatabaseConnection();
+   
             textBox2.PasswordChar = '*';
+       
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -30,32 +38,30 @@ namespace ClubPilot
 
         private void button1_Click(object sender, EventArgs e)
         {
+            string username = textBox1.Text;
+            string password = textBox2.Text;
 
-            if((textBox1.Text.Equals("usuario1"))&&(textBox2.Text.Equals("contraseña1")))
-            { 
+            if (db.Login(username, password))
+            {
+                MessageBox.Show("Login exitoso");
+
                 label1.Visible = false;
                 label2.Visible = false;
                 textBox1.Visible = false;
                 textBox2.Visible = false;
                 button1.Visible = false;
                 comboBox1.Visible = true;
-                label3.Visible= true;
-                button2.Visible= true;
-                label4.Visible= true;
-                comboBox2.Visible= true;
+                label3.Visible = true;
+                button2.Visible = true;
+                label4.Visible = true;
+                comboBox2.Visible = true;
 
-                comboBox1.Items.Add("equip1");
-                comboBox1.Items.Add("equip2");
-                comboBox1.Items.Add("equip3");
-                comboBox1.Items.Add("equip4");
-
-
-                comboBox2.Items.Add("club1");
-                comboBox2.Items.Add("club2");
-                comboBox2.Items.Add("club3");
-                comboBox2.Items.Add("club4");
-
-
+                comboBox1.Items.AddRange(new string[] { "equip1", "equip2", "equip3", "equip4" });
+                comboBox2.Items.AddRange(new string[] { "club1", "club2", "club3", "club4" });
+            }
+            else
+            {
+                MessageBox.Show("Usuario o contraseña incorrectos");
             }
         }
 
@@ -88,7 +94,12 @@ namespace ClubPilot
         {
             CrearClub crearClub = new CrearClub();
             crearClub.Show();
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
         }
+       
     }
 }

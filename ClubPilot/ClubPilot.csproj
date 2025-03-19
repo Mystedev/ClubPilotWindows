@@ -123,6 +123,7 @@
       <DependentUpon>clubs.cs</DependentUpon>
     </Compile>
     <Compile Include="Connection.cs" />
+    <Compile Include="DatabaseConnection.cs" />
     <Compile Include="Esdeveniments.cs">
       <SubType>Form</SubType>
     </Compile>
