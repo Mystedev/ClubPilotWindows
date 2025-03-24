@@ -1,6 +1,6 @@
 ﻿namespace ClubPilot
 {
-    partial class Add_New
+    partial class Add_News
     {
         /// <summary>
         /// Required designer variable.
@@ -38,7 +38,6 @@
             this.textBox_imagen = new System.Windows.Forms.TextBox();
             this.label_fecha = new System.Windows.Forms.Label();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.boton_CrearNoticia = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label_titulo
@@ -46,9 +45,9 @@
             this.label_titulo.AutoSize = true;
             this.label_titulo.Location = new System.Drawing.Point(25, 27);
             this.label_titulo.Name = "label_titulo";
-            this.label_titulo.Size = new System.Drawing.Size(40, 16);
+            this.label_titulo.Size = new System.Drawing.Size(33, 16);
             this.label_titulo.TabIndex = 0;
-            this.label_titulo.Text = "Titulo";
+            this.label_titulo.Text = "Titol";
             // 
             // textBox_titulo
             // 
@@ -56,6 +55,7 @@
             this.textBox_titulo.Name = "textBox_titulo";
             this.textBox_titulo.Size = new System.Drawing.Size(100, 22);
             this.textBox_titulo.TabIndex = 1;
+
             // 
             // label_descripcion
             // 
@@ -94,9 +94,9 @@
             this.label_imagen.AutoSize = true;
             this.label_imagen.Location = new System.Drawing.Point(28, 263);
             this.label_imagen.Name = "label_imagen";
-            this.label_imagen.Size = new System.Drawing.Size(52, 16);
+            this.label_imagen.Size = new System.Drawing.Size(48, 16);
             this.label_imagen.TabIndex = 6;
-            this.label_imagen.Text = "Imagen";
+            this.label_imagen.Text = "Imatge";
             // 
             // textBox_imagen
             // 
@@ -110,9 +110,9 @@
             this.label_fecha.AutoSize = true;
             this.label_fecha.Location = new System.Drawing.Point(28, 341);
             this.label_fecha.Name = "label_fecha";
-            this.label_fecha.Size = new System.Drawing.Size(45, 16);
+            this.label_fecha.Size = new System.Drawing.Size(36, 16);
             this.label_fecha.TabIndex = 8;
-            this.label_fecha.Text = "Fecha";
+            this.label_fecha.Text = "Data";
             // 
             // dateTimePicker2
             // 
@@ -121,21 +121,11 @@
             this.dateTimePicker2.Size = new System.Drawing.Size(275, 22);
             this.dateTimePicker2.TabIndex = 9;
             // 
-            // boton_CrearNoticia
-            // 
-            this.boton_CrearNoticia.Location = new System.Drawing.Point(704, 415);
-            this.boton_CrearNoticia.Name = "boton_CrearNoticia";
-            this.boton_CrearNoticia.Size = new System.Drawing.Size(75, 23);
-            this.boton_CrearNoticia.TabIndex = 10;
-            this.boton_CrearNoticia.Text = "Crear ";
-            this.boton_CrearNoticia.UseVisualStyleBackColor = true;
-            // 
-            // Add_New
+            // Add_News
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.boton_CrearNoticia);
             this.Controls.Add(this.dateTimePicker2);
             this.Controls.Add(this.label_fecha);
             this.Controls.Add(this.textBox_imagen);
@@ -146,7 +136,7 @@
             this.Controls.Add(this.label_descripcion);
             this.Controls.Add(this.textBox_titulo);
             this.Controls.Add(this.label_titulo);
-            this.Name = "Add_New";
+            this.Name = "Add_News";
             this.Text = "Add_News";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -165,6 +155,5 @@
         private System.Windows.Forms.TextBox textBox_imagen;
         private System.Windows.Forms.Label label_fecha;
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
-        private System.Windows.Forms.Button boton_CrearNoticia;
     }
 }
