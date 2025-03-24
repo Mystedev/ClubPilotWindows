@@ -274,6 +274,44 @@ namespace ClubPilot
                 MessageBox.Show("Error al exportar: " + ex.Message);
             }
         }
+        public bool Login(string username, string password)
+        {
+            bool isValidUser = false;
+            bool isAdmin = false;
+
+            try
+            {
+                OpenConnection();
+                string query = @"
+		           SELECT u.id, a.id_usuari AS id_usuari 
+		           FROM usuari u 
+		           LEFT JOIN administrador a ON u.id = a.id_usuari
+                   WHERE u.username = @username AND u.password = @password;";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@username", username);
+                    cmd.Parameters.AddWithValue("@password", password);
+
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            isValidUser = true;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error en el login: {ex.Message}");
+            }
+            finally
+            {
+                CloseConnection();
+            }
+            return isValidUser;
+        }
         public void exportUsuari()
         {
             string selectClub = "SELECT * FROM club";
