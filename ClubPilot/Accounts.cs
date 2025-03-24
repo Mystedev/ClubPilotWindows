@@ -24,12 +24,11 @@ namespace ClubPilot
             this.WindowState = FormWindowState.Maximized;
 
             Connection myConnection = new Connection();
-            myConnection.exportNoticia();
-            myConnection.exportUsuari();
-            myConnection.exportClub();
-            myConnection.exportTipusEsdeveniment();
-            myConnection.exportEsdeveniment();
-
+            //myConnection.exportNoticia();
+            //myConnection.exportUsuari();
+            //myConnection.exportClub();
+            //myConnection.exportTipusEsdeveniment();
+            //myConnection.exportEsdeveniment();
 
             // Realiza operaciones con la base de datos...
 
@@ -261,10 +260,12 @@ namespace ClubPilot
             panell.Controls.Add(btnGuardar, 2, indexFila);
             panell.Controls.Add(btnEsborrar, 3, indexFila);
         }
+
+        private void Accounts_Load_1(object sender, EventArgs e)
+        {
+
+        }
     }
-
-
-
     public class Compte
     {
         public string usuari { get; set; }
