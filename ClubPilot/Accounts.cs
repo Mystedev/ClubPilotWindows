@@ -15,9 +15,6 @@ namespace ClubPilot
 {
     public partial class Accounts : Form
     {
-
-
-
         private List<Compte> comptes;
         private TableLayoutPanel layout;
         private Panel scrollPanel;
@@ -25,14 +22,13 @@ namespace ClubPilot
         {
             InitializeComponent();
             this.WindowState = FormWindowState.Maximized;
-            
-            Connection myConnection = new Connection();
-            myConnection.exportNoticia();
-            myConnection.exportUsuari();
-            myConnection.exportClub();
-            myConnection.exportTipusEsdeveniment();
-            myConnection.exportEsdeveniment();
 
+            Connection myConnection = new Connection();
+            //myConnection.exportNoticia();
+            //myConnection.exportUsuari();
+            //myConnection.exportClub();
+            //myConnection.exportTipusEsdeveniment();
+            //myConnection.exportEsdeveniment();
 
             // Realiza operaciones con la base de datos...
 
@@ -69,17 +65,17 @@ namespace ClubPilot
             };
 
             lblAfegir.Location = new Point(this.ClientSize.Width - 200, 50); // Ajusta la posició segons sigui necessari
-            
+
             Button botoAfegir = new Button { Image = Properties.Resources.icons8_añadir_30, Width = 40, Height = 40 };
             botoAfegir.Location = new Point(this.ClientSize.Width - 10, 50);
             botoAfegir.Click += (sender, e) =>
             {
                 new AddAccount().Show();
 
-      
-    };
 
-            
+            };
+
+
             scrollPanel = new Panel
             {
                 Dock = DockStyle.Fill,
@@ -218,7 +214,7 @@ namespace ClubPilot
 
             panellIntern.ResumeLayout();
 
-           
+
 
             // Crear botons
             Button btnModificar = new Button { Image = Properties.Resources.icons8_modificar_30, Width = 40, Height = 40 };
@@ -264,10 +260,12 @@ namespace ClubPilot
             panell.Controls.Add(btnGuardar, 2, indexFila);
             panell.Controls.Add(btnEsborrar, 3, indexFila);
         }
+
+        private void Accounts_Load_1(object sender, EventArgs e)
+        {
+
+        }
     }
-
-
-
     public class Compte
     {
         public string usuari { get; set; }
