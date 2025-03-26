@@ -15,12 +15,13 @@ namespace ClubPilot
     public partial class Form1 : Form
     {
      
-        //private DatabaseConnection db;
+        private Connection db;
         public Form1()
         {
             InitializeComponent();
-       
-            //db = new DatabaseConnection();
+            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
+            db = new Connection();
    
             textBox2.PasswordChar = '*';
        
@@ -40,12 +41,17 @@ namespace ClubPilot
         {
             string username = textBox1.Text;
             string password = textBox2.Text;
+            String []response = db.Login(username, password);
+         
+       
 
-            /*if (db.Login(username, password))
+            if (response.Length >=1)
             {
-                MessageBox.Show("Login exitoso");
+                String a=db.ClubsDeUsuari(response[0]);
+                String []clubs = a.Split(' ');
+                MessageBox.Show("Login correcto");
 
-
+                // Cambiar la visibilidad de los controles
                 label1.Visible = false;
                 label2.Visible = false;
                 textBox1.Visible = false;
@@ -57,14 +63,20 @@ namespace ClubPilot
                 label4.Visible = true;
                 comboBox2.Visible = true;
 
+                // Obtener los clubes del usuario
+               
+                for (int i = 0; i < clubs.Length-1; i++)
+                {
+                    comboBox2.Items.Add(clubs[i]);
+                }
+               
 
-                comboBox1.Items.AddRange(new string[] { "equip1", "equip2", "equip3", "equip4" });
-                comboBox2.Items.AddRange(new string[] { "club1", "club2", "club3", "club4" });
+          
             }
             else
             {
                 MessageBox.Show("Usuario o contraseña incorrectos");
-            }*/
+            }
 
         }
 
@@ -81,6 +93,17 @@ namespace ClubPilot
             CrearClub crearClub = new CrearClub();
             crearClub.Show();
         }
-       
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            comboBox1.Items.Clear();
+            String b = db.ClubsDeUsuari(comboBox2.Text);
+            String[] equips = b.Split(' ');
+            for (int i = 0; i < equips.Length - 1; i++)
+            {
+                comboBox1.Items.Add(equips[i]);
+            }
+
+        }
     }
 }

@@ -126,7 +126,6 @@
             this.button2.Text = "Enter";
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Visible = false;
-
             // 
             // comboBox2
             // 
@@ -137,7 +136,7 @@
             this.comboBox2.Size = new System.Drawing.Size(121, 29);
             this.comboBox2.TabIndex = 8;
             this.comboBox2.Visible = false;
-
+            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
             // label4
             // 

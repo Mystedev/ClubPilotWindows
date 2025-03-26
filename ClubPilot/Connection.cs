@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+using MySqlX.XDevAPI.Common;
 
 namespace ClubPilot
 {
@@ -50,8 +53,8 @@ namespace ClubPilot
         {
             try
             {
-                //connection.Open();
-                MessageBox.Show("Conectado");
+               // connection.Open();
+               // MessageBox.Show("Conectado");
             }
             catch (Exception ex)
             {
@@ -64,8 +67,8 @@ namespace ClubPilot
         {
             try
             {
-                //connection.Close();
-                MessageBox.Show("Conexión cerrada");
+               // connection.Close();
+               // MessageBox.Show("Conexión cerrada");
             }
             catch (Exception ex)
             {
@@ -124,7 +127,7 @@ namespace ClubPilot
             string selectUsuari = "SELECT * FROM usuari";
 
             string connectionString = $"Server={server};Database={database};Port={port};User Id={user_id};Password={password};";
-
+           
             string filePath = "C:\\Intel\\exportedClub.txt";
             try
             {
@@ -274,30 +277,80 @@ namespace ClubPilot
                 MessageBox.Show("Error al exportar: " + ex.Message);
             }
         }
-        public bool Login(string username, string password)
+        public String[] Login(string username, string password)
         {
-            bool isValidUser = false;
-            bool isAdmin = false;
-
+            OpenConnection();
+            String result = "";
+            string connectionString = $"Server={server};Database={database};Port={port};User Id={user_id};Password={password};";
+            List<string> results = new List<string>();
             try
             {
-                OpenConnection();
+
+
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                {
+                     
+                    
+                 
                 string query = @"
-		           SELECT u.id, a.id_usuari AS id_usuari 
-		           FROM usuari u 
-		           LEFT JOIN administrador a ON u.id = a.id_usuari
-                   WHERE u.username = @username AND u.password = @password;";
+                  SELECT u.id
+                  FROM usuari u 
+                  LEFT JOIN administrador a ON u.id = a.id_usuari
+                WHERE u.username = @username AND u.password = @password;";
 
                 using (MySqlCommand cmd = new MySqlCommand(query, connection))
                 {
                     cmd.Parameters.AddWithValue("@username", username);
                     cmd.Parameters.AddWithValue("@password", password);
 
+                        // Ejecutar la consulta y obtener el valor directamente
+                    MySqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        
+                            result = reader.GetInt32(0)+""; 
+                            results.Add(result);
+                    }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // En caso de error, capturamos y mostramos el error
+                Console.WriteLine($"Error en el login: {ex.Message}");
+                result = "Error";
+            }
+            finally
+            {
+                CloseConnection();
+            }
+            return results.ToArray();
+        }
+        public String ClubsDeUsuari(string idUsuari)
+        {
+            string line = "";
+            try
+            {
+                OpenConnection();
+                string query = @"
+		           SELECT a.id_club 
+		           FROM administrador a 
+                   WHERE a.id_usuari = @username;";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@username", idUsuari);
+
                     using (MySqlDataReader reader = cmd.ExecuteReader())
                     {
-                        if (reader.Read())
+                        while (reader.Read())
                         {
-                            isValidUser = true;
+                         
+                            for (int i = 0; i < reader.FieldCount; i++)
+                            {
+                                line += reader[i].ToString() + " "; // Separa por tabulaciones
+                            }
                         }
                     }
                 }
@@ -310,7 +363,45 @@ namespace ClubPilot
             {
                 CloseConnection();
             }
-            return isValidUser;
+            return line;
+        }
+        public String EquipsDeClub(string idClub)
+        {
+            string line = "";
+            try
+            {
+                OpenConnection();
+                string query = @"
+		           SELECT e.id, e.nom 
+		           FROM Equip e 
+                   WHERE a.id_usuari = @username;";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@username", idClub);
+
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+
+                            for (int i = 0; i < reader.FieldCount; i++)
+                            {
+                                line += reader[i].ToString() + " "; // Separa por tabulaciones
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error en el login: {ex.Message}");
+            }
+            finally
+            {
+                CloseConnection();
+            }
+            return line;
         }
         public void exportUsuari()
         {
