@@ -82,18 +82,7 @@ namespace ClubPilot
 
             
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            //entrar a la aplicació
-            new Players().Show();
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            CrearClub crearClub = new CrearClub();
-            crearClub.Show();
-        }
-
+      
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
             comboBox1.Items.Clear();
@@ -104,6 +93,18 @@ namespace ClubPilot
                 comboBox1.Items.Add(equips[i]);
             }
 
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            Players players = new Players();
+            players.Show();
+        }
+
+        private void button3_Click_1(object sender, EventArgs e)
+        {
+            CrearClub crearClub = new CrearClub();
+            crearClub.Show();
         }
     }
 }
