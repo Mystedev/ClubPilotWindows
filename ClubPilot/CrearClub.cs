@@ -12,9 +12,11 @@ namespace ClubPilot
 {
     public partial class CrearClub : Form
     {
+        private Connection db;
         public CrearClub()
         {
             InitializeComponent();
+            db = new Connection();
         }
 
         private void CrearClub_Load(object sender, EventArgs e)
@@ -40,7 +42,7 @@ namespace ClubPilot
         private void button1_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Archivos de imagen (*.png)|*.png";// Filtros opcionales
+            openFileDialog.Filter = "Archivos de imagen (*.png)|*.png";
             openFileDialog.Title = "Selecciona un archiu";
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
@@ -51,8 +53,15 @@ namespace ClubPilot
         }
         private void button2_Click(object sender, EventArgs e)
         {
-            //Insert implementació base de dades
-            MessageBox.Show("Club creat");
+            if((!txtBoxData.Text.Equals(""))&& (!txtBoxNom.Text.Equals("")) && (!txtBoxFundador.Text.Equals("")))
+            { 
+            String a=db.CrearClub(txtBoxNom.Text,txtBoxData.Text,txtBoxFundador.Text,"logo");
+            MessageBox.Show(a);
+            }
+            else
+            {
+             MessageBox.Show("camps sense emplenar");
+            }
         }
     }   
 
