@@ -14,15 +14,17 @@ namespace ClubPilot
         private string Titulo { get; set; }
         private string Texto { get; set; }
         private DateTime Fecha { get; set; }
+        private DateTime Hora { get; set; }
         private string Autor { get; set; }
         private string Imagen { get; set; }
         public Panel Panel { get; set; }
 
-        public News(string titulo, string texto, DateTime fecha, string autor, string imagen)
+        public News(string titulo, string texto, DateTime fecha/*, DateTime hora*/, string autor, string imagen)
         {
             Titulo = titulo;
             Texto = texto;
             Fecha = fecha;
+            //Hora = hora;
             Autor = autor;
             Imagen = imagen;
             Panel = new Panel();
