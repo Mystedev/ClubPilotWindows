@@ -19,7 +19,7 @@ namespace ClubPilot
             Application.Run(new News_Tab());
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Accounts());
+            Application.Run(new Form1());
         }
     }
 }

@@ -176,6 +176,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Add_News.resx">
       <DependentUpon>Add_News.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="clubs.resx">
       <DependentUpon>clubs.cs</DependentUpon>

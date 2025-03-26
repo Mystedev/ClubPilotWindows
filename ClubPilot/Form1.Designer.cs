@@ -74,7 +74,6 @@
             this.label2.Size = new System.Drawing.Size(90, 22);
             this.label2.TabIndex = 2;
             this.label2.Text = "Password";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // textBox1
             // 
@@ -91,7 +90,6 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(100, 26);
             this.textBox2.TabIndex = 4;
-            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // comboBox1
             // 
@@ -113,7 +111,6 @@
             this.label3.TabIndex = 6;
             this.label3.Text = "Team";
             this.label3.Visible = false;
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // button2
             // 
@@ -129,7 +126,6 @@
             this.button2.Text = "Enter";
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Visible = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // comboBox2
             // 
@@ -140,6 +136,7 @@
             this.comboBox2.Size = new System.Drawing.Size(121, 29);
             this.comboBox2.TabIndex = 8;
             this.comboBox2.Visible = false;
+            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
             // label4
             // 
@@ -151,7 +148,6 @@
             this.label4.TabIndex = 9;
             this.label4.Text = "Club";
             this.label4.Visible = false;
-            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // button3
             // 
@@ -164,7 +160,6 @@
             this.button3.TabIndex = 10;
             this.button3.Text = "Crear";
             this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // Form1
             // 
