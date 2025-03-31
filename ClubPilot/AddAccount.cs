@@ -55,7 +55,7 @@ namespace ClubPilot
                 {
                     MessageBox.Show("Error al afegir l'usuari.");
                 }*/
-                Compte compte = new Compte(usuari,  nom, cognoms, correu, rol);
+                Accounts.Compte compte = new Accounts.Compte(usuari,  nom, cognoms, correu, rol);
                
                 accountsFormulari.addAccountToList(compte);
                 this.Close();
