@@ -160,7 +160,7 @@ namespace ClubPilot
             TextBox txtFundador = new TextBox { Text = club.Fundador, Width = 150, Left = 350, Font = fontCascadiaCode, Enabled = false };
 
             Label lblAnyFundacio = new Label { Text = "Any Fundació:", Left = 500, Font = fontCascadiaCode };
-            TextBox txtAnyFundacio = new TextBox { Text = club.AnyFundacio.ToString(), Width = 150, Left = 600, Font = fontCascadiaCode, Enabled = false };
+            TextBox txtAnyFundacio = new TextBox { Text = club.AnyFundacio.ToString(), Width = 150, Left = 700, Font = fontCascadiaCode, Enabled = false };
 
             int desplazamentY = 5;
 
@@ -189,9 +189,7 @@ namespace ClubPilot
 
             btnAcceptar.Click += (sender, e) =>
             {
-                txtNom.Enabled = true;
-                txtFundador.Enabled = true;
-                txtAnyFundacio.Enabled = true;
+                
                 btnAcceptar.Enabled = false;
             };
 
@@ -230,6 +228,11 @@ namespace ClubPilot
             panell.Controls.Add(panellIntern, 0, indexFila);
             panell.Controls.Add(btnAcceptar, 1, indexFila);
             panell.Controls.Add(btnEsborrar, 2, indexFila);
+        }
+
+        private void Clubs_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

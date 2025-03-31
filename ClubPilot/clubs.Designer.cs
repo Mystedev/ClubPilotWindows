@@ -37,6 +37,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SeaShell;
             this.Name = "Clubs";
+            this.Load += new System.EventHandler(this.Clubs_Load);
             this.ResumeLayout(false);
 
         }
