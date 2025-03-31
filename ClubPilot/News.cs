@@ -34,7 +34,7 @@ namespace ClubPilot
         //Le da formato a cada parte de la noticia y la añade al panel
         public void Show()
         {
-            Panel.BackColor = System.Drawing.Color.BlueViolet;
+            Panel.BackColor = System.Drawing.Color.Blue;
             Panel.AutoSize = true;
 
             Label label_titulo = new Label();
