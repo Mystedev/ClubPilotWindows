@@ -38,7 +38,6 @@
             this.textBox_imagen = new System.Windows.Forms.TextBox();
             this.label_fecha = new System.Windows.Forms.Label();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.boton_CrearNoticia = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label_titulo
@@ -56,6 +55,7 @@
             this.textBox_titulo.Name = "textBox_titulo";
             this.textBox_titulo.Size = new System.Drawing.Size(100, 22);
             this.textBox_titulo.TabIndex = 1;
+
             // 
             // label_descripcion
             // 
@@ -120,24 +120,12 @@
             this.dateTimePicker2.Name = "dateTimePicker2";
             this.dateTimePicker2.Size = new System.Drawing.Size(275, 22);
             this.dateTimePicker2.TabIndex = 9;
-//            this.dateTimePicker2.ValueChanged += new System.EventHandler(this.dateTimePicker2_ValueChanged_1);
-            // 
-            // boton_CrearNoticia
-            // 
-            this.boton_CrearNoticia.Location = new System.Drawing.Point(704, 415);
-            this.boton_CrearNoticia.Name = "boton_CrearNoticia";
-            this.boton_CrearNoticia.Size = new System.Drawing.Size(75, 23);
-            this.boton_CrearNoticia.TabIndex = 10;
-            this.boton_CrearNoticia.Text = "Crear ";
-            this.boton_CrearNoticia.UseVisualStyleBackColor = true;
-            this.boton_CrearNoticia.Click += new System.EventHandler(this.boton_CrearNoticia_Click_1);
             // 
             // Add_News
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.boton_CrearNoticia);
             this.Controls.Add(this.dateTimePicker2);
             this.Controls.Add(this.label_fecha);
             this.Controls.Add(this.textBox_imagen);
@@ -167,6 +155,5 @@
         private System.Windows.Forms.TextBox textBox_imagen;
         private System.Windows.Forms.Label label_fecha;
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
-        private System.Windows.Forms.Button boton_CrearNoticia;
     }
 }
