@@ -11,11 +11,25 @@ namespace ClubPilot
         private List<Compte> comptes;
         private TableLayoutPanel layout;
         private Panel scrollPanel;
-        
+
         public Accounts()
         {
             InitializeComponent();
             this.WindowState = FormWindowState.Maximized;
+
+
+            Connection myConnection = new Connection();
+            //myConnection.exportNoticia();
+            //myConnection.exportUsuari();
+            //myConnection.exportClub();
+            //myConnection.exportTipusEsdeveniment();
+            //myConnection.exportEsdeveniment();
+
+            // Realiza operaciones con la base de datos...
+
+            //myConnection.CloseConnection();
+
+
 
             Font fontCascadiaCode = new Font("Cascadia Code", 30);
 
@@ -29,12 +43,12 @@ namespace ClubPilot
 
 
             };
-             fontCascadiaCode = new Font("Cascadia Code", 15);
+            fontCascadiaCode = new Font("Cascadia Code", 15);
             Label lblInformacio = new Label
             {
                 Text = "Informació Comptes",
                 Font = fontCascadiaCode,
-              AutoSize = true,
+                AutoSize = true,
 
 
 
@@ -48,12 +62,21 @@ namespace ClubPilot
                 TextAlign = ContentAlignment.MiddleRight
             };
 
+
+            lblAfegir.Location = new Point(this.ClientSize.Width - 200, 50); // Ajusta la posició segons sigui necessari
+
+
             Button botoAfegir = new Button { Image = Properties.Resources.icons8_añadir_30, Width = 40, Height = 40 };
-            
+
             botoAfegir.Click += (sender, e) =>
             {
                 new AddAccount(this).Show();
             };
+
+
+
+
+
 
             scrollPanel = new Panel
             {
@@ -66,20 +89,20 @@ namespace ClubPilot
             scrollPanel.Controls.Add(lblInformacio);
             scrollPanel.Controls.Add(lblAfegir);
             scrollPanel.Controls.Add(botoAfegir);
-           
 
-           
+
+
             comptes = ObtenirComptes();
             CarregarComptes();
             this.Resize += new EventHandler(Form_Resize);
         }
-        
+
         private void Form_Resize(object sender, EventArgs e)
         {
             CenterControls();
-            
+
         }
-        
+
         private void CenterControls()
         {
             foreach (Control control in scrollPanel.Controls)
@@ -175,23 +198,23 @@ namespace ClubPilot
 
         private void AfegirCompteATaula(TableLayoutPanel panell, Compte compte, int indexFila)
         {
-            Panel panellIntern = new Panel { Dock = DockStyle.Fill, AutoSize = true};
+            Panel panellIntern = new Panel { Dock = DockStyle.Fill, AutoSize = true };
             panellIntern.SuspendLayout();
             Font fontCascadiaCode = new Font("Cascadia Code", 10);
 
-            Label lblUsuari = new Label { Text = "Usuari:", Font = fontCascadiaCode, TextAlign = ContentAlignment.TopRight};
+            Label lblUsuari = new Label { Text = "Usuari:", Font = fontCascadiaCode, TextAlign = ContentAlignment.TopRight };
             TextBox txtUsuari = new TextBox { Text = compte.usuari, Width = 140, Font = fontCascadiaCode, Enabled = false };
 
-            Label lblNom = new Label { Text = "Nom:", Font = fontCascadiaCode, TextAlign = ContentAlignment.TopRight , Width = 60};
+            Label lblNom = new Label { Text = "Nom:", Font = fontCascadiaCode, TextAlign = ContentAlignment.TopRight, Width = 60 };
             TextBox txtNom = new TextBox { Text = compte.nom, Width = 120, Font = fontCascadiaCode, Enabled = false };
 
             Label lblCognoms = new Label { Text = "Cognoms:", Font = fontCascadiaCode, TextAlign = ContentAlignment.TopRight };
             TextBox txtCognoms = new TextBox { Text = compte.cognoms, Width = 200, Font = fontCascadiaCode, Enabled = false };
 
-            Label lblCorreu = new Label { Text = "Correu:", Font = fontCascadiaCode , TextAlign = ContentAlignment.TopRight };
+            Label lblCorreu = new Label { Text = "Correu:", Font = fontCascadiaCode, TextAlign = ContentAlignment.TopRight };
             TextBox txtCorreu = new TextBox { Text = compte.correu, Width = 200, Font = fontCascadiaCode, Enabled = false };
 
-            Label lblRol = new Label { Text = "Rol:", Font = fontCascadiaCode , TextAlign = ContentAlignment.TopRight, Width = 60 };
+            Label lblRol = new Label { Text = "Rol:", Font = fontCascadiaCode, TextAlign = ContentAlignment.TopRight, Width = 60 };
             TextBox txtRol = new TextBox { Text = compte.rol, Width = 130, Font = fontCascadiaCode, Enabled = false };
 
             int desplazamentY = 5;
@@ -223,6 +246,7 @@ namespace ClubPilot
             panellIntern.Controls.Add(txtRol);
 
             panellIntern.ResumeLayout();
+
 
             Button btnModificar = new Button { Image = Properties.Resources.icons8_modificar_30, Width = 40, Height = 40 };
             Button btnGuardar = new Button { Image = Properties.Resources.icons8_guardar_30, Width = 40, Height = 40, Enabled = false };
@@ -283,27 +307,31 @@ namespace ClubPilot
             panell.Controls.Add(btnEsborrar, 3, indexFila);
         }
 
+
         private void Accounts_Load(object sender, EventArgs e)
         {
 
         }
-    }
 
-    public class Compte
-    {
-        public string usuari { get; set; }
-        public string nom { get; set; }
-        public string cognoms { get; set; }
-        public string correu { get; set; }
-        public string rol { get; set; }
 
-        public Compte(string usuari, string nom, string cognoms, string correu, string rol)
+
+        public class Compte
         {
-            this.usuari = usuari;
-            this.nom = nom;
-            this.cognoms = cognoms;
-            this.correu = correu;
-            this.rol = rol;
+            public string usuari { get; set; }
+            public string nom { get; set; }
+            public string cognoms { get; set; }
+            public string correu { get; set; }
+            public string rol { get; set; }
+
+            public Compte(string usuari, string nom, string cognoms, string correu, string rol)
+            {
+                this.usuari = usuari;
+                this.nom = nom;
+                this.cognoms = cognoms;
+                this.correu = correu;
+                this.rol = rol;
+            }
         }
     }
 }
+

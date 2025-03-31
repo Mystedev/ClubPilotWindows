@@ -35,16 +35,18 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SeaShell;
+
             this.ClientSize = new System.Drawing.Size(1290, 658);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Accounts";
             this.Text = "Accounts";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Accounts_Load);
+
             this.ResumeLayout(false);
 
         }
 
         #endregion
-    }
+        }
 }

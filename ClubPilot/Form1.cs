@@ -15,12 +15,15 @@ namespace ClubPilot
     public partial class Form1 : Form
     {
      
-        //private DatabaseConnection db;
+        private Connection db;
+        String[] response;
+        String[] clubs;
         public Form1()
         {
             InitializeComponent();
-       
-            //db = new DatabaseConnection();
+            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
+            db = new Connection();
    
             textBox2.PasswordChar = '*';
        
@@ -40,12 +43,17 @@ namespace ClubPilot
         {
             string username = textBox1.Text;
             string password = textBox2.Text;
+            response = db.Login(username, password);
+            
+       
 
-            /*if (db.Login(username, password))
+            if (response.Length >=1)
             {
-                MessageBox.Show("Login exitoso");
+                String a=db.ClubsDeUsuari(response[0]);
+                clubs = a.Split('$');
+                MessageBox.Show("Login correcto");
 
-
+                // Cambiar la visibilidad de los controles
                 label1.Visible = false;
                 label2.Visible = false;
                 textBox1.Visible = false;
@@ -57,30 +65,55 @@ namespace ClubPilot
                 label4.Visible = true;
                 comboBox2.Visible = true;
 
-
-                comboBox1.Items.AddRange(new string[] { "equip1", "equip2", "equip3", "equip4" });
-                comboBox2.Items.AddRange(new string[] { "club1", "club2", "club3", "club4" });
+                // Obtener los clubes del usuario
+               
+                for (int i = 0; i < clubs.Length-1; i++)
+                {
+                    if(i%2==0)
+                    {
+                        comboBox2.Items.Add(clubs[i]);
+                    }
+                }
             }
             else
             {
                 MessageBox.Show("Usuario o contraseña incorrectos");
-            }*/
+            }
 
         }
 
             
 
-        private void button2_Click(object sender, EventArgs e)
+      
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //entrar a la aplicació
-            new Players().Show();
+            String b = "";
+            comboBox1.Items.Clear();
+            for(int i = 0; i < clubs.Length-2; i++)
+            {
+                if (clubs[i].Equals(comboBox2.Text))
+                {
+                   b  =  db.EquipsDeClub(clubs[i + 1]); 
+                   break;
+                }
+            }
+        
+            String[] equips = b.Split('$');
+            for (int i = 0; i < equips.Length - 1; i++)
+            {
+                comboBox1.Items.Add(equips[i]);
+            }   
+        }
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            Players players = new Players();
+            players.Show();
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void button3_Click_1(object sender, EventArgs e)
         {
             CrearClub crearClub = new CrearClub();
             crearClub.Show();
         }
-       
     }
 }
