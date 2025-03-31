@@ -16,6 +16,8 @@ namespace ClubPilot
     {
      
         private Connection db;
+        String[] response;
+        String[] clubs;
         public Form1()
         {
             InitializeComponent();
@@ -41,14 +43,14 @@ namespace ClubPilot
         {
             string username = textBox1.Text;
             string password = textBox2.Text;
-            String []response = db.Login(username, password);
-         
+            response = db.Login(username, password);
+            
        
 
             if (response.Length >=1)
             {
                 String a=db.ClubsDeUsuari(response[0]);
-                String []clubs = a.Split(' ');
+                clubs = a.Split('$');
                 MessageBox.Show("Login correcto");
 
                 // Cambiar la visibilidad de los controles
@@ -67,11 +69,11 @@ namespace ClubPilot
                
                 for (int i = 0; i < clubs.Length-1; i++)
                 {
-                    comboBox2.Items.Add(clubs[i]);
+                    if(i%2==0)
+                    {
+                        comboBox2.Items.Add(clubs[i]);
+                    }
                 }
-               
-
-          
             }
             else
             {
@@ -82,28 +84,36 @@ namespace ClubPilot
 
             
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            //entrar a la aplicació
-            new Players().Show();
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            CrearClub crearClub = new CrearClub();
-            crearClub.Show();
-        }
-
+      
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
+            String b = "";
             comboBox1.Items.Clear();
-            String b = db.ClubsDeUsuari(comboBox2.Text);
-            String[] equips = b.Split(' ');
+            for(int i = 0; i < clubs.Length-2; i++)
+            {
+                if (clubs[i].Equals(comboBox2.Text))
+                {
+                   b  =  db.EquipsDeClub(clubs[i + 1]); 
+                   break;
+                }
+            }
+        
+            String[] equips = b.Split('$');
             for (int i = 0; i < equips.Length - 1; i++)
             {
                 comboBox1.Items.Add(equips[i]);
-            }
+            }   
+        }
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            Players players = new Players();
+            players.Show();
+        }
 
+        private void button3_Click_1(object sender, EventArgs e)
+        {
+            CrearClub crearClub = new CrearClub();
+            crearClub.Show();
         }
     }
 }

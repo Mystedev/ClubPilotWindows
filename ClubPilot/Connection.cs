@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
@@ -14,7 +15,7 @@ namespace ClubPilot
         private string database = "clubpilot";
         private string port = "3306";
         private string user_id = "root";
-        private string password = "1234";
+        private string password = "12345";
         private MySqlConnection connection;
 
         // Constructor por defecto
@@ -53,7 +54,7 @@ namespace ClubPilot
         {
             try
             {
-               // connection.Open();
+               connection.Open();
                // MessageBox.Show("Conectado");
             }
             catch (Exception ex)
@@ -67,7 +68,7 @@ namespace ClubPilot
         {
             try
             {
-               // connection.Close();
+               connection.Close();
                // MessageBox.Show("Conexión cerrada");
             }
             catch (Exception ex)
@@ -296,7 +297,7 @@ namespace ClubPilot
                   SELECT u.id
                   FROM usuari u 
                   LEFT JOIN administrador a ON u.id = a.id_usuari
-                WHERE u.username = @username AND u.password = @password;";
+                  WHERE u.username = @username AND u.password = @password;";
 
                 using (MySqlCommand cmd = new MySqlCommand(query, connection))
                 {
@@ -334,8 +335,9 @@ namespace ClubPilot
             {
                 OpenConnection();
                 string query = @"
-		           SELECT a.id_club 
-		           FROM administrador a 
+		           SELECT c.nom, c.id
+                   FROM club c 
+                   LEFT JOIN administrador a ON a.id_club = c.id
                    WHERE a.id_usuari = @username;";
 
                 using (MySqlCommand cmd = new MySqlCommand(query, connection))
@@ -349,7 +351,7 @@ namespace ClubPilot
                          
                             for (int i = 0; i < reader.FieldCount; i++)
                             {
-                                line += reader[i].ToString() + " "; // Separa por tabulaciones
+                                line += reader[i].ToString() + "$"; // Separa por tabulaciones
                             }
                         }
                     }
@@ -365,16 +367,51 @@ namespace ClubPilot
             }
             return line;
         }
-        public String EquipsDeClub(string idClub)
+        public string CrearClub(string nom, string anyDeFundacio, string fundador, string logo)
         {
-            string line = "";
+            string resultado = "Club creado correctamente";
             try
             {
                 OpenConnection();
                 string query = @"
-		           SELECT e.id, e.nom 
+            INSERT INTO club (nom, any_fundacio, fundador, logo, registre)
+            VALUES (@nom, @anyDeFundacio, @fundador, @logo, 0);";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@nom", nom);
+                    cmd.Parameters.AddWithValue("@anyDeFundacio", anyDeFundacio);
+                    cmd.Parameters.AddWithValue("@fundador", fundador);
+                    cmd.Parameters.AddWithValue("@logo", logo);
+
+                    int filasAfectadas = cmd.ExecuteNonQuery(); 
+
+                    if (filasAfectadas == 0)
+                    {
+                        resultado = "No se pudo crear el club.";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                resultado = $"Error al crear el club: {ex.Message}";
+            }
+            finally
+            {
+                CloseConnection();
+            }
+            return resultado;
+        }
+        public String EquipsDeClub(string idClub)
+        {
+            String line = "";
+            try
+            {
+                OpenConnection();
+                string query = @"
+		           SELECT e.nom 
 		           FROM Equip e 
-                   WHERE a.id_usuari = @username;";
+                   WHERE e.id = @username;";
 
                 using (MySqlCommand cmd = new MySqlCommand(query, connection))
                 {
@@ -387,7 +424,7 @@ namespace ClubPilot
 
                             for (int i = 0; i < reader.FieldCount; i++)
                             {
-                                line += reader[i].ToString() + " "; // Separa por tabulaciones
+                                line += reader[i].ToString() + "$"; 
                             }
                         }
                     }
