@@ -11,10 +11,13 @@ namespace ClubPilot
         private List<Compte> comptes;
         private TableLayoutPanel layout;
         private Panel scrollPanel;
+        private Connection db;
 
         public Accounts()
         {
+            db = new Connection();
             InitializeComponent();
+          
             this.WindowState = FormWindowState.Maximized;
 
 
@@ -134,31 +137,31 @@ namespace ClubPilot
         }
         public void addAccountToList(Compte compte)
         {
-            comptes.Add(compte);
+            comptes = ObtenirComptes();
             CarregarComptes();
         }
         private List<Compte> ObtenirComptes()
         {
-            return new List<Compte>
+            List<Compte> comptes = new List<Compte>();
+
+            List<Dictionary<string, object>> resultats = db.SelectComptes();
+
+            foreach (var registre in resultats)
             {
-                //Agafa dades Base De Dades
-                /*new Compte("usuari1", "Nom1", "Cognoms1", "email1@example.com", "AdministradorNS"),
-                new Compte("usuari2", "Nom2", "Cognoms2", "email2@example.com", "AdministradorCL"),
-                new Compte("usuari1", "Nom1", "Cognoms1", "email1@example.com", "Rol1"),
-                new Compte("usuari2", "Nom2", "Cognoms2", "email2@example.com", "Rol2"),
-                new Compte("usuari1", "Nom1", "Cognoms1", "email1@example.com", "Rol1"),
-                new Compte("usuari2", "Nom2", "Cognoms2", "email2@example.com", "Rol2"),
-                new Compte("usuari1", "Nom1", "Cognoms1", "email1@example.com", "Rol1"),
-                new Compte("usuari2", "Nom2", "Cognoms2", "email2@example.com", "Rol2"),
-                new Compte("usuari1", "Nom1", "Cognoms1", "email1@example.com", "Rol1"),
-                new Compte("usuari1", "Nom1", "Cognoms1", "email1@example.com", "Rol1"),
-                new Compte("usuari2", "Nom2", "Cognoms2", "email2@example.com", "Rol2"),
-                new Compte("usuari1", "Nom1", "Cognoms1", "email1@example.com", "Rol1"),
-                new Compte("usuari2", "Nom2", "Cognoms2", "email2@example.com", "Rol2"),
-                new Compte("usuari2", "Nom2", "Cognoms2", "email2@example.com", "Rol2"),
-                new Compte("usuari2", "Nom2", "Cognoms2", "email2@example.com", "Rol2"),*/
-            };
+                comptes.Add(new Compte(
+                    registre["id"].ToString(),
+                    registre["username"].ToString(),
+                    registre["nom"].ToString(),
+                    registre["cognoms"].ToString(),
+                    registre["email"].ToString(),
+                    registre["rol"].ToString()
+                  
+                ));
+            }
+
+            return comptes;
         }
+
 
         private void CarregarComptes()
         {
@@ -201,6 +204,8 @@ namespace ClubPilot
             Panel panellIntern = new Panel { Dock = DockStyle.Fill, AutoSize = true };
             panellIntern.SuspendLayout();
             Font fontCascadiaCode = new Font("Cascadia Code", 10);
+            TextBox txtId = new TextBox { Text = compte.id, Width = 140, Font = fontCascadiaCode, Visible = false };
+
 
             Label lblUsuari = new Label { Text = "Usuari:", Font = fontCascadiaCode, TextAlign = ContentAlignment.TopRight };
             TextBox txtUsuari = new TextBox { Text = compte.usuari, Width = 140, Font = fontCascadiaCode, Enabled = false };
@@ -234,6 +239,7 @@ namespace ClubPilot
             lblRol.Location = new Point(txtCorreu.Right, desplazamentY);
             txtRol.Location = new Point(lblRol.Right, desplazamentY);
 
+            panellIntern.Controls.Add(txtId);
             panellIntern.Controls.Add(lblUsuari);
             panellIntern.Controls.Add(txtUsuari);
             panellIntern.Controls.Add(lblNom);
@@ -261,7 +267,7 @@ namespace ClubPilot
                 btnModificar.Enabled = false;
                 btnGuardar.Enabled = true;
             };
-
+            
             btnGuardar.Click += (sender, e) =>
             {
                 txtUsuari.Enabled = false;
@@ -270,6 +276,8 @@ namespace ClubPilot
                 txtCorreu.Enabled = false;
                 btnModificar.Enabled = true;
                 btnGuardar.Enabled = false;
+                db.updateCompte(txtId.Text, txtUsuari.Text, txtNom.Text, txtCognoms.Text, txtCorreu.Text);
+
             };
 
             btnEsborrar.Click += (sender, e) =>
@@ -279,14 +287,15 @@ namespace ClubPilot
                     DialogResult result = MessageBox.Show(
             "Segur que vol esborrar aquest compte? Usuari:" + comptes[indexFila].usuari,
             "Confirmar eliminació",
-            MessageBoxButtons.YesNo,
-            MessageBoxIcon.Question
-        );
+             MessageBoxButtons.YesNo,
+             MessageBoxIcon.Question
+             );
 
                     if (result == DialogResult.Yes)
                     {
                         // Eliminar el club si asi lo desea el usuario
                         comptes.RemoveAt(indexFila);
+                        db.deleteCompte(txtId.Text);
 
                         // Remove only the TableLayoutPanel and recreate it
                         if (layout != null)
@@ -317,14 +326,16 @@ namespace ClubPilot
 
         public class Compte
         {
+            public string id { get; set; }
             public string usuari { get; set; }
             public string nom { get; set; }
             public string cognoms { get; set; }
             public string correu { get; set; }
             public string rol { get; set; }
 
-            public Compte(string usuari, string nom, string cognoms, string correu, string rol)
+            public Compte(string id, string usuari, string nom, string cognoms, string correu, string rol)
             {
+                this.id = id;
                 this.usuari = usuari;
                 this.nom = nom;
                 this.cognoms = cognoms;

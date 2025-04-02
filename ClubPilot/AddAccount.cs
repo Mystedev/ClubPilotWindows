@@ -13,8 +13,11 @@ namespace ClubPilot
     public partial class AddAccount : Form
     {
         private Accounts accountsFormulari;
+        private Connection db;
+      
         public AddAccount(Accounts accountsFormulari)
         {
+            db = new Connection();
             InitializeComponent();
             this.accountsFormulari = accountsFormulari;
         }
@@ -23,6 +26,33 @@ namespace ClubPilot
         {
 
         }
+        private void ComboBoxRol1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+         
+            string selectedRole = ComboBoxRol1.SelectedItem.ToString();
+
+            if (selectedRole == "administrador")
+            {
+                txtBoxEquips.Visible = false;
+                labelEquips.Visible = false;
+            }
+            else if (selectedRole == "aficionat")
+            {
+                txtBoxEquips.Visible = true;
+                labelEquips.Visible = true;
+            }
+            else if (selectedRole == "entrenador")
+            {
+                txtBoxEquips.Visible = true;
+                labelEquips.Visible = true;
+            }
+            else if (selectedRole == "jugador")
+            {
+                txtBoxEquips.Visible = true;
+                txtBoxEquips.Visible = true;
+            }
+        }
+
 
         private void txtBoxEmail1_TextChanged(object sender, EventArgs e)
         {
@@ -31,7 +61,7 @@ namespace ClubPilot
 
         private void btn_add_account_Click(object sender, EventArgs e)
         {
-            if (txtBoxUsername1.Text == "" || txtBoxEmail1.Text == "" || txtBoxNom1.Text == "" || txtBoxCognoms1.Text == "" || txtBoxRol1.Text == "")
+            if (txtBoxUsername1.Text == "" || txtBoxEmail1.Text == "" || txtBoxNom1.Text == "" || txtBoxCognoms1.Text == "" || ComboBoxRol1.Text == "")
             {
                 MessageBox.Show("Omple tota la informació.");
                 return;
@@ -42,12 +72,12 @@ namespace ClubPilot
                 String correu = txtBoxEmail1.Text;
                 String nom = txtBoxNom1.Text;
                 String cognoms = txtBoxCognoms1.Text;
-                String rol = txtBoxRol1.Text;
+                String rol = ComboBoxRol1.Text;
                
                 String password = ""; // TODO: Generate random password
 
                 /*string query = "INSERT INTO usuaris (username, email, nom, cognoms, rol, password) VALUES ('" + username + "', '" + email + "', '" + nom + "', '" + cognoms + "', '" + rol + "', '" + password + "')";
-                if (DBConnection.ExecuteQuery(query) == 1)
+                if (db.ExecuteQuery(query) == 1)
                 {
                     MessageBox.Show("Usuari afegit correctament.");
                 }
@@ -55,8 +85,8 @@ namespace ClubPilot
                 {
                     MessageBox.Show("Error al afegir l'usuari.");
                 }*/
-                Accounts.Compte compte = new Accounts.Compte(usuari,  nom, cognoms, correu, rol);
-               
+                Accounts.Compte compte = new Accounts.Compte("", usuari,  nom, cognoms, correu, rol);
+                db.InsertCompte(usuari,nom,cognoms,correu,rol);
                 accountsFormulari.addAccountToList(compte);
                 this.Close();
             }
