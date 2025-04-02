@@ -129,6 +129,7 @@ namespace ClubPilot
                         registre["nom"].ToString(),
                         registre["fundador"].ToString(),
                         any,
+                        registre["emailfundador"].ToString(),
                         registreBool
                     ));
                 }
@@ -148,18 +149,17 @@ namespace ClubPilot
 
             layout = new TableLayoutPanel
             {
-                ColumnCount = 5,
+                ColumnCount = 3,
                 Dock = DockStyle.Top,
                 AutoSize = true,
                 BackColor = Color.SeaShell,
                 Padding = new Padding(100),
             };
 
-            layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 75F));
+            layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 90F));
             layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 5F));
             layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 5F));
-            layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 5F));
-            layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10F));
+    
 
             layout.RowCount = clubs.Count;
             foreach (var _ in clubs)
@@ -181,17 +181,18 @@ namespace ClubPilot
             panellIntern.SuspendLayout();
             Font fontCascadiaCode = new Font("Cascadia Code", 10);
 
-           
-          
-
             Label lblNom = new Label { Text = "Nom:", Font = fontCascadiaCode };
             TextBox txtNom = new TextBox { Text = club.Nom, Width = 150, Left = 75, Font = fontCascadiaCode, Enabled = false };
 
             Label lblFundador = new Label { Text = "Fundador:", Left = 250, Font = fontCascadiaCode };
             TextBox txtFundador = new TextBox { Text = club.Fundador, Width = 150, Left = 350, Font = fontCascadiaCode, Enabled = false };
 
-            Label lblAnyFundacio = new Label { Text = "Any Fundació:", Left = 500, Font = fontCascadiaCode };
-            TextBox txtAnyFundacio = new TextBox { Text = club.AnyFundacio.ToString(), Width = 150, Left = 600, Font = fontCascadiaCode, Enabled = false };
+            Label lblEmail = new Label { Text = "Email:", Left = 350, Font = fontCascadiaCode };
+            TextBox txtEmail = new TextBox { Text = club.email, Width = 175, Left = 450, Font = fontCascadiaCode, Enabled = false };
+
+            Label lblAnyFundacio = new Label { Text = "Fundació:", Left = 450, Font = fontCascadiaCode };
+            TextBox txtAnyFundacio = new TextBox { Text = club.AnyFundacio.ToString(), Width = 50, Left = 10, Font = fontCascadiaCode, Enabled = false };
+
 
             int desplazamentY = 5;
 
@@ -201,9 +202,13 @@ namespace ClubPilot
             lblFundador.Location = new Point(txtNom.Right + 20, desplazamentY);
             txtFundador.Location = new Point(lblFundador.Right + 5, desplazamentY);
 
-            lblAnyFundacio.Location = new Point(txtFundador.Right + 20, desplazamentY);
+            lblEmail.Location = new Point(txtFundador.Right + 20, desplazamentY);
+            txtEmail.Location = new Point(lblEmail.Right + 5, desplazamentY);
+
+            lblAnyFundacio.Location = new Point(txtEmail.Right + 20, desplazamentY);
             txtAnyFundacio.Location = new Point(lblAnyFundacio.Right + 5, desplazamentY);
 
+           
 
             
             panellIntern.Controls.Add(lblNom);
@@ -212,6 +217,8 @@ namespace ClubPilot
             panellIntern.Controls.Add(txtFundador);
             panellIntern.Controls.Add(lblAnyFundacio);
             panellIntern.Controls.Add(txtAnyFundacio);
+            panellIntern.Controls.Add(lblEmail);
+            panellIntern.Controls.Add(txtEmail);
  
           
 
@@ -282,16 +289,18 @@ public class Club
     public string Nom { get; set; }
     public string Fundador { get; set; }
     public int AnyFundacio { get; set; }
+    public string email { get; set; }
     public int id { get; set; }
     public bool registre { get; set; }
     public Image Logo { get; set; }
 
-    public Club(int id,string nom, string fundador, int anyFundacio, bool registre)
+    public Club(int id,string nom, string fundador, int anyFundacio, string email, bool registre)
     {
         this.id = id;
         this.Nom = nom;
         this.Fundador = fundador;
         this.AnyFundacio = anyFundacio;
+        this.email = email;
         this.registre = registre;
     }
 }

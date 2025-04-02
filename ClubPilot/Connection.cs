@@ -486,7 +486,7 @@ namespace ClubPilot
             {
                 OpenConnection();
                 string query = @"
-                  SELECT c.id, c.nom, c.any_fundacio, c.fundador, c.logo, c.registre
+                  SELECT c.id, c.nom, c.any_fundacio, c.fundador, c.logo, c.emailfundador,c.registre
                   FROM club c
                   ";
 
@@ -502,6 +502,7 @@ namespace ClubPilot
                         { "any_fundacio", reader["any_fundacio"] },
                         { "fundador", reader["fundador"] },
                         { "logo", reader["logo"] },
+                        { "emailfundador", reader["emailfundador"] },
                         {"registre", reader["registre"] }
                     };
                         resultados.Add(registro);
