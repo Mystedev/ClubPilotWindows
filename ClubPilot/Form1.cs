@@ -18,8 +18,10 @@ namespace ClubPilot
         private Connection db;
         String[] response;
         String[] clubs;
+        
         public Form1()
         {
+            
             InitializeComponent();
             comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -106,8 +108,8 @@ namespace ClubPilot
         }
         private void button2_Click_1(object sender, EventArgs e)
         {
-            Players players = new Players();
-            players.Show();
+           
+           new MainForm().Show();
         }
 
         private void button3_Click_1(object sender, EventArgs e)

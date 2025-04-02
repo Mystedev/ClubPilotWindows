@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace ClubPilot
@@ -27,6 +28,20 @@ namespace ClubPilot
             flowLayoutPanel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             flowLayoutPanel.BackColor = System.Drawing.Color.SeaShell;
             this.Controls.Add(flowLayoutPanel);
+
+           button1.Image = Properties.Resources.icons8_añadir_30;
+           button1.Width = 40;
+           button1.Height = 40;
+           button1.Show();
+           button1.Location = new Point(450, 300);
+           button1.FlatStyle = FlatStyle.Flat;
+           button1.FlatAppearance.BorderSize = 0;
+           button1.FlatAppearance.MouseOverBackColor = Color.Transparent;
+           button1.FlatAppearance.MouseDownBackColor = Color.Transparent;
+           button1.Location = new Point(this.ClientSize.Width - button1.Width - 10, this.ClientSize.Height - button1.Height - 10);
+
+            button1.BackColor = Color.Transparent;
+           button1.TabStop = false;
 
             noticiesToolStripMenuItem.Font = new System.Drawing.Font("Arial", 12, System.Drawing.FontStyle.Bold);
             

@@ -187,6 +187,7 @@ namespace ClubPilot
             Label lblFundador = new Label { Text = "Fundador:", Left = 250, Font = fontCascadiaCode };
             TextBox txtFundador = new TextBox { Text = club.Fundador, Width = 150, Left = 350, Font = fontCascadiaCode, Enabled = false };
 
+
             Label lblEmail = new Label { Text = "Email:", Left = 350, Font = fontCascadiaCode };
             TextBox txtEmail = new TextBox { Text = club.email, Width = 175, Left = 450, Font = fontCascadiaCode, Enabled = false };
 
@@ -197,16 +198,19 @@ namespace ClubPilot
             int desplazamentY = 5;
 
             lblNom.Location = new Point(5, desplazamentY);
-            txtNom.Location = new Point(lblNom.Right + 5, desplazamentY);
+            txtNom.Location = new Point(lblNom.Right, desplazamentY);
 
-            lblFundador.Location = new Point(txtNom.Right + 20, desplazamentY);
-            txtFundador.Location = new Point(lblFundador.Right + 5, desplazamentY);
+            lblFundador.Location = new Point(txtNom.Right, desplazamentY);
+            txtFundador.Location = new Point(lblFundador.Right , desplazamentY);
+
 
             lblEmail.Location = new Point(txtFundador.Right + 20, desplazamentY);
             txtEmail.Location = new Point(lblEmail.Right + 5, desplazamentY);
 
             lblAnyFundacio.Location = new Point(txtEmail.Right + 20, desplazamentY);
             txtAnyFundacio.Location = new Point(lblAnyFundacio.Right + 5, desplazamentY);
+
+
 
            
 
@@ -233,7 +237,9 @@ namespace ClubPilot
             }
             btnAcceptar.Click += (sender, e) =>
             {
+
                 db.UpdateClub(club.id.ToString());
+
                 btnAcceptar.Enabled = false;
             };
 

@@ -15,6 +15,7 @@ namespace ClubPilot
         public Players()
         {
             InitializeComponent();
+            this.WindowState = FormWindowState.Maximized;
         }
 
 
