@@ -405,6 +405,79 @@ namespace ClubPilot
             }
             return resultado;
         }
+        public string UpdateClub(string id)
+        {
+            string resultado = "Club creado correctamente";
+            try
+            {
+                OpenConnection();
+                string query = @"
+                UPDATE Club 
+                SET 
+                registre = 1
+                WHERE id = @id;";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@id", id);
+
+                    int filasAfectadas = cmd.ExecuteNonQuery();
+
+                    if (filasAfectadas == 0)
+                    {
+                        resultado = "No se pudo crear el club.";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                resultado = $"Error al actualizar el club: {ex.Message}";
+            }
+            finally
+            {
+                CloseConnection();
+            }
+            return resultado;
+        }
+
+        public void DeleteClub(string id)
+        {
+            {
+                try
+                {
+                    OpenConnection();  
+                    string query = @"
+                    DELETE FROM club
+                    WHERE id = @id;";
+                    using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                    {
+
+                        cmd.Parameters.AddWithValue("@id", id);
+
+                        // Ejecutar la consulta
+                        int filasAfectadas = cmd.ExecuteNonQuery();
+
+                        // Verificar si se actualizó algún registro
+                        if (filasAfectadas > 0)
+                        {
+                            Console.WriteLine("El registro ha sido borrado exitosamente.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("No se encontró ningún registro para borrar");
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error al actualizar el registro: {ex.Message}");
+                }
+                finally
+                {
+                    CloseConnection();  
+                }
+            }
+        }
         public List<Dictionary<string, object>> SelectClubs()
         {
             List<Dictionary<string, object>> resultados = new List<Dictionary<string, object>>();
@@ -413,9 +486,9 @@ namespace ClubPilot
             {
                 OpenConnection();
                 string query = @"
-                  SELECT c.nom, c.any_fundacio, c.fundador, c.logo
+                  SELECT c.id, c.nom, c.any_fundacio, c.fundador, c.logo, c.registre
                   FROM club c
-                  WHERE c.registre = 0;";
+                  ";
 
                 using (MySqlCommand cmd = new MySqlCommand(query, connection))
                 using (MySqlDataReader reader = cmd.ExecuteReader())
@@ -423,13 +496,14 @@ namespace ClubPilot
                     while (reader.Read())
                     {
                         Dictionary<string, object> registro = new Dictionary<string, object>
-                {
-                    { "nom", reader["nom"] },
-                    { "any_fundacio", reader["any_fundacio"] },
-                    { "fundador", reader["fundador"] },
-                    { "logo", reader["logo"] }
-                };
-
+                    {
+                        { "id", reader["id"] },
+                        { "nom", reader["nom"] },
+                        { "any_fundacio", reader["any_fundacio"] },
+                        { "fundador", reader["fundador"] },
+                        { "logo", reader["logo"] },
+                        {"registre", reader["registre"] }
+                    };
                         resultados.Add(registro);
                     }
                 }
