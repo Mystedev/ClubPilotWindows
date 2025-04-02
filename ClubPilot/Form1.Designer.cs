@@ -50,7 +50,7 @@
             this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Blue;
             this.button1.Font = new System.Drawing.Font("Cascadia Code", 12.25F);
             this.button1.Location = new System.Drawing.Point(413, 596);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(127, 47);
             this.button1.TabIndex = 0;
@@ -85,7 +85,7 @@
             // 
             this.textBox1.Font = new System.Drawing.Font("Cascadia Code", 12.25F);
             this.textBox1.Location = new System.Drawing.Point(413, 382);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(258, 31);
             this.textBox1.TabIndex = 3;
@@ -94,7 +94,7 @@
             // 
             this.textBox2.Font = new System.Drawing.Font("Cascadia Code", 12.25F);
             this.textBox2.Location = new System.Drawing.Point(413, 484);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(4);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(258, 31);
             this.textBox2.TabIndex = 4;
@@ -104,7 +104,7 @@
             this.comboBox1.Font = new System.Drawing.Font("Cascadia Code", 12.25F);
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(399, 481);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(286, 35);
             this.comboBox1.TabIndex = 5;
@@ -130,7 +130,7 @@
             this.button2.Font = new System.Drawing.Font("Cascadia Code", 12.25F);
             this.button2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button2.Location = new System.Drawing.Point(483, 544);
-            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(127, 44);
             this.button2.TabIndex = 7;
@@ -144,7 +144,7 @@
             this.comboBox2.Font = new System.Drawing.Font("Cascadia Code", 12.25F);
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Location = new System.Drawing.Point(399, 382);
-            this.comboBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox2.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(286, 35);
             this.comboBox2.TabIndex = 8;
@@ -169,7 +169,7 @@
             this.button3.FlatAppearance.BorderColor = System.Drawing.Color.Blue;
             this.button3.Font = new System.Drawing.Font("Cascadia Code", 12.25F);
             this.button3.Location = new System.Drawing.Point(548, 596);
-            this.button3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button3.Margin = new System.Windows.Forms.Padding(4);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(127, 47);
             this.button3.TabIndex = 10;
@@ -218,7 +218,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);

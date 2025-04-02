@@ -46,7 +46,8 @@ namespace ClubPilot
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-
+            // Si tanquem aquest formulari també tanquem l'aplicació
+            this.FormClosed += (s, args) => Application.Exit();
         }
         private void LoadFormIntoPanel(Form form)
         {
