@@ -5,6 +5,7 @@ using System.Data;
 using System.IO;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+using Mysqlx.Crud;
 using MySqlX.XDevAPI.Common;
 
 namespace ClubPilot
@@ -15,7 +16,7 @@ namespace ClubPilot
         private string database = "clubpilot";
         private string port = "3306";
         private string user_id = "root";
-        private string password = "12345";
+        private string password = "admin";
         private MySqlConnection connection;
 
         // Constructor por defecto
@@ -40,6 +41,46 @@ namespace ClubPilot
             this.user_id = user_id;
             this.password = password;
             InitializeConnection();
+        }
+        //Funcion que uso en News_Tab.cs cargar las noticias de la db a la lista de noticias
+        public List<News> exportNews()
+        {
+            List<News> noticias = new List<News>();
+            string selectNoticia = "SELECT * FROM noticia";
+            string connectionString = $"Server={server};Database={database};Port={port};User Id={user_id};Password={password};";
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                {
+                    conn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(selectNoticia, conn))
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        News news = null;
+                        while (reader.Read())
+                        {
+                            string line = "";
+                            for (int i = 0; i < reader.FieldCount; i++)
+                            {
+                                DateTime fecha = reader.GetDateTime(5);
+                                news = new News(reader[1].ToString(), reader[2].ToString(), reader[3].ToString(), reader[4].ToString(), fecha );
+                                line += reader[i].ToString() + "#"; // Separa por tabulaciones
+                                
+
+
+                            }
+                            noticias.Add(news);
+                        }
+                    }
+                }
+
+                MessageBox.Show("Exportación exitosa");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al exportar: " + ex.Message);
+            }
+            return noticias;
         }
 
         // Método para inicializar la conexión
@@ -110,8 +151,6 @@ namespace ClubPilot
                         }
                     }
                 }
-
-                MessageBox.Show("Exportación exitosa");
             }
             catch (Exception ex)
             {

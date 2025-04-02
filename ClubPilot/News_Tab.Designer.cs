@@ -62,6 +62,7 @@
             this.noticiesToolStripMenuItem.Name = "noticiesToolStripMenuItem";
             this.noticiesToolStripMenuItem.Size = new System.Drawing.Size(77, 24);
             this.noticiesToolStripMenuItem.Text = "Noticies";
+            this.noticiesToolStripMenuItem.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             // 
             // News_Tab
             // 

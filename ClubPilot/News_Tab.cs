@@ -14,50 +14,58 @@ namespace ClubPilot
 
         public News_Tab()
         {
-
             InitializeComponent();
-            Form news_tab = new Add_News();
-            // Bloque de codigo de configuracion del layout para organizar noticias
+
+            // Configurar el MenuStrip para que ocupe toda la parte superior
+            menuStrip1.Dock = DockStyle.Top;
+            this.Controls.Add(menuStrip1);
+
+            // Bloque de código de configuración del layout para organizar noticias
             flowLayoutPanel = new FlowLayoutPanel();
             flowLayoutPanel.Dock = DockStyle.Fill;
-            flowLayoutPanel.AutoScroll = true;
-            flowLayoutPanel.WrapContents = true;
-            flowLayoutPanel.FlowDirection = FlowDirection.TopDown;
             flowLayoutPanel.AutoScroll = true;
             flowLayoutPanel.AutoSize = true;
             flowLayoutPanel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             flowLayoutPanel.BackColor = System.Drawing.Color.SeaShell;
+            flowLayoutPanel.WrapContents = true;
+            flowLayoutPanel.FlowDirection = FlowDirection.LeftToRight;
             this.Controls.Add(flowLayoutPanel);
 
-           button1.Image = Properties.Resources.icons8_añadir_30;
-           button1.Width = 40;
-           button1.Height = 40;
-           button1.Show();
-           button1.Location = new Point(450, 300);
-           button1.FlatStyle = FlatStyle.Flat;
-           button1.FlatAppearance.BorderSize = 0;
-           button1.FlatAppearance.MouseOverBackColor = Color.Transparent;
-           button1.FlatAppearance.MouseDownBackColor = Color.Transparent;
-           button1.Location = new Point(this.ClientSize.Width - button1.Width - 10, this.ClientSize.Height - button1.Height - 10);
+            // Asegurarse de que el FlowLayoutPanel esté debajo del MenuStrip
+            flowLayoutPanel.BringToFront();
 
+            Connection connection = new Connection();
+            noticias = connection.exportNews();
+
+            // Crear y configurar el botón
+            button1 = new Button();
+            button1.Image = Properties.Resources.icons8_añadir_30;
+            button1.Width = 40;
+            button1.Height = 40;
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.FlatAppearance.BorderSize = 0;
+            button1.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            button1.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            button1.Location = new Point(this.ClientSize.Width - button1.Width - 10, this.ClientSize.Height - button1.Height - 10);
             button1.BackColor = Color.Transparent;
-           button1.TabStop = false;
+            button1.TabStop = false;
+            button1.Click += new EventHandler(button1_Click_1);
+            this.Controls.Add(button1); 
+            button1.BringToFront();
+
 
             noticiesToolStripMenuItem.Font = new System.Drawing.Font("Arial", 12, System.Drawing.FontStyle.Bold);
-            
-            //if (Noticia != null)
-            //{
-            //    for (int i = 0; i < noticias.Count; i++)
-            //    {
-            //        Noticia.Show();
-            //        noticias.Add(Noticia);
-            //    }
-            //}
-            //else
-            //{
-            //    MessageBox.Show("No hi ha noticies.");
-            //    new Add_News().Show();
-            //}
+
+            // Mostrar noticias si existen
+            if (noticias.Count > 0)
+            {
+                showNews();
+            }
+            else
+            {
+                MessageBox.Show("No hi ha noticies.");
+                new Add_News().Show();
+            }
         }
 
         // Mostrar la pantalla de añadir noticia
@@ -65,18 +73,18 @@ namespace ClubPilot
         {
             new Add_News().Show();
         }
-        //Meto todas las noticias en unas lista y añado los paneles de estas
-        //al flowlayoutpanel
+
+        // Meter todas las noticias en una lista y añadir los paneles de estas al FlowLayoutPanel
         static public void showNews()
         {
-            noticias.Add(Noticia);
             for (int i = 0; i < noticias.Count; i++)
             {
-               noticias[i].Show();
-               noticias[i].Panel.Show();
-               flowLayoutPanel.Controls.Add(noticias[i].Panel);
+                noticias[i].Show();
+                noticias[i].Panel.Show();
+                flowLayoutPanel.Controls.Add(noticias[i].Panel);
             }
-        }
 
+
+        }
     }
 }

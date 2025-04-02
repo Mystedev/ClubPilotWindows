@@ -74,7 +74,7 @@ namespace ClubPilot
         //Boton que crea una noticia y llama a la funcion para mostrarla en News_Tab (tambien cierra el formulario)
         private void boton_CrearNoticia_Click(object sender, EventArgs e)
         {
-            News noticia = new News(textBox_titulo.Text, textBox_descripcion.Text, fecha, textBox_autor.Text, textBox_imagen.Text);
+            News noticia = new News(textBox_titulo.Text, textBox_descripcion.Text, textBox_autor.Text, textBox_imagen.Text, fecha);
             News_Tab.Noticia = noticia;
             News_Tab.showNews();
             this.Close();
