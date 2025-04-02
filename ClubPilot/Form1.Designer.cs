@@ -190,7 +190,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::ClubPilot.Properties.Resources.LogoApp__2_;
+            this.pictureBox1.Image = global::ClubPilot.Properties.Resources.LogoApp;
             this.pictureBox1.Location = new System.Drawing.Point(411, 12);
             this.pictureBox1.MaximumSize = new System.Drawing.Size(200, 200);
             this.pictureBox1.Name = "pictureBox1";
