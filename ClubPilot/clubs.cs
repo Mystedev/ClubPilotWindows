@@ -165,13 +165,13 @@ namespace ClubPilot
             int desplazamentY = 5;
 
             lblNom.Location = new Point(5, desplazamentY);
-            txtNom.Location = new Point(lblNom.Right + 5, desplazamentY);
+            txtNom.Location = new Point(lblNom.Right, desplazamentY);
 
-            lblFundador.Location = new Point(txtNom.Right + 20, desplazamentY);
-            txtFundador.Location = new Point(lblFundador.Right + 5, desplazamentY);
+            lblFundador.Location = new Point(txtNom.Right, desplazamentY);
+            txtFundador.Location = new Point(lblFundador.Right , desplazamentY);
 
-            lblAnyFundacio.Location = new Point(txtFundador.Right + 20, desplazamentY);
-            txtAnyFundacio.Location = new Point(lblAnyFundacio.Right + 5, desplazamentY);
+            lblAnyFundacio.Location = new Point(txtFundador.Right, desplazamentY);
+            txtAnyFundacio.Location = new Point(lblAnyFundacio.Right, desplazamentY);
 
  
             panellIntern.Controls.Add(lblNom);
