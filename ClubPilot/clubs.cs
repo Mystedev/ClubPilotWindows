@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static ClubPilot.Accounts;
 
 namespace ClubPilot
 {
@@ -15,9 +16,11 @@ namespace ClubPilot
         private List<Club> clubs;
         private TableLayoutPanel layout;
         private Panel scrollPanel;
+        private Connection db;
 
         public Clubs()
         {
+            db = new Connection();
             InitializeComponent();
             // Maximizar la ventana
             this.WindowState = FormWindowState.Maximized;
@@ -95,19 +98,45 @@ namespace ClubPilot
 
         private List<Club> ObtenirClubs()
         {
-            return new List<Club>
+            List<Club> clubs = new List<Club>();
+            List<Dictionary<string, object>> resultats = db.SelectClubs();
+            Console.WriteLine("Registros obtenidos: " + resultats.Count);
+            foreach (var registre in resultats)
             {
-                new Club("Nom1", "Fundador1", 2001),
-                new Club("Nom2", "Fundador2", 2002),
-                new Club("Nom3", "Fundador3", 2003),
-                new Club("Nom4", "Fundador4", 2004),
-                new Club("Nom5", "Fundador5", 2005),
-                new Club("Nom6", "Fundador6", 2006),
-                new Club("Nom7", "Fundador7", 2007),
-                new Club("Nom8", "Fundador8", 2008),
-                new Club("Nom9", "Fundador9", 2009),
-                new Club("Nom10", "Fundador10", 2010),
-            };
+                Console.WriteLine($"ID: {registre["id"]}, Nom: {registre["nom"]}, Fundador: {registre["fundador"]}, Any: {registre["any_fundacio"]}");
+            }
+
+
+
+            foreach (var registre in resultats)
+                {
+                    int any;
+                    int.TryParse(registre["any_fundacio"]?.ToString(), out any);
+                    bool registreBool = false;
+                if (registre["registre"] != null)
+                    {
+                    string registreString = registre["registre"].ToString().Trim().ToLower();
+
+                    if (registreString == "1" || registreString == "true")
+                    {
+                        registreBool = true;
+                    }
+                    }
+
+
+                clubs.Add(new Club(
+                        int.Parse(registre["id"].ToString()),
+                        registre["nom"].ToString(),
+                        registre["fundador"].ToString(),
+                        any,
+                        registre["emailfundador"].ToString(),
+                        registreBool
+                    ));
+                }
+            
+           
+
+            return clubs;
         }
 
         private void CarregarClubs()
@@ -120,18 +149,17 @@ namespace ClubPilot
 
             layout = new TableLayoutPanel
             {
-                ColumnCount = 5,
+                ColumnCount = 3,
                 Dock = DockStyle.Top,
                 AutoSize = true,
                 BackColor = Color.SeaShell,
                 Padding = new Padding(100),
             };
 
-            layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 75F));
+            layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 90F));
             layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 5F));
             layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 5F));
-            layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 5F));
-            layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10F));
+    
 
             layout.RowCount = clubs.Count;
             foreach (var _ in clubs)
@@ -159,8 +187,13 @@ namespace ClubPilot
             Label lblFundador = new Label { Text = "Fundador:", Left = 250, Font = fontCascadiaCode };
             TextBox txtFundador = new TextBox { Text = club.Fundador, Width = 150, Left = 350, Font = fontCascadiaCode, Enabled = false };
 
-            Label lblAnyFundacio = new Label { Text = "Any Fundació:", Left = 500, Font = fontCascadiaCode };
-            TextBox txtAnyFundacio = new TextBox { Text = club.AnyFundacio.ToString(), Width = 150, Left = 700, Font = fontCascadiaCode, Enabled = false };
+
+            Label lblEmail = new Label { Text = "Email:", Left = 350, Font = fontCascadiaCode };
+            TextBox txtEmail = new TextBox { Text = club.email, Width = 175, Left = 450, Font = fontCascadiaCode, Enabled = false };
+
+            Label lblAnyFundacio = new Label { Text = "Fundació:", Left = 450, Font = fontCascadiaCode };
+            TextBox txtAnyFundacio = new TextBox { Text = club.AnyFundacio.ToString(), Width = 50, Left = 10, Font = fontCascadiaCode, Enabled = false };
+
 
             int desplazamentY = 5;
 
@@ -170,26 +203,43 @@ namespace ClubPilot
             lblFundador.Location = new Point(txtNom.Right, desplazamentY);
             txtFundador.Location = new Point(lblFundador.Right , desplazamentY);
 
-            lblAnyFundacio.Location = new Point(txtFundador.Right, desplazamentY);
-            txtAnyFundacio.Location = new Point(lblAnyFundacio.Right, desplazamentY);
 
- 
+            lblEmail.Location = new Point(txtFundador.Right + 20, desplazamentY);
+            txtEmail.Location = new Point(lblEmail.Right + 5, desplazamentY);
+
+            lblAnyFundacio.Location = new Point(txtEmail.Right + 20, desplazamentY);
+            txtAnyFundacio.Location = new Point(lblAnyFundacio.Right + 5, desplazamentY);
+
+
+
+           
+
+            
             panellIntern.Controls.Add(lblNom);
             panellIntern.Controls.Add(txtNom);
             panellIntern.Controls.Add(lblFundador);
             panellIntern.Controls.Add(txtFundador);
             panellIntern.Controls.Add(lblAnyFundacio);
             panellIntern.Controls.Add(txtAnyFundacio);
+            panellIntern.Controls.Add(lblEmail);
+            panellIntern.Controls.Add(txtEmail);
  
+          
 
             panellIntern.ResumeLayout();
 
             Button btnAcceptar = new Button { Image = Properties.Resources.icons8_aceptar_30, Width = 40, Height = 40 };
             Button btnEsborrar = new Button { Image = Properties.Resources.icons8_eliminar_30, Width = 40, Height = 40 };
 
+            if (club.registre)
+            {
+                btnAcceptar.Enabled = false;
+            }
             btnAcceptar.Click += (sender, e) =>
             {
-                
+
+                db.UpdateClub(club.id.ToString());
+
                 btnAcceptar.Enabled = false;
             };
 
@@ -210,6 +260,7 @@ namespace ClubPilot
                     {
                         // Eliminar el club si asi lo desea el usuario
                         clubs.RemoveAt(indexFila);
+                        db.DeleteClub(club.id.ToString());
 
                         // Remove only the TableLayoutPanel and recreate it
                         if (layout != null)
@@ -234,7 +285,9 @@ namespace ClubPilot
         {
 
         }
+
     }
+
 }
 
 public class Club
@@ -242,12 +295,18 @@ public class Club
     public string Nom { get; set; }
     public string Fundador { get; set; }
     public int AnyFundacio { get; set; }
+    public string email { get; set; }
+    public int id { get; set; }
+    public bool registre { get; set; }
     public Image Logo { get; set; }
 
-    public Club(string nom, string fundador, int anyFundacio)
+    public Club(int id,string nom, string fundador, int anyFundacio, string email, bool registre)
     {
+        this.id = id;
         this.Nom = nom;
         this.Fundador = fundador;
         this.AnyFundacio = anyFundacio;
+        this.email = email;
+        this.registre = registre;
     }
 }

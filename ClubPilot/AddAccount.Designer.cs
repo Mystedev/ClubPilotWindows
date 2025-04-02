@@ -1,4 +1,6 @@
-﻿namespace ClubPilot
+﻿using System.Windows.Forms;
+
+namespace ClubPilot
 {
     partial class AddAccount
     {
@@ -28,15 +30,18 @@
         /// </summary>
         private void InitializeComponent()
         {
+
             this.txtBoxUsername1 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txtBoxNom1 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.txtBoxCognoms1 = new System.Windows.Forms.TextBox();
+            this.labelEquips = new System.Windows.Forms.Label();
+            this.txtBoxEquips = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txtBoxEmail1 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.txtBoxRol1 = new System.Windows.Forms.TextBox();
+            this.ComboBoxRol1 = new System.Windows.Forms.ComboBox();
             this.label28 = new System.Windows.Forms.Label();
             this.btn_cancel = new System.Windows.Forms.Button();
             this.btn_add_account = new System.Windows.Forms.Button();
@@ -88,6 +93,28 @@
             this.txtBoxCognoms1.Name = "txtBoxCognoms1";
             this.txtBoxCognoms1.Size = new System.Drawing.Size(300, 27);
             this.txtBoxCognoms1.TabIndex = 12;
+            //
+            // labelEquips
+            //
+            this.labelEquips.AutoSize = true;
+            this.labelEquips.Font = new System.Drawing.Font("Cascadia Code", 10F);
+            this.labelEquips.Location = new System.Drawing.Point(360, 180);
+            this.labelEquips.Margin = new System.Windows.Forms.Padding(3, 15, 3, 0);
+            this.labelEquips.Name = "labelEquips";
+            this.labelEquips.Visible = false;
+            this.labelEquips.Size = new System.Drawing.Size(70, 22);
+            this.labelEquips.TabIndex = 13;
+            this.labelEquips.Text = "Equip:";
+            // 
+            // comboBoxEquips
+            // 
+            this.txtBoxEquips.Font = new System.Drawing.Font("Cascadia Code", 10F);
+            this.txtBoxEquips.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.txtBoxEquips.Location = new System.Drawing.Point(438, 180);
+            this.txtBoxEquips.Name = "Equips";
+            this.txtBoxEquips.Visible = false;
+            this.txtBoxEquips.Size = new System.Drawing.Size(300, 27);
+            this.txtBoxEquips.TabIndex = 12;
             // 
             // label5
             // 
@@ -123,11 +150,19 @@
             // 
             // txtBoxRol1
             // 
-            this.txtBoxRol1.Font = new System.Drawing.Font("Cascadia Code", 10F);
-            this.txtBoxRol1.Location = new System.Drawing.Point(120, 180);
-            this.txtBoxRol1.Name = "txtBoxRol1";
-            this.txtBoxRol1.Size = new System.Drawing.Size(200, 27);
-            this.txtBoxRol1.TabIndex = 16;
+            this.ComboBoxRol1.Font = new System.Drawing.Font("Cascadia Code", 10F);
+            this.ComboBoxRol1.Location = new System.Drawing.Point(120, 180);
+            this.ComboBoxRol1.Name = "txtBoxRol1";
+            this.ComboBoxRol1.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.ComboBoxRol1.Items.Add("administrador");
+            this.ComboBoxRol1.Items.Add("aficionat");
+            this.ComboBoxRol1.Items.Add("entrenador");
+            this.ComboBoxRol1.Items.Add("jugador");
+            this.ComboBoxRol1.SelectedIndexChanged += new System.EventHandler(this.ComboBoxRol1_SelectedIndexChanged);
+
+
+            this.ComboBoxRol1.Size = new System.Drawing.Size(200, 27);
+            this.ComboBoxRol1.TabIndex = 16;
             // 
             // label28
             // 
@@ -143,7 +178,7 @@
             // btn_cancel
             // 
             this.btn_cancel.Image = global::ClubPilot.Properties.Resources.icons8_cancelar_30;
-            this.btn_cancel.Location = new System.Drawing.Point(687, 171);
+            this.btn_cancel.Location = new System.Drawing.Point(687, 220);
             this.btn_cancel.Name = "btn_cancel";
             this.btn_cancel.Size = new System.Drawing.Size(50, 50);
             this.btn_cancel.TabIndex = 18;
@@ -153,7 +188,7 @@
             // btn_add_account
             // 
             this.btn_add_account.Image = global::ClubPilot.Properties.Resources.icons8_aceptar_30;
-            this.btn_add_account.Location = new System.Drawing.Point(616, 171);
+            this.btn_add_account.Location = new System.Drawing.Point(616, 220);
             this.btn_add_account.Name = "btn_add_account";
             this.btn_add_account.Size = new System.Drawing.Size(50, 50);
             this.btn_add_account.TabIndex = 17;
@@ -176,15 +211,17 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SeaShell;
-            this.ClientSize = new System.Drawing.Size(752, 233);
+            this.ClientSize = new System.Drawing.Size(752, 280);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btn_cancel);
             this.Controls.Add(this.btn_add_account);
-            this.Controls.Add(this.txtBoxRol1);
+            this.Controls.Add(this.ComboBoxRol1);
             this.Controls.Add(this.label28);
             this.Controls.Add(this.txtBoxEmail1);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.txtBoxCognoms1);
+            this.Controls.Add(this.labelEquips);    
+            this.Controls.Add(this.txtBoxEquips);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtBoxNom1);
             this.Controls.Add(this.label4);
@@ -205,10 +242,12 @@
         private System.Windows.Forms.TextBox txtBoxNom1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtBoxCognoms1;
+        private System.Windows.Forms.Label labelEquips;
+        private System.Windows.Forms.ComboBox txtBoxEquips;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtBoxEmail1;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox txtBoxRol1;
+        private System.Windows.Forms.ComboBox ComboBoxRol1;
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.Button btn_add_account;
         private System.Windows.Forms.Button btn_cancel;
