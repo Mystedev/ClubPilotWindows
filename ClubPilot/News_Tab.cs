@@ -15,7 +15,7 @@ namespace ClubPilot
         public News_Tab()
         {
             InitializeComponent();
-
+            //refresh_Button.BringToFront();
             // Configurar el MenuStrip para que ocupe toda la parte superior
             menuStrip1.Dock = DockStyle.Top;
             this.Controls.Add(menuStrip1);
@@ -30,9 +30,9 @@ namespace ClubPilot
             flowLayoutPanel.WrapContents = true;
             flowLayoutPanel.FlowDirection = FlowDirection.LeftToRight;
             this.Controls.Add(flowLayoutPanel);
-
+            //flowLayoutPanel.Controls.Add(refresh_Button);
             // Asegurarse de que el FlowLayoutPanel esté debajo del MenuStrip
-            flowLayoutPanel.BringToFront();
+            //flowLayoutPanel.BringToFront();
 
             Connection connection = new Connection();
             noticias = connection.exportNews();
@@ -50,7 +50,7 @@ namespace ClubPilot
             button1.BackColor = Color.Transparent;
             button1.TabStop = false;
             button1.Click += new EventHandler(button1_Click_1);
-            this.Controls.Add(button1); 
+            this.Controls.Add(button1);
             button1.BringToFront();
 
 
@@ -77,14 +77,29 @@ namespace ClubPilot
         // Meter todas las noticias en una lista y añadir los paneles de estas al FlowLayoutPanel
         static public void showNews()
         {
+            noticias.Clear();
+            Connection connection = new Connection();
+            noticias = connection.exportNews();
+            flowLayoutPanel.Controls.Clear();
             for (int i = 0; i < noticias.Count; i++)
             {
-                noticias[i].Show();
+                noticias[i].Show(); 
                 noticias[i].Panel.Show();
                 flowLayoutPanel.Controls.Add(noticias[i].Panel);
             }
 
-
+            
         }
+
+
+
+        //private void refresh_Button_Click(object sender, EventArgs e)
+        //{
+        //    flowLayoutPanel.Controls.Clear();
+        //    Connection connection = new Connection();
+        //    noticias = connection.exportNews();
+        //    showNews();
+        //    this.BringToFront();
+        //}
     }
 }

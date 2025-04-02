@@ -17,7 +17,7 @@ namespace ClubPilot
         private string port = "3306";
         private string user_id = "root";
         private string password = "admin";
-        private MySqlConnection connection;
+        static private MySqlConnection connection;
 
         // Constructor por defecto
         public Connection()
@@ -82,6 +82,51 @@ namespace ClubPilot
             }
             return noticias;
         }
+        public static void addNew(News noticia)
+        {
+            try
+            {
+                OpenConnection();
+                string query = @"
+
+
+                INSERT INTO noticia(titol, descripcio, autor, imatge_noticia, data, id_usuari, id_club)
+                VALUES(@titulo, @descripcio, @autor, @imatge_noticia, @data, @id_usuari, @id_club); ";
+                //INSERT INTO noticia (titol, descripcio, autor, imatge_noticia, data) 
+                //VALUES (@titulo, @descripcio, @autor,  @imatge_noticia, @data);";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@titulo", noticia.Titulo);
+                    cmd.Parameters.AddWithValue("@descripcio", noticia.Texto);
+                    cmd.Parameters.AddWithValue("@autor", noticia.Autor);
+                    cmd.Parameters.AddWithValue("@data", noticia.Fecha);
+                    cmd.Parameters.AddWithValue("@imatge_noticia", noticia.Imagen);
+                    cmd.Parameters.AddWithValue("@id_usuari", noticia.idUsuari);
+                    cmd.Parameters.AddWithValue("@id_club", noticia.idClub);
+
+
+                    int filasAfectadas = cmd.ExecuteNonQuery();
+                    if (filasAfectadas > 0)
+                    {
+                        MessageBox.Show("Noticia desada");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al insertar noticia: " + ex.Message);
+            }
+            finally
+            {
+                CloseConnection();
+            }
+        }
+
 
         // Método para inicializar la conexión
         private void InitializeConnection()
@@ -91,7 +136,7 @@ namespace ClubPilot
         }
 
         // Metodo para abrir la conexión
-        public void OpenConnection()
+        public static void OpenConnection()
         {
             try
             {
@@ -105,7 +150,7 @@ namespace ClubPilot
         }
 
         // Metodo para cerrar la conexión
-        public void CloseConnection()
+        public static void CloseConnection()
         {
             try
             {

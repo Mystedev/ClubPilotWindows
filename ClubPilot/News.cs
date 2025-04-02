@@ -14,12 +14,12 @@ namespace ClubPilot
         public int id { get; set; }
         public int idClub { get; set; }
         public int idUsuari { get; set; }
-        private string Titulo { get; set; }
-        private string Texto { get; set; }
-        private DateTime Fecha { get; set; }
-        private DateTime Hora { get; set; }
-        private string Autor { get; set; }
-        private string Imagen { get; set; }
+        public string Titulo { get; set; }
+        public string Texto { get; set; }
+        public DateTime Fecha { get; set; }
+        //private DateTime Hora { get; set; }
+        public string Autor { get; set; }
+        public string Imagen { get; set; }
         public Panel Panel { get; set; }
 
         public News(string titulo, string texto, string autor, string imagen ,DateTime fecha/*, DateTime hora*/)
@@ -32,6 +32,8 @@ namespace ClubPilot
             Imagen = imagen;
             Panel = new Panel();
             Panel.Size = new System.Drawing.Size(700, 300);
+            idUsuari = 1;
+            idClub = 1;
         }
 
         //Le da formato a cada parte de la noticia y la añade al panel
