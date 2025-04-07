@@ -331,12 +331,18 @@ namespace ClubPilot
             }
             return results.ToArray();
         }
-        public String ClubsDeUsuari(string idUsuari)
+        public List<Dictionary<string, object>> ClubsDeUsuari(string idUsuari)
         {
             string line = "";
+            int id=int.Parse(idUsuari);
+            OpenConnection();
+            String rol=ObtenerRol(id);
+            List<Dictionary<string, object>> resultados = new List<Dictionary<string, object>>();
+            if(rol =="administrador")
+            {
             try
             {
-                OpenConnection();
+              
                 string query = @"
 		           SELECT c.nom, c.id
                    FROM club c 
@@ -351,14 +357,17 @@ namespace ClubPilot
                     {
                         while (reader.Read())
                         {
-                         
-                            for (int i = 0; i < reader.FieldCount; i++)
-                            {
-                                line += reader[i].ToString() + "$"; // Separa por tabulaciones
-                            }
+
+                        Dictionary<string, object> registro = new Dictionary<string, object>
+                        {
+                        { "idClub", reader["id"] },
+                        { "nomClub", reader["nom"] }
+                        };
+                            resultados.Add(registro);
                         }
                     }
                 }
+
             }
             catch (Exception ex)
             {
@@ -368,7 +377,52 @@ namespace ClubPilot
             {
                 CloseConnection();
             }
-            return line;
+            }
+            else
+            { 
+            try
+            {
+                string query = @"
+		           SELECT eq.nom, eq.id, c.nom as nom_club, c.id as id_club
+                   FROM equip eq 
+                   LEFT JOIN entrenador e ON e.id_equip = eq.id
+                   LEFT JOIN club c ON c.id = eq.id_club 
+                   WHERE e.id_usuari = @username;";
+                using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@username", idUsuari);
+
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Dictionary<string, object> registro = new Dictionary<string, object>
+                            {
+                                { "nomequip", reader["nom"] },
+                                { "idEquip", reader["id"] },
+                                { "idClub", reader["id_club"]},
+                                { "nomClub", reader["nom_club"]}
+                            };
+                            resultados.Add(registro);
+                        }
+                    }
+                }
+                
+
+
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error en el login: {ex.Message}");
+            }
+            finally
+            {
+                CloseConnection();
+            }
+            }
+
+            return resultados;
         }
         public string CrearClub(string nom, string anyDeFundacio, string fundador, string email, string logo)
         {
@@ -682,7 +736,7 @@ namespace ClubPilot
                 using (MySqlCommand cmd = new MySqlCommand(query, connection))
                 {
                     cmd.Parameters.AddWithValue("@username", username);
-                    cmd.Parameters.AddWithValue("@password", "12345");  // Considera usar un hash seguro
+                    cmd.Parameters.AddWithValue("@password", "12345");  
                     cmd.Parameters.AddWithValue("@nom", nom);
                     cmd.Parameters.AddWithValue("@cognoms", cognoms);
                     cmd.Parameters.AddWithValue("@email", email);
@@ -770,8 +824,8 @@ namespace ClubPilot
             try
             {
                 string query = $@"
-        SELECT 1 FROM {rol} r 
-        WHERE r.id_usuari = @id ;";
+                SELECT 1 FROM {rol} r 
+                WHERE r.id_usuari = @id ;";
 
                 using (MySqlCommand cmd = new MySqlCommand(query, conn))
                 {
@@ -796,34 +850,31 @@ namespace ClubPilot
             return tieneRol;
         }
 
-
-
-
-
-        public String EquipsDeClub(string idClub)
+        public List<Dictionary<string, object>> EquipsDeClub(string idClub)
         {
-            String line = "";
+            List<Dictionary<string, object>> resultados = new List<Dictionary<string, object>>();
             try
             {
                 OpenConnection();
                 string query = @"
-		           SELECT e.nom 
+		           SELECT e.nom, e.id
 		           FROM Equip e 
-                   WHERE e.id = @username;";
+                   WHERE e.id = @id;";
 
                 using (MySqlCommand cmd = new MySqlCommand(query, connection))
                 {
-                    cmd.Parameters.AddWithValue("@username", idClub);
+                    cmd.Parameters.AddWithValue("@id", idClub);
 
                     using (MySqlDataReader reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-
-                            for (int i = 0; i < reader.FieldCount; i++)
-                            {
-                                line += reader[i].ToString() + "$"; 
-                            }
+                          var registro = new Dictionary<string, object>
+                          {
+                            { "id", reader["id"] },
+                            { "nom", reader["nom"] }
+                          };
+                            resultados.Add(registro);
                         }
                     }
                 }
@@ -836,7 +887,7 @@ namespace ClubPilot
             {
                 CloseConnection();
             }
-            return line;
+            return resultados;
         }
         public void exportUsuari()
         {
