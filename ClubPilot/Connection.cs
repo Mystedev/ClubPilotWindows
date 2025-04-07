@@ -17,7 +17,7 @@ namespace ClubPilot
         private string database = "clubpilot";
         private string port = "3306";
         private string user_id = "root";
-        private string password = "root";
+        private string password = "12345";
         private MySqlConnection connection;
 
         // Constructor por defecto
@@ -370,21 +370,22 @@ namespace ClubPilot
             }
             return line;
         }
-        public string CrearClub(string nom, string anyDeFundacio, string fundador, string logo)
+        public string CrearClub(string nom, string anyDeFundacio, string fundador, string email, string logo)
         {
             string resultado = "Club creado correctamente";
             try
             {
                 OpenConnection();
                 string query = @"
-            INSERT INTO club (nom, any_fundacio, fundador, logo, registre)
-            VALUES (@nom, @anyDeFundacio, @fundador, @logo, 0);";
+            INSERT INTO club (nom, any_fundacio, fundador, emailfundador logo, registre)
+            VALUES (@nom, @anyDeFundacio, @fundador,@email, @logo, 0);";
 
                 using (MySqlCommand cmd = new MySqlCommand(query, connection))
                 {
                     cmd.Parameters.AddWithValue("@nom", nom);
                     cmd.Parameters.AddWithValue("@anyDeFundacio", anyDeFundacio);
                     cmd.Parameters.AddWithValue("@fundador", fundador);
+                    cmd.Parameters.AddWithValue("@email", email);
                     cmd.Parameters.AddWithValue("@logo", logo);
 
                     int filasAfectadas = cmd.ExecuteNonQuery(); 
@@ -559,11 +560,9 @@ namespace ClubPilot
                 foreach (var usuario in usuarios)
                 {
                     int id = Convert.ToInt32(usuario["id"]);
-                    string rol = ObtenerRol(id); // Obtener el rol para cada usuario
-
-                    usuario.Add("rol", rol);  // Agregar el rol al diccionario del usuario
-
-                    resultados.Add(usuario); // Agregar el usuario con el rol a la lista final
+                    string rol = ObtenerRol(id); 
+                    usuario.Add("rol", rol); 
+                    resultados.Add(usuario); 
                 }
             }
             catch (Exception ex)
@@ -772,7 +771,7 @@ namespace ClubPilot
             {
                 string query = $@"
         SELECT 1 FROM {rol} r 
-        WHERE r.id_usuari = @id LIMIT 1;";
+        WHERE r.id_usuari = @id ;";
 
                 using (MySqlCommand cmd = new MySqlCommand(query, conn))
                 {
