@@ -159,7 +159,7 @@ namespace ClubPilot
             int idUsuari = int.Parse(response[0]);
 
             db.OpenConnection();
-            infoUsuari usuari = new infoUsuari(idUsuari, idClub, idEquip, db.ObtenerRol(idUsuari));
+            Usuari.usuari = new infoUsuari(idUsuari, idClub, idEquip, db.ObtenerRol(idUsuari));
             db.CloseConnection();
             this.Hide();
             new MainForm().Show();
