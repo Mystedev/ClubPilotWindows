@@ -108,8 +108,10 @@ namespace ClubPilot
         }
         private void button2_Click_1(object sender, EventArgs e)
         {
-           
-           new MainForm().Show();
+            // Si el login és correcte, amaguem el formulari actual i mostrem el següent
+            this.Hide();
+            new MainForm().Show();
+            
         }
 
         private void button3_Click_1(object sender, EventArgs e)

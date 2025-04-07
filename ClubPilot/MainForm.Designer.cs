@@ -52,7 +52,8 @@
             this.esdevenimentsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1293, 48);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 2, 0, 10);
+            this.menuStrip1.Size = new System.Drawing.Size(1293, 56);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
