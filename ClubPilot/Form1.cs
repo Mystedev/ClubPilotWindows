@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -21,8 +22,9 @@ namespace ClubPilot
         int idClub;
         int idEquip;
         String[] response;
-        String[] clubs;
-        
+        List<Dictionary<string, object>> clubs;
+        List<Dictionary<string, object>> equips;
+
         public Form1()
         {
             
@@ -49,37 +51,56 @@ namespace ClubPilot
         {
             string username = textBox1.Text;
             string password = textBox2.Text;
+            bool login=false;
             response = db.Login(username, password);
+
             
             
 
-            if (response.Length >=1)
+           
+
+            int numero = int.Parse(response[0]);
+            db.OpenConnection();
+            if (db.ObtenerRol(numero).Equals("administrador") || db.ObtenerRol(numero).Equals("entrenador"))
+
             {
-                String a=db.ClubsDeUsuari(response[0]);
-                clubs = a.Split('$');
+                login = true;
+            }
+            db.CloseConnection();
+
+            if (response.Length >=1 && login==true)
+            {
+
+                clubs = db.ClubsDeUsuari(response[0]);
                 MessageBox.Show("Login correcto");
                 idUsuari = Convert.ToInt32(response[0]);
 
+   
                 // Cambiar la visibilidad de los controles
                 label1.Visible = false;
                 label2.Visible = false;
                 textBox1.Visible = false;
                 textBox2.Visible = false;
                 button1.Visible = false;
+                db.OpenConnection();
+                if (db.ObtenerRol(numero).Equals("administrador"))
+                {
                 comboBox1.Visible = true;
                 label3.Visible = true;
+                }
+                db.CloseConnection();
                 button2.Visible = true;
                 label4.Visible = true;
                 comboBox2.Visible = true;
 
+
+
                 // Obtener los clubes del usuario
-               
-                for (int i = 0; i < clubs.Length-1; i++)
+
+
+                foreach (var registre in clubs)
                 {
-                    if(i%2==0)
-                    {
-                        comboBox2.Items.Add(clubs[i]);
-                    }
+                    comboBox2.Items.Add(registre["nomClub"].ToString());
                 }
             }
             else
@@ -94,28 +115,29 @@ namespace ClubPilot
       
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            String b = "";
+
             comboBox1.Items.Clear();
-            for(int i = 0; i < clubs.Length-2; i++)
+
+            foreach (var registre in clubs)
             {
-                if (clubs[i].Equals(comboBox2.Text))
+                if (registre["nomClub"].Equals(comboBox2.Text))  
                 {
-                    idClub = Convert.ToInt32(clubs[i + 1]);
-                   Usuari.usuari = new infoUsuari(idUsuari, idClub, 0);
-                    b  =  db.EquipsDeClub(clubs[i + 1]); 
-                   break;
-                }
+
+
+                   
+                    string clubId = registre["idClub"].ToString();
+                    equips = db.EquipsDeClub(clubId);
+                    foreach (var registreEquips in equips)
+                    {
+                        comboBox1.Items.Add(registreEquips["nom"].ToString());
+                    }
+
             }
-        
-            String[] equips = b.Split('$');
-            for (int i = 0; i < equips.Length - 1; i++)
-            {
-                comboBox1.Items.Add(equips[i]);
-            }   
+            }
+
         }
         private void button2_Click_1(object sender, EventArgs e)
         {
-            // Si el login és correcte, amaguem el formulari actual i mostrem el següent
             this.Hide();
             new MainForm().Show();
             

@@ -17,7 +17,7 @@ namespace ClubPilot
         private string database = "clubpilot";
         private string port = "3306";
         private string user_id = "root";
-        private string password = "root";
+        private string password = "12345";
         private MySqlConnection connection;
 
         // Constructor por defecto
@@ -331,12 +331,18 @@ namespace ClubPilot
             }
             return results.ToArray();
         }
-        public String ClubsDeUsuari(string idUsuari)
+        public List<Dictionary<string, object>> ClubsDeUsuari(string idUsuari)
         {
             string line = "";
+            int id=int.Parse(idUsuari);
+            OpenConnection();
+            String rol=ObtenerRol(id);
+            List<Dictionary<string, object>> resultados = new List<Dictionary<string, object>>();
+            if(rol =="administrador")
+            {
             try
             {
-                OpenConnection();
+              
                 string query = @"
 		           SELECT c.nom, c.id
                    FROM club c 
@@ -351,14 +357,17 @@ namespace ClubPilot
                     {
                         while (reader.Read())
                         {
-                         
-                            for (int i = 0; i < reader.FieldCount; i++)
-                            {
-                                line += reader[i].ToString() + "$"; // Separa por tabulaciones
-                            }
+
+                        Dictionary<string, object> registro = new Dictionary<string, object>
+                        {
+                        { "idClub", reader["id"] },
+                        { "nomClub", reader["nom"] }
+                        };
+                            resultados.Add(registro);
                         }
                     }
                 }
+
             }
             catch (Exception ex)
             {
@@ -368,23 +377,69 @@ namespace ClubPilot
             {
                 CloseConnection();
             }
-            return line;
+            }
+            else
+            { 
+            try
+            {
+                string query = @"
+		           SELECT eq.nom, eq.id, c.nom as nom_club, c.id as id_club
+                   FROM equip eq 
+                   LEFT JOIN entrenador e ON e.id_equip = eq.id
+                   LEFT JOIN club c ON c.id = eq.id_club 
+                   WHERE e.id_usuari = @username;";
+                using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@username", idUsuari);
+
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Dictionary<string, object> registro = new Dictionary<string, object>
+                            {
+                                { "nomequip", reader["nom"] },
+                                { "idEquip", reader["id"] },
+                                { "idClub", reader["id_club"]},
+                                { "nomClub", reader["nom_club"]}
+                            };
+                            resultados.Add(registro);
+                        }
+                    }
+                }
+                
+
+
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error en el login: {ex.Message}");
+            }
+            finally
+            {
+                CloseConnection();
+            }
+            }
+
+            return resultados;
         }
-        public string CrearClub(string nom, string anyDeFundacio, string fundador, string logo)
+        public string CrearClub(string nom, string anyDeFundacio, string fundador, string email, string logo)
         {
             string resultado = "Club creado correctamente";
             try
             {
                 OpenConnection();
                 string query = @"
-            INSERT INTO club (nom, any_fundacio, fundador, logo, registre)
-            VALUES (@nom, @anyDeFundacio, @fundador, @logo, 0);";
+            INSERT INTO club (nom, any_fundacio, fundador, emailfundador, logo, registre)
+            VALUES (@nom, @anyDeFundacio, @fundador,@email, @logo, 0);";
 
                 using (MySqlCommand cmd = new MySqlCommand(query, connection))
                 {
                     cmd.Parameters.AddWithValue("@nom", nom);
                     cmd.Parameters.AddWithValue("@anyDeFundacio", anyDeFundacio);
                     cmd.Parameters.AddWithValue("@fundador", fundador);
+                    cmd.Parameters.AddWithValue("@email", email);
                     cmd.Parameters.AddWithValue("@logo", logo);
 
                     int filasAfectadas = cmd.ExecuteNonQuery(); 
@@ -559,11 +614,9 @@ namespace ClubPilot
                 foreach (var usuario in usuarios)
                 {
                     int id = Convert.ToInt32(usuario["id"]);
-                    string rol = ObtenerRol(id); // Obtener el rol para cada usuario
-
-                    usuario.Add("rol", rol);  // Agregar el rol al diccionario del usuario
-
-                    resultados.Add(usuario); // Agregar el usuario con el rol a la lista final
+                    string rol = ObtenerRol(id); 
+                    usuario.Add("rol", rol); 
+                    resultados.Add(usuario); 
                 }
             }
             catch (Exception ex)
@@ -683,7 +736,7 @@ namespace ClubPilot
                 using (MySqlCommand cmd = new MySqlCommand(query, connection))
                 {
                     cmd.Parameters.AddWithValue("@username", username);
-                    cmd.Parameters.AddWithValue("@password", "12345");  // Considera usar un hash seguro
+                    cmd.Parameters.AddWithValue("@password", "12345");  
                     cmd.Parameters.AddWithValue("@nom", nom);
                     cmd.Parameters.AddWithValue("@cognoms", cognoms);
                     cmd.Parameters.AddWithValue("@email", email);
@@ -771,8 +824,8 @@ namespace ClubPilot
             try
             {
                 string query = $@"
-        SELECT 1 FROM {rol} r 
-        WHERE r.id_usuari = @id LIMIT 1;";
+                SELECT 1 FROM {rol} r 
+                WHERE r.id_usuari = @id ;";
 
                 using (MySqlCommand cmd = new MySqlCommand(query, conn))
                 {
@@ -797,34 +850,31 @@ namespace ClubPilot
             return tieneRol;
         }
 
-
-
-
-
-        public String EquipsDeClub(string idClub)
+        public List<Dictionary<string, object>> EquipsDeClub(string idClub)
         {
-            String line = "";
+            List<Dictionary<string, object>> resultados = new List<Dictionary<string, object>>();
             try
             {
                 OpenConnection();
                 string query = @"
-		           SELECT e.nom 
+		           SELECT e.nom, e.id
 		           FROM Equip e 
-                   WHERE e.id = @username;";
+                   WHERE e.id = @id;";
 
                 using (MySqlCommand cmd = new MySqlCommand(query, connection))
                 {
-                    cmd.Parameters.AddWithValue("@username", idClub);
+                    cmd.Parameters.AddWithValue("@id", idClub);
 
                     using (MySqlDataReader reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-
-                            for (int i = 0; i < reader.FieldCount; i++)
-                            {
-                                line += reader[i].ToString() + "$"; 
-                            }
+                          var registro = new Dictionary<string, object>
+                          {
+                            { "id", reader["id"] },
+                            { "nom", reader["nom"] }
+                          };
+                            resultados.Add(registro);
                         }
                     }
                 }
@@ -837,7 +887,7 @@ namespace ClubPilot
             {
                 CloseConnection();
             }
-            return line;
+            return resultados;
         }
         public void exportUsuari()
         {

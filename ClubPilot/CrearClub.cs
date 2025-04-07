@@ -55,7 +55,7 @@ namespace ClubPilot
         {
             if((!txtBoxData.Text.Equals(""))&& (!txtBoxNom.Text.Equals("")) && (!txtBoxFundador.Text.Equals("")))
             { 
-            String a=db.CrearClub(txtBoxNom.Text,txtBoxData.Text,txtBoxFundador.Text,"logo");
+            String a=db.CrearClub(txtBoxNom.Text,txtBoxData.Text,txtBoxFundador.Text,txtBoxEmail.Text,"logo");
             MessageBox.Show(a);
             }
             else

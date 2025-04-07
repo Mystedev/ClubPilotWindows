@@ -277,7 +277,6 @@ namespace ClubPilot
                 btnModificar.Enabled = true;
                 btnGuardar.Enabled = false;
                 db.updateCompte(txtId.Text, txtUsuari.Text, txtNom.Text, txtCognoms.Text, txtCorreu.Text);
-
             };
 
             btnEsborrar.Click += (sender, e) =>
@@ -285,11 +284,11 @@ namespace ClubPilot
                 if (indexFila >= 0 && indexFila < comptes.Count)
                 {
                     DialogResult result = MessageBox.Show(
-            "Segur que vol esborrar aquest compte? Usuari:" + comptes[indexFila].usuari,
-            "Confirmar eliminació",
-             MessageBoxButtons.YesNo,
-             MessageBoxIcon.Question
-             );
+                    "Segur que vol esborrar aquest compte? Usuari:" + comptes[indexFila].usuari,
+                    "Confirmar eliminació",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question
+                );
 
                     if (result == DialogResult.Yes)
                     {
