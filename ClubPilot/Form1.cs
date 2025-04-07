@@ -83,7 +83,7 @@ namespace ClubPilot
                 textBox2.Visible = false;
                 button1.Visible = false;
                 db.OpenConnection();
-                if (db.ObtenerRol(numero).Equals("administrador"))
+                if (!db.ObtenerRol(numero).Equals("administrador"))
                 {
                 comboBox1.Visible = true;
                 label3.Visible = true;
@@ -138,6 +138,29 @@ namespace ClubPilot
         }
         private void button2_Click_1(object sender, EventArgs e)
         {
+            int idClub = 0;
+            int idEquip = 0;
+            foreach (var registre in clubs)
+            {
+                if (registre["nomClub"].Equals(comboBox2.Text))
+                {
+                    idClub = int.Parse(registre["idClub"].ToString());
+                    break;
+                }
+            }
+            foreach (var registreEquips in equips)
+            {
+                if (registreEquips["nom"].Equals(comboBox2.Text))
+                {
+                    idEquip = int.Parse(registreEquips["id"].ToString());
+                    break;
+                }
+            }
+            int idUsuari = int.Parse(response[0]);
+
+            db.OpenConnection();
+            infoUsuari usuari = new infoUsuari(idUsuari, idClub, idEquip, db.ObtenerRol(idUsuari));
+            db.CloseConnection();
             this.Hide();
             new MainForm().Show();
             
@@ -145,6 +168,7 @@ namespace ClubPilot
 
         private void button3_Click_1(object sender, EventArgs e)
         {
+            
             CrearClub crearClub = new CrearClub();
             crearClub.Show();
         }
@@ -192,11 +216,14 @@ namespace ClubPilot
         {
             this.rol = rol;
         }
-        public infoUsuari(int idUsuari, int idClub, int idEquip)
+        public infoUsuari(int idUsuari, int idClub, int idEquip, String rol)
         {
+
             this.idUsuari = idUsuari;
             this.idClub = idClub;
             this.idEquip = idEquip;
+            this.rol = rol;
+            
         }
         public String toString()
         {
