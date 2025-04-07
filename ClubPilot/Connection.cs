@@ -377,7 +377,7 @@ namespace ClubPilot
             {
                 OpenConnection();
                 string query = @"
-            INSERT INTO club (nom, any_fundacio, fundador, emailfundador logo, registre)
+            INSERT INTO club (nom, any_fundacio, fundador, emailfundador, logo, registre)
             VALUES (@nom, @anyDeFundacio, @fundador,@email, @logo, 0);";
 
                 using (MySqlCommand cmd = new MySqlCommand(query, connection))
