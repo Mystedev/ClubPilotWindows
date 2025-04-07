@@ -16,6 +16,10 @@ namespace ClubPilot
     {
      
         private Connection db;
+       
+        int idUsuari;
+        int idClub;
+        int idEquip;
         String[] response;
         String[] clubs;
         
@@ -47,13 +51,14 @@ namespace ClubPilot
             string password = textBox2.Text;
             response = db.Login(username, password);
             
-       
+            
 
             if (response.Length >=1)
             {
                 String a=db.ClubsDeUsuari(response[0]);
                 clubs = a.Split('$');
                 MessageBox.Show("Login correcto");
+                idUsuari = Convert.ToInt32(response[0]);
 
                 // Cambiar la visibilidad de los controles
                 label1.Visible = false;
@@ -95,7 +100,9 @@ namespace ClubPilot
             {
                 if (clubs[i].Equals(comboBox2.Text))
                 {
-                   b  =  db.EquipsDeClub(clubs[i + 1]); 
+                    idClub = Convert.ToInt32(clubs[i + 1]);
+                   Usuari.usuari = new infoUsuari(idUsuari, idClub, 0);
+                    b  =  db.EquipsDeClub(clubs[i + 1]); 
                    break;
                 }
             }
@@ -118,6 +125,60 @@ namespace ClubPilot
         {
             CrearClub crearClub = new CrearClub();
             crearClub.Show();
+        }
+    }
+    public static class Usuari
+    {
+        public static infoUsuari usuari;
+        
+    }
+    public class infoUsuari
+    {
+        private int idUsuari;
+        private int idClub;
+        private int idEquip;
+        private String rol;
+        public int getIdUsuari()
+        {
+            return idUsuari;
+        }
+        public void setIdUsuari(int id)
+        {
+            idUsuari = id;
+        }
+        public int getIdClub()
+        {
+            return idClub;
+        }
+        public void setIdClub(int id)
+        {
+            idClub = id;
+        }
+        public int getIdEquip()
+        {
+            return idEquip;
+        }
+        public void setIdEquip(int id)
+        {
+            idEquip = id;
+        }
+        public String getRol()
+        {
+            return rol;
+        }
+        public void setRol(String rol)
+        {
+            this.rol = rol;
+        }
+        public infoUsuari(int idUsuari, int idClub, int idEquip)
+        {
+            this.idUsuari = idUsuari;
+            this.idClub = idClub;
+            this.idEquip = idEquip;
+        }
+        public String toString()
+        {
+            return "Usuari: " + idUsuari + " Club: " + idClub + " Equip: " + idEquip;
         }
     }
 }
