@@ -11,6 +11,7 @@ namespace ClubPilot
         static public News Noticia { get; set; }
         static List<News> noticias = new List<News>();
         private static FlowLayoutPanel flowLayoutPanel;
+        
 
         public News_Tab()
         {
@@ -19,7 +20,6 @@ namespace ClubPilot
             // Configurar el MenuStrip para que ocupe toda la parte superior
             menuStrip1.Dock = DockStyle.Top;
             this.Controls.Add(menuStrip1);
-
             // Bloque de código de configuración del layout para organizar noticias
             flowLayoutPanel = new FlowLayoutPanel();
             flowLayoutPanel.Dock = DockStyle.Fill;
@@ -33,6 +33,8 @@ namespace ClubPilot
             //flowLayoutPanel.Controls.Add(refresh_Button);
             // Asegurarse de que el FlowLayoutPanel esté debajo del MenuStrip
             //flowLayoutPanel.BringToFront();
+
+
 
             Connection connection = new Connection();
             noticias = connection.exportNews();
@@ -84,12 +86,16 @@ namespace ClubPilot
             for (int i = 0; i < noticias.Count; i++)
             {
                 noticias[i].Show(); 
-                noticias[i].Panel.Show();
-                flowLayoutPanel.Controls.Add(noticias[i].Panel);
+                //noticias[i].Click += newsclick;
+                flowLayoutPanel.Controls.Add(noticias[i]);
             }
 
             
         }
+        //private void newsclick(object sender, EventArgs e)
+        //{
+        //    noticia.News_Click();
+        //}
 
 
 

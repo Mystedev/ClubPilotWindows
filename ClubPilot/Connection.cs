@@ -62,8 +62,11 @@ namespace ClubPilot
                             string line = "";
                             for (int i = 0; i < reader.FieldCount; i++)
                             {
-                                DateTime fecha = reader.GetDateTime(5);
-                                news = new News(reader[1].ToString(), reader[2].ToString(), reader[3].ToString(), reader[4].ToString(), fecha );
+                                DateTime fecha = reader.GetDateTime(4);
+                                news = new News(reader[1].ToString(), reader[2].ToString(), reader[3].ToString(), fecha);
+                                news.id = (int)reader[0];
+                                news.idUsuari = (int)reader[6];
+                                news.idClub = (int)reader[5];
                                 line += reader[i].ToString() + "#"; // Separa por tabulaciones
                                 
 
@@ -90,8 +93,8 @@ namespace ClubPilot
                 string query = @"
 
 
-                INSERT INTO noticia(titol, descripcio, autor, imatge_noticia, data, id_usuari, id_club)
-                VALUES(@titulo, @descripcio, @autor, @imatge_noticia, @data, @id_usuari, @id_club); ";
+                INSERT INTO noticia(titol, descripcio, imatge_noticia, data, id_usuari, id_club)
+                VALUES(@titulo, @descripcio, @imatge_noticia, @data, @id_usuari, @id_club); ";
                 //INSERT INTO noticia (titol, descripcio, autor, imatge_noticia, data) 
                 //VALUES (@titulo, @descripcio, @autor,  @imatge_noticia, @data);";
 
@@ -99,7 +102,6 @@ namespace ClubPilot
                 {
                     cmd.Parameters.AddWithValue("@titulo", noticia.Titulo);
                     cmd.Parameters.AddWithValue("@descripcio", noticia.Texto);
-                    cmd.Parameters.AddWithValue("@autor", noticia.Autor);
                     cmd.Parameters.AddWithValue("@data", noticia.Fecha);
                     cmd.Parameters.AddWithValue("@imatge_noticia", noticia.Imagen);
                     cmd.Parameters.AddWithValue("@id_usuari", noticia.idUsuari);
@@ -107,14 +109,86 @@ namespace ClubPilot
 
 
                     int filasAfectadas = cmd.ExecuteNonQuery();
-                    if (filasAfectadas > 0)
-                    {
-                        MessageBox.Show("Noticia desada");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Error");
-                    }
+                    //if (filasAfectadas > 0)
+                    //{
+                    //    MessageBox.Show("Noticia desada");
+                    //}
+                    //else
+                    //{
+                    //    MessageBox.Show("Error");
+                    //}
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al insertar noticia: " + ex.Message);
+            }
+            finally
+            {
+                CloseConnection();
+            }
+        }
+        public static void updateNews(News noticia)
+        {
+            try
+            {
+                OpenConnection();
+                string query = @"
+                UPDATE noticia
+                SET 
+                titol = @titulo,
+                descripcio = @descripcio,
+                imatge_noticia = @imatge_noticia,
+                data = @data,
+                id_Club = @id_club,
+                id_usuari = @id_usuari
+
+                WHERE id = @id;";
+                //INSERT INTO noticia (titol, descripcio, autor, imatge_noticia, data) 
+                //VALUES (@titulo, @descripcio, @autor,  @imatge_noticia, @data);";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@titulo", noticia.Titulo);
+                    cmd.Parameters.AddWithValue("@descripcio", noticia.Texto);
+                    cmd.Parameters.AddWithValue("@data", noticia.Fecha);
+                    cmd.Parameters.AddWithValue("@imatge_noticia", noticia.Imagen);
+                    cmd.Parameters.AddWithValue("@id_usuari", noticia.idUsuari);
+                    cmd.Parameters.AddWithValue("@id_club", noticia.idClub);
+                    cmd.Parameters.AddWithValue("@id", noticia.id);
+
+
+                    int filasAfectadas = cmd.ExecuteNonQuery();
+                    //if (filasAfectadas > 0)
+                    //{
+                    //    MessageBox.Show("Noticia desada");
+                    //}
+                    //else
+                    //{
+                    //    MessageBox.Show("Error");
+                    //}
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al insertar noticia: " + ex.Message);
+            }
+            finally
+            {
+                CloseConnection();
+            }
+        }
+        public void deleteNew(News noticia)
+        {
+            try
+            {
+                OpenConnection();
+                string query = "DELETE FROM NOTICIA WHERE ID = @id";
+
+
+                using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@id", noticia.id);
                 }
             }
             catch (Exception ex)

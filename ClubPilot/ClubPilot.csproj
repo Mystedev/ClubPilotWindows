@@ -129,6 +129,12 @@
       <DependentUpon>clubs.cs</DependentUpon>
     </Compile>
     <Compile Include="Connection.cs" />
+    <Compile Include="EditNews.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditNews.Designer.cs">
+      <DependentUpon>EditNews.cs</DependentUpon>
+    </Compile>
     <Compile Include="Esdeveniment.cs" />
     <Compile Include="Esdeveniments.cs">
       <SubType>Form</SubType>
@@ -183,6 +189,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CrearClub.resx">
       <DependentUpon>CrearClub.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditNews.resx">
+      <DependentUpon>EditNews.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Esdeveniments.resx">
       <DependentUpon>Esdeveniments.cs</DependentUpon>

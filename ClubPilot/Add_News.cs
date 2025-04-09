@@ -38,7 +38,7 @@ namespace ClubPilot
             dtpTime.Format = DateTimePickerFormat.Custom;
             dtpTime.CustomFormat = "HH:mm:ss";
             dtpTime.ShowUpDown = true;
-            dtpTime.Location = new Point(20, 230);
+            dtpTime.Location = new Point(20, 330);
             dtpTime.Width = 100;
             dtpTime.ValueChanged += dtpTime_ValueChanged;
             this.Controls.Add(dtpTime);
@@ -70,7 +70,7 @@ namespace ClubPilot
 
         private void boton_CrearNoticia_Click(object sender, EventArgs e)
         {
-            News noticia = new News(textBox_titulo.Text, textBox_descripcion.Text, textBox_autor.Text, textBox_imagen.Text, fecha);
+            News noticia = new News(textBox_titulo.Text, textBox_descripcion.Text, textBox_imagen.Text, fecha);
             Connection.addNew(noticia);
             News_Tab.showNews();
             this.Close();
