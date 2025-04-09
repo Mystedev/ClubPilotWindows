@@ -178,22 +178,23 @@ namespace ClubPilot
                 CloseConnection();
             }
         }
-        public void deleteNew(News noticia)
+        public static void deleteNew(News noticia)
         {
             try
             {
                 OpenConnection();
-                string query = "DELETE FROM NOTICIA WHERE ID = @id";
+                string query = "DELETE FROM noticia WHERE id = @id";
 
 
                 using (MySqlCommand cmd = new MySqlCommand(query, connection))
                 {
                     cmd.Parameters.AddWithValue("@id", noticia.id);
+                    cmd.ExecuteNonQuery();
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al insertar noticia: " + ex.Message);
+                MessageBox.Show("Error al borrar noticia: " + ex.Message);
             }
             finally
             {

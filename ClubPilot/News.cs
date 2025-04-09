@@ -15,25 +15,25 @@ public class News : Panel
     public string Imagen { get; set; }
     public Button borrar { get; set; }
 
-    public News(string titulo, string texto,  string imagen, DateTime fecha)
+    public News(string titulo, string texto, string imagen, DateTime fecha)
     {
         Titulo = titulo;
         Texto = texto;
         Fecha = fecha;
         Imagen = imagen;
-        //CONFIG BOTON                                                   //FALTA PROGRAMAR COSAS EN EL BOTON INCLUIDO EL ONCLICK
+        //CONFIG BOTON
         borrar = new Button();
         borrar.Width = 40;
         borrar.Height = 40;
-        borrar.Location = new Point(this.ClientSize.Width - borrar.Width, this.ClientSize.Height - borrar.Height);
+        borrar.Location = new Point(650, 250);
         borrar.FlatStyle = FlatStyle.Flat;
         borrar.FlatAppearance.BorderSize = 0;
         borrar.FlatAppearance.MouseOverBackColor = Color.Transparent;
         borrar.FlatAppearance.MouseDownBackColor = Color.Transparent;
-        borrar.BackColor = Color.Black;
+        borrar.Image = Resources.icons8_eliminar_30;
         borrar.TabStop = false;
         this.Controls.Add(borrar);
-        //borrar.Click += boton_CrearNoticia_Click;
+        borrar.Click += Delete_Click;
 
         //Config "Panel"
         this.Size = new System.Drawing.Size(700, 300);
@@ -43,6 +43,9 @@ public class News : Panel
         //Asociar el evento Click al panel
         this.Click += News_Click;
         this.Cursor = Cursors.Hand;
+
+        idClub = 1;
+        idUsuari = 1;
 
         // Llamar a Show para agregar los controles a este panel
         Show();
@@ -120,4 +123,10 @@ public class News : Panel
         EditNews editForm = new EditNews(this);  // Pasar la instancia actual de News
         editForm.Show();
     }
+    private void Delete_Click(object sender, EventArgs e)
+    {
+        Connection.deleteNew(this);
+        News_Tab.showNews();
+    }
+
 }
