@@ -3,11 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
+using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 using Microsoft.Win32;
 using MySql.Data.MySqlClient;
 using Mysqlx.Crud;
 using MySqlX.XDevAPI.Common;
+using System.Security.Cryptography;
 
 namespace ClubPilot
 {
@@ -18,6 +21,7 @@ namespace ClubPilot
         private string port = "3306";
         private string user_id = "root";
         private string password = "12345";
+
         private MySqlConnection connection;
 
         // Constructor por defecto
@@ -30,6 +34,7 @@ namespace ClubPilot
         public Connection(string database)
         {
             this.database = database;
+        
             InitializeConnection();
         }
 
@@ -293,29 +298,29 @@ namespace ClubPilot
 
                 using (MySqlConnection conn = new MySqlConnection(connectionString))
                 {
-                     
-                    
-                 
-                string query = @"
-                  SELECT u.id
-                  FROM usuari u 
-                  LEFT JOIN administrador a ON u.id = a.id_usuari
-                  WHERE u.username = @username AND u.password = @password;";
 
-                using (MySqlCommand cmd = new MySqlCommand(query, connection))
-                {
-                    cmd.Parameters.AddWithValue("@username", username);
-                    cmd.Parameters.AddWithValue("@password", password);
+
+
+                    string query = @"
+                    SELECT u.id
+                    FROM usuari u 
+                    LEFT JOIN administrador a ON u.id = a.id_usuari
+                    WHERE u.username = @username AND u.password = @password;";
+                    password = CalcularSHA256(password);
+                    using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@username", username);
+                        cmd.Parameters.AddWithValue("@password", password);
 
                         // Ejecutar la consulta y obtener el valor directamente
-                    MySqlDataReader reader = cmd.ExecuteReader();
+                        MySqlDataReader reader = cmd.ExecuteReader();
 
-                    while (reader.Read())
-                    {
-                        
-                            result = reader.GetInt32(0)+""; 
+                        while (reader.Read())
+                        {
+
+                            result = reader.GetInt32(0) + "";
                             results.Add(result);
-                    }
+                        }
                     }
                 }
             }
@@ -331,6 +336,7 @@ namespace ClubPilot
             }
             return results.ToArray();
         }
+
         public List<Dictionary<string, object>> ClubsDeUsuari(string idUsuari)
         {
             string line = "";
@@ -427,12 +433,14 @@ namespace ClubPilot
         public string CrearClub(string nom, string anyDeFundacio, string fundador, string email, string logo)
         {
             string resultado = "Club creado correctamente";
+            int idClub=0;
             try
             {
                 OpenConnection();
                 string query = @"
-            INSERT INTO club (nom, any_fundacio, fundador, emailfundador, logo, registre)
-            VALUES (@nom, @anyDeFundacio, @fundador,@email, @logo, 0);";
+                INSERT INTO club (nom, any_fundacio, fundador, emailfundador, logo, registre)
+                VALUES (@nom, @anyDeFundacio, @fundador,@email, @logo, 0);
+                SELECT LAST_INSERT_ID();";
 
                 using (MySqlCommand cmd = new MySqlCommand(query, connection))
                 {
@@ -442,12 +450,9 @@ namespace ClubPilot
                     cmd.Parameters.AddWithValue("@email", email);
                     cmd.Parameters.AddWithValue("@logo", logo);
 
-                    int filasAfectadas = cmd.ExecuteNonQuery(); 
 
-                    if (filasAfectadas == 0)
-                    {
-                        resultado = "No se pudo crear el club.";
-                    }
+                    idClub = Convert.ToInt32(cmd.ExecuteScalar());
+
                 }
             }
             catch (Exception ex)
@@ -458,7 +463,7 @@ namespace ClubPilot
             {
                 CloseConnection();
             }
-            return resultado;
+            return idClub+"";
         }
         public string UpdateClub(string id)
         {
@@ -719,7 +724,61 @@ namespace ClubPilot
                 CloseConnection();  // Cierra la conexión a la base de datos
             }
         }
-        public void InsertCompte(string username, string nom, string cognoms, string email, string rol)
+        public string GenerarContrasenya()
+        {
+            Random random = new Random();
+            string lletres = "qwertyuiopasdfghjklzxcvbnm";
+            string lletresM = lletres.ToUpper();
+            string caracters = "!$%/()=?¿|#~€ºª-_.[]";
+            string numeros = "0123456789";
+
+            string totsElsCaracters = lletres + lletresM + caracters + numeros;
+            int longitud = 12;
+
+            StringBuilder contrasenya = new StringBuilder();
+
+            for (int i = 0; i < longitud; i++)
+            {
+                int index = random.Next(totsElsCaracters.Length);
+                contrasenya.Append(totsElsCaracters[index]);
+            }
+
+            return contrasenya.ToString();
+        }
+        public string GenerarUsuari()
+        {
+            Random random = new Random();
+            string lletres = "qwertyuiopasdfghjklzxcvbnm";
+            string lletresM = lletres.ToUpper();
+            string caracters = "!$%/()=?¿|#~€ºª-_.[]";
+            string numeros = "0123456789";
+
+            string totsElsCaracters = lletres + lletresM + caracters + numeros;
+            int longitud = 12;
+
+            StringBuilder contrasenya = new StringBuilder();
+
+            for (int i = 0; i < longitud; i++)
+            {
+                int index = random.Next(totsElsCaracters.Length);
+                contrasenya.Append(totsElsCaracters[index]);
+            }
+
+            return contrasenya.ToString();
+        }
+        public static string CalcularSHA256(string texto)
+        {
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                byte[] bytesTexto = Encoding.UTF8.GetBytes(texto);
+                byte[] hashBytes = sha256.ComputeHash(bytesTexto);
+
+                // Convertimos el hash a Base64
+                return Convert.ToBase64String(hashBytes);
+            }
+        }
+
+        public void InsertCompte(string username, string nom, string cognoms, string email, string rol, string idEquip, string idclub)
         {
             try
             {
@@ -732,11 +791,23 @@ namespace ClubPilot
                 SELECT LAST_INSERT_ID();";  // Obtener el último ID insertado
 
                 int idUsuari;
-
+                String usernameG = GenerarContrasenya();
+                Thread.Sleep(100);
+                String password =  GenerarUsuari();
+                MessageBox.Show(password);
+                password = CalcularSHA256(password);
                 using (MySqlCommand cmd = new MySqlCommand(query, connection))
                 {
+                   
+                    if (username.Equals(""))
+                    {
+                    cmd.Parameters.AddWithValue("@username", usernameG);
+                    }
+                    else
+                    { 
                     cmd.Parameters.AddWithValue("@username", username);
-                    cmd.Parameters.AddWithValue("@password", "12345");  
+                    }
+                    cmd.Parameters.AddWithValue("@password", password);  
                     cmd.Parameters.AddWithValue("@nom", nom);
                     cmd.Parameters.AddWithValue("@cognoms", cognoms);
                     cmd.Parameters.AddWithValue("@email", email);
@@ -758,7 +829,7 @@ namespace ClubPilot
                 }
                 else
                 {
-                    tablaRol = "equip";
+                    tablaRol = "entrenador";
                     columnaId = "id_Equip";
                 }
 
@@ -767,8 +838,22 @@ namespace ClubPilot
                 using (MySqlCommand cmd = new MySqlCommand(query, connection))
                 {
                     cmd.Parameters.AddWithValue("@id_usuari", idUsuari);
-                    cmd.Parameters.AddWithValue("@id", 1); 
-
+                    if (rol == "administrador" || rol == "aficionat")
+                    {
+                    if(idclub.Equals(""))
+                    {
+                     cmd.Parameters.AddWithValue("@id", Usuari.usuari.getIdClub());
+                    }
+                    else
+                    {
+                     cmd.Parameters.AddWithValue("@id", idclub);
+                    }
+                   
+                    }
+                    else
+                    {
+                    cmd.Parameters.AddWithValue("@id", idEquip);
+                    }
                     int filasAfectadas = cmd.ExecuteNonQuery();
 
                     if (filasAfectadas > 0)
@@ -784,6 +869,11 @@ namespace ClubPilot
             catch (Exception ex)
             {
                 Console.WriteLine($"Error al insertar el registro: {ex.Message}");
+                CloseConnection();
+                if(username.Equals(""))
+                { 
+                InsertCompte(username, nom, cognoms, email, rol, idEquip, idclub);
+                }
             }
             finally
             {
@@ -795,7 +885,7 @@ namespace ClubPilot
 
         public string ObtenerRol(int id)
         {
-            string rol = "a";  // Valor por defecto en caso de que no se encuentre el rol
+            string rol = "a"; 
 
             if (EsRol(id, "administrador", connection))
             {
@@ -831,14 +921,14 @@ namespace ClubPilot
                 {
                     cmd.Parameters.AddWithValue("@id", id);
 
-                    // Cerrar el DataReader correctamente después de cada ejecución
+                    
                     using (MySqlDataReader reader = cmd.ExecuteReader())
                     {
-                        if (reader.Read())  // Si encuentra al menos un registro
+                        if (reader.Read())  
                         {
                             tieneRol = true;
                         }
-                        // El using de MySqlDataReader asegura que se cierre automáticamente cuando se sale de su ámbito.
+                      
                     }
                 }
             }

@@ -44,7 +44,6 @@
             this.menuStrip1.BackColor = System.Drawing.Color.MidnightBlue;
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.sollicitudsDeClubsToolStripMenuItem,
             this.clubToolStripMenuItem,
             this.comptesToolStripMenuItem,
             this.noticiesToolStripMenuItem,

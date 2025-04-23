@@ -55,8 +55,21 @@ namespace ClubPilot
         {
             if((!txtBoxData.Text.Equals(""))&& (!txtBoxNom.Text.Equals("")) && (!txtBoxFundador.Text.Equals("")))
             { 
-            String a=db.CrearClub(txtBoxNom.Text,txtBoxData.Text,txtBoxFundador.Text,txtBoxEmail.Text,"logo");
-            MessageBox.Show(a);
+
+            String idlub=db.CrearClub(txtBoxNom.Text,txtBoxData.Text,txtBoxFundador.Text,txtBoxEmail.Text,"logo");
+            String[] nomCognoms=txtBoxFundador.Text.Split(' ');
+
+            String nom = nomCognoms[0];
+            String cognoms="";
+                for (int i = 1; i < nomCognoms.Length; i++) 
+                {
+                    cognoms += nomCognoms[i] + " ";
+                }
+                cognoms = cognoms.Trim();
+
+                db.InsertCompte("",nom, cognoms, txtBoxEmail.Text,"administrador","",idlub);
+                MessageBox.Show("club creat");
+
             }
             else
             {
