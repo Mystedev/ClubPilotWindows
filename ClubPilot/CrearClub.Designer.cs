@@ -35,7 +35,6 @@
             this.txtBoxData = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.txtBoxNom = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.button2 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -57,11 +56,11 @@
             // 
             // txtBoxFundador
             // 
-            this.txtBoxFundador.Font = new System.Drawing.Font("Cascadia Code", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBoxFundador.Font = new System.Drawing.Font("Cascadia Code", 10.8F);
             this.txtBoxFundador.Location = new System.Drawing.Point(314, 161);
             this.txtBoxFundador.Margin = new System.Windows.Forms.Padding(2);
             this.txtBoxFundador.Name = "txtBoxFundador";
-            this.txtBoxFundador.Size = new System.Drawing.Size(142, 20);
+            this.txtBoxFundador.Size = new System.Drawing.Size(142, 24);
             this.txtBoxFundador.TabIndex = 12;
             // 
             // label6
@@ -77,11 +76,11 @@
             // 
             // txtBoxData
             // 
-            this.txtBoxData.Font = new System.Drawing.Font("Cascadia Code", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBoxData.Font = new System.Drawing.Font("Cascadia Code", 10.8F);
             this.txtBoxData.Location = new System.Drawing.Point(314, 112);
             this.txtBoxData.Margin = new System.Windows.Forms.Padding(2);
             this.txtBoxData.Name = "txtBoxData";
-            this.txtBoxData.Size = new System.Drawing.Size(142, 20);
+            this.txtBoxData.Size = new System.Drawing.Size(142, 24);
             this.txtBoxData.TabIndex = 8;
             // 
             // label4
@@ -97,24 +96,13 @@
             // 
             // txtBoxNom
             // 
-            this.txtBoxNom.Font = new System.Drawing.Font("Cascadia Code", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBoxNom.Font = new System.Drawing.Font("Cascadia Code", 10.8F);
             this.txtBoxNom.Location = new System.Drawing.Point(314, 45);
             this.txtBoxNom.Margin = new System.Windows.Forms.Padding(2);
             this.txtBoxNom.Name = "txtBoxNom";
-            this.txtBoxNom.Size = new System.Drawing.Size(142, 20);
+            this.txtBoxNom.Size = new System.Drawing.Size(142, 24);
             this.txtBoxNom.TabIndex = 6;
             this.txtBoxNom.TextChanged += new System.EventHandler(this.txtBoxUsername1_TextChanged);
-            // 
-            // button1
-            // 
-            this.button1.Font = new System.Drawing.Font("Cascadia Code", 12.25F);
-            this.button1.Location = new System.Drawing.Point(292, 262);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(178, 35);
-            this.button1.TabIndex = 13;
-            this.button1.Text = "Escollir imatge";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
@@ -131,7 +119,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Cascadia Code", 12.25F);
-            this.label2.Location = new System.Drawing.Point(356, 184);
+            this.label2.Location = new System.Drawing.Point(355, 194);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 12, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(60, 22);
@@ -140,11 +128,11 @@
             // 
             // txtBoxEmail
             // 
-            this.txtBoxEmail.Font = new System.Drawing.Font("Cascadia Code", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBoxEmail.Location = new System.Drawing.Point(314, 208);
+            this.txtBoxEmail.Font = new System.Drawing.Font("Cascadia Code", 10.8F);
+            this.txtBoxEmail.Location = new System.Drawing.Point(314, 218);
             this.txtBoxEmail.Margin = new System.Windows.Forms.Padding(2);
             this.txtBoxEmail.Name = "txtBoxEmail";
-            this.txtBoxEmail.Size = new System.Drawing.Size(142, 20);
+            this.txtBoxEmail.Size = new System.Drawing.Size(142, 24);
             this.txtBoxEmail.TabIndex = 17;
             // 
             // CrearClub
@@ -156,7 +144,6 @@
             this.Controls.Add(this.txtBoxEmail);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtBoxNom);
             this.Controls.Add(this.txtBoxFundador);
@@ -181,7 +168,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtBoxNom;
         private System.Windows.Forms.BindingSource bindingSource1;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtBoxEmail;

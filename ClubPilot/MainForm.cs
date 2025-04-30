@@ -12,10 +12,12 @@ namespace ClubPilot
 {
     public partial class MainForm : Form
     {
+        private Connection db;
         private Panel panelContainer;
         public MainForm()
         {
             InitializeComponent();
+            db = new Connection();
             this.WindowState = FormWindowState.Maximized;
             /*panelContainer = new Panel
             {
@@ -57,6 +59,16 @@ namespace ClubPilot
         private void LoadFormIntoPanel(Form form)
         {
             // Limpiar cualquier control existente en el panel
+            db.OpenConnection ();
+            String  rol= db.ObtenerRol(Usuari.usuari.getIdUsuari());
+            db.CloseConnection();
+            
+            // Aquí defines tu condición
+            if (rol.Equals("a"))
+            {
+                menuStrip1.Items.Insert(0, sollicitudsDeClubsToolStripMenuItem); // O Add() si prefieres al final
+            }
+
             menuStrip1.Visible = true;
             panelContainer1.Controls.Clear();
 
