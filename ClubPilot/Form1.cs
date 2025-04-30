@@ -59,8 +59,14 @@ namespace ClubPilot
             
 
            
-
+            
+            if (response.Length < 1)
+            {
+                MessageBox.Show("Usuario o contraseña incorrectos");
+                return;
+            }
             int numero = int.Parse(response[0]);
+            
             db.OpenConnection();
             if (db.ObtenerRol(numero).Equals("administrador") || db.ObtenerRol(numero).Equals("entrenador") || db.ObtenerRol(numero).Equals("a"))
             {
