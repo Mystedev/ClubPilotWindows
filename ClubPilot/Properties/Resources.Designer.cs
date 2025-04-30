@@ -63,6 +63,26 @@ namespace ClubPilot.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap equips {
+            get {
+                object obj = ResourceManager.GetObject("equips", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap esdeveniments {
+            get {
+                object obj = ResourceManager.GetObject("esdeveniments", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_aceptar_30 {
             get {
                 object obj = ResourceManager.GetObject("icons8-aceptar-30", resourceCulture);
@@ -86,6 +106,16 @@ namespace ClubPilot.Properties {
         internal static System.Drawing.Bitmap icons8_cancelar_30 {
             get {
                 object obj = ResourceManager.GetObject("icons8-cancelar-30", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_club_40 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-club-40", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -123,6 +153,16 @@ namespace ClubPilot.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap jugadors {
+            get {
+                object obj = ResourceManager.GetObject("jugadors", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap LogoApp {
             get {
                 object obj = ResourceManager.GetObject("LogoApp", resourceCulture);
@@ -130,6 +170,44 @@ namespace ClubPilot.Properties {
             }
         }
         
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap noticies {
+            get {
+                object obj = ResourceManager.GetObject("noticies", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
         
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap solClubs {
+            get {
+                object obj = ResourceManager.GetObject("solClubs", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap solClubs1 {
+            get {
+                object obj = ResourceManager.GetObject("solClubs1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap usuaris {
+            get {
+                object obj = ResourceManager.GetObject("usuaris", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

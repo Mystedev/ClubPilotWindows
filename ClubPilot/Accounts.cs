@@ -33,7 +33,7 @@ namespace ClubPilot
             //myConnection.CloseConnection();
 
 
-
+           
             Font fontCascadiaCode = new Font("Cascadia Code", 30);
 
             Label lblTitulo = new Label
@@ -66,9 +66,9 @@ namespace ClubPilot
             };
 
 
-            lblAfegir.Location = new Point(this.ClientSize.Width - 200, 50); // Ajusta la posició segons sigui necessari
+            lblAfegir.Location = new Point(this.ClientSize.Width - 200, 50); 
 
-
+            // Boto que al clicar-lo obra el formulari de crear un nou compte
             Button botoAfegir = new Button { Image = Properties.Resources.icons8_añadir_30, Width = 40, Height = 40 };
 
             botoAfegir.Click += (sender, e) =>
@@ -80,7 +80,7 @@ namespace ClubPilot
 
 
 
-
+            // Panel que mostrarà la informació
             scrollPanel = new Panel
             {
                 Dock = DockStyle.Fill,
@@ -94,19 +94,20 @@ namespace ClubPilot
             scrollPanel.Controls.Add(botoAfegir);
 
 
-
-            comptes = ObtenirComptes();
-            CarregarComptes();
+            // Crido a la funció que obté els comptes i els guardo a una llista
+            comptes = obtenirComptes();
+            carregarComptes();
             this.Resize += new EventHandler(Form_Resize);
         }
 
         private void Form_Resize(object sender, EventArgs e)
         {
-            CenterControls();
+            // Crido a la funció que em centra els controls quan la mida del formulari canvii
+            colocarControls();
 
         }
-
-        private void CenterControls()
+        // Funcio que ficar els controls a la seva posició
+        private void colocarControls()
         {
             foreach (Control control in scrollPanel.Controls)
             {
@@ -135,12 +136,15 @@ namespace ClubPilot
                 }
             }
         }
+        // Funció que un cop afegit un compte torna a cridar a la funció d'obtenir els comptes per actualitzar la llista i carrego els comptes al layout
         public void addAccountToList(Compte compte)
         {
-            comptes = ObtenirComptes();
-            CarregarComptes();
+
+            comptes = obtenirComptes();
+            carregarComptes();
         }
-        private List<Compte> ObtenirComptes()
+        // Funció que obté els comptes del club de la base de dades i els retorna en llista
+        private List<Compte> obtenirComptes()
         {
             List<Compte> comptes = new List<Compte>();
 
@@ -162,8 +166,8 @@ namespace ClubPilot
             return comptes;
         }
 
-
-        private void CarregarComptes()
+        // Funció que carregar els comptes al layout 
+        private void carregarComptes()
         {
             if (layout != null)
             {
@@ -178,28 +182,29 @@ namespace ClubPilot
                 BackColor = Color.SeaShell,
                 Padding = new Padding(10),
                 Dock = DockStyle.Top,
-                Width = scrollPanel.ClientSize.Width - 20, // Ajustar el ancho al del panel
+                Width = scrollPanel.ClientSize.Width - 20,
             };
-
+            // Defineixo les mides de les columnes del table layout
             layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 85F));
             layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 5F));
             layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 5F));
             layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 5F));
             layout.RowCount = comptes.Count;
+            // Afegeixo un estil de fila per cada compte
             foreach (var _ in comptes)
             {
                 layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 70F));
             }
-
+            // Afegeixo els comptes a la taula
             for (int i = 0; i < comptes.Count; i++)
             {
-                AfegirCompteATaula(layout, comptes[i], i);
+                afegirCompteATaula(layout, comptes[i], i);
             }
-
+            // Afegeixo el layout
             scrollPanel.Controls.Add(layout);
         }
-
-        private void AfegirCompteATaula(TableLayoutPanel panell, Compte compte, int indexFila)
+        // Funció que dona el format de com es veuen els comptes al layout
+        private void afegirCompteATaula(TableLayoutPanel panell, Compte compte, int indexFila)
         {
             Panel panellIntern = new Panel { Dock = DockStyle.Fill, AutoSize = true };
             panellIntern.SuspendLayout();
@@ -223,7 +228,7 @@ namespace ClubPilot
             TextBox txtRol = new TextBox { Text = compte.rol, Width = 130, Font = fontCascadiaCode, Enabled = false };
 
             int desplazamentY = 5;
-
+            // Definir posicionament
             lblUsuari.Location = new Point(5, desplazamentY);
             txtUsuari.Location = new Point(lblUsuari.Right, desplazamentY);
 
@@ -238,7 +243,7 @@ namespace ClubPilot
 
             lblRol.Location = new Point(txtCorreu.Right, desplazamentY);
             txtRol.Location = new Point(lblRol.Right, desplazamentY);
-
+            // Afegeixo els controls al panel
             panellIntern.Controls.Add(txtId);
             panellIntern.Controls.Add(lblUsuari);
             panellIntern.Controls.Add(txtUsuari);
@@ -257,7 +262,7 @@ namespace ClubPilot
             Button btnModificar = new Button { Image = Properties.Resources.icons8_modificar_30, Width = 40, Height = 40 };
             Button btnGuardar = new Button { Image = Properties.Resources.icons8_guardar_30, Width = 40, Height = 40, Enabled = false };
             Button btnEsborrar = new Button { Image = Properties.Resources.icons8_eliminar_30, Width = 40, Height = 40 };
-
+            // Obre els textBox
             btnModificar.Click += (sender, e) =>
             {
                 txtUsuari.Enabled = true;
@@ -267,7 +272,7 @@ namespace ClubPilot
                 btnModificar.Enabled = false;
                 btnGuardar.Enabled = true;
             };
-            
+            // Tancar els textbox i ho guarda a la base de dades
             btnGuardar.Click += (sender, e) =>
             {
                 txtUsuari.Enabled = false;
@@ -278,7 +283,7 @@ namespace ClubPilot
                 btnGuardar.Enabled = false;
                 db.updateCompte(txtId.Text, txtUsuari.Text, txtNom.Text, txtCognoms.Text, txtCorreu.Text);
             };
-
+            // Esborrar de la base de dades i el layout el compte
             btnEsborrar.Click += (sender, e) =>
             {
                 if (indexFila >= 0 && indexFila < comptes.Count)
@@ -296,19 +301,19 @@ namespace ClubPilot
                         comptes.RemoveAt(indexFila);
                         db.deleteCompte(txtId.Text);
 
-                        // Remove only the TableLayoutPanel and recreate it
+                        
                         if (layout != null)
                         {
                             scrollPanel.Controls.Remove(layout);
                             layout.Dispose();
                         }
-
-                        CarregarComptes();
+                        // Torno a carregar els comptes
+                        carregarComptes();
                     }
 
                 }
             };
-
+            // Afegeixo els botons
             panell.Controls.Add(panellIntern, 0, indexFila);
             panell.Controls.Add(btnModificar, 1, indexFila);
             panell.Controls.Add(btnGuardar, 2, indexFila);
@@ -322,7 +327,7 @@ namespace ClubPilot
         }
 
 
-
+        // Classe compte amb els seus atributs
         public class Compte
         {
             public string id { get; set; }

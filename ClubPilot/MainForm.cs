@@ -17,19 +17,22 @@ namespace ClubPilot
         {
             InitializeComponent();
             this.WindowState = FormWindowState.Maximized;
-            panelContainer = new Panel
+            /*panelContainer = new Panel
             {
                 Dock = DockStyle.Fill
-            };
 
+            };*/
+            menuVertical.Dock = DockStyle.Left;
             panelContainer = new Panel
             {
                 Dock = DockStyle.Fill
+
             };
-            this.Controls.Add(panelContainer);
-           // Form1 form1 = new Form1(panelContainer);
+            //panelContainer.Location = new Point(288, 0);
+            //this.Controls.Add(panelContainer);
+            // Form1 form1 = new Form1(panelContainer);
             // Cargar Form1 en el panel
-            panelContainer.Controls.Clear();
+            panelContainer1.Controls.Clear();
 
             // Configurar el formulario para que se comporte como un control secundario
             /*form1.TopLevel = false;
@@ -47,23 +50,25 @@ namespace ClubPilot
         private void MainForm_Load(object sender, EventArgs e)
         {
             // Si tanquem aquest formulari també tanquem l'aplicació
+            //this.Controls.Remove(panelC);
             this.FormClosed += (s, args) => Application.Exit();
+            
         }
         private void LoadFormIntoPanel(Form form)
         {
             // Limpiar cualquier control existente en el panel
             menuStrip1.Visible = true;
-            panelContainer.Controls.Clear();
+            panelContainer1.Controls.Clear();
 
-            // Configurar el formulario para que se comporte como un control secundario
+            // Configurar el formulari per a que es comporti com un control secundari
             form.TopLevel = false;
             form.FormBorderStyle = FormBorderStyle.None;
             form.Dock = DockStyle.Fill;
 
-            // Agregar el formulario al panel
-            panelContainer.Controls.Add(form);
+            // Afegir el formulari al panel
+            panelContainer1.Controls.Add(form);
 
-            // Mostrar el formulario
+            // Mostrar el formulari
             form.Show();
 
         }
@@ -75,7 +80,8 @@ namespace ClubPilot
 
         private void sollicitudsDeClubsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LoadFormIntoPanel(new Clubs());
+            //LoadFormIntoPanel(new Clubs());
+            new Clubs().Show();
         }
 
         private void clubToolStripMenuItem_Click(object sender, EventArgs e)
@@ -101,6 +107,48 @@ namespace ClubPilot
         private void esdevenimentsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             LoadFormIntoPanel(new Esdeveniments());
+        }
+
+        private void equipsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnMenSolClubs_Click(object sender, EventArgs e)
+        {
+            LoadFormIntoPanel(new Clubs());
+        }
+        // Botons del menú
+        private void btnMenClub_Click(object sender, EventArgs e)
+        {
+            //LoadFormIntoPanel(new CrearClub());
+            new CrearClub().Show();
+        }
+
+        private void btnMenComptes_Click(object sender, EventArgs e)
+        {
+            LoadFormIntoPanel(new Accounts());
+        }
+
+        private void btnMenNoticies_Click(object sender, EventArgs e)
+        {
+            LoadFormIntoPanel(new News_Tab());
+        }
+
+        private void btnMenJugadors_Click(object sender, EventArgs e)
+        {
+            LoadFormIntoPanel(new Players());
+        }
+
+        private void btnMenEsdeveniments_Click(object sender, EventArgs e)
+        {
+            LoadFormIntoPanel(new Esdeveniments());
+        }
+        // Recalculo la mida del panel
+        private void MainForm_Resize(object sender, EventArgs e)
+        {
+            panelContainer1.Width = this.ClientSize.Width - menuVertical.Width;
+            panelContainer1.Height = this.ClientSize.Height - 20;
         }
     }
 }
