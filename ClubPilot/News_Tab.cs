@@ -30,7 +30,7 @@ namespace ClubPilot
             flowLayoutPanel.BackColor = System.Drawing.Color.SeaShell;
             flowLayoutPanel.WrapContents = true;
             flowLayoutPanel.FlowDirection = FlowDirection.LeftToRight;
-
+            // Config del label del titulo
             Label tituloNew = new Label();
             tituloNew.Text = "Noticies";
             tituloNew.Font = new System.Drawing.Font("Arial", 12, System.Drawing.FontStyle.Bold);

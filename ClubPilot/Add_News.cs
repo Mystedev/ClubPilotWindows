@@ -9,6 +9,8 @@ namespace ClubPilot
         DateTimePicker dtpTime;
         DateTime fecha;
 
+        //CAMBIAR EL TEXTBOX DE TEXTO POR UN RICHTEXTBOX
+
         public Add_News()
         {
             InitializeComponent();
