@@ -66,10 +66,10 @@ namespace ClubPilot
             // Aquí defines tu condición
             if (rol.Equals("a"))
             {
-                menuStrip1.Items.Insert(0, sollicitudsDeClubsToolStripMenuItem); // O Add() si prefieres al final
+                //menuStrip1.Items.Insert(0, sollicitudsDeClubsToolStripMenuItem); // O Add() si prefieres al final
             }
 
-            menuStrip1.Visible = true;
+            //menuStrip1.Visible = true;
             panelContainer1.Controls.Clear();
 
             // Configurar el formulari per a que es comporti com un control secundari
@@ -84,48 +84,6 @@ namespace ClubPilot
             form.Show();
 
         }
-
-        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
-
-        private void sollicitudsDeClubsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //LoadFormIntoPanel(new Clubs());
-            new Clubs().Show();
-        }
-
-        private void clubToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            LoadFormIntoPanel(new CrearClub());
-        }
-
-        private void comptesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            LoadFormIntoPanel(new Accounts());
-        }
-
-        private void noticiesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            LoadFormIntoPanel(new News_Tab());
-        }
-
-        private void jugadorsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            LoadFormIntoPanel(new Players());
-        }
-
-        private void esdevenimentsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            LoadFormIntoPanel(new Esdeveniments());
-        }
-
-        private void equipsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnMenSolClubs_Click(object sender, EventArgs e)
         {
             LoadFormIntoPanel(new Clubs());
