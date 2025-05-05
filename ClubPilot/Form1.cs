@@ -60,14 +60,13 @@ namespace ClubPilot
            
 
             int numero = int.Parse(response[0]);
-            db.OpenConnection();
+            Connection.OpenConnection();
             if (db.ObtenerRol(numero).Equals("administrador") || db.ObtenerRol(numero).Equals("entrenador"))
 
             {
                 login = true;
             }
-            db.CloseConnection();
-
+            Connection.CloseConnection();
             if (response.Length >=1 && login==true)
             {
 
@@ -82,13 +81,13 @@ namespace ClubPilot
                 textBox1.Visible = false;
                 textBox2.Visible = false;
                 button1.Visible = false;
-                db.OpenConnection();
+                Connection.OpenConnection();
                 if (db.ObtenerRol(numero).Equals("administrador"))
                 {
                 comboBox1.Visible = true;
                 label3.Visible = true;
                 }
-                db.CloseConnection();
+                Connection.CloseConnection();
                 button2.Visible = true;
                 label4.Visible = true;
                 comboBox2.Visible = true;
