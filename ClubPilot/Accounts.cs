@@ -213,16 +213,16 @@ namespace ClubPilot
 
 
             Label lblUsuari = new Label { Text = "Usuari:", Font = fontCascadiaCode, TextAlign = ContentAlignment.TopRight };
-            TextBox txtUsuari = new TextBox { Text = compte.usuari, Width = 140, Font = fontCascadiaCode, Enabled = false };
+            TextBox txtUsuari = new TextBox { Text = compte.usuari, Width = 80, Font = fontCascadiaCode, Enabled = false };
 
             Label lblNom = new Label { Text = "Nom:", Font = fontCascadiaCode, TextAlign = ContentAlignment.TopRight, Width = 60 };
-            TextBox txtNom = new TextBox { Text = compte.nom, Width = 120, Font = fontCascadiaCode, Enabled = false };
+            TextBox txtNom = new TextBox { Text = compte.nom, Width = 80, Font = fontCascadiaCode, Enabled = false };
 
             Label lblCognoms = new Label { Text = "Cognoms:", Font = fontCascadiaCode, TextAlign = ContentAlignment.TopRight };
-            TextBox txtCognoms = new TextBox { Text = compte.cognoms, Width = 200, Font = fontCascadiaCode, Enabled = false };
+            TextBox txtCognoms = new TextBox { Text = compte.cognoms, Width = 80, Font = fontCascadiaCode, Enabled = false };
 
             Label lblCorreu = new Label { Text = "Correu:", Font = fontCascadiaCode, TextAlign = ContentAlignment.TopRight };
-            TextBox txtCorreu = new TextBox { Text = compte.correu, Width = 200, Font = fontCascadiaCode, Enabled = false };
+            TextBox txtCorreu = new TextBox { Text = compte.correu, Width = 150, Font = fontCascadiaCode, Enabled = false };
 
             Label lblRol = new Label { Text = "Rol:", Font = fontCascadiaCode, TextAlign = ContentAlignment.TopRight, Width = 60 };
             TextBox txtRol = new TextBox { Text = compte.rol, Width = 130, Font = fontCascadiaCode, Enabled = false };

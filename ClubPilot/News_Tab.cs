@@ -78,5 +78,9 @@ namespace ClubPilot
             }
         }
 
+        private void News_Tab_Load(object sender, EventArgs e)
+        {
+       
+        }
     }
 }
