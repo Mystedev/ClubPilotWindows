@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
-using System.Data;
 using System.IO;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
-using Microsoft.Win32;
-using MySql.Data.MySqlClient;
-using Mysqlx.Crud;
-using MySqlX.XDevAPI.Common;
-using System.Security.Cryptography;
 
 namespace ClubPilot
 {
@@ -905,10 +900,10 @@ namespace ClubPilot
             {
                 OpenConnection();
 
-                // Obtener todos los usuarios primero
+                // Obtener todos los usuarios
                 string query = @"
-                SELECT u.id, u.username, u.password, u.nom, u.cognoms, u.email
-                FROM usuari u";
+            SELECT u.id, u.username, u.password, u.nom, u.cognoms, u.email
+            FROM usuari u";
 
                 List<Dictionary<string, object>> usuarios = new List<Dictionary<string, object>>();
 
@@ -931,13 +926,51 @@ namespace ClubPilot
                     }
                 }
 
-               
+                CloseConnection();
+
+                // Por cada usuario, obtener su rol y su id_club o id_Equip
                 foreach (var usuario in usuarios)
                 {
                     int id = Convert.ToInt32(usuario["id"]);
-                    string rol = ObtenerRol(id); 
-                    usuario.Add("rol", rol); 
-                    resultados.Add(usuario); 
+                    OpenConnection();
+                    string rol = ObtenerRol(id);
+                                  CloseConnection();
+                    string tablaRol = "";
+                    string columnaId = "";
+
+                    if (rol == "administrador")
+                    {
+                        tablaRol = "administrador";
+                        columnaId = "id_club";
+                    }
+                    else
+                    {
+                        tablaRol = "entrenador";
+                        columnaId = "id_Equip";
+                    }
+
+                    OpenConnection();
+
+                    string subquery = $"SELECT {columnaId} FROM {tablaRol} WHERE id_usuari = @id_usuari";
+                    using (MySqlCommand cmd = new MySqlCommand(subquery, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@id_usuari", id);
+                        object idClubOEquipo = cmd.ExecuteScalar(); // obtiene el valor directamente
+                        int idClubUsuario = Usuari.usuari.getIdClub();
+                        int idClubOEquipoInt = Convert.ToInt32(idClubOEquipo);
+                        usuario.Add("rol", rol);
+                        if (idClubUsuario != idClubOEquipoInt)
+                        {
+                            CloseConnection();
+                            continue;
+                        }
+
+
+                    }
+
+                    CloseConnection();
+
+                    resultados.Add(usuario);
                 }
             }
             catch (Exception ex)
@@ -951,6 +984,7 @@ namespace ClubPilot
 
             return resultados;
         }
+
         public void updateCompte(string id, string username, string nom, string cognoms, string email)
         {
 
@@ -1138,7 +1172,7 @@ namespace ClubPilot
                 string tablaRol;
                 string columnaId;
 
-                if (rol == "administrador" || rol == "aficionat")
+                if (rol == "administrador")
                 {
                     tablaRol = "administrador"; 
                     columnaId = "id_club";
@@ -1265,7 +1299,7 @@ namespace ClubPilot
                 string query = @"
 		           SELECT e.nom, e.id
 		           FROM Equip e 
-                   WHERE e.id = @id;";
+                   WHERE e.id_club = @id;";
 
                 using (MySqlCommand cmd = new MySqlCommand(query, connection))
                 {
