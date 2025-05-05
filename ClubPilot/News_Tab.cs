@@ -20,7 +20,7 @@ namespace ClubPilot
         public News_Tab()
         {
             InitializeComponent();
-
+            Mail.EnviarCorreo("r.rodriguez@insjoanbrudieu.cat", "Mira como funciona", "Venga champion");
             // Bloque de código de configuración del layout para organizar noticias
             flowLayoutPanel = new FlowLayoutPanel();
             flowLayoutPanel.Dock = DockStyle.Fill;
