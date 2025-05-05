@@ -17,6 +17,7 @@ namespace ClubPilot
         private string port = "3306";
         private string user_id = "root";
         private string password = "admin";
+        private static MySqlConnection connection;
 
         // Constructor por defecto
         public Connection()
