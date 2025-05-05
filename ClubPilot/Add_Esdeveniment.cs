@@ -75,7 +75,8 @@ namespace ClubPilot
         private void boton_CrearEvento_Click(object sender, EventArgs e)
         {
             Esdeveniment eventoActual = new Esdeveniment(textBox_nom.Text, textBox_descripcio.Text, fecha);
-            Esdeveniments.Esdeveniment = eventoActual;
+            Connection connection = new Connection();
+            Connection.addEvent(eventoActual);
             Esdeveniments.showEvents();
             this.Close();
         }

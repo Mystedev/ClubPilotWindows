@@ -1,75 +1,132 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ClubPilot;
 using System.Windows.Forms;
+using System;
+using ClubPilot.Properties;
+using System.Drawing;
 
-namespace ClubPilot
-//Clase que representa una noticia
-//El panel es para poder mostrar una noticia en el formulario de forma ordenada
+public class News : Panel
 {
-    public class News : Panel
+    public int id { get; set; }
+    public int idClub { get; set; }
+    public int idUsuari { get; set; }
+    public string Titulo { get; set; }
+    public string Texto { get; set; }
+    public DateTime Fecha { get; set; }
+    public string Imagen { get; set; }
+    public Button borrar { get; set; }
+
+    public News(string titulo, string texto, string imagen, DateTime fecha)
     {
-        private string Titulo { get; set; }
-        private string Texto { get; set; }
-        private DateTime Fecha { get; set; }
-        private DateTime Hora { get; set; }
-        private string Autor { get; set; }
-        private string Imagen { get; set; }
-        public Panel Panel { get; set; }
+        Titulo = titulo;
+        Texto = texto;
+        Fecha = fecha;
+        Imagen = imagen;
+        //CONFIG BOTON
+        borrar = new Button();
+        borrar.Width = 40;
+        borrar.Height = 40;
+        borrar.Location = new Point(650, 250);
+        borrar.FlatStyle = FlatStyle.Flat;
+        borrar.FlatAppearance.BorderSize = 0;
+        borrar.FlatAppearance.MouseOverBackColor = Color.Transparent;
+        borrar.FlatAppearance.MouseDownBackColor = Color.Transparent;
+        borrar.Image = Resources.icons8_eliminar_30;
+        borrar.TabStop = false;
+        this.Controls.Add(borrar);
+        borrar.Click += Delete_Click;
 
-        public News(string titulo, string texto, DateTime fecha/*, DateTime hora*/, string autor, string imagen)
-        {
-            Titulo = titulo;
-            Texto = texto;
-            Fecha = fecha;
-            //Hora = hora;
-            Autor = autor;
-            Imagen = imagen;
-            Panel = new Panel();
-            Panel.Size = new System.Drawing.Size(300, 75);
-        }
+        //Config "Panel"
+        this.Size = new System.Drawing.Size(700, 300);
+        this.BackColor = System.Drawing.Color.FromArgb(82, 137, 179);
+        this.AutoSize = false;
 
-        //Le da formato a cada parte de la noticia y la añade al panel
-        public void Show()
-        {
-            Panel.BackColor = System.Drawing.Color.Blue;
-            Panel.AutoSize = true;
+        //Asociar el evento Click al panel
+        this.Click += News_Click;
+        this.Cursor = Cursors.Hand;
 
-            Label label_titulo = new Label();
-            label_titulo.Text = Titulo;
-            label_titulo.Font = new System.Drawing.Font("Arial", 12, System.Drawing.FontStyle.Bold); // Cambiar la fuente
-            label_titulo.Location = new System.Drawing.Point(0, 0);
-            Panel.Controls.Add(label_titulo);
+        idClub = 1;
+        idUsuari = 1;
 
-            Label label_texto = new Label();
-            label_texto.Text = Texto;
-            label_texto.Location = new System.Drawing.Point(0, 25);
-            label_texto.AutoSize = true;
-            label_texto.MaximumSize = new System.Drawing.Size(100, 0); // Ajusta el ancho máximo según sea necesario
-            Panel.Controls.Add(label_texto);
+        // Llamar a Show para agregar los controles a este panel
+        Show();
 
-            PictureBox pictureBox = new PictureBox();
-            pictureBox.ImageLocation = Imagen;
-            pictureBox.Location = new System.Drawing.Point(140, 5); // Ajusta la ubicación según sea necesario
-            pictureBox.Size = new System.Drawing.Size(150, 150); // Ajusta el tamaño según sea necesario
-            pictureBox.SizeMode = PictureBoxSizeMode.StretchImage; // Ajusta el modo de tamaño según sea necesario
-            Panel.Controls.Add(pictureBox);
-
-            Label label_fecha = new Label();
-            label_fecha.Font = new System.Drawing.Font("Arial", 7, System.Drawing.FontStyle.Italic);
-            label_fecha.Text = Fecha.ToString();
-            label_fecha.Location = new System.Drawing.Point(0, 140);
-            Panel.Controls.Add(label_fecha);
-
-            Label label_autor = new Label();
-            label_autor.Font = new System.Drawing.Font("Arial", 7, System.Drawing.FontStyle.Italic);
-            label_autor.Text = Autor;
-            label_autor.AutoSize = true;
-            label_autor.MaximumSize = new System.Drawing.Size(75, 0);
-            label_autor.Location = new System.Drawing.Point(0, 120);
-            Panel.Controls.Add(label_autor);
-        }
     }
+
+    public void Show()
+    {
+        // Etiqueta para el título
+        Label label_titulo = new Label
+        {
+            Text = Titulo,
+            Font = new System.Drawing.Font("Arial", 14, System.Drawing.FontStyle.Bold),
+            Location = new System.Drawing.Point(10, 10),
+            Size = new System.Drawing.Size(480, 30),
+            ForeColor = System.Drawing.Color.White
+        };
+        this.Controls.Add(label_titulo);
+
+        // Etiqueta para el texto
+        Label label_texto = new Label
+        {
+            Text = Texto,
+            Location = new System.Drawing.Point(10, 50),
+            AutoSize = true,
+            MaximumSize = new System.Drawing.Size(480, 0),
+            ForeColor = System.Drawing.Color.White
+        };
+        this.Controls.Add(label_texto);
+
+        // PictureBox para la imagen
+        PictureBox pictureBox = new PictureBox
+        {
+            Location = new System.Drawing.Point(500, 10),
+            Size = new System.Drawing.Size(180, 180),
+            SizeMode = PictureBoxSizeMode.StretchImage
+        };
+
+        // Cargar la imagen con manejo de errores
+        try
+        {
+            pictureBox.ImageLocation = Imagen;
+        }
+        catch
+        {
+            pictureBox.Image = Resources.icons8_aceptar_30; // HAY QUE CAMBIAR ESTO
+        }
+
+        this.Controls.Add(pictureBox);
+
+        // Etiqueta para la fecha
+        Label label_fecha = new Label
+        {
+            Font = new System.Drawing.Font("Arial", 10, System.Drawing.FontStyle.Italic),
+            Text = Fecha.ToString("dd/MM/yyyy HH:mm"),
+            Location = new System.Drawing.Point(10, 280),
+            Size = new System.Drawing.Size(200, 20),
+            ForeColor = System.Drawing.Color.White
+        };
+        this.Controls.Add(label_fecha);
+
+        // Etiqueta para el autor
+        Label label_autor = new Label
+        {
+            Font = new System.Drawing.Font("Arial", 10, System.Drawing.FontStyle.Italic),
+            Location = new System.Drawing.Point(220, 280),
+            Size = new System.Drawing.Size(200, 20),
+            ForeColor = System.Drawing.Color.White
+        };
+
+    }
+
+    private void News_Click(object sender, EventArgs e)
+    {
+        EditNews editForm = new EditNews(this);  // Pasar la instancia actual de News
+        editForm.Show();
+    }
+    private void Delete_Click(object sender, EventArgs e)
+    {
+        Connection.deleteNew(this);
+        News_Tab.showNews();
+    }
+
 }
