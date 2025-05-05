@@ -32,8 +32,6 @@
             this.textBox_titulo = new System.Windows.Forms.TextBox();
             this.label_descripcion = new System.Windows.Forms.Label();
             this.textBox_descripcion = new System.Windows.Forms.TextBox();
-            this.label_autor = new System.Windows.Forms.Label();
-            this.textBox_autor = new System.Windows.Forms.TextBox();
             this.label_imagen = new System.Windows.Forms.Label();
             this.textBox_imagen = new System.Windows.Forms.TextBox();
             this.label_fecha = new System.Windows.Forms.Label();
@@ -55,7 +53,6 @@
             this.textBox_titulo.Name = "textBox_titulo";
             this.textBox_titulo.Size = new System.Drawing.Size(100, 22);
             this.textBox_titulo.TabIndex = 1;
-
             // 
             // label_descripcion
             // 
@@ -73,26 +70,10 @@
             this.textBox_descripcion.Size = new System.Drawing.Size(100, 22);
             this.textBox_descripcion.TabIndex = 3;
             // 
-            // label_autor
-            // 
-            this.label_autor.AutoSize = true;
-            this.label_autor.Location = new System.Drawing.Point(28, 186);
-            this.label_autor.Name = "label_autor";
-            this.label_autor.Size = new System.Drawing.Size(38, 16);
-            this.label_autor.TabIndex = 4;
-            this.label_autor.Text = "Autor";
-            // 
-            // textBox_autor
-            // 
-            this.textBox_autor.Location = new System.Drawing.Point(28, 215);
-            this.textBox_autor.Name = "textBox_autor";
-            this.textBox_autor.Size = new System.Drawing.Size(100, 22);
-            this.textBox_autor.TabIndex = 5;
-            // 
             // label_imagen
             // 
             this.label_imagen.AutoSize = true;
-            this.label_imagen.Location = new System.Drawing.Point(28, 263);
+            this.label_imagen.Location = new System.Drawing.Point(28, 189);
             this.label_imagen.Name = "label_imagen";
             this.label_imagen.Size = new System.Drawing.Size(48, 16);
             this.label_imagen.TabIndex = 6;
@@ -100,7 +81,7 @@
             // 
             // textBox_imagen
             // 
-            this.textBox_imagen.Location = new System.Drawing.Point(28, 292);
+            this.textBox_imagen.Location = new System.Drawing.Point(28, 217);
             this.textBox_imagen.Name = "textBox_imagen";
             this.textBox_imagen.Size = new System.Drawing.Size(100, 22);
             this.textBox_imagen.TabIndex = 7;
@@ -108,7 +89,7 @@
             // label_fecha
             // 
             this.label_fecha.AutoSize = true;
-            this.label_fecha.Location = new System.Drawing.Point(28, 341);
+            this.label_fecha.Location = new System.Drawing.Point(28, 264);
             this.label_fecha.Name = "label_fecha";
             this.label_fecha.Size = new System.Drawing.Size(36, 16);
             this.label_fecha.TabIndex = 8;
@@ -116,7 +97,7 @@
             // 
             // dateTimePicker2
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(28, 373);
+            this.dateTimePicker2.Location = new System.Drawing.Point(28, 306);
             this.dateTimePicker2.Name = "dateTimePicker2";
             this.dateTimePicker2.Size = new System.Drawing.Size(275, 22);
             this.dateTimePicker2.TabIndex = 9;
@@ -130,8 +111,6 @@
             this.Controls.Add(this.label_fecha);
             this.Controls.Add(this.textBox_imagen);
             this.Controls.Add(this.label_imagen);
-            this.Controls.Add(this.textBox_autor);
-            this.Controls.Add(this.label_autor);
             this.Controls.Add(this.textBox_descripcion);
             this.Controls.Add(this.label_descripcion);
             this.Controls.Add(this.textBox_titulo);
@@ -149,8 +128,6 @@
         private System.Windows.Forms.TextBox textBox_titulo;
         private System.Windows.Forms.Label label_descripcion;
         private System.Windows.Forms.TextBox textBox_descripcion;
-        private System.Windows.Forms.Label label_autor;
-        private System.Windows.Forms.TextBox textBox_autor;
         private System.Windows.Forms.Label label_imagen;
         private System.Windows.Forms.TextBox textBox_imagen;
         private System.Windows.Forms.Label label_fecha;
