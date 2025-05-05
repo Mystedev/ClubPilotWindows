@@ -10,16 +10,18 @@ public class News : Panel
     public int idClub { get; set; }
     public int idUsuari { get; set; }
     public string Titulo { get; set; }
+    public string Autor { get; set; }
     public string Texto { get; set; }
     public DateTime Fecha { get; set; }
     public string Imagen { get; set; }
     public Button borrar { get; set; }
 
-    public News(string titulo, string texto, string imagen, DateTime fecha)
+    public News(string titulo, string texto, string autor, string imagen, DateTime fecha)
     {
         Titulo = titulo;
         Texto = texto;
         Fecha = fecha;
+        Autor = autor;
         Imagen = imagen;
         //CONFIG BOTON
         borrar = new Button();

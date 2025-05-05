@@ -70,7 +70,7 @@ namespace ClubPilot
                             for (int i = 0; i < reader.FieldCount; i++)
                             {
                                 DateTime fecha = reader.GetDateTime(4);
-                                news = new News(reader[1].ToString(), reader[2].ToString(), reader[3].ToString(), fecha);
+                                news = new News(reader[1].ToString(), reader[2].ToString(), reader[3].ToString(), reader[4].ToString(), fecha);
                                 news.id = (int)reader[0];
                                 news.idUsuari = (int)reader[6];
                                 news.idClub = (int)reader[5];
