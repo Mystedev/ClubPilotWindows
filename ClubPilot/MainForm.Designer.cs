@@ -28,14 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.sollicitudsDeClubsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.clubToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.equipsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.comptesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.noticiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.jugadorsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.esdevenimentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuVertical = new System.Windows.Forms.Panel();
             this.panelC = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
@@ -54,94 +47,9 @@
             this.btnMenSolClubs = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelContainer1 = new System.Windows.Forms.Panel();
-            this.menuStrip1.SuspendLayout();
             this.menuVertical.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // menuStrip1
-            // 
-            this.menuStrip1.BackColor = System.Drawing.Color.MidnightBlue;
-            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.sollicitudsDeClubsToolStripMenuItem,
-            this.clubToolStripMenuItem,
-            this.comptesToolStripMenuItem,
-            this.noticiesToolStripMenuItem,
-            this.jugadorsToolStripMenuItem,
-            this.esdevenimentsToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 2, 0, 10);
-            this.menuStrip1.Size = new System.Drawing.Size(1293, 56);
-            this.menuStrip1.TabIndex = 1;
-            this.menuStrip1.Text = "menuStrip1";
-            this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
-            // 
-            // sollicitudsDeClubsToolStripMenuItem
-            // 
-            this.sollicitudsDeClubsToolStripMenuItem.Font = new System.Drawing.Font("Cascadia Code", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sollicitudsDeClubsToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.sollicitudsDeClubsToolStripMenuItem.Name = "sollicitudsDeClubsToolStripMenuItem";
-            this.sollicitudsDeClubsToolStripMenuItem.Size = new System.Drawing.Size(409, 44);
-            this.sollicitudsDeClubsToolStripMenuItem.Text = "Sol·licituds de clubs";
-            this.sollicitudsDeClubsToolStripMenuItem.Click += new System.EventHandler(this.sollicitudsDeClubsToolStripMenuItem_Click);
-            // 
-            // clubToolStripMenuItem
-            // 
-            this.clubToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.equipsToolStripMenuItem});
-            this.clubToolStripMenuItem.Font = new System.Drawing.Font("Cascadia Code", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.clubToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.clubToolStripMenuItem.Name = "clubToolStripMenuItem";
-            this.clubToolStripMenuItem.Size = new System.Drawing.Size(103, 44);
-            this.clubToolStripMenuItem.Text = "Club";
-            this.clubToolStripMenuItem.Click += new System.EventHandler(this.clubToolStripMenuItem_Click);
-            // 
-            // equipsToolStripMenuItem
-            // 
-            this.equipsToolStripMenuItem.BackColor = System.Drawing.Color.MidnightBlue;
-            this.equipsToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.equipsToolStripMenuItem.Name = "equipsToolStripMenuItem";
-            this.equipsToolStripMenuItem.Size = new System.Drawing.Size(216, 44);
-            this.equipsToolStripMenuItem.Text = "Equips";
-            this.equipsToolStripMenuItem.Click += new System.EventHandler(this.equipsToolStripMenuItem_Click);
-            // 
-            // comptesToolStripMenuItem
-            // 
-            this.comptesToolStripMenuItem.Font = new System.Drawing.Font("Cascadia Code", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comptesToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.comptesToolStripMenuItem.Name = "comptesToolStripMenuItem";
-            this.comptesToolStripMenuItem.Size = new System.Drawing.Size(157, 44);
-            this.comptesToolStripMenuItem.Text = "Comptes";
-            this.comptesToolStripMenuItem.Click += new System.EventHandler(this.comptesToolStripMenuItem_Click);
-            // 
-            // noticiesToolStripMenuItem
-            // 
-            this.noticiesToolStripMenuItem.Font = new System.Drawing.Font("Cascadia Code", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.noticiesToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.noticiesToolStripMenuItem.Name = "noticiesToolStripMenuItem";
-            this.noticiesToolStripMenuItem.Size = new System.Drawing.Size(175, 44);
-            this.noticiesToolStripMenuItem.Text = "Noticies";
-            this.noticiesToolStripMenuItem.Click += new System.EventHandler(this.noticiesToolStripMenuItem_Click);
-            // 
-            // jugadorsToolStripMenuItem
-            // 
-            this.jugadorsToolStripMenuItem.Font = new System.Drawing.Font("Cascadia Code", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.jugadorsToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.jugadorsToolStripMenuItem.Name = "jugadorsToolStripMenuItem";
-            this.jugadorsToolStripMenuItem.Size = new System.Drawing.Size(175, 44);
-            this.jugadorsToolStripMenuItem.Text = "Jugadors";
-            this.jugadorsToolStripMenuItem.Click += new System.EventHandler(this.jugadorsToolStripMenuItem_Click);
-            // 
-            // esdevenimentsToolStripMenuItem
-            // 
-            this.esdevenimentsToolStripMenuItem.Font = new System.Drawing.Font("Cascadia Code", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.esdevenimentsToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.esdevenimentsToolStripMenuItem.Name = "esdevenimentsToolStripMenuItem";
-            this.esdevenimentsToolStripMenuItem.Size = new System.Drawing.Size(265, 44);
-            this.esdevenimentsToolStripMenuItem.Text = "Esdeveniments";
-            this.esdevenimentsToolStripMenuItem.Click += new System.EventHandler(this.esdevenimentsToolStripMenuItem_Click);
             // 
             // menuVertical
             // 
@@ -162,9 +70,9 @@
             this.menuVertical.Controls.Add(this.panel1);
             this.menuVertical.Controls.Add(this.btnMenSolClubs);
             this.menuVertical.Controls.Add(this.pictureBox1);
-            this.menuVertical.Location = new System.Drawing.Point(0, 56);
+            this.menuVertical.Location = new System.Drawing.Point(0, 0);
             this.menuVertical.Name = "menuVertical";
-            this.menuVertical.Size = new System.Drawing.Size(285, 653);
+            this.menuVertical.Size = new System.Drawing.Size(285, 709);
             this.menuVertical.TabIndex = 2;
             // 
             // panelC
@@ -362,9 +270,9 @@
             // panelContainer1
             // 
             this.panelContainer1.AutoSize = true;
-            this.panelContainer1.Location = new System.Drawing.Point(291, 59);
+            this.panelContainer1.Location = new System.Drawing.Point(291, 0);
             this.panelContainer1.Name = "panelContainer1";
-            this.panelContainer1.Size = new System.Drawing.Size(999, 647);
+            this.panelContainer1.Size = new System.Drawing.Size(999, 706);
             this.panelContainer1.TabIndex = 3;
             // 
             // MainForm
@@ -375,13 +283,10 @@
             this.ClientSize = new System.Drawing.Size(1293, 709);
             this.Controls.Add(this.panelContainer1);
             this.Controls.Add(this.menuVertical);
-            this.Controls.Add(this.menuStrip1);
             this.Name = "MainForm";
             this.Text = "MainForm";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.Resize += new System.EventHandler(this.MainForm_Resize);
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
             this.menuVertical.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
@@ -390,15 +295,7 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem sollicitudsDeClubsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem clubToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem equipsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem comptesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem noticiesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem jugadorsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem esdevenimentsToolStripMenuItem;
         private System.Windows.Forms.Panel menuVertical;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnMenSolClubs;

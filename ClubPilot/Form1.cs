@@ -22,6 +22,7 @@ namespace ClubPilot
         int idClub;
         int idEquip;
         String[] response;
+        String Rol;
         List<Dictionary<string, object>> clubs;
         List<Dictionary<string, object>> equips;
 
@@ -58,11 +59,15 @@ namespace ClubPilot
             
 
            
-
+            
+            if (response.Length < 1)
+            {
+                MessageBox.Show("Usuario o contraseña incorrectos");
+                return;
+            }
             int numero = int.Parse(response[0]);
             Connection.OpenConnection();
-            if (db.ObtenerRol(numero).Equals("administrador") || db.ObtenerRol(numero).Equals("entrenador"))
-
+            if (db.ObtenerRol(numero).Equals("administrador") || db.ObtenerRol(numero).Equals("entrenador") || db.ObtenerRol(numero).Equals("a"))
             {
                 login = true;
             }
@@ -117,6 +122,7 @@ namespace ClubPilot
 
             comboBox1.Items.Clear();
 
+
             foreach (var registre in clubs)
             {
                 if (registre["nomClub"].Equals(comboBox2.Text))  
@@ -137,6 +143,33 @@ namespace ClubPilot
         }
         private void button2_Click_1(object sender, EventArgs e)
         {
+            int idClub = 0;
+            int idEquip = 0;
+            if(!Rol.Equals("a"))
+            { 
+            foreach (var registre in clubs)
+            {
+                if (registre["nomClub"].Equals(comboBox2.Text))
+                {
+                    idClub = int.Parse(registre["idClub"].ToString());
+                    break;
+                }
+            }
+            foreach (var registreEquips in equips)
+            {
+                if (registreEquips["nom"].Equals(comboBox2.Text))
+                {
+                    idEquip = int.Parse(registreEquips["id"].ToString());
+                    break;
+                }
+            }
+            }
+            int idUsuari = int.Parse(response[0]);
+
+            db.OpenConnection();
+            Usuari.usuari = new infoUsuari(idUsuari, idClub, idEquip, db.ObtenerRol(idUsuari));
+            db.CloseConnection();
+            
             this.Hide();
             new MainForm().Show();
             
@@ -144,8 +177,14 @@ namespace ClubPilot
 
         private void button3_Click_1(object sender, EventArgs e)
         {
+            
             CrearClub crearClub = new CrearClub();
             crearClub.Show();
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
     public static class Usuari
@@ -191,11 +230,14 @@ namespace ClubPilot
         {
             this.rol = rol;
         }
-        public infoUsuari(int idUsuari, int idClub, int idEquip)
+        public infoUsuari(int idUsuari, int idClub, int idEquip, String rol)
         {
+
             this.idUsuari = idUsuari;
             this.idClub = idClub;
             this.idEquip = idEquip;
+            this.rol = rol;
+            
         }
         public String toString()
         {

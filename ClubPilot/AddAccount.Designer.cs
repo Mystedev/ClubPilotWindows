@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace ClubPilot
 {
@@ -7,6 +8,7 @@ namespace ClubPilot
         /// <summary>
         /// Required designer variable.
         /// </summary>
+        /// 
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
@@ -30,7 +32,6 @@ namespace ClubPilot
         /// </summary>
         private void InitializeComponent()
         {
-
             this.txtBoxUsername1 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txtBoxNom1 = new System.Windows.Forms.TextBox();
@@ -51,88 +52,93 @@ namespace ClubPilot
             // txtBoxUsername1
             // 
             this.txtBoxUsername1.Font = new System.Drawing.Font("Cascadia Code", 10F);
-            this.txtBoxUsername1.Location = new System.Drawing.Point(120, 83);
+            this.txtBoxUsername1.Location = new System.Drawing.Point(90, 67);
+            this.txtBoxUsername1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtBoxUsername1.Name = "txtBoxUsername1";
-            this.txtBoxUsername1.Size = new System.Drawing.Size(200, 27);
+            this.txtBoxUsername1.Size = new System.Drawing.Size(151, 23);
             this.txtBoxUsername1.TabIndex = 8;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Cascadia Code", 10F);
-            this.label3.Location = new System.Drawing.Point(15, 86);
-            this.label3.Margin = new System.Windows.Forms.Padding(3, 15, 3, 0);
+            this.label3.Location = new System.Drawing.Point(11, 70);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 12, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(100, 22);
+            this.label3.Size = new System.Drawing.Size(80, 18);
             this.label3.TabIndex = 7;
             this.label3.Text = "Username:";
             // 
             // txtBoxNom1
             // 
             this.txtBoxNom1.Font = new System.Drawing.Font("Cascadia Code", 10F);
-            this.txtBoxNom1.Location = new System.Drawing.Point(121, 132);
+            this.txtBoxNom1.Location = new System.Drawing.Point(91, 107);
+            this.txtBoxNom1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtBoxNom1.Name = "txtBoxNom1";
-            this.txtBoxNom1.Size = new System.Drawing.Size(200, 27);
+            this.txtBoxNom1.Size = new System.Drawing.Size(151, 23);
             this.txtBoxNom1.TabIndex = 10;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Cascadia Code", 10F);
-            this.label4.Location = new System.Drawing.Point(65, 132);
-            this.label4.Margin = new System.Windows.Forms.Padding(3, 15, 3, 0);
+            this.label4.Location = new System.Drawing.Point(49, 107);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 12, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(50, 22);
+            this.label4.Size = new System.Drawing.Size(40, 18);
             this.label4.TabIndex = 9;
             this.label4.Text = "Nom:";
             // 
             // txtBoxCognoms1
             // 
             this.txtBoxCognoms1.Font = new System.Drawing.Font("Cascadia Code", 10F);
-            this.txtBoxCognoms1.Location = new System.Drawing.Point(438, 130);
+            this.txtBoxCognoms1.Location = new System.Drawing.Point(328, 106);
+            this.txtBoxCognoms1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtBoxCognoms1.Name = "txtBoxCognoms1";
-            this.txtBoxCognoms1.Size = new System.Drawing.Size(300, 27);
+            this.txtBoxCognoms1.Size = new System.Drawing.Size(226, 23);
             this.txtBoxCognoms1.TabIndex = 12;
-            //
+            // 
             // labelEquips
-            //
+            // 
             this.labelEquips.AutoSize = true;
             this.labelEquips.Font = new System.Drawing.Font("Cascadia Code", 10F);
-            this.labelEquips.Location = new System.Drawing.Point(360, 180);
-            this.labelEquips.Margin = new System.Windows.Forms.Padding(3, 15, 3, 0);
+            this.labelEquips.Location = new System.Drawing.Point(270, 146);
+            this.labelEquips.Margin = new System.Windows.Forms.Padding(2, 12, 2, 0);
             this.labelEquips.Name = "labelEquips";
-            this.labelEquips.Visible = false;
-            this.labelEquips.Size = new System.Drawing.Size(70, 22);
+            this.labelEquips.Size = new System.Drawing.Size(56, 18);
             this.labelEquips.TabIndex = 13;
             this.labelEquips.Text = "Equip:";
+            this.labelEquips.Visible = false;
             // 
-            // comboBoxEquips
+            // txtBoxEquips
             // 
+            this.txtBoxEquips.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.txtBoxEquips.Font = new System.Drawing.Font("Cascadia Code", 10F);
-            this.txtBoxEquips.DropDownStyle = ComboBoxStyle.DropDownList;
-            this.txtBoxEquips.Location = new System.Drawing.Point(438, 180);
-            this.txtBoxEquips.Name = "Equips";
-            this.txtBoxEquips.Visible = false;
-            this.txtBoxEquips.Size = new System.Drawing.Size(300, 27);
+            this.txtBoxEquips.Location = new System.Drawing.Point(328, 146);
+            this.txtBoxEquips.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtBoxEquips.Name = "txtBoxEquips";
+            this.txtBoxEquips.Size = new System.Drawing.Size(226, 25);
             this.txtBoxEquips.TabIndex = 12;
+            this.txtBoxEquips.Visible = false;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Cascadia Code", 10F);
-            this.label5.Location = new System.Drawing.Point(343, 133);
-            this.label5.Margin = new System.Windows.Forms.Padding(3, 15, 3, 0);
+            this.label5.Location = new System.Drawing.Point(257, 108);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 12, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(90, 22);
+            this.label5.Size = new System.Drawing.Size(72, 18);
             this.label5.TabIndex = 11;
             this.label5.Text = "Cognoms:";
             // 
             // txtBoxEmail1
             // 
             this.txtBoxEmail1.Font = new System.Drawing.Font("Cascadia Code", 10F);
-            this.txtBoxEmail1.Location = new System.Drawing.Point(437, 85);
+            this.txtBoxEmail1.Location = new System.Drawing.Point(328, 69);
+            this.txtBoxEmail1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtBoxEmail1.Name = "txtBoxEmail1";
-            this.txtBoxEmail1.Size = new System.Drawing.Size(300, 27);
+            this.txtBoxEmail1.Size = new System.Drawing.Size(226, 23);
             this.txtBoxEmail1.TabIndex = 14;
             this.txtBoxEmail1.TextChanged += new System.EventHandler(this.txtBoxEmail1_TextChanged);
             // 
@@ -140,47 +146,48 @@ namespace ClubPilot
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Cascadia Code", 10F);
-            this.label6.Location = new System.Drawing.Point(361, 86);
-            this.label6.Margin = new System.Windows.Forms.Padding(3, 15, 3, 0);
+            this.label6.Location = new System.Drawing.Point(271, 70);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 12, 2, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(70, 22);
+            this.label6.Size = new System.Drawing.Size(56, 18);
             this.label6.TabIndex = 13;
             this.label6.Text = "Email:";
             this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
-            // txtBoxRol1
+            // ComboBoxRol1
             // 
+            this.ComboBoxRol1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ComboBoxRol1.Font = new System.Drawing.Font("Cascadia Code", 10F);
-            this.ComboBoxRol1.Location = new System.Drawing.Point(120, 180);
-            this.ComboBoxRol1.Name = "txtBoxRol1";
-            this.ComboBoxRol1.DropDownStyle = ComboBoxStyle.DropDownList;
-            this.ComboBoxRol1.Items.Add("administrador");
-            this.ComboBoxRol1.Items.Add("aficionat");
-            this.ComboBoxRol1.Items.Add("entrenador");
-            this.ComboBoxRol1.Items.Add("jugador");
-            this.ComboBoxRol1.SelectedIndexChanged += new System.EventHandler(this.ComboBoxRol1_SelectedIndexChanged);
-
-
-            this.ComboBoxRol1.Size = new System.Drawing.Size(200, 27);
+            this.ComboBoxRol1.Items.AddRange(new object[] {
+            "administrador",
+            "aficionat",
+            "entrenador",
+            "jugador"});
+            this.ComboBoxRol1.Location = new System.Drawing.Point(90, 146);
+            this.ComboBoxRol1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ComboBoxRol1.Name = "ComboBoxRol1";
+            this.ComboBoxRol1.Size = new System.Drawing.Size(151, 25);
             this.ComboBoxRol1.TabIndex = 16;
+            this.ComboBoxRol1.SelectedIndexChanged += new System.EventHandler(this.ComboBoxRol1_SelectedIndexChanged);
             // 
             // label28
             // 
             this.label28.AutoSize = true;
             this.label28.Font = new System.Drawing.Font("Cascadia Code", 10F);
-            this.label28.Location = new System.Drawing.Point(65, 180);
-            this.label28.Margin = new System.Windows.Forms.Padding(3, 15, 3, 0);
+            this.label28.Location = new System.Drawing.Point(49, 146);
+            this.label28.Margin = new System.Windows.Forms.Padding(2, 12, 2, 0);
             this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(50, 22);
+            this.label28.Size = new System.Drawing.Size(40, 18);
             this.label28.TabIndex = 15;
             this.label28.Text = "Rol:";
             // 
             // btn_cancel
             // 
             this.btn_cancel.Image = global::ClubPilot.Properties.Resources.icons8_cancelar_30;
-            this.btn_cancel.Location = new System.Drawing.Point(687, 220);
+            this.btn_cancel.Location = new System.Drawing.Point(515, 179);
+            this.btn_cancel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btn_cancel.Name = "btn_cancel";
-            this.btn_cancel.Size = new System.Drawing.Size(50, 50);
+            this.btn_cancel.Size = new System.Drawing.Size(38, 41);
             this.btn_cancel.TabIndex = 18;
             this.btn_cancel.UseVisualStyleBackColor = true;
             this.btn_cancel.Click += new System.EventHandler(this.btn_cancel_Click);
@@ -188,9 +195,10 @@ namespace ClubPilot
             // btn_add_account
             // 
             this.btn_add_account.Image = global::ClubPilot.Properties.Resources.icons8_aceptar_30;
-            this.btn_add_account.Location = new System.Drawing.Point(616, 220);
+            this.btn_add_account.Location = new System.Drawing.Point(462, 179);
+            this.btn_add_account.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btn_add_account.Name = "btn_add_account";
-            this.btn_add_account.Size = new System.Drawing.Size(50, 50);
+            this.btn_add_account.Size = new System.Drawing.Size(38, 41);
             this.btn_add_account.TabIndex = 17;
             this.btn_add_account.UseVisualStyleBackColor = true;
             this.btn_add_account.Click += new System.EventHandler(this.btn_add_account_Click);
@@ -199,19 +207,19 @@ namespace ClubPilot
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Cascadia Code", 16F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(288, 24);
-            this.label1.Margin = new System.Windows.Forms.Padding(3, 15, 3, 0);
+            this.label1.Location = new System.Drawing.Point(216, 20);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 12, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(175, 35);
+            this.label1.Size = new System.Drawing.Size(143, 29);
             this.label1.TabIndex = 19;
             this.label1.Text = "Compte nou";
             // 
             // AddAccount
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SeaShell;
-            this.ClientSize = new System.Drawing.Size(752, 280);
+            this.ClientSize = new System.Drawing.Size(564, 228);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btn_cancel);
             this.Controls.Add(this.btn_add_account);
@@ -220,13 +228,14 @@ namespace ClubPilot
             this.Controls.Add(this.txtBoxEmail1);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.txtBoxCognoms1);
-            this.Controls.Add(this.labelEquips);    
+            this.Controls.Add(this.labelEquips);
             this.Controls.Add(this.txtBoxEquips);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtBoxNom1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtBoxUsername1);
             this.Controls.Add(this.label3);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "AddAccount";
             this.Text = "AddAccount";
             this.Load += new System.EventHandler(this.AddAccount_Load);
