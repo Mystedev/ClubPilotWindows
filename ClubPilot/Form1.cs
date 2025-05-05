@@ -66,14 +66,12 @@ namespace ClubPilot
                 return;
             }
             int numero = int.Parse(response[0]);
-            
-            db.OpenConnection();
+            Connection.OpenConnection();
             if (db.ObtenerRol(numero).Equals("administrador") || db.ObtenerRol(numero).Equals("entrenador") || db.ObtenerRol(numero).Equals("a"))
             {
                 login = true;
             }
-            db.CloseConnection();
-
+            Connection.CloseConnection();
             if (response.Length >=1 && login==true)
             {
 
@@ -88,14 +86,13 @@ namespace ClubPilot
                 textBox1.Visible = false;
                 textBox2.Visible = false;
                 button1.Visible = false;
-                db.OpenConnection();
-                Rol = db.ObtenerRol(numero);
-                if (!Rol.Equals("administrador"))
+                Connection.OpenConnection();
+                if (db.ObtenerRol(numero).Equals("administrador"))
                 {
                 comboBox1.Visible = true;
                 label3.Visible = true;
                 }
-                db.CloseConnection();
+                Connection.CloseConnection();
                 button2.Visible = true;
                 label4.Visible = true;
                 comboBox2.Visible = true;
@@ -169,10 +166,10 @@ namespace ClubPilot
             }
             int idUsuari = int.Parse(response[0]);
 
-            db.OpenConnection();
+            Connection.OpenConnection();
             Usuari.usuari = new infoUsuari(idUsuari, idClub, idEquip, db.ObtenerRol(idUsuari));
-            db.CloseConnection();
-            
+            Connection.CloseConnection();
+
             this.Hide();
             new MainForm().Show();
             

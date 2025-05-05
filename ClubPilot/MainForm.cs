@@ -45,6 +45,7 @@ namespace ClubPilot
         }
         private void SetupMenuMappings()
         {
+
           
              menuFormsMap = new Dictionary<Button, Type>
             {
@@ -68,12 +69,16 @@ namespace ClubPilot
 
         private void ConfigureMenuVisibility()
         {
-            db.OpenConnection();
-            var rol = db.ObtenerRol(Usuari.usuari.getIdUsuari());
-            db.CloseConnection();
+           
             
 
 
+
+            Connection.OpenConnection();
+            String  rol= db.ObtenerRol(Usuari.usuari.getIdUsuari());
+            Connection.CloseConnection();
+
+       
             if (rol.Equals("a"))
             {
             

@@ -17,7 +17,7 @@ namespace ClubPilot
         private string user_id = "root";
         private string password = "12345";
 
-        private MySqlConnection connection;
+        private static MySqlConnection connection;
 
         // Constructor por defecto
         public Connection()
@@ -41,7 +41,324 @@ namespace ClubPilot
             this.port = port;
             this.user_id = user_id;
             this.password = password;
+            
             InitializeConnection();
+        }
+        //Funcion que uso en News_Tab.cs cargar las noticias de la db a la lista de noticias
+        public List<News> exportNews()
+        {
+            List<News> noticias = new List<News>();
+            string selectNoticia = "SELECT * FROM noticia";
+            string connectionString = $"Server={server};Database={database};Port={port};User Id={user_id};Password={password};";
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                {
+                    conn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(selectNoticia, conn))
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        News news = null;
+                        while (reader.Read())
+                        {
+                            string line = "";
+                            for (int i = 0; i < reader.FieldCount; i++)
+                            {
+                                DateTime fecha = reader.GetDateTime(4);
+                                news = new News(reader[1].ToString(), reader[2].ToString(), reader[3].ToString(), fecha);
+                                news.id = (int)reader[0];
+                                news.idUsuari = (int)reader[6];
+                                news.idClub = (int)reader[5];
+                                line += reader[i].ToString() + "#"; // Separa por tabulaciones
+                                
+
+
+                            }
+                            noticias.Add(news);
+                        }
+                    }
+                }
+
+                MessageBox.Show("Exportación exitosa");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al exportar: " + ex.Message);
+            }
+            return noticias;
+        }
+        //Export de esdeveniments
+        public List<Esdeveniment> exportEsdeveniments()
+        {
+            List<Esdeveniment> esdeveniments = new List<Esdeveniment>();
+            string selectEsdeveniment = "SELECT * FROM esdeveniment";
+            string connectionString = $"Server={server};Database={database};Port={port};User Id={user_id};Password={password};";
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                {
+                    conn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(selectEsdeveniment, conn))
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        Esdeveniment esd= null;
+                        while (reader.Read())
+                        {
+                            string line = "";
+                            for (int i = 0; i < reader.FieldCount; i++)
+                            {
+                                DateTime fecha = reader.GetDateTime(5);
+                                esd = new Esdeveniment( /*reader[1], reader[2],*/ reader[3].ToString(), /*reader[4],*/ reader[4].ToString(), fecha );
+                                esd.id = (int)reader[0];
+                                esd.id_usuari = (int)reader[1];
+                                esd.id_equip = (int)reader[2];
+                                //esd.tipus_esdeveniment = reader[3].ToString();
+                                esd.description = reader[4].ToString();
+
+                                line += reader[i].ToString() + "#"; // Separa por tabulaciones
+
+
+                            }
+                            esdeveniments.Add(esd);
+
+
+                        }
+                    }
+                }
+
+                MessageBox.Show("Exportación exitosa");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al exportar: " + ex.Message);
+            }
+            return esdeveniments;
+        }
+        //AÑADIR NOTICIAS
+        public static void addNew(News noticia)
+        {
+            try
+            {
+                OpenConnection();
+                string query = @"
+
+
+                INSERT INTO noticia(titol, descripcio, imatge_noticia, data, id_usuari, id_club)
+                VALUES(@titulo, @descripcio, @imatge_noticia, @data, @id_usuari, @id_club); ";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@titulo", noticia.Titulo);
+                    cmd.Parameters.AddWithValue("@descripcio", noticia.Texto);
+                    cmd.Parameters.AddWithValue("@data", noticia.Fecha);
+                    cmd.Parameters.AddWithValue("@imatge_noticia", noticia.Imagen);
+                    cmd.Parameters.AddWithValue("@id_usuari", noticia.idUsuari);
+                    cmd.Parameters.AddWithValue("@id_club", noticia.idClub);
+
+
+                    int filasAfectadas = cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al insertar noticia: " + ex.Message);
+            }
+            finally
+            {
+                CloseConnection();
+            }
+        }
+        //ACTUALIZAR NOTICIAS
+        public static void updateNews(News noticia)
+        {
+            try
+            {
+                OpenConnection();
+                string query = @"
+                UPDATE noticia
+                SET 
+                titol = @titulo,
+                descripcio = @descripcio,
+                imatge_noticia = @imatge_noticia,
+                data = @data,
+                id_Club = @id_club,
+                id_usuari = @id_usuari
+
+                WHERE id = @id;";
+                //INSERT INTO noticia (titol, descripcio, autor, imatge_noticia, data) 
+                //VALUES (@titulo, @descripcio, @autor,  @imatge_noticia, @data);";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@titulo", noticia.Titulo);
+                    cmd.Parameters.AddWithValue("@descripcio", noticia.Texto);
+                    cmd.Parameters.AddWithValue("@data", noticia.Fecha);
+                    cmd.Parameters.AddWithValue("@imatge_noticia", noticia.Imagen);
+                    cmd.Parameters.AddWithValue("@id_usuari", noticia.idUsuari);
+                    cmd.Parameters.AddWithValue("@id_club", noticia.idClub);
+                    cmd.Parameters.AddWithValue("@id", noticia.id);
+
+
+                    int filasAfectadas = cmd.ExecuteNonQuery();
+                    //if (filasAfectadas > 0)
+                    //{
+                    //    MessageBox.Show("Noticia desada");
+                    //}
+                    //else
+                    //{
+                    //    MessageBox.Show("Error");
+                    //}
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al insertar noticia: " + ex.Message);
+            }
+            finally
+            {
+                CloseConnection();
+            }
+        }
+        //BORRAR NOTICIAS
+        public static void deleteNew(News noticia)
+        {
+            try
+            {
+                OpenConnection();
+                string query = "DELETE FROM noticia WHERE id = @id";
+
+
+                using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@id", noticia.id);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al borrar noticia: " + ex.Message);
+            }
+            finally
+            {
+                CloseConnection();
+            }
+        }
+        //MODIFICAR EVENTOS
+        public static void updateEsdeveniment(Esdeveniment esd)
+        {
+            try
+            {
+                OpenConnection();
+                string query = @"
+                UPDATE noticia
+                SET 
+                id_usuari = @id_usuari,
+                id_equip = @id_equip,
+                tipus_esdeveniment = @tipus_esdeveniment,
+                descripcio = @descripcio,
+                data = @data,
+
+                WHERE id = @id;";
+
+                //INSERT INTO noticia (titol, descripcio, autor, imatge_noticia, data) 
+                //VALUES (@titulo, @descripcio, @autor,  @imatge_noticia, @data);";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@id_usuari", esd.id_usuari);
+                    cmd.Parameters.AddWithValue("@id_equip", esd.id_equip);
+                    cmd.Parameters.AddWithValue("@tipus_esdeveniment", esd.tipus_esdeveniment);
+                    cmd.Parameters.AddWithValue("@descripcio", esd.description);
+                    cmd.Parameters.AddWithValue("@data", esd.data);
+
+
+                    int filasAfectadas = cmd.ExecuteNonQuery();
+                    //if (filasAfectadas > 0)
+                    //{
+                    //    MessageBox.Show("Noticia desada");
+                    //}
+                    //else
+                    //{
+                    //    MessageBox.Show("Error");
+                    //}
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al insertar noticia: " + ex.Message);
+            }
+            finally
+            {
+                CloseConnection();
+            }
+        }
+        //AÑADIR ESDEVENIMENT
+        public static void addEvent(Esdeveniment esd)
+        {
+            try
+            {
+                OpenConnection();
+                string query = @"
+
+
+                INSERT INTO esdeveniment(id_usuari, id_equip, tipus_esdeveniment, descripcio, data)
+                VALUES(@id_usuari, @id_equip, @tipus_esdeveniment, @descripcio, @data); ";
+                //INSERT INTO noticia (titol, descripcio, autor, imatge_noticia, data) 
+                //VALUES (@titulo, @descripcio, @autor,  @imatge_noticia, @data);";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@id_usuari", esd.id_usuari);
+                    cmd.Parameters.AddWithValue("@id_equip", esd.id_equip);
+                    cmd.Parameters.AddWithValue("@tipus_esdeveniment", esd.tipus_esdeveniment);
+                    cmd.Parameters.AddWithValue("@descripcio", esd.description);
+                    cmd.Parameters.AddWithValue("@data", esd.data);
+
+
+                    int filasAfectadas = cmd.ExecuteNonQuery();
+                    //if (filasAfectadas > 0)
+                    //{
+                    //    MessageBox.Show("Noticia desada");
+                    //}
+                    //else
+                    //{
+                    //    MessageBox.Show("Error");
+                    //}
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al insertar evento: " + ex.Message);
+            }
+            finally
+            {
+                CloseConnection();
+            }
+        }
+        //BORRAR ESDEVENIMENT
+        public static void deleteEsdeveniment(Esdeveniment  esd)
+        {
+            try
+            {
+                OpenConnection();
+                string query = "DELETE FROM esdeveniment WHERE id = @id";
+
+
+
+                using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@id", esd.id);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al borrar noticia: " + ex.Message);
+            }
+            finally
+            {
+                CloseConnection();
+            }
         }
 
         // Método para inicializar la conexión
@@ -53,7 +370,7 @@ namespace ClubPilot
         }
 
         // Metodo para abrir la conexión
-        public void OpenConnection()
+        public static void OpenConnection()
         {
             try
             {
@@ -67,7 +384,7 @@ namespace ClubPilot
         }
 
         // Metodo para cerrar la conexión
-        public void CloseConnection()
+        public static void CloseConnection()
         {
             try
             {
@@ -113,14 +430,13 @@ namespace ClubPilot
                         }
                     }
                 }
-
-                MessageBox.Show("Exportación exitosa");
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error al exportar: " + ex.Message);
             }
         }
+
         public void exportClub()
         {
             string selectClub = "SELECT * FROM club";
