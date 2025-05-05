@@ -59,10 +59,10 @@ namespace ClubPilot
         private void LoadFormIntoPanel(Form form)
         {
             // Limpiar cualquier control existente en el panel
-            db.OpenConnection ();
+            Connection.OpenConnection();
             String  rol= db.ObtenerRol(Usuari.usuari.getIdUsuari());
-            db.CloseConnection();
-            
+            Connection.CloseConnection();
+
             // Aquí defines tu condición
             if (rol.Equals("a"))
             {
