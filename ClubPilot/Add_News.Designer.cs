@@ -36,6 +36,8 @@
             this.textBox_imagen = new System.Windows.Forms.TextBox();
             this.label_fecha = new System.Windows.Forms.Label();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textBox_autor = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label_titulo
@@ -49,7 +51,7 @@
             // 
             // textBox_titulo
             // 
-            this.textBox_titulo.Location = new System.Drawing.Point(28, 56);
+            this.textBox_titulo.Location = new System.Drawing.Point(28, 46);
             this.textBox_titulo.Name = "textBox_titulo";
             this.textBox_titulo.Size = new System.Drawing.Size(100, 22);
             this.textBox_titulo.TabIndex = 1;
@@ -57,7 +59,7 @@
             // label_descripcion
             // 
             this.label_descripcion.AutoSize = true;
-            this.label_descripcion.Location = new System.Drawing.Point(28, 102);
+            this.label_descripcion.Location = new System.Drawing.Point(25, 99);
             this.label_descripcion.Name = "label_descripcion";
             this.label_descripcion.Size = new System.Drawing.Size(72, 16);
             this.label_descripcion.TabIndex = 2;
@@ -65,7 +67,7 @@
             // 
             // textBox_descripcion
             // 
-            this.textBox_descripcion.Location = new System.Drawing.Point(28, 141);
+            this.textBox_descripcion.Location = new System.Drawing.Point(28, 118);
             this.textBox_descripcion.Name = "textBox_descripcion";
             this.textBox_descripcion.Size = new System.Drawing.Size(100, 22);
             this.textBox_descripcion.TabIndex = 3;
@@ -73,7 +75,7 @@
             // label_imagen
             // 
             this.label_imagen.AutoSize = true;
-            this.label_imagen.Location = new System.Drawing.Point(28, 189);
+            this.label_imagen.Location = new System.Drawing.Point(25, 172);
             this.label_imagen.Name = "label_imagen";
             this.label_imagen.Size = new System.Drawing.Size(48, 16);
             this.label_imagen.TabIndex = 6;
@@ -81,7 +83,7 @@
             // 
             // textBox_imagen
             // 
-            this.textBox_imagen.Location = new System.Drawing.Point(28, 217);
+            this.textBox_imagen.Location = new System.Drawing.Point(28, 191);
             this.textBox_imagen.Name = "textBox_imagen";
             this.textBox_imagen.Size = new System.Drawing.Size(100, 22);
             this.textBox_imagen.TabIndex = 7;
@@ -89,7 +91,7 @@
             // label_fecha
             // 
             this.label_fecha.AutoSize = true;
-            this.label_fecha.Location = new System.Drawing.Point(28, 264);
+            this.label_fecha.Location = new System.Drawing.Point(25, 309);
             this.label_fecha.Name = "label_fecha";
             this.label_fecha.Size = new System.Drawing.Size(36, 16);
             this.label_fecha.TabIndex = 8;
@@ -97,16 +99,34 @@
             // 
             // dateTimePicker2
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(28, 306);
+            this.dateTimePicker2.Location = new System.Drawing.Point(28, 337);
             this.dateTimePicker2.Name = "dateTimePicker2";
             this.dateTimePicker2.Size = new System.Drawing.Size(275, 22);
             this.dateTimePicker2.TabIndex = 9;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(28, 238);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(38, 16);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "Autor";
+            // 
+            // textBox_autor
+            // 
+            this.textBox_autor.Location = new System.Drawing.Point(28, 257);
+            this.textBox_autor.Name = "textBox_autor";
+            this.textBox_autor.Size = new System.Drawing.Size(100, 22);
+            this.textBox_autor.TabIndex = 11;
             // 
             // Add_News
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.textBox_autor);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.dateTimePicker2);
             this.Controls.Add(this.label_fecha);
             this.Controls.Add(this.textBox_imagen);
@@ -132,5 +152,7 @@
         private System.Windows.Forms.TextBox textBox_imagen;
         private System.Windows.Forms.Label label_fecha;
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox textBox_autor;
     }
 }

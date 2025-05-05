@@ -11,14 +11,16 @@ public class News : Panel
     public int idUsuari { get; set; }
     public string Titulo { get; set; }
     public string Texto { get; set; }
+    public string Autor { get; set; }
     public DateTime Fecha { get; set; }
     public string Imagen { get; set; }
     public Button borrar { get; set; }
 
-    public News(string titulo, string texto, string imagen, DateTime fecha)
+    public News(string titulo, string texto, string autor, string imagen, DateTime fecha)
     {
         Titulo = titulo;
         Texto = texto;
+        Autor = autor;
         Fecha = fecha;
         Imagen = imagen;
         //CONFIG BOTON
@@ -80,7 +82,7 @@ public class News : Panel
         PictureBox pictureBox = new PictureBox
         {
             Location = new System.Drawing.Point(500, 10),
-            Size = new System.Drawing.Size(180, 180),
+            Size = new System.Drawing.Size(180, 180),           //NO SE MUESTRA LA IMAGEN
             SizeMode = PictureBoxSizeMode.StretchImage
         };
 
@@ -91,11 +93,11 @@ public class News : Panel
         }
         catch
         {
-            pictureBox.Image = Resources.icons8_aceptar_30; // HAY QUE CAMBIAR ESTO
+            pictureBox.Image = Resources.icons8_cancelar_30; // HAY QUE CAMBIAR ESTO
         }
 
         this.Controls.Add(pictureBox);
-
+        pictureBox.BringToFront();
         // Etiqueta para la fecha
         Label label_fecha = new Label
         {

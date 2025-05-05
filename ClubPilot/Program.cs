@@ -16,7 +16,8 @@ namespace ClubPilot
         {
             //Application.EnableVisualStyles();
             //Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Esdeveniments());
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new News_Tab());
             Application.EnableVisualStyles();
             //Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Form1());

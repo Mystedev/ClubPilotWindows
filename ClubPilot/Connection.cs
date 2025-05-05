@@ -17,7 +17,6 @@ namespace ClubPilot
         private string port = "3306";
         private string user_id = "root";
         private string password = "admin";
-        static private MySqlConnection connection;
 
         // Constructor por defecto
         public Connection()
@@ -63,11 +62,11 @@ namespace ClubPilot
                             string line = "";
                             for (int i = 0; i < reader.FieldCount; i++)
                             {
-                                DateTime fecha = reader.GetDateTime(4);
-                                news = new News(reader[1].ToString(), reader[2].ToString(), reader[3].ToString(), fecha);
+                                DateTime fecha = reader.GetDateTime(5);
+                                news = new News(reader[1].ToString(), reader[2].ToString(), reader[3].ToString(), reader[4].ToString() ,fecha);
                                 news.id = (int)reader[0];
-                                news.idUsuari = (int)reader[6];
-                                news.idClub = (int)reader[5];
+                                news.idUsuari = (int)reader[7];
+                                news.idClub = (int)reader[6];
                                 line += reader[i].ToString() + "#"; // Separa por tabulaciones
                                 
 
@@ -142,13 +141,14 @@ namespace ClubPilot
                 string query = @"
 
 
-                INSERT INTO noticia(titol, descripcio, imatge_noticia, data, id_usuari, id_club)
-                VALUES(@titulo, @descripcio, @imatge_noticia, @data, @id_usuari, @id_club); ";
+                INSERT INTO noticia(titol, descripcio, autor ,imatge_noticia, data, id_usuari, id_club)
+                VALUES(@titulo, @descripcio, @imatge_noticia, @autor ,@data, @id_usuari, @id_club); ";
 
                 using (MySqlCommand cmd = new MySqlCommand(query, connection))
                 {
                     cmd.Parameters.AddWithValue("@titulo", noticia.Titulo);
                     cmd.Parameters.AddWithValue("@descripcio", noticia.Texto);
+                    cmd.Parameters.AddWithValue("@autor", noticia.Autor);
                     cmd.Parameters.AddWithValue("@data", noticia.Fecha);
                     cmd.Parameters.AddWithValue("@imatge_noticia", noticia.Imagen);
                     cmd.Parameters.AddWithValue("@id_usuari", noticia.idUsuari);
