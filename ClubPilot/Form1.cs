@@ -59,7 +59,7 @@ namespace ClubPilot
             int numero = int.Parse(response[0]);
             Connection.OpenConnection();
             bool[] rol = db.ObtenerRol(numero);
-            if (rol[0] == true || rol[2] == true || (rol[1] == false && rol[3] == false))
+            if (rol[0] == true || rol[2] == true || (rol[1] == false && rol[2] == false && rol[0] == false && rol[3] == false))
             {
                 login = true;
             }
@@ -88,7 +88,7 @@ namespace ClubPilot
                 button1.Visible = false;
                 Connection.OpenConnection();
                 Rol = db.ObtenerRol(numero);
-                if (rol[2] == true || rol[3]==true)
+                if (rol[0] == true || rol[3]==true)
                 {
                     comboBox1.Visible = true;
                     label3.Visible = true;
@@ -176,8 +176,7 @@ namespace ClubPilot
         {
             int idClub = 0;
             int idEquip = 0;
-            if (!(Rol[0] == false && Rol[1] == false && Rol[2] == false && Rol[3] == false))
-            {
+            
                 foreach (var registre in clubs)
                 {
 
@@ -212,7 +211,7 @@ namespace ClubPilot
                     }
                 }
                 int idUsuari = int.Parse(response[0]);
-            }
+            
             Connection.OpenConnection();
             Usuari.usuari = new infoUsuari(idUsuari, idClub, idEquip, db.ObtenerRol(idUsuari));
             Connection.CloseConnection();
