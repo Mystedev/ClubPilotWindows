@@ -938,17 +938,33 @@ namespace ClubPilot
                     CloseConnection();
                     string tablaRol = "";
                     string columnaId = "";
-
+                    bool clubOEquip=false;
                     if (rol[0] == true)
                     {
                         tablaRol = "administrador";
                         columnaId = "id_club";
+                  
+
                     }
-                    else
+                    else if (rol[2] == true)
                     {
                         tablaRol = "entrenador";
-                        columnaId = "id_Equip";
+                        columnaId = "id_equip";
+                        clubOEquip = true;
                     }
+                    else if (rol[3] == true)
+                    {
+                        tablaRol = "jugador";
+                        columnaId = "id_equip";
+                        clubOEquip = true;
+                    }
+                    else if (rol[1]==true)
+                    {
+                        tablaRol = "aficionat";
+                        columnaId = "id_club";
+                    }
+                  
+                  
 
                     OpenConnection();
 
@@ -980,10 +996,21 @@ namespace ClubPilot
                             usuario.Add("rol", "");
                         }
                        
-                        if (idClubUsuario != idClubOEquipoInt)
+                        if (!clubOEquip)
                         {
-                            CloseConnection();
-                            continue;
+                            if (idClubUsuario != idClubOEquipoInt)
+                            {
+                                CloseConnection();
+                                continue;
+                            }
+                        } 
+                        else
+                        {
+                            if(idClubUsuario != idClubOEquipoInt)
+                            {
+                                CloseConnection();
+                                continue;
+                            }
                         }
 
 
@@ -1198,9 +1225,14 @@ namespace ClubPilot
                     tablaRol = "administrador"; 
                     columnaId = "id_club";
                 }
-                else
+                else if (rol== "entrenador")
                 {
                     tablaRol = "entrenador";
+                    columnaId = "id_Equip";
+                }
+                else 
+                {
+                    tablaRol = "jugador";
                     columnaId = "id_Equip";
                 }
 
