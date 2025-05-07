@@ -75,11 +75,11 @@ namespace ClubPilot
 
 
             Connection.OpenConnection();
-            String  rol= db.ObtenerRol(Usuari.usuari.getIdUsuari());
+            bool []  rol= db.ObtenerRol(Usuari.usuari.getIdUsuari());
             Connection.CloseConnection();
 
        
-            if (rol.Equals("a"))
+            if (rol[0]==false && rol[1] == false && rol[2] == false && rol[3] == false)
             {
             
 
@@ -99,21 +99,15 @@ namespace ClubPilot
                 this.menuVertical.Size = new System.Drawing.Size(285, 709);
                 this.menuVertical.TabIndex = 2;
  
-                btnMenEsdeveniments.Visible = false;
-                btnMenEsdeveniments.Enabled = false;
-                btnMenJugadors.Visible = false;
-                btnMenJugadors.Enabled = false;
-                this.btnMenClub.Location = new System.Drawing.Point(12, 185);
-                this.button6.Location = new System.Drawing.Point(12, 250);
-                this.btnMenComptes.Location = new System.Drawing.Point(12, 317);
-                this.btnMenNoticies.Location = new System.Drawing.Point(12, 382);
-                this.btnMenJugadors.Location = new System.Drawing.Point(12, 447);
-                this.btnMenEsdeveniments.Location = new System.Drawing.Point(12, 512);
+         
 
 
                 this.menuVertical.Controls.Add(this.btnMenSolClubs);
                 this.menuVertical.Controls.Add(this.btnMenEsdeveniments);
+                this.menuVertical.Controls.Add(this.panel7);
                 this.menuVertical.Controls.Add(this.button6);
+                this.menuVertical.Controls.Add(this.panel6);
+                this.menuVertical.Controls.Add(this.panel5);
                 this.menuVertical.Controls.Add(this.btnMenJugadors);
                 this.menuVertical.Controls.Add(this.panel4);
                 this.menuVertical.Controls.Add(this.btnMenNoticies);
@@ -128,7 +122,7 @@ namespace ClubPilot
                 this.menuVertical.Size = new System.Drawing.Size(285, 709);
                 this.menuVertical.TabIndex = 2;
             }
-            else if(rol.Equals("administrador"))
+            else if(rol[0] == true)
             {
                 this.menuVertical.BackColor = System.Drawing.Color.MidnightBlue;
                 this.menuVertical.Controls.Add(this.panelC);
@@ -167,7 +161,7 @@ namespace ClubPilot
                 this.menuVertical.TabIndex = 2;
 
             }
-            else if(rol.Equals("entrenador"))
+            else if(rol[2] == true)
             {
                 this.menuVertical.BackColor = System.Drawing.Color.MidnightBlue;
                 this.menuVertical.Controls.Add(this.panelC);

@@ -11,11 +11,11 @@ namespace ClubPilot
 {
     class Connection
     {
-        private string server = "localhost";
-        private string database = "clubpilot";
-        private string port = "3306";
-        private string user_id = "root";
-        private string password = "12345";
+        private string server = "192.168.1.150";
+        private string database = "clubPilot";
+        private string port = "25230";
+        private string user_id = "clubPilot";
+        private string password = "ABCD!!25230";
 
         private static MySqlConnection connection;
 
@@ -597,8 +597,9 @@ namespace ClubPilot
                 MessageBox.Show("Error al exportar: " + ex.Message);
             }
         }
-        public String[] Login(string username, string password)
+        public String[] Login(string username, string passwordU)
         {
+            
             OpenConnection();
             String result = "";
             string connectionString = $"Server={server};Database={database};Port={port};User Id={user_id};Password={password};";
@@ -617,11 +618,11 @@ namespace ClubPilot
                     FROM usuari u 
                     LEFT JOIN administrador a ON u.id = a.id_usuari
                     WHERE u.username = @username AND u.password = @password;";
-                    password = CalcularSHA256(password);
+                    passwordU = CalcularSHA256(passwordU);
                     using (MySqlCommand cmd = new MySqlCommand(query, connection))
                     {
                         cmd.Parameters.AddWithValue("@username", username);
-                        cmd.Parameters.AddWithValue("@password", password);
+                        cmd.Parameters.AddWithValue("@password", passwordU);
 
                         // Ejecutar la consulta y obtener el valor directamente
                         MySqlDataReader reader = cmd.ExecuteReader();
@@ -653,9 +654,9 @@ namespace ClubPilot
             string line = "";
             int id=int.Parse(idUsuari);
             OpenConnection();
-            String rol=ObtenerRol(id);
+            bool [] rol=ObtenerRol(id);
             List<Dictionary<string, object>> resultados = new List<Dictionary<string, object>>();
-            if(rol =="administrador")
+            if (rol[0] == true)
             {
             try
             {
@@ -783,7 +784,7 @@ namespace ClubPilot
             {
                 OpenConnection();
                 string query = @"
-                UPDATE Club 
+                UPDATE club 
                 SET 
                 registre = 1
                 WHERE id = @id;";
@@ -933,12 +934,12 @@ namespace ClubPilot
                 {
                     int id = Convert.ToInt32(usuario["id"]);
                     OpenConnection();
-                    string rol = ObtenerRol(id);
-                                  CloseConnection();
+                    bool [] rol = ObtenerRol(id);
+                    CloseConnection();
                     string tablaRol = "";
                     string columnaId = "";
 
-                    if (rol == "administrador")
+                    if (rol[0] == true)
                     {
                         tablaRol = "administrador";
                         columnaId = "id_club";
@@ -958,7 +959,27 @@ namespace ClubPilot
                         object idClubOEquipo = cmd.ExecuteScalar(); // obtiene el valor directamente
                         int idClubUsuario = Usuari.usuari.getIdClub();
                         int idClubOEquipoInt = Convert.ToInt32(idClubOEquipo);
-                        usuario.Add("rol", rol);
+                        if (rol[0] == true)
+                        {
+                           usuario.Add("rol", "administrador");
+                        }
+                        else if (rol[1] == true)
+                        {
+                            usuario.Add("rol", "aficionat");
+                        }
+                        else if (rol[2] == true)
+                        {
+                            usuario.Add("rol", "entrenador");
+                        }
+                        else if (rol[3] == true)
+                        {
+                            usuario.Add("rol", "jugador");
+                        }
+                        else
+                        {
+                            usuario.Add("rol", "");
+                        }
+                       
                         if (idClubUsuario != idClubOEquipoInt)
                         {
                             CloseConnection();
@@ -1145,7 +1166,7 @@ namespace ClubPilot
                 Thread.Sleep(100);
                 String password =  GenerarUsuari();
                 MessageBox.Show(password);
-                password = CalcularSHA256(password);
+                String passwordHash = CalcularSHA256(password);
                 using (MySqlCommand cmd = new MySqlCommand(query, connection))
                 {
                    
@@ -1157,7 +1178,7 @@ namespace ClubPilot
                     { 
                     cmd.Parameters.AddWithValue("@username", username);
                     }
-                    cmd.Parameters.AddWithValue("@password", password);  
+                    cmd.Parameters.AddWithValue("@password", passwordHash);  
                     cmd.Parameters.AddWithValue("@nom", nom);
                     cmd.Parameters.AddWithValue("@cognoms", cognoms);
                     cmd.Parameters.AddWithValue("@email", email);
@@ -1215,6 +1236,16 @@ namespace ClubPilot
                         Console.WriteLine("Error al asignar el rol.");
                     }
                 }
+                String cuerpo = "";
+                if (username.Equals(""))
+                {
+                    cuerpo = CrearAsunto(password,usernameG);
+                }
+                else 
+                {
+                    cuerpo = CrearAsunto(password, username);
+                }
+                Mail.EnviarCorreo(email,"Informació inici de sesió ClubPilot",cuerpo);
             }
             catch (Exception ex)
             {
@@ -1227,34 +1258,60 @@ namespace ClubPilot
             }
             finally
             {
+
                 CloseConnection(); 
             }
+        }
+        public  String CrearAsunto(String contrasena, String usuario)
+        {
+            
+            return "Benvolgut/da fundador!,\r\n" +
+                "\r\n" +
+                "Espero que aquest missatge et trobi bé.\r\n" +
+                "\r\n" +
+                "A continuació, et proporcionem el nom d'usuari i la contrasenya que necessites per accedir al teu compte:\r\n" +
+                "\r\n" +
+                "Nom d'usuari: "+ usuario +"\r\n" +
+                "\r\nContrasenya: "+contrasena +"\r\n" +
+                "\r\n" +
+                "Et recomano que, per raons de seguretat, canviïs la contrasenya tan bon punt accedeixis al compte. Si tens qualsevol dubte o necessites ajuda addicional, no dubtis a contactar-me.\r\n" +
+                "\r\nEstic a la teva disposició per a qualsevol consulta.\r\n" +
+                "\r\nSalutacions cordials,\r\n" +
+                "Next Sphere S.L.\r\n" +
+                "[La teva informació de contacte]";
         }
 
 
 
-        public string ObtenerRol(int id)
+        public bool [] ObtenerRol(int id)
         {
-            string rol = "a"; 
+            string rol = "a";
+            bool[] rols = new bool[4];
+
 
             if (EsRol(id, "administrador", connection))
             {
                 rol = "administrador";
+                rols[0] = true;
             }
             else if (EsRol(id, "aficionat", connection))
             {
                 rol = "aficionat";
+                rols[1] = true;
             }
             else if (EsRol(id, "entrenador", connection))
             {
                 rol = "entrenador";
+                rols[2] = true;
             }
             else if (EsRol(id, "jugador", connection))
             {
                 rol = "jugador";
+                rols[3] = true;
             }
 
-            return rol;
+            return rols;
+           // return rol;
         }
 
         public bool EsRol(int id, string rol, MySqlConnection conn)

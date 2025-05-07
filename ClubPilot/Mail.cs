@@ -23,6 +23,7 @@ namespace ClubPilot
                 {
                     smtp.Connect("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
                     smtp.Authenticate("clubpilotapp@gmail.com", "rbjwgomhfsjlunbd"); // contraseña de aplicación
+
                     smtp.Send(mensaje);
                     smtp.Disconnect(true);
                 }
