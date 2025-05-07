@@ -260,6 +260,7 @@
     <None Include="Resources\esdeveniments.png" />
     <None Include="Resources\equips.png" />
     <None Include="Resources\icons8-club-40.png" />
+    <None Include="Resources\camisetaJugador.png" />
     <Content Include="Resources\LogoApp.png" />
     <None Include="Resources\noticies.png" />
     <None Include="Resources\usuaris.png" />

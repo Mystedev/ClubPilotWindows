@@ -16,11 +16,11 @@ namespace ClubPilot
 {
     class Connection
     {
-        private string server = "localhost";
-        private string database = "clubpilot";
-        private string port = "3306";
-        private string user_id = "root";
-        private string password = "12345";
+        private string server = "192.168.1.150";
+        private string database = "clubPilot";
+        private string port = "25230";
+        private string user_id = "clubPilot";
+        private string password = "ABCD!!25230";
 
         private MySqlConnection connection;
 
@@ -1018,6 +1018,54 @@ namespace ClubPilot
             {
                 MessageBox.Show("Error al exportar: " + ex.Message);
             }
+        }
+        public List<Dictionary<string, object>> SelectJugadors()
+        {
+            List<Dictionary<string, object>> resultados = new List<Dictionary<string, object>>();
+        
+            try
+            {
+                OpenConnection();
+                string query = @"
+                  SELECT c.id, c.nom, c.any_fundacio, c.fundador, c.logo, c.emailfundador,c.registre
+                  FROM club c
+                  SELECT u.nom, u.cognoms, j.posicio, j.dorsal, j.disponibilitat 
+                  FROM jugador j
+                  JOIN usuari u ON j.id_usuari = u.id 
+                  WHERE J.id_equip = @id;
+                  ";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                //cmd.Parameters.AddWithValue("@id", idEquipEnQuestio);
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    
+                    while (reader.Read())
+                    {
+                        Dictionary<string, object> registro = new Dictionary<string, object>
+                    {
+                        { "id", reader["id"] },
+                        { "nom", reader["nom"] },
+                        { "any_fundacio", reader["any_fundacio"] },
+                        { "fundador", reader["fundador"] },
+                        { "logo", reader["logo"] },
+                        { "emailfundador", reader["emailfundador"] },
+                        {"registre", reader["registre"] }
+                    };
+                        resultados.Add(registro);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al obtener los registros: {ex.Message}");
+            }
+            finally
+            {
+                CloseConnection();
+            }
+
+            return resultados;
         }
     }
 }
