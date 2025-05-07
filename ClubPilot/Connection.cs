@@ -11,7 +11,7 @@ namespace ClubPilot
 {
     class Connection
     {
-        private string server = "192.168.1.150";
+        private string server = "webapps.insjoanbrudieu.cat";
         private string database = "clubPilot";
         private string port = "25230";
         private string user_id = "clubPilot";
@@ -64,11 +64,11 @@ namespace ClubPilot
                             string line = "";
                             for (int i = 0; i < reader.FieldCount; i++)
                             {
-                                DateTime fecha = reader.GetDateTime(4);
+                                DateTime fecha = reader.GetDateTime(5);
                                 news = new News(reader[1].ToString(), reader[2].ToString(), reader[3].ToString(), reader[4].ToString(), fecha);
                                 news.id = (int)reader[0];
-                                news.idUsuari = (int)reader[6];
-                                news.idClub = (int)reader[5];
+                                news.idUsuari = (int)reader[7];
+                                news.idClub = (int)reader[6];
                                 line += reader[i].ToString() + "#"; // Separa por tabulaciones
                                 
 
@@ -108,11 +108,10 @@ namespace ClubPilot
                             for (int i = 0; i < reader.FieldCount; i++)
                             {
                                 DateTime fecha = reader.GetDateTime(5);
-                                esd = new Esdeveniment( /*reader[1], reader[2],*/ reader[3].ToString(), /*reader[4],*/ reader[4].ToString(), fecha );
+                                esd = new Esdeveniment(reader[3].ToString(), reader[4].ToString(), fecha );
                                 esd.id = (int)reader[0];
                                 esd.id_usuari = (int)reader[1];
                                 esd.id_equip = (int)reader[2];
-                                //esd.tipus_esdeveniment = reader[3].ToString();
                                 esd.description = reader[4].ToString();
 
                                 line += reader[i].ToString() + "#"; // Separa por tabulaciones
