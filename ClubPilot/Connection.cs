@@ -1,28 +1,25 @@
-﻿using System;
-using System.Collections;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
-using System.Data;
 using System.IO;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
-using Microsoft.Win32;
-using MySql.Data.MySqlClient;
-using Mysqlx.Crud;
-using MySqlX.XDevAPI.Common;
-using System.Security.Cryptography;
 
 namespace ClubPilot
 {
     class Connection
     {
+
         private string server = "192.168.1.150";
+
         private string database = "clubPilot";
         private string port = "25230";
         private string user_id = "clubPilot";
         private string password = "ABCD!!25230";
 
-        private MySqlConnection connection;
+        private static MySqlConnection connection;
 
         // Constructor por defecto
         public Connection()
@@ -46,7 +43,323 @@ namespace ClubPilot
             this.port = port;
             this.user_id = user_id;
             this.password = password;
+            
             InitializeConnection();
+        }
+        //Funcion que uso en News_Tab.cs cargar las noticias de la db a la lista de noticias
+        public List<News> exportNews()
+        {
+            List<News> noticias = new List<News>();
+            string selectNoticia = "SELECT * FROM noticia";
+            string connectionString = $"Server={server};Database={database};Port={port};User Id={user_id};Password={password};";
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                {
+                    conn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(selectNoticia, conn))
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        News news = null;
+                        while (reader.Read())
+                        {
+                            string line = "";
+                            for (int i = 0; i < reader.FieldCount; i++)
+                            {
+                                DateTime fecha = reader.GetDateTime(5);
+                                news = new News(reader[1].ToString(), reader[2].ToString(), reader[3].ToString(), reader[4].ToString(), fecha);
+                                news.id = (int)reader[0];
+                                news.idUsuari = (int)reader[7];
+                                news.idClub = (int)reader[6];
+                                line += reader[i].ToString() + "#"; // Separa por tabulaciones
+                                
+
+
+                            }
+                            noticias.Add(news);
+                        }
+                    }
+                }
+
+                MessageBox.Show("Exportación exitosa");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al exportar: " + ex.Message);
+            }
+            return noticias;
+        }
+        //Export de esdeveniments
+        public List<Esdeveniment> exportEsdeveniments()
+        {
+            List<Esdeveniment> esdeveniments = new List<Esdeveniment>();
+            string selectEsdeveniment = "SELECT * FROM esdeveniment";
+            string connectionString = $"Server={server};Database={database};Port={port};User Id={user_id};Password={password};";
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                {
+                    conn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(selectEsdeveniment, conn))
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        Esdeveniment esd= null;
+                        while (reader.Read())
+                        {
+                            string line = "";
+                            for (int i = 0; i < reader.FieldCount; i++)
+                            {
+                                DateTime fecha = reader.GetDateTime(5);
+                                esd = new Esdeveniment(reader[3].ToString(), reader[4].ToString(), fecha );
+                                esd.id = (int)reader[0];
+                                esd.id_usuari = (int)reader[1];
+                                esd.id_equip = (int)reader[2];
+                                esd.description = reader[4].ToString();
+
+                                line += reader[i].ToString() + "#"; // Separa por tabulaciones
+
+
+                            }
+                            esdeveniments.Add(esd);
+
+
+                        }
+                    }
+                }
+
+                MessageBox.Show("Exportación exitosa");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al exportar: " + ex.Message);
+            }
+            return esdeveniments;
+        }
+        //AÑADIR NOTICIAS
+        public static void addNew(News noticia)
+        {
+            try
+            {
+                OpenConnection();
+                string query = @"
+
+
+                INSERT INTO noticia(titol, descripcio, imatge_noticia, data, id_usuari, id_club)
+                VALUES(@titulo, @descripcio, @imatge_noticia, @data, @id_usuari, @id_club); ";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@titulo", noticia.Titulo);
+                    cmd.Parameters.AddWithValue("@descripcio", noticia.Texto);
+                    cmd.Parameters.AddWithValue("@data", noticia.Fecha);
+                    cmd.Parameters.AddWithValue("@imatge_noticia", noticia.Imagen);
+                    cmd.Parameters.AddWithValue("@id_usuari", noticia.idUsuari);
+                    cmd.Parameters.AddWithValue("@id_club", noticia.idClub);
+
+
+                    int filasAfectadas = cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al insertar noticia: " + ex.Message);
+            }
+            finally
+            {
+                CloseConnection();
+            }
+        }
+        //ACTUALIZAR NOTICIAS
+        public static void updateNews(News noticia)
+        {
+            try
+            {
+                OpenConnection();
+                string query = @"
+                UPDATE noticia
+                SET 
+                titol = @titulo,
+                descripcio = @descripcio,
+                imatge_noticia = @imatge_noticia,
+                data = @data,
+                id_Club = @id_club,
+                id_usuari = @id_usuari
+
+                WHERE id = @id;";
+                //INSERT INTO noticia (titol, descripcio, autor, imatge_noticia, data) 
+                //VALUES (@titulo, @descripcio, @autor,  @imatge_noticia, @data);";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@titulo", noticia.Titulo);
+                    cmd.Parameters.AddWithValue("@descripcio", noticia.Texto);
+                    cmd.Parameters.AddWithValue("@data", noticia.Fecha);
+                    cmd.Parameters.AddWithValue("@imatge_noticia", noticia.Imagen);
+                    cmd.Parameters.AddWithValue("@id_usuari", noticia.idUsuari);
+                    cmd.Parameters.AddWithValue("@id_club", noticia.idClub);
+                    cmd.Parameters.AddWithValue("@id", noticia.id);
+
+
+                    int filasAfectadas = cmd.ExecuteNonQuery();
+                    //if (filasAfectadas > 0)
+                    //{
+                    //    MessageBox.Show("Noticia desada");
+                    //}
+                    //else
+                    //{
+                    //    MessageBox.Show("Error");
+                    //}
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al insertar noticia: " + ex.Message);
+            }
+            finally
+            {
+                CloseConnection();
+            }
+        }
+        //BORRAR NOTICIAS
+        public static void deleteNew(News noticia)
+        {
+            try
+            {
+                OpenConnection();
+                string query = "DELETE FROM noticia WHERE id = @id";
+
+
+                using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@id", noticia.id);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al borrar noticia: " + ex.Message);
+            }
+            finally
+            {
+                CloseConnection();
+            }
+        }
+        //MODIFICAR EVENTOS
+        public static void updateEsdeveniment(Esdeveniment esd)
+        {
+            try
+            {
+                OpenConnection();
+                string query = @"
+                UPDATE noticia
+                SET 
+                id_usuari = @id_usuari,
+                id_equip = @id_equip,
+                tipus_esdeveniment = @tipus_esdeveniment,
+                descripcio = @descripcio,
+                data = @data,
+
+                WHERE id = @id;";
+
+                //INSERT INTO noticia (titol, descripcio, autor, imatge_noticia, data) 
+                //VALUES (@titulo, @descripcio, @autor,  @imatge_noticia, @data);";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@id_usuari", esd.id_usuari);
+                    cmd.Parameters.AddWithValue("@id_equip", esd.id_equip);
+                    cmd.Parameters.AddWithValue("@tipus_esdeveniment", esd.tipus_esdeveniment);
+                    cmd.Parameters.AddWithValue("@descripcio", esd.description);
+                    cmd.Parameters.AddWithValue("@data", esd.data);
+
+
+                    int filasAfectadas = cmd.ExecuteNonQuery();
+                    //if (filasAfectadas > 0)
+                    //{
+                    //    MessageBox.Show("Noticia desada");
+                    //}
+                    //else
+                    //{
+                    //    MessageBox.Show("Error");
+                    //}
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al insertar noticia: " + ex.Message);
+            }
+            finally
+            {
+                CloseConnection();
+            }
+        }
+        //AÑADIR ESDEVENIMENT
+        public static void addEvent(Esdeveniment esd)
+        {
+            try
+            {
+                OpenConnection();
+                string query = @"
+
+
+                INSERT INTO esdeveniment(id_usuari, id_equip, tipus_esdeveniment, descripcio, data)
+                VALUES(@id_usuari, @id_equip, @tipus_esdeveniment, @descripcio, @data); ";
+                //INSERT INTO noticia (titol, descripcio, autor, imatge_noticia, data) 
+                //VALUES (@titulo, @descripcio, @autor,  @imatge_noticia, @data);";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@id_usuari", esd.id_usuari);
+                    cmd.Parameters.AddWithValue("@id_equip", esd.id_equip);
+                    cmd.Parameters.AddWithValue("@tipus_esdeveniment", esd.tipus_esdeveniment);
+                    cmd.Parameters.AddWithValue("@descripcio", esd.description);
+                    cmd.Parameters.AddWithValue("@data", esd.data);
+
+
+                    int filasAfectadas = cmd.ExecuteNonQuery();
+                    //if (filasAfectadas > 0)
+                    //{
+                    //    MessageBox.Show("Noticia desada");
+                    //}
+                    //else
+                    //{
+                    //    MessageBox.Show("Error");
+                    //}
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al insertar evento: " + ex.Message);
+            }
+            finally
+            {
+                CloseConnection();
+            }
+        }
+        //BORRAR ESDEVENIMENT
+        public static void deleteEsdeveniment(Esdeveniment  esd)
+        {
+            try
+            {
+                OpenConnection();
+                string query = "DELETE FROM esdeveniment WHERE id = @id";
+
+
+
+                using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@id", esd.id);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al borrar noticia: " + ex.Message);
+            }
+            finally
+            {
+                CloseConnection();
+            }
         }
 
         // Método para inicializar la conexión
@@ -58,7 +371,7 @@ namespace ClubPilot
         }
 
         // Metodo para abrir la conexión
-        public void OpenConnection()
+        public static void OpenConnection()
         {
             try
             {
@@ -72,7 +385,7 @@ namespace ClubPilot
         }
 
         // Metodo para cerrar la conexión
-        public void CloseConnection()
+        public static void CloseConnection()
         {
             try
             {
@@ -118,14 +431,13 @@ namespace ClubPilot
                         }
                     }
                 }
-
-                MessageBox.Show("Exportación exitosa");
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error al exportar: " + ex.Message);
             }
         }
+
         public void exportClub()
         {
             string selectClub = "SELECT * FROM club";
@@ -286,8 +598,9 @@ namespace ClubPilot
                 MessageBox.Show("Error al exportar: " + ex.Message);
             }
         }
-        public String[] Login(string username, string password)
+        public String[] Login(string username, string passwordU)
         {
+            
             OpenConnection();
             String result = "";
             string connectionString = $"Server={server};Database={database};Port={port};User Id={user_id};Password={password};";
@@ -306,11 +619,11 @@ namespace ClubPilot
                     FROM usuari u 
                     LEFT JOIN administrador a ON u.id = a.id_usuari
                     WHERE u.username = @username AND u.password = @password;";
-                    password = CalcularSHA256(password);
+                    passwordU = CalcularSHA256(passwordU);
                     using (MySqlCommand cmd = new MySqlCommand(query, connection))
                     {
                         cmd.Parameters.AddWithValue("@username", username);
-                        cmd.Parameters.AddWithValue("@password", password);
+                        cmd.Parameters.AddWithValue("@password", passwordU);
 
                         // Ejecutar la consulta y obtener el valor directamente
                         MySqlDataReader reader = cmd.ExecuteReader();
@@ -342,9 +655,9 @@ namespace ClubPilot
             string line = "";
             int id=int.Parse(idUsuari);
             OpenConnection();
-            String rol=ObtenerRol(id);
+            bool [] rol=ObtenerRol(id);
             List<Dictionary<string, object>> resultados = new List<Dictionary<string, object>>();
-            if(rol =="administrador")
+            if (rol[0] == true)
             {
             try
             {
@@ -472,7 +785,7 @@ namespace ClubPilot
             {
                 OpenConnection();
                 string query = @"
-                UPDATE Club 
+                UPDATE club 
                 SET 
                 registre = 1
                 WHERE id = @id;";
@@ -589,10 +902,10 @@ namespace ClubPilot
             {
                 OpenConnection();
 
-                // Obtener todos los usuarios primero
+                // Obtener todos los usuarios
                 string query = @"
-                SELECT u.id, u.username, u.password, u.nom, u.cognoms, u.email
-                FROM usuari u";
+            SELECT u.id, u.username, u.password, u.nom, u.cognoms, u.email
+            FROM usuari u";
 
                 List<Dictionary<string, object>> usuarios = new List<Dictionary<string, object>>();
 
@@ -615,13 +928,71 @@ namespace ClubPilot
                     }
                 }
 
-               
+                CloseConnection();
+
+                // Por cada usuario, obtener su rol y su id_club o id_Equip
                 foreach (var usuario in usuarios)
                 {
                     int id = Convert.ToInt32(usuario["id"]);
-                    string rol = ObtenerRol(id); 
-                    usuario.Add("rol", rol); 
-                    resultados.Add(usuario); 
+                    OpenConnection();
+                    bool [] rol = ObtenerRol(id);
+                    CloseConnection();
+                    string tablaRol = "";
+                    string columnaId = "";
+
+                    if (rol[0] == true)
+                    {
+                        tablaRol = "administrador";
+                        columnaId = "id_club";
+                    }
+                    else
+                    {
+                        tablaRol = "entrenador";
+                        columnaId = "id_Equip";
+                    }
+
+                    OpenConnection();
+
+                    string subquery = $"SELECT {columnaId} FROM {tablaRol} WHERE id_usuari = @id_usuari";
+                    using (MySqlCommand cmd = new MySqlCommand(subquery, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@id_usuari", id);
+                        object idClubOEquipo = cmd.ExecuteScalar(); // obtiene el valor directamente
+                        int idClubUsuario = Usuari.usuari.getIdClub();
+                        int idClubOEquipoInt = Convert.ToInt32(idClubOEquipo);
+                        if (rol[0] == true)
+                        {
+                           usuario.Add("rol", "administrador");
+                        }
+                        else if (rol[1] == true)
+                        {
+                            usuario.Add("rol", "aficionat");
+                        }
+                        else if (rol[2] == true)
+                        {
+                            usuario.Add("rol", "entrenador");
+                        }
+                        else if (rol[3] == true)
+                        {
+                            usuario.Add("rol", "jugador");
+                        }
+                        else
+                        {
+                            usuario.Add("rol", "");
+                        }
+                       
+                        if (idClubUsuario != idClubOEquipoInt)
+                        {
+                            CloseConnection();
+                            continue;
+                        }
+
+
+                    }
+
+                    CloseConnection();
+
+                    resultados.Add(usuario);
                 }
             }
             catch (Exception ex)
@@ -635,6 +1006,7 @@ namespace ClubPilot
 
             return resultados;
         }
+
         public void updateCompte(string id, string username, string nom, string cognoms, string email)
         {
 
@@ -795,7 +1167,7 @@ namespace ClubPilot
                 Thread.Sleep(100);
                 String password =  GenerarUsuari();
                 MessageBox.Show(password);
-                password = CalcularSHA256(password);
+                String passwordHash = CalcularSHA256(password);
                 using (MySqlCommand cmd = new MySqlCommand(query, connection))
                 {
                    
@@ -807,7 +1179,7 @@ namespace ClubPilot
                     { 
                     cmd.Parameters.AddWithValue("@username", username);
                     }
-                    cmd.Parameters.AddWithValue("@password", password);  
+                    cmd.Parameters.AddWithValue("@password", passwordHash);  
                     cmd.Parameters.AddWithValue("@nom", nom);
                     cmd.Parameters.AddWithValue("@cognoms", cognoms);
                     cmd.Parameters.AddWithValue("@email", email);
@@ -822,7 +1194,7 @@ namespace ClubPilot
                 string tablaRol;
                 string columnaId;
 
-                if (rol == "administrador" || rol == "aficionat")
+                if (rol == "administrador")
                 {
                     tablaRol = "administrador"; 
                     columnaId = "id_club";
@@ -865,6 +1237,16 @@ namespace ClubPilot
                         Console.WriteLine("Error al asignar el rol.");
                     }
                 }
+                String cuerpo = "";
+                if (username.Equals(""))
+                {
+                    cuerpo = CrearAsunto(password,usernameG);
+                }
+                else 
+                {
+                    cuerpo = CrearAsunto(password, username);
+                }
+                Mail.EnviarCorreo(email,"Informació inici de sesió ClubPilot",cuerpo);
             }
             catch (Exception ex)
             {
@@ -877,34 +1259,60 @@ namespace ClubPilot
             }
             finally
             {
+
                 CloseConnection(); 
             }
+        }
+        public  String CrearAsunto(String contrasena, String usuario)
+        {
+            
+            return "Benvolgut/da fundador!,\r\n" +
+                "\r\n" +
+                "Espero que aquest missatge et trobi bé.\r\n" +
+                "\r\n" +
+                "A continuació, et proporcionem el nom d'usuari i la contrasenya que necessites per accedir al teu compte:\r\n" +
+                "\r\n" +
+                "Nom d'usuari: "+ usuario +"\r\n" +
+                "\r\nContrasenya: "+contrasena +"\r\n" +
+                "\r\n" +
+                "Et recomano que, per raons de seguretat, canviïs la contrasenya tan bon punt accedeixis al compte. Si tens qualsevol dubte o necessites ajuda addicional, no dubtis a contactar-me.\r\n" +
+                "\r\nEstic a la teva disposició per a qualsevol consulta.\r\n" +
+                "\r\nSalutacions cordials,\r\n" +
+                "Next Sphere S.L.\r\n" +
+                "[La teva informació de contacte]";
         }
 
 
 
-        public string ObtenerRol(int id)
+        public bool [] ObtenerRol(int id)
         {
-            string rol = "a"; 
+            string rol = "a";
+            bool[] rols = new bool[4];
+
 
             if (EsRol(id, "administrador", connection))
             {
                 rol = "administrador";
+                rols[0] = true;
             }
             else if (EsRol(id, "aficionat", connection))
             {
                 rol = "aficionat";
+                rols[1] = true;
             }
             else if (EsRol(id, "entrenador", connection))
             {
                 rol = "entrenador";
+                rols[2] = true;
             }
             else if (EsRol(id, "jugador", connection))
             {
                 rol = "jugador";
+                rols[3] = true;
             }
 
-            return rol;
+            return rols;
+           // return rol;
         }
 
         public bool EsRol(int id, string rol, MySqlConnection conn)
@@ -949,7 +1357,7 @@ namespace ClubPilot
                 string query = @"
 		           SELECT e.nom, e.id
 		           FROM Equip e 
-                   WHERE e.id = @id;";
+                   WHERE e.id_club = @id;";
 
                 using (MySqlCommand cmd = new MySqlCommand(query, connection))
                 {
@@ -1019,10 +1427,10 @@ namespace ClubPilot
                 MessageBox.Show("Error al exportar: " + ex.Message);
             }
         }
-        public List<Dictionary<string, object>> SelectJugadors()
+        public List<Dictionary<string, object>> SelectJugadors(int idEquip)
         {
             List<Dictionary<string, object>> resultados = new List<Dictionary<string, object>>();
-        
+
             try
             {
                 OpenConnection();
@@ -1035,26 +1443,26 @@ namespace ClubPilot
                   WHERE J.id_equip = @id;
                   ";
 
-                using (MySqlCommand cmd = new MySqlCommand(query, connection))
-                //cmd.Parameters.AddWithValue("@id", idEquipEnQuestio);
+                using (MySqlCommand cmd = new MySqlCommand(query, connection)) { 
+                cmd.Parameters.AddWithValue("@id", idEquip);
                 using (MySqlDataReader reader = cmd.ExecuteReader())
                 {
-                    
+
                     while (reader.Read())
                     {
                         Dictionary<string, object> registro = new Dictionary<string, object>
                     {
                         { "id", reader["id"] },
                         { "nom", reader["nom"] },
-                        { "any_fundacio", reader["any_fundacio"] },
-                        { "fundador", reader["fundador"] },
-                        { "logo", reader["logo"] },
-                        { "emailfundador", reader["emailfundador"] },
-                        {"registre", reader["registre"] }
+                        { "cognoms", reader["cognoms"] },
+                        { "disponibilitat", reader["disponibilitat"] },
+                        { "dorsal", reader["dorsal"] },
+                        { "posicio", reader["posicio"] }
                     };
                         resultados.Add(registro);
                     }
                 }
+            }
             }
             catch (Exception ex)
             {

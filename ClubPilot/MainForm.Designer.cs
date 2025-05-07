@@ -47,33 +47,22 @@
             this.btnMenSolClubs = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelContainer1 = new System.Windows.Forms.Panel();
-            this.menuVertical.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
+            // sollicitudsDeClubsToolStripMenuItem
+            // 
+            this.sollicitudsDeClubsToolStripMenuItem.Name = "sollicitudsDeClubsToolStripMenuItem";
+            this.sollicitudsDeClubsToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
+            // 
             // menuVertical
             // 
-            this.menuVertical.BackColor = System.Drawing.Color.MidnightBlue;
-            this.menuVertical.Controls.Add(this.panelC);
-            this.menuVertical.Controls.Add(this.panel7);
-            this.menuVertical.Controls.Add(this.panel6);
-            this.menuVertical.Controls.Add(this.btnMenEsdeveniments);
-            this.menuVertical.Controls.Add(this.button6);
-            this.menuVertical.Controls.Add(this.panel5);
-            this.menuVertical.Controls.Add(this.btnMenJugadors);
-            this.menuVertical.Controls.Add(this.panel4);
-            this.menuVertical.Controls.Add(this.btnMenNoticies);
-            this.menuVertical.Controls.Add(this.panel2);
-            this.menuVertical.Controls.Add(this.btnMenComptes);
-            this.menuVertical.Controls.Add(this.btnMenClub);
-            this.menuVertical.Controls.Add(this.panel3);
-            this.menuVertical.Controls.Add(this.panel1);
-            this.menuVertical.Controls.Add(this.btnMenSolClubs);
-            this.menuVertical.Controls.Add(this.pictureBox1);
             this.menuVertical.Location = new System.Drawing.Point(0, 0);
+            this.menuVertical.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.menuVertical.Name = "menuVertical";
-            this.menuVertical.Size = new System.Drawing.Size(285, 709);
-            this.menuVertical.TabIndex = 2;
+            this.menuVertical.Size = new System.Drawing.Size(150, 81);
+            this.menuVertical.TabIndex = 4;
+            this.menuVertical.Paint += new System.Windows.Forms.PaintEventHandler(this.menuVertical_Paint);
             // 
             // panelC
             // 
@@ -85,18 +74,18 @@
             // panel7
             // 
             this.panel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(80)))), ((int)(((byte)(200)))));
-            this.panel7.Location = new System.Drawing.Point(0, 317);
+            this.panel7.Location = new System.Drawing.Point(0, 577);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(11, 59);
-            this.panel7.TabIndex = 9;
+            this.panel7.Size = new System.Drawing.Size(10, 59);
+            this.panel7.TabIndex = 3;
             // 
             // panel6
             // 
             this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(80)))), ((int)(((byte)(200)))));
-            this.panel6.Location = new System.Drawing.Point(0, 577);
+            this.panel6.Location = new System.Drawing.Point(0, 512);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(11, 59);
-            this.panel6.TabIndex = 8;
+            this.panel6.TabIndex = 5;
             // 
             // btnMenEsdeveniments
             // 
@@ -113,7 +102,7 @@
             this.btnMenEsdeveniments.TabIndex = 9;
             this.btnMenEsdeveniments.Text = "Esdeveniments";
             this.btnMenEsdeveniments.UseVisualStyleBackColor = true;
-            this.btnMenEsdeveniments.Click += new System.EventHandler(this.btnMenEsdeveniments_Click);
+            this.btnMenEsdeveniments.Click += new System.EventHandler(this.MenuButton_Click);
             // 
             // button6
             // 
@@ -134,10 +123,10 @@
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(80)))), ((int)(((byte)(200)))));
-            this.panel5.Location = new System.Drawing.Point(0, 512);
+            this.panel5.Location = new System.Drawing.Point(0, 447);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(11, 59);
-            this.panel5.TabIndex = 7;
+            this.panel5.TabIndex = 6;
             // 
             // btnMenJugadors
             // 
@@ -154,15 +143,15 @@
             this.btnMenJugadors.TabIndex = 8;
             this.btnMenJugadors.Text = "Jugadors";
             this.btnMenJugadors.UseVisualStyleBackColor = true;
-            this.btnMenJugadors.Click += new System.EventHandler(this.btnMenJugadors_Click);
+            this.btnMenJugadors.Click += new System.EventHandler(this.MenuButton_Click);
             // 
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(80)))), ((int)(((byte)(200)))));
-            this.panel4.Location = new System.Drawing.Point(0, 447);
+            this.panel4.Location = new System.Drawing.Point(0, 382);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(11, 59);
-            this.panel4.TabIndex = 6;
+            this.panel4.TabIndex = 7;
             // 
             // btnMenNoticies
             // 
@@ -179,15 +168,15 @@
             this.btnMenNoticies.TabIndex = 7;
             this.btnMenNoticies.Text = "Notícies";
             this.btnMenNoticies.UseVisualStyleBackColor = true;
-            this.btnMenNoticies.Click += new System.EventHandler(this.btnMenNoticies_Click);
+            this.btnMenNoticies.Click += new System.EventHandler(this.MenuButton_Click);
             // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(80)))), ((int)(((byte)(200)))));
-            this.panel2.Location = new System.Drawing.Point(0, 382);
+            this.panel2.Location = new System.Drawing.Point(0, 250);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(11, 59);
-            this.panel2.TabIndex = 5;
+            this.panel2.TabIndex = 8;
             // 
             // btnMenComptes
             // 
@@ -204,7 +193,7 @@
             this.btnMenComptes.TabIndex = 6;
             this.btnMenComptes.Text = "Comptes";
             this.btnMenComptes.UseVisualStyleBackColor = true;
-            this.btnMenComptes.Click += new System.EventHandler(this.btnMenComptes_Click);
+            this.btnMenComptes.Click += new System.EventHandler(this.MenuButton_Click);
             // 
             // btnMenClub
             // 
@@ -221,12 +210,12 @@
             this.btnMenClub.TabIndex = 5;
             this.btnMenClub.Text = "Club";
             this.btnMenClub.UseVisualStyleBackColor = true;
-            this.btnMenClub.Click += new System.EventHandler(this.btnMenClub_Click);
+            this.btnMenClub.Click += new System.EventHandler(this.MenuButton_Click);
             // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(80)))), ((int)(((byte)(200)))));
-            this.panel3.Location = new System.Drawing.Point(0, 250);
+            this.panel3.Location = new System.Drawing.Point(0, 317);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(11, 59);
             this.panel3.TabIndex = 4;
@@ -236,8 +225,8 @@
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(80)))), ((int)(((byte)(200)))));
             this.panel1.Location = new System.Drawing.Point(0, 185);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(10, 59);
-            this.panel1.TabIndex = 3;
+            this.panel1.Size = new System.Drawing.Size(11, 59);
+            this.panel1.TabIndex = 9;
             // 
             // btnMenSolClubs
             // 
@@ -248,14 +237,15 @@
             this.btnMenSolClubs.ForeColor = System.Drawing.Color.White;
             this.btnMenSolClubs.Image = global::ClubPilot.Properties.Resources.solClubs;
             this.btnMenSolClubs.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            
             this.btnMenSolClubs.Location = new System.Drawing.Point(12, 185);
             this.btnMenSolClubs.Name = "btnMenSolClubs";
             this.btnMenSolClubs.Size = new System.Drawing.Size(273, 59);
             this.btnMenSolClubs.TabIndex = 4;
             this.btnMenSolClubs.Text = "Acceptar Clubs";
-            this.btnMenSolClubs.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+      
             this.btnMenSolClubs.UseVisualStyleBackColor = true;
-            this.btnMenSolClubs.Click += new System.EventHandler(this.btnMenSolClubs_Click);
+            this.btnMenSolClubs.Click += new System.EventHandler(this.MenuButton_Click);
             // 
             // pictureBox1
             // 
@@ -270,24 +260,25 @@
             // panelContainer1
             // 
             this.panelContainer1.AutoSize = true;
-            this.panelContainer1.Location = new System.Drawing.Point(291, 0);
+            this.panelContainer1.Location = new System.Drawing.Point(218, 0);
+            this.panelContainer1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panelContainer1.Name = "panelContainer1";
-            this.panelContainer1.Size = new System.Drawing.Size(999, 706);
+            this.panelContainer1.Size = new System.Drawing.Size(749, 574);
             this.panelContainer1.TabIndex = 3;
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SeaShell;
-            this.ClientSize = new System.Drawing.Size(1293, 709);
+            this.ClientSize = new System.Drawing.Size(970, 576);
             this.Controls.Add(this.panelContainer1);
             this.Controls.Add(this.menuVertical);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "MainForm";
             this.Text = "MainForm";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.Resize += new System.EventHandler(this.MainForm_Resize);
-            this.menuVertical.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

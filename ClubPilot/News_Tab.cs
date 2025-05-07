@@ -11,72 +11,117 @@ namespace ClubPilot
         static public News Noticia { get; set; }
         static List<News> noticias = new List<News>();
         private static FlowLayoutPanel flowLayoutPanel;
+        Button button1 = new Button();
+        Label addNew = new Label();
+
+
+
 
         public News_Tab()
         {
-
             InitializeComponent();
-            Form news_tab = new Add_News();
-            // Bloque de codigo de configuracion del layout para organizar noticias
+
+            // Bloque de código de configuración del layout para organizar noticias
             flowLayoutPanel = new FlowLayoutPanel();
             flowLayoutPanel.Dock = DockStyle.Fill;
-            flowLayoutPanel.AutoScroll = true;
-            flowLayoutPanel.WrapContents = true;
-            flowLayoutPanel.FlowDirection = FlowDirection.TopDown;
             flowLayoutPanel.AutoScroll = true;
             flowLayoutPanel.AutoSize = true;
             flowLayoutPanel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             flowLayoutPanel.BackColor = System.Drawing.Color.SeaShell;
+            flowLayoutPanel.WrapContents = true;
+            flowLayoutPanel.FlowDirection = FlowDirection.LeftToRight;
+            // Config del label del titulo
+            Label tituloNew = new Label();
+            tituloNew.Text = "Noticies";
+            tituloNew.Font = new System.Drawing.Font("Arial", 12, System.Drawing.FontStyle.Bold);
+            tituloNew.Dock = DockStyle.Top; // Esto anclará el Label a la parte superior del formulario
+            tituloNew.AutoSize = false;
+            tituloNew.TextAlign = ContentAlignment.MiddleCenter; // Centra el texto
+            tituloNew.Padding = new Padding(10);
+            tituloNew.Height = 50; // Ajusta la altura según sea necesario
+            tituloNew.BackColor = Color.Transparent;
+
+            this.Controls.Add(button1); 
             this.Controls.Add(flowLayoutPanel);
+            this.Controls.Add(tituloNew); 
 
-           button1.Image = Properties.Resources.icons8_añadir_30;
-           button1.Width = 40;
-           button1.Height = 40;
-           button1.Show();
-           button1.Location = new Point(450, 300);
-           button1.FlatStyle = FlatStyle.Flat;
-           button1.FlatAppearance.BorderSize = 0;
-           button1.FlatAppearance.MouseOverBackColor = Color.Transparent;
-           button1.FlatAppearance.MouseDownBackColor = Color.Transparent;
-           button1.Location = new Point(this.ClientSize.Width - button1.Width - 10, this.ClientSize.Height - button1.Height - 10);
 
+
+            // Crear un nuevo objeto Connection y obtener la lista de noticias
+            Connection connection = new Connection();
+            noticias = connection.exportNews();
+
+            // Crear y configurar el botón
+            button1.Image = Properties.Resources.icons8_añadir_30;
+            button1.Width = 40;
+            button1.Height = 40;
+            button1.Text = null;
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.FlatAppearance.BorderSize = 0;
+            button1.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            button1.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            button1.Location = new Point(this.ClientSize.Width - button1.Width - 10, this.ClientSize.Height - button1.Height - 10);
             button1.BackColor = Color.Transparent;
-           button1.TabStop = false;
+            button1.TabStop = false;
+            button1.Click += new EventHandler(button1_Click_1);
+            this.Controls.Add(button1);
+            button1.BringToFront();
+            ////LABEL BOTON
+            //addNew.Text = "Afegir Noticia";
+            //addNew.Font = new System.Drawing.Font("Arial", 9);
+            //addNew.BackColor = Color.Transparent;
+            //addNew.Location = new Point(this.ClientSize.Width - button1.Width - 50, this.ClientSize.Height - button1.Height - 50);
+            //addNew.AutoSize = true;
+            //addNew.Visible = true;
+            //addNew.BringToFront();
+            //this.Controls.Add(addNew);
 
-            noticiesToolStripMenuItem.Font = new System.Drawing.Font("Arial", 12, System.Drawing.FontStyle.Bold);
-            
-            //if (Noticia != null)
-            //{
-            //    for (int i = 0; i < noticias.Count; i++)
-            //    {
-            //        Noticia.Show();
-            //        noticias.Add(Noticia);
-            //    }
-            //}
-            //else
-            //{
-            //    MessageBox.Show("No hi ha noticies.");
-            //    new Add_News().Show();
-            //}
+
+
+            //Mostrar noticias si existen
+            if (noticias.Count > 0)
+            {
+                showNews();
+            }
+            else
+            {
+                MessageBox.Show("No hi ha noticies.");
+                new Add_News().Show();
+            }
         }
 
-        // Mostrar la pantalla de añadir noticia
+        //Mostrar la pantalla de añadir noticia
         private void button1_Click_1(object sender, EventArgs e)
         {
             new Add_News().Show();
         }
-        //Meto todas las noticias en unas lista y añado los paneles de estas
-        //al flowlayoutpanel
+
+        // Meter todas las noticias en una lista y añadir los paneles de estas al FlowLayoutPanel
         static public void showNews()
         {
-            noticias.Add(Noticia);
+            noticias.Clear();
+            Connection connection = new Connection();
+            noticias = connection.exportNews();
+            flowLayoutPanel.Controls.Clear();
             for (int i = 0; i < noticias.Count; i++)
             {
-               noticias[i].Show();
-               noticias[i].Panel.Show();
-               flowLayoutPanel.Controls.Add(noticias[i].Panel);
+                noticias[i].Show(); 
+                flowLayoutPanel.Controls.Add(noticias[i]);
             }
+
+            
         }
 
+        private void News_Tab_ClientSizeChanged(object sender, EventArgs e)
+        {
+            button1.Location = new Point(this.ClientSize.Width - button1.Width - 20, this.ClientSize.Height - button1.Height - 20);
+            //addNew.Location = new Point(this.ClientSize.Width - button1.Width - 50, this.ClientSize.Height - button1.Height - 50);
+
+        }
+
+        private void News_Tab_Load(object sender, EventArgs e)
+        {
+       
+        }
     }
 }

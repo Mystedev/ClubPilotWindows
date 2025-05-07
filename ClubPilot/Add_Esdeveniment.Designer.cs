@@ -40,7 +40,7 @@
             // 
             this.textBox_nom.Location = new System.Drawing.Point(12, 92);
             this.textBox_nom.Name = "textBox_nom";
-            this.textBox_nom.Size = new System.Drawing.Size(100, 22);
+            this.textBox_nom.Size = new System.Drawing.Size(131, 22);
             this.textBox_nom.TabIndex = 0;
             // 
             // label_titol
@@ -48,9 +48,9 @@
             this.label_titol.AutoSize = true;
             this.label_titol.Location = new System.Drawing.Point(13, 62);
             this.label_titol.Name = "label_titol";
-            this.label_titol.Size = new System.Drawing.Size(33, 16);
+            this.label_titol.Size = new System.Drawing.Size(130, 16);
             this.label_titol.TabIndex = 3;
-            this.label_titol.Text = "Titol";
+            this.label_titol.Text = "Tipus Esdeveniment";
             // 
             // label_descripcio
             // 

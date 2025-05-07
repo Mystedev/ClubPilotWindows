@@ -1,41 +1,32 @@
-﻿using MySql.Data.MySqlClient;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics.Eventing.Reader;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace ClubPilot
 {
     public partial class Form1 : Form
     {
-     
+
         private Connection db;
-       
+
         int idUsuari;
         int idClub;
         int idEquip;
         String[] response;
-        String Rol;
+        bool[] Rol;
         List<Dictionary<string, object>> clubs;
         List<Dictionary<string, object>> equips;
 
         public Form1()
         {
-            
+
             InitializeComponent();
             comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
             db = new Connection();
-   
+
             textBox2.PasswordChar = '*';
-       
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -52,50 +43,57 @@ namespace ClubPilot
         {
             string username = textBox1.Text;
             string password = textBox2.Text;
-            bool login=false;
+            bool login = false;
             response = db.Login(username, password);
 
-            
-            
 
-           
-            
+
+
+
+
             if (response.Length < 1)
             {
                 MessageBox.Show("Usuario o contraseña incorrectos");
                 return;
             }
             int numero = int.Parse(response[0]);
-            
-            db.OpenConnection();
-            if (db.ObtenerRol(numero).Equals("administrador") || db.ObtenerRol(numero).Equals("entrenador") || db.ObtenerRol(numero).Equals("a"))
+            Connection.OpenConnection();
+            bool[] rol = db.ObtenerRol(numero);
+            if (rol[0] == true || rol[2] == true || (rol[1] == false && rol[3] == false))
             {
                 login = true;
             }
-            db.CloseConnection();
-
-            if (response.Length >=1 && login==true)
+            Connection.CloseConnection();
+            if (response.Length >= 1 && login == true)
             {
 
-                clubs = db.ClubsDeUsuari(response[0]);
+                if (rol[0] == false && rol[1] == false && rol[2]== false && rol[3]==false)
+                {
+                    clubs = db.SelectClubs();
+                }
+                else
+                {
+                    clubs = db.ClubsDeUsuari(response[0]);
+                }
+
                 MessageBox.Show("Login correcto");
                 idUsuari = Convert.ToInt32(response[0]);
 
-   
+
                 // Cambiar la visibilidad de los controles
                 label1.Visible = false;
                 label2.Visible = false;
                 textBox1.Visible = false;
                 textBox2.Visible = false;
                 button1.Visible = false;
-                db.OpenConnection();
+                Connection.OpenConnection();
                 Rol = db.ObtenerRol(numero);
-                if (!Rol.Equals("administrador"))
+                if (rol[0] == true )
                 {
-                comboBox1.Visible = true;
-                label3.Visible = true;
+                    comboBox1.Visible = true;
+                    label3.Visible = true;
                 }
-                db.CloseConnection();
+                Connection.CloseConnection();
                 button2.Visible = true;
                 label4.Visible = true;
                 comboBox2.Visible = true;
@@ -104,11 +102,21 @@ namespace ClubPilot
 
                 // Obtener los clubes del usuario
 
-
-                foreach (var registre in clubs)
+                if(rol[0] == false && rol[1] == false && rol[2] == false && rol[3] == false)
                 {
-                    comboBox2.Items.Add(registre["nomClub"].ToString());
+                    foreach (var registre in clubs)
+                    {
+                        comboBox2.Items.Add(registre["nom"].ToString());
+                    }
                 }
+                else
+                {
+                    foreach (var registre in clubs)
+                    {
+                        comboBox2.Items.Add(registre["nomClub"].ToString());
+                    }
+                }
+               
             }
             else
             {
@@ -117,30 +125,50 @@ namespace ClubPilot
 
         }
 
-            
 
-      
+
+
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
 
             comboBox1.Items.Clear();
 
-
+            
             foreach (var registre in clubs)
             {
-                if (registre["nomClub"].Equals(comboBox2.Text))  
+                if (!(Rol[0] == false && Rol[1] == false && Rol[2] == false && Rol[3] == false))
                 {
-
-
-                   
-                    string clubId = registre["idClub"].ToString();
-                    equips = db.EquipsDeClub(clubId);
-                    foreach (var registreEquips in equips)
+                    if (registre["nomClub"].Equals(comboBox2.Text))
                     {
-                        comboBox1.Items.Add(registreEquips["nom"].ToString());
-                    }
 
-            }
+
+
+                        string clubId = registre["idClub"].ToString();
+                        equips = db.EquipsDeClub(clubId);
+                        foreach (var registreEquips in equips)
+                        {
+                            comboBox1.Items.Add(registreEquips["nom"].ToString());
+                        }
+
+                    }
+                }
+                else 
+                {
+                    if (registre["nom"].Equals(comboBox2.Text))
+                    {
+
+
+
+                        string clubId = registre["id"].ToString();
+                        equips = db.EquipsDeClub(clubId);
+                        foreach (var registreEquips in equips)
+                        {
+                            comboBox1.Items.Add(registreEquips["nom"].ToString());
+                        }
+
+                    }
+                }
+                    
             }
 
         }
@@ -148,39 +176,55 @@ namespace ClubPilot
         {
             int idClub = 0;
             int idEquip = 0;
-            if(!Rol.Equals("a"))
-            { 
-            foreach (var registre in clubs)
+            if (Rol[0] == false && Rol[1] == false && Rol[2] == false && Rol[3] == false)
             {
-                if (registre["nomClub"].Equals(comboBox2.Text))
+                foreach (var registre in clubs)
                 {
-                    idClub = int.Parse(registre["idClub"].ToString());
-                    break;
-                }
-            }
-            foreach (var registreEquips in equips)
-            {
-                if (registreEquips["nom"].Equals(comboBox2.Text))
-                {
-                    idEquip = int.Parse(registreEquips["id"].ToString());
-                    break;
-                }
-            }
-            }
-            int idUsuari = int.Parse(response[0]);
 
-            db.OpenConnection();
+                    if(Rol[0] == false && Rol[1] == false && Rol[2] == false && Rol[3] == false)
+                    {
+                        if (registre["nom"].Equals(comboBox2.Text))
+                        {
+                            idClub = int.Parse(registre["id"].ToString());
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        if (registre["nomClub"].Equals(comboBox2.Text))
+                        {
+                            idClub = int.Parse(registre["idClub"].ToString());
+                            break;
+                        }
+                    }
+                  
+                    
+                }
+                if (!(Rol[0] == false && Rol[1] == false && Rol[2] == false && Rol[3] == false))
+                {
+                    foreach (var registreEquips in equips)
+                    {
+                        if (registreEquips["nom"].Equals(comboBox2.Text))
+                        {
+                            idEquip = int.Parse(registreEquips["id"].ToString());
+                            break;
+                        }
+                    }
+                }
+                int idUsuari = int.Parse(response[0]);
+            }
+            Connection.OpenConnection();
             Usuari.usuari = new infoUsuari(idUsuari, idClub, idEquip, db.ObtenerRol(idUsuari));
-            db.CloseConnection();
-            
+            Connection.CloseConnection();
+
             this.Hide();
             new MainForm().Show();
-            
+
         }
 
         private void button3_Click_1(object sender, EventArgs e)
         {
-            
+
             CrearClub crearClub = new CrearClub();
             crearClub.Show();
         }
@@ -193,14 +237,14 @@ namespace ClubPilot
     public static class Usuari
     {
         public static infoUsuari usuari;
-        
+
     }
     public class infoUsuari
     {
         private int idUsuari;
         private int idClub;
         private int idEquip;
-        private String rol;
+        private bool[] rol;
         public int getIdUsuari()
         {
             return idUsuari;
@@ -225,22 +269,22 @@ namespace ClubPilot
         {
             idEquip = id;
         }
-        public String getRol()
+        public bool[] getRol()
         {
             return rol;
         }
-        public void setRol(String rol)
+        public void setRol(bool[] rol)
         {
             this.rol = rol;
         }
-        public infoUsuari(int idUsuari, int idClub, int idEquip, String rol)
+        public infoUsuari(int idUsuari, int idClub, int idEquip, bool[] rol)
         {
 
             this.idUsuari = idUsuari;
             this.idClub = idClub;
             this.idEquip = idEquip;
             this.rol = rol;
-            
+
         }
         public String toString()
         {

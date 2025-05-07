@@ -20,11 +20,11 @@ namespace ClubPilot
         private Connection db;
         public Players()
         {
-            //db = new Connection();
+            db = new Connection();
             InitializeComponent();
             this.WindowState = FormWindowState.Maximized;
             Font fontCascadiaCode = new Font("Cascadia Code", 30);
-
+            this.Controls.Clear();
             Label lblTitulo = new Label
             {
                 Text = "Jugadors",
@@ -97,21 +97,23 @@ namespace ClubPilot
         {
             List<Jugador> jugadors = new List<Jugador>();
 
-            /*List<Dictionary<string, object>> resultats = db.SelectJugadors();
+            List<Dictionary<string, object>> resultats = db.SelectJugadors(Usuari.usuari.getIdEquip());
 
             foreach (var registre in resultats)
             {
-                comptes.Add(new Jugador(
+                jugadors.Add(new Jugador(
                     registre["id"].ToString(),
                     registre["nom"].ToString(),
                     registre["cognoms"].ToString(),
+                    bool.Parse(registre["disponibilitat"].ToString()),
                      int.Parse(registre["dorsal"].ToString()),
-                    registre["posicio"].ToString(),
-                    bool.Parse(registre["disponible"].ToString())
+                    registre["posicio"].ToString()
+                    
                     
 
                 ));
-            }*/
+            }
+            //jugadors.Add(new Jugador("1", "Javier", "García", true, 10, "Delantero"));
 
             return jugadors;
         }
@@ -145,7 +147,7 @@ namespace ClubPilot
         // Funció que dona el format de com es veuen els comptes al layout
         private void afegirJugadorATaula(FlowLayoutPanel panell, Jugador jugador, int indexJugador)
         {
-            Panel panellIntern = new Panel { Width= 363, Height= 209, AutoSize = true };
+            Panel panellIntern = new Panel { Width= 363, Height= 209, AutoSize = true, BackColor = Color.MidnightBlue };
             panellIntern.SuspendLayout();
             Font fontCascadiaCode = new Font("Cascadia Code", 10);
             TextBox txtId = new TextBox { Text = jugador.id, Width = 140, Font = fontCascadiaCode, Visible = false };
@@ -154,14 +156,14 @@ namespace ClubPilot
             Button btnCamiseta = new Button { Image = Properties.Resources.camisetaJugador, Width = 117, Height = 147, Location = new Point(17, 51), Text = jugador.dorsal.ToString(), Font =  fontCascadiaCode};
             fontCascadiaCode = new Font("Cascadia Code", 10);
             TextBox txtPosicio = new TextBox { Text = jugador.posicio, Width = 168, Font = fontCascadiaCode, Enabled = false, Location = new Point(144, 60), BackColor = Color.SeaShell };
-            TextBox txtDorsal = new TextBox { Text = jugador.posicio, Width = 54, Font = fontCascadiaCode, Enabled = false, Location = new Point(144, 93), BackColor = Color.SeaShell };
-            Label lblDisponible = new Label { Text = "Disponible:" + " " + (jugador.disponible ? "Sí" : "No"), Font = fontCascadiaCode, Location = new Point(140, 123) };
+            TextBox txtDorsal = new TextBox { Text = jugador.dorsal.ToString(), Width = 54, Font = fontCascadiaCode, Enabled = false, Location = new Point(144, 93), BackColor = Color.SeaShell };
+            Label lblDisponible = new Label { Text = "Disponible:" + " " + (jugador.disponible ? "Sí" : "No"), Font = fontCascadiaCode, Location = new Point(140, 123), ForeColor = Color.White };
             
 
             int desplazamentY = 5;
-            Button btnModificar = new Button { Image = Properties.Resources.icons8_modificar_30, Width = 40, Height = 40, Location = new Point(272,158) };
-            Button btnGuardar = new Button { Image = Properties.Resources.icons8_guardar_30, Width = 40, Height = 40, Enabled = false, Location = new Point(318, 158) };
-            Button btnEsborrar = new Button { Image = Properties.Resources.icons8_eliminar_30, Width = 40, Height = 40, Location = new Point(318, 14) };
+            Button btnModificar = new Button { Image = Properties.Resources.icons8_modificar_30, Width = 40, Height = 40, Location = new Point(272,158), BackColor = Color.SeaShell };
+            Button btnGuardar = new Button { Image = Properties.Resources.icons8_guardar_30, Width = 40, Height = 40, Enabled = false, Location = new Point(318, 158), BackColor = Color.SeaShell };
+            Button btnEsborrar = new Button { Image = Properties.Resources.icons8_eliminar_30, Width = 40, Height = 40, Location = new Point(318, 14) , BackColor = Color.SeaShell };
             // Obre els textBox
             btnModificar.Click += (sender, e) =>
             {
@@ -294,19 +296,26 @@ namespace ClubPilot
             public string id { get; set; }
             public string nom { get; set; }
             public string cognoms { get; set; }
+            public bool disponible { get; set; }
             public int dorsal { get; set; }
             public string posicio { get; set; }
-            public bool disponible { get; set; }
+           
 
-            public Jugador(string id, string nom, string cognoms, int dorsal, string posicio, bool disponible)
+            public Jugador(string id, string nom, string cognoms, bool disponible, int dorsal, string posicio)
             {
                 this.id = id;
                 this.nom = nom;
                 this.cognoms = cognoms;
+                this.disponible = disponible;
                 this.dorsal = dorsal;
                 this.posicio = posicio;
-                this.disponible = disponible;
+                
             }
+        }
+
+        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

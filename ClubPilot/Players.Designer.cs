@@ -30,15 +30,15 @@
         {
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.textBox4 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.mySqlCommand1 = new MySql.Data.MySqlClient.MySqlCommand();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.mySqlCommand1 = new MySql.Data.MySqlClient.MySqlCommand();
             this.flowLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -50,6 +50,7 @@
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(1332, 550);
             this.flowLayoutPanel1.TabIndex = 5;
+            this.flowLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.flowLayoutPanel1_Paint);
             // 
             // panel1
             // 
@@ -67,6 +68,16 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(363, 209);
             this.panel1.TabIndex = 6;
+            // 
+            // textBox4
+            // 
+            this.textBox4.BackColor = System.Drawing.Color.SeaShell;
+            this.textBox4.Font = new System.Drawing.Font("Cascadia Code", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox4.Location = new System.Drawing.Point(144, 93);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(54, 27);
+            this.textBox4.TabIndex = 11;
+            this.textBox4.Text = "10";
             // 
             // label1
             // 
@@ -99,13 +110,6 @@
             this.textBox1.Size = new System.Drawing.Size(295, 27);
             this.textBox1.TabIndex = 6;
             this.textBox1.Text = "Lionel Messi";
-            // 
-            // mySqlCommand1
-            // 
-            this.mySqlCommand1.CacheAge = 0;
-            this.mySqlCommand1.Connection = null;
-            this.mySqlCommand1.EnableCaching = false;
-            this.mySqlCommand1.Transaction = null;
             // 
             // button1
             // 
@@ -147,15 +151,12 @@
             this.button4.Text = "10";
             this.button4.UseVisualStyleBackColor = false;
             // 
-            // textBox4
+            // mySqlCommand1
             // 
-            this.textBox4.BackColor = System.Drawing.Color.SeaShell;
-            this.textBox4.Font = new System.Drawing.Font("Cascadia Code", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox4.Location = new System.Drawing.Point(144, 93);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(54, 27);
-            this.textBox4.TabIndex = 11;
-            this.textBox4.Text = "10";
+            this.mySqlCommand1.CacheAge = 0;
+            this.mySqlCommand1.Connection = null;
+            this.mySqlCommand1.EnableCaching = false;
+            this.mySqlCommand1.Transaction = null;
             // 
             // Players
             // 
