@@ -6,12 +6,13 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ClubPilot
 {
     class Connection
     {
-        private string server = "webapps.insjoanbrudieu.cat";
+        private string server = "192.168.1.150";
         private string database = "clubPilot";
         private string port = "25230";
         private string user_id = "clubPilot";
@@ -962,9 +963,11 @@ namespace ClubPilot
                         tablaRol = "aficionat";
                         columnaId = "id_club";
                     }
-                  
-                  
 
+                    int idClubUsuario = Usuari.usuari.getIdClub();
+                 
+                    List<Dictionary<string, object>> equips = EquipsDeClub(idClubUsuario.ToString());
+               
                     OpenConnection();
 
                     string subquery = $"SELECT {columnaId} FROM {tablaRol} WHERE id_usuari = @id_usuari";
@@ -972,7 +975,9 @@ namespace ClubPilot
                     {
                         cmd.Parameters.AddWithValue("@id_usuari", id);
                         object idClubOEquipo = cmd.ExecuteScalar(); // obtiene el valor directamente
-                        int idClubUsuario = Usuari.usuari.getIdClub();
+                      
+
+                        
                         int idClubOEquipoInt = Convert.ToInt32(idClubOEquipo);
                         if (rol[0] == true)
                         {
@@ -1005,7 +1010,16 @@ namespace ClubPilot
                         } 
                         else
                         {
-                            if(idClubUsuario != idClubOEquipoInt)
+                            bool trobat=false;
+                            foreach (var registreEquips in equips)
+                            {
+                               if( (registreEquips["id"].ToString().Equals(idClubOEquipoInt.ToString())))
+                               {
+                                    trobat=true;
+                                   
+                               }
+                            }
+                            if (!trobat)
                             {
                                 CloseConnection();
                                 continue;
