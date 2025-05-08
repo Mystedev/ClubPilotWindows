@@ -238,7 +238,7 @@ namespace ClubPilot
             btnAcceptar.Click += (sender, e) =>
             {
 
-                db.UpdateClub(club.id.ToString());
+                db.UpdateClubStatus(club.id.ToString());
 
                 btnAcceptar.Enabled = false;
             };

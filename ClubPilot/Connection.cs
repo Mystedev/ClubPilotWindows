@@ -648,7 +648,54 @@ namespace ClubPilot
             }
             return results.ToArray();
         }
+        public List<Dictionary<string, object>> ClubDusuari (string idUsuari)
+        {
+            int id = int.Parse(idUsuari);
+            List<Dictionary<string, object>> resultados = new List<Dictionary<string, object>>();
+            OpenConnection();
+            try
+            {
 
+                string query = @"
+		           SELECT  c.id, c.nom, c.any_fundacio, c.fundador, c.emailfundador
+                   FROM club c 
+                   WHERE c.id = @id;";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@id", id);
+
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+
+                            Dictionary<string, object> registro = new Dictionary<string, object>
+                        {
+                        { "id", reader["id"] },
+                        { "nom", reader["nom"] },
+                        { "any_fundacio", reader["any_fundacio"] },
+                        { "fundador", reader["fundador"] },
+                        { "emailfundador", reader["emailfundador"] }
+                        };
+                            resultados.Add(registro);
+                        }
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error en el login: {ex.Message}");
+            }
+            finally
+            {
+                CloseConnection();
+
+            }
+            return resultados;
+
+        }
         public List<Dictionary<string, object>> ClubsDeUsuari(string idUsuari)
         {
             string line = "";
@@ -777,7 +824,44 @@ namespace ClubPilot
             }
             return idClub+"";
         }
-        public string UpdateClub(string id)
+        public string UpdateClub(string id, string nom, string any_fundacio, string fundador, string emailfundador)
+        {
+            string resultado = "Club creado correctamente";
+            try
+            {
+                OpenConnection();
+                string query = @"
+                UPDATE club 
+                SET nom = @nom, any_fundacio = @any_fundacio,  fundador = @fundador, emailfundador = @emailfundador
+                WHERE id = @id;";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.Parameters.AddWithValue("@nom", nom);
+                    cmd.Parameters.AddWithValue("@any_fundacio", any_fundacio);
+                    cmd.Parameters.AddWithValue("@fundador", fundador);
+                    cmd.Parameters.AddWithValue("@emailfundador", emailfundador);
+
+                    int filasAfectadas = cmd.ExecuteNonQuery();
+
+                    if (filasAfectadas == 0)
+                    {
+                        resultado = "No se pudo modificar el club.";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                resultado = $"Error al actualizar el club: {ex.Message}";
+            }
+            finally
+            {
+                CloseConnection();
+            }
+            return resultado;
+        }
+        public string UpdateClubStatus(string id)
         {
             string resultado = "Club creado correctamente";
             try
@@ -811,6 +895,7 @@ namespace ClubPilot
             }
             return resultado;
         }
+
 
         public void DeleteClub(string id)
         {
@@ -914,14 +999,14 @@ namespace ClubPilot
                     while (reader.Read())
                     {
                         var registro = new Dictionary<string, object>
-                {
+                    {
                     { "id", reader["id"] },
                     { "username", reader["username"] },
                     { "password", reader["password"] },
                     { "nom", reader["nom"] },
                     { "cognoms", reader["cognoms"] },
                     { "email", reader["email"] }
-                };
+                    };
 
                         usuarios.Add(registro);
                     }
@@ -939,29 +1024,31 @@ namespace ClubPilot
                     string tablaRol = "";
                     string columnaId = "";
                     bool clubOEquip=false;
-                    if (rol[0] == true)
+                   
+                   
+                    if (rol[1]==true)
                     {
-                        tablaRol = "administrador";
+                        tablaRol = "aficionat";
                         columnaId = "id_club";
-                  
-
                     }
-                    else if (rol[2] == true)
-                    {
-                        tablaRol = "entrenador";
-                        columnaId = "id_equip";
-                        clubOEquip = true;
-                    }
-                    else if (rol[3] == true)
+                    if (rol[3] == true)
                     {
                         tablaRol = "jugador";
                         columnaId = "id_equip";
                         clubOEquip = true;
                     }
-                    else if (rol[1]==true)
+                    if (rol[2] == true)
                     {
-                        tablaRol = "aficionat";
+                        tablaRol = "entrenador";
+                        columnaId = "id_equip";
+                        clubOEquip = true;
+                    }
+                    if (rol[0] == true)
+                    {
+                        tablaRol = "administrador";
                         columnaId = "id_club";
+
+
                     }
 
                     int idClubUsuario = Usuari.usuari.getIdClub();
@@ -983,10 +1070,6 @@ namespace ClubPilot
                         {
                            usuario.Add("rol", "administrador");
                         }
-                        else if (rol[1] == true)
-                        {
-                            usuario.Add("rol", "aficionat");
-                        }
                         else if (rol[2] == true)
                         {
                             usuario.Add("rol", "entrenador");
@@ -994,6 +1077,10 @@ namespace ClubPilot
                         else if (rol[3] == true)
                         {
                             usuario.Add("rol", "jugador");
+                        }
+                        else if (rol[1] == true)
+                        {
+                            usuario.Add("rol", "aficionat");
                         }
                         else
                         {
@@ -1266,9 +1353,13 @@ namespace ClubPilot
                     }
                    
                     }
-                    else
+                    else if(rol=="entrenador")
                     {
-                    cmd.Parameters.AddWithValue("@id", idEquip);
+                     cmd.Parameters.AddWithValue("@id", idEquip);
+                    }
+                    else if (rol=="")
+                    { 
+                    
                     }
                     int filasAfectadas = cmd.ExecuteNonQuery();
 
