@@ -160,9 +160,8 @@ namespace ClubPilot
             this.ComboBoxRol1.Font = new System.Drawing.Font("Cascadia Code", 10F);
             this.ComboBoxRol1.Items.AddRange(new object[] {
             "administrador",
-            "aficionat",
             "entrenador",
-            "jugador"});
+           });
             this.ComboBoxRol1.Location = new System.Drawing.Point(90, 146);
             this.ComboBoxRol1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.ComboBoxRol1.Name = "ComboBoxRol1";

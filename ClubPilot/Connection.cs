@@ -1327,38 +1327,35 @@ namespace ClubPilot
                 "[La teva informació de contacte]";
         }
 
-
-
+        
+        
         public bool [] ObtenerRol(int id)
         {
-            string rol = "a";
+           
             bool[] rols = new bool[4];
 
 
             if (EsRol(id, "administrador", connection))
             {
-                rol = "administrador";
                 rols[0] = true;
             }
-            else if (EsRol(id, "aficionat", connection))
+            if (EsRol(id, "aficionat", connection))
             {
-                rol = "aficionat";
                 rols[1] = true;
             }
-            else if (EsRol(id, "entrenador", connection))
+            if (EsRol(id, "entrenador", connection))
             {
-                rol = "entrenador";
                 rols[2] = true;
             }
-            else if (EsRol(id, "jugador", connection))
+            if (EsRol(id, "jugador", connection))
             {
-                rol = "jugador";
                 rols[3] = true;
             }
 
             return rols;
-           // return rol;
+          
         }
+
 
         public bool EsRol(int id, string rol, MySqlConnection conn)
         {
