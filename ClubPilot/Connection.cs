@@ -6,6 +6,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ClubPilot
 {
@@ -13,7 +14,6 @@ namespace ClubPilot
     {
 
         private string server = "192.168.1.150";
-
         private string database = "clubPilot";
         private string port = "25230";
         private string user_id = "clubPilot";
@@ -939,18 +939,36 @@ namespace ClubPilot
                     CloseConnection();
                     string tablaRol = "";
                     string columnaId = "";
-
+                    bool clubOEquip=false;
                     if (rol[0] == true)
                     {
                         tablaRol = "administrador";
                         columnaId = "id_club";
+                  
+
                     }
-                    else
+                    else if (rol[2] == true)
                     {
                         tablaRol = "entrenador";
-                        columnaId = "id_Equip";
+                        columnaId = "id_equip";
+                        clubOEquip = true;
+                    }
+                    else if (rol[3] == true)
+                    {
+                        tablaRol = "jugador";
+                        columnaId = "id_equip";
+                        clubOEquip = true;
+                    }
+                    else if (rol[1]==true)
+                    {
+                        tablaRol = "aficionat";
+                        columnaId = "id_club";
                     }
 
+                    int idClubUsuario = Usuari.usuari.getIdClub();
+                 
+                    List<Dictionary<string, object>> equips = EquipsDeClub(idClubUsuario.ToString());
+               
                     OpenConnection();
 
                     string subquery = $"SELECT {columnaId} FROM {tablaRol} WHERE id_usuari = @id_usuari";
@@ -958,7 +976,9 @@ namespace ClubPilot
                     {
                         cmd.Parameters.AddWithValue("@id_usuari", id);
                         object idClubOEquipo = cmd.ExecuteScalar(); // obtiene el valor directamente
-                        int idClubUsuario = Usuari.usuari.getIdClub();
+                      
+
+                        
                         int idClubOEquipoInt = Convert.ToInt32(idClubOEquipo);
                         if (rol[0] == true)
                         {
@@ -981,10 +1001,30 @@ namespace ClubPilot
                             usuario.Add("rol", "");
                         }
                        
-                        if (idClubUsuario != idClubOEquipoInt)
+                        if (!clubOEquip)
                         {
-                            CloseConnection();
-                            continue;
+                            if (idClubUsuario != idClubOEquipoInt)
+                            {
+                                CloseConnection();
+                                continue;
+                            }
+                        } 
+                        else
+                        {
+                            bool trobat=false;
+                            foreach (var registreEquips in equips)
+                            {
+                               if( (registreEquips["id"].ToString().Equals(idClubOEquipoInt.ToString())))
+                               {
+                                    trobat=true;
+                                   
+                               }
+                            }
+                            if (!trobat)
+                            {
+                                CloseConnection();
+                                continue;
+                            }
                         }
 
 
@@ -1199,9 +1239,14 @@ namespace ClubPilot
                     tablaRol = "administrador"; 
                     columnaId = "id_club";
                 }
-                else
+                else if (rol== "entrenador")
                 {
                     tablaRol = "entrenador";
+                    columnaId = "id_Equip";
+                }
+                else 
+                {
+                    tablaRol = "jugador";
                     columnaId = "id_Equip";
                 }
 
@@ -1356,7 +1401,7 @@ namespace ClubPilot
                 OpenConnection();
                 string query = @"
 		           SELECT e.nom, e.id
-		           FROM Equip e 
+		           FROM equip e 
                    WHERE e.id_club = @id;";
 
                 using (MySqlCommand cmd = new MySqlCommand(query, connection))
@@ -1435,12 +1480,10 @@ namespace ClubPilot
             {
                 OpenConnection();
                 string query = @"
-                  SELECT c.id, c.nom, c.any_fundacio, c.fundador, c.logo, c.emailfundador,c.registre
-                  FROM club c
                   SELECT u.nom, u.cognoms, j.posicio, j.dorsal, j.disponibilitat 
                   FROM jugador j
                   JOIN usuari u ON j.id_usuari = u.id 
-                  WHERE J.id_equip = @id;
+                  WHERE j.id_equip = @id;
                   ";
 
                 using (MySqlCommand cmd = new MySqlCommand(query, connection)) { 
@@ -1455,9 +1498,10 @@ namespace ClubPilot
                         { "id", reader["id"] },
                         { "nom", reader["nom"] },
                         { "cognoms", reader["cognoms"] },
-                        { "disponibilitat", reader["disponibilitat"] },
+                        { "posicio", reader["posicio"] },
                         { "dorsal", reader["dorsal"] },
-                        { "posicio", reader["posicio"] }
+                        { "disponibilitat", reader["disponibilitat"] }
+
                     };
                         resultados.Add(registro);
                     }

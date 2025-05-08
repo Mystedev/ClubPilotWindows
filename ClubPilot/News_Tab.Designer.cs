@@ -37,6 +37,7 @@
             this.ClientSize = new System.Drawing.Size(1191, 572);
             this.Name = "News_Tab";
             this.Text = "News_Tab";
+            this.Load += new System.EventHandler(this.News_Tab_Load_1);
             this.ClientSizeChanged += new System.EventHandler(this.News_Tab_ClientSizeChanged);
             this.ResumeLayout(false);
 

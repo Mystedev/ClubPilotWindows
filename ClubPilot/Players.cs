@@ -35,6 +35,14 @@ namespace ClubPilot
 
 
             };
+            fontCascadiaCode = new Font("Cascadia Code", 15);
+            Label lblAfegir = new Label
+            {
+                Text = "Afegir Jugador",
+                Font = fontCascadiaCode,
+                AutoSize = true,
+                TextAlign = ContentAlignment.MiddleRight
+            };
             // Panel que mostrarà la informació
             scrollPanel = new Panel
             {
@@ -44,8 +52,10 @@ namespace ClubPilot
             };
             this.Controls.Add(scrollPanel);
             scrollPanel.Controls.Add(lblTitulo);
-            // Crido a la funció que obté els comptes i els guardo a una llista
+            scrollPanel.Controls.Add(lblAfegir);
+            // Crido a la funció que obté els jugadors i els guardo a una llista
             jugadors = obtenirJugadors();
+            //MessageBox.Show(jugadors.Count.ToString());
             carregarJugadors();
             this.Resize += new EventHandler(Form_Resize);
         }
@@ -73,7 +83,7 @@ namespace ClubPilot
                     {
                         label.Location = new Point(60, 150);
                     }
-                    else if (label.Text == "Afegir compte")
+                    else if (label.Text == "Afegir Jugador")
                     {
                         label.Location = new Point(this.ClientSize.Width - 300, 150);
                     }
@@ -89,35 +99,49 @@ namespace ClubPilot
         {
 
             jugadors = obtenirJugadors();
+            
             carregarJugadors();
         }
 
         // Funció que obté els jugadors de la base de dades i els afegeix a una llista
         private List<Jugador> obtenirJugadors()
         {
-            List<Jugador> jugadors = new List<Jugador>();
+            List<Jugador> jugadorss = new List<Jugador>();
 
             List<Dictionary<string, object>> resultats = db.SelectJugadors(Usuari.usuari.getIdEquip());
 
             foreach (var registre in resultats)
             {
-                jugadors.Add(new Jugador(
+                jugadorss.Add(new Jugador(
                     registre["id"].ToString(),
                     registre["nom"].ToString(),
                     registre["cognoms"].ToString(),
-                    bool.Parse(registre["disponibilitat"].ToString()),
-                     int.Parse(registre["dorsal"].ToString()),
-                    registre["posicio"].ToString()
-                    
-                    
+                    registre["posicio"].ToString(),
+                    int.Parse(registre["dorsal"].ToString()),
+                    bool.Parse(registre["disponibilitat"].ToString())
+
+
+
+
 
                 ));
             }
-            //jugadors.Add(new Jugador("1", "Javier", "García", true, 10, "Delantero"));
+            /*jugadorss.Add(new Jugador("1", "Javier", "García", "Delantero", 10,true));
+            jugadorss.Add(new Jugador("2", "Javier", "García", "Delantero", 10, true));
+            jugadorss.Add(new Jugador("3", "Javier", "García", "Delantero", 10, true));
+            jugadorss.Add(new Jugador("4", "Javier", "García", "Delantero", 10, true));
+            jugadorss.Add(new Jugador("5", "Javier", "García", "Delantero", 10, true));
+            jugadorss.Add(new Jugador("6", "Javier", "García", "Delantero", 10, true));
+            jugadorss.Add(new Jugador("7", "Javier", "García", "Delantero", 10, true));
+            jugadorss.Add(new Jugador("8", "Javier", "García", "Delantero", 10, true));
+            jugadorss.Add(new Jugador("9", "Javier", "García", "Delantero", 10, true));
+            jugadorss.Add(new Jugador("10", "Javier", "García", "Delantero", 10, true));
+            jugadorss.Add(new Jugador("11", "Javier", "García", "Delantero", 10, true));
+            jugadorss.Add(new Jugador("12", "Javier", "García", "Delantero", 10, true));*/
 
-            return jugadors;
+            return jugadorss;
         }
-        // Funció que carregar els comptes al layout 
+        // Funció que carregar els jugadors al layout 
         private void carregarJugadors()
         {
             if (layout != null)
@@ -140,6 +164,7 @@ namespace ClubPilot
             for (int i = 0; i < jugadors.Count; i++)
             {
                 afegirJugadorATaula(layout, jugadors[i], i);
+                //MessageBox.Show(jugadors[i].nom + " " + jugadors[i].cognoms);
             }
             // Afegeixo el layout
             scrollPanel.Controls.Add(layout);
@@ -187,7 +212,7 @@ namespace ClubPilot
             {
                 
                     DialogResult result = MessageBox.Show(
-                    "Segur que vol esborrar aquest compte? Usuari:" + jugadors[indexJugador].nom + jugadors[indexJugador].cognoms,
+                    "Segur que vol esborrar aquest Jugador? Usuari:" + jugadors[indexJugador].nom + jugadors[indexJugador].cognoms,
                     "Confirmar eliminació",
                     MessageBoxButtons.YesNo,
                     MessageBoxIcon.Question
@@ -231,7 +256,7 @@ namespace ClubPilot
 
 
             // Afegeixo els botons
-           layout.Controls.Add(panellIntern);
+            panell.Controls.Add(panellIntern);
             
         }
 
@@ -261,47 +286,20 @@ namespace ClubPilot
             
         }
 
-        private void jugadorsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void clubToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            new CrearClub().Show();
-        }
-
-        private void comptesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            new Accounts().Show();
-        }
-
-        private void noticiesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //new News().Show();
-        }
-
-        private void esdevenimentsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            new Esdeveniments().Show();
-        }
-
-        private void sollicitudsDeClubsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            new Clubs().Show();
-        }
+        
         // Classe compte amb els seus atributs
         public class Jugador
         {
             public string id { get; set; }
             public string nom { get; set; }
             public string cognoms { get; set; }
-            public bool disponible { get; set; }
-            public int dorsal { get; set; }
             public string posicio { get; set; }
-           
+            public int dorsal { get; set; }
+            
+            public bool disponible { get; set; }
 
-            public Jugador(string id, string nom, string cognoms, bool disponible, int dorsal, string posicio)
+
+            public Jugador(string id, string nom, string cognoms, string posicio, int dorsal, bool disponible)
             {
                 this.id = id;
                 this.nom = nom;

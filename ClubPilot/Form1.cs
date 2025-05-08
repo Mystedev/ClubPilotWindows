@@ -88,7 +88,7 @@ namespace ClubPilot
                 button1.Visible = false;
                 Connection.OpenConnection();
                 Rol = db.ObtenerRol(numero);
-                if (rol[0] == true )
+                if (rol[2] == true || rol[3]==true)
                 {
                     comboBox1.Visible = true;
                     label3.Visible = true;
@@ -176,7 +176,7 @@ namespace ClubPilot
         {
             int idClub = 0;
             int idEquip = 0;
-            if (Rol[0] == false && Rol[1] == false && Rol[2] == false && Rol[3] == false)
+            if (!(Rol[0] == false && Rol[1] == false && Rol[2] == false && Rol[3] == false))
             {
                 foreach (var registre in clubs)
                 {
