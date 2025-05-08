@@ -43,6 +43,13 @@ namespace ClubPilot
                 AutoSize = true,
                 TextAlign = ContentAlignment.MiddleRight
             };
+            // Boto que al clicar-lo obra el formulari de crear un nou compte
+            Button botoAfegir = new Button { Image = Properties.Resources.icons8_añadir_30, Width = 40, Height = 40 };
+
+            botoAfegir.Click += (sender, e) =>
+            {
+                new AddPlayer(this).Show();
+            };
             // Panel que mostrarà la informació
             scrollPanel = new Panel
             {
@@ -53,6 +60,7 @@ namespace ClubPilot
             this.Controls.Add(scrollPanel);
             scrollPanel.Controls.Add(lblTitulo);
             scrollPanel.Controls.Add(lblAfegir);
+            scrollPanel.Controls.Add(botoAfegir);
             // Crido a la funció que obté els jugadors i els guardo a una llista
             jugadors = obtenirJugadors();
             //MessageBox.Show(jugadors.Count.ToString());
@@ -169,6 +177,12 @@ namespace ClubPilot
             // Afegeixo el layout
             scrollPanel.Controls.Add(layout);
         }
+        public void addPlayerToList(Jugador jugador)
+        {
+
+            jugadors = obtenirJugadors();
+            carregarJugadors();
+        }
         // Funció que dona el format de com es veuen els comptes al layout
         private void afegirJugadorATaula(FlowLayoutPanel panell, Jugador jugador, int indexJugador)
         {
@@ -205,14 +219,36 @@ namespace ClubPilot
                 txtDorsal.Enabled = false;
                 btnModificar.Enabled = true;
                 btnGuardar.Enabled = false;
-                //db.updateJugador(txtId.Text, txtPosicio.Text, txtDorsal.Text);
+                btnCamiseta.Text = txtDorsal.Text;
+                if (txtDorsal.Text == "" || txtPosicio.Text == "")
+                {
+                    MessageBox.Show("Omple la informacio");
+                    return;
+                } else
+                {
+                    if (int.TryParse(txtDorsal.Text, out int dorsal))
+                    {
+                        if (dorsal < 0)
+                        {
+                            MessageBox.Show("El dorsal ha de ser un número superior o igual a 0");
+                            return;
+                        }
+                        db.updateJugador(txtId.Text, dorsal, txtPosicio.Text);
+                    }
+                    else
+                    {
+                        MessageBox.Show("El dorsal ha de ser un número superior o igual a 0");
+                        return;
+                    }
+                }
+                   
             };
             // Esborrar de la base de dades i el layout el compte
             btnEsborrar.Click += (sender, e) =>
             {
                 
                     DialogResult result = MessageBox.Show(
-                    "Segur que vol esborrar aquest Jugador? Usuari:" + jugadors[indexJugador].nom + jugadors[indexJugador].cognoms,
+                    "Segur que vol esborrar aquest Jugador? Usuari: " + jugadors[indexJugador].nom + " " + jugadors[indexJugador].cognoms,
                     "Confirmar eliminació",
                     MessageBoxButtons.YesNo,
                     MessageBoxIcon.Question
@@ -222,8 +258,8 @@ namespace ClubPilot
                     {
                         // Eliminar el club si asi lo desea el usuario
                         jugadors.RemoveAt(indexJugador);
-                        //db.deleteJugador(txtId.Text);
-                        //db.deleteCompte(txtId.Text);
+                        db.deleteJugador(txtId.Text);
+                        
 
 
                         if (layout != null)

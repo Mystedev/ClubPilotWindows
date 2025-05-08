@@ -158,6 +158,7 @@ namespace ClubPilot
 
 
                     int filasAfectadas = cmd.ExecuteNonQuery();
+
                 }
             }
             catch (Exception ex)
@@ -1477,7 +1478,7 @@ namespace ClubPilot
             {
                 OpenConnection();
                 string query = @"
-                  SELECT u.nom, u.cognoms, j.posicio, j.dorsal, j.disponibilitat 
+                  SELECT u.id, u.nom, u.cognoms, j.posicio, j.dorsal, j.disponibilitat 
                   FROM jugador j
                   JOIN usuari u ON j.id_usuari = u.id 
                   WHERE j.id_equip = @id;
@@ -1515,6 +1516,177 @@ namespace ClubPilot
             }
 
             return resultados;
+        }
+        // Funció que insereix un jugador creant a l'hora el seu compte
+        public void InsertJugador(string username, string nom, string cognoms, string email, string posicio, int dorsal,bool disponible, string idEquip)
+        {
+            try
+            {
+                OpenConnection();  // Abre la conexión a la base de datos
+
+                // 1. INSERTAR EN `usuari`
+                string query = @"
+                INSERT INTO usuari(username, password, nom, cognoms, email)
+                VALUES(@username, @password, @nom, @cognoms, @email);
+                SELECT LAST_INSERT_ID();";  // Obtener el último ID insertado
+
+                int idUsuari;
+                String usernameG = GenerarContrasenya();
+                Thread.Sleep(100);
+                String password = GenerarUsuari();
+                MessageBox.Show(password);
+                String passwordHash = CalcularSHA256(password);
+                using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                {
+
+                    if (username.Equals(""))
+                    {
+                        cmd.Parameters.AddWithValue("@username", usernameG);
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@username", username);
+                    }
+                    cmd.Parameters.AddWithValue("@password", passwordHash);
+                    cmd.Parameters.AddWithValue("@nom", nom);
+                    cmd.Parameters.AddWithValue("@cognoms", cognoms);
+                    cmd.Parameters.AddWithValue("@email", email);
+
+                    // Ejecutar la consulta y obtener el ID del nuevo usuario
+                    idUsuari = Convert.ToInt32(cmd.ExecuteScalar());
+                }
+
+                Console.WriteLine("Usuario insertado con ID: " + idUsuari);
+
+
+                query = $"INSERT INTO jugador (id_usuari, id_Equip, disponibilitat, dorsal, posicio) VALUES (@id_usuari, @id, true, @dorsal, @posicio);";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@id_usuari", idUsuari);
+     
+                    cmd.Parameters.AddWithValue("@id", idEquip);
+                    cmd.Parameters.AddWithValue("@dorsal", dorsal);
+                    cmd.Parameters.AddWithValue("@posicio", posicio);
+
+                    int filasAfectadas = cmd.ExecuteNonQuery();
+
+                    if (filasAfectadas > 0)
+                    {
+                        Console.WriteLine("El rol ha sido asignado correctamente.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Error al asignar el rol.");
+                    }
+                }
+                String cuerpo = "";
+                if (username.Equals(""))
+                {
+                    cuerpo = CrearAsunto(password, usernameG);
+                }
+                else
+                {
+                    cuerpo = CrearAsunto(password, username);
+                }
+                Mail.EnviarCorreo(email, "Informació inici de sesió ClubPilot", cuerpo);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al insertar el registro: {ex.Message}");
+                CloseConnection();
+                MessageBox.Show("Error al insertar el jugador: " + ex.Message);
+            }
+            finally
+            {
+
+                CloseConnection();
+            }
+        }
+        public void updateJugador(string id, int dorsal, string posicio)
+        {
+
+
+            try
+            {
+                OpenConnection();  // Abre la conexión a la base de datos
+
+                string query = @"
+                UPDATE jugador
+                SET 
+                dorsal = @dorsal,
+                posicio = @posicio
+                WHERE id_usuari = @id;";
+
+                // Crear el comando con la consulta SQL
+                using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                {
+
+                    cmd.Parameters.AddWithValue("@dorsal", dorsal);
+                    cmd.Parameters.AddWithValue("@posicio", posicio);
+                    cmd.Parameters.AddWithValue("@id", id);
+
+                    // Ejecutar la consulta
+                    int filasAfectadas = cmd.ExecuteNonQuery();
+
+                    // Verificar si se actualizó algún registro
+                    if (filasAfectadas > 0)
+                    {
+                        Console.WriteLine("El registro ha sido actualizado exitosamente.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("No se encontró ningún registro para actualizar.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al actualizar el registro: {ex.Message}");
+            }
+            finally
+            {
+                CloseConnection();  // Cierra la conexión a la base de datos
+            }
+        }
+        public void deleteJugador(string id)
+        {
+            try
+            {
+                OpenConnection();  // Abre la conexión a la base de datos
+
+                string query = @"
+                DELETE FROM usuari
+                WHERE id = @id;";
+
+                // Crear el comando con la consulta SQL
+                using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                {
+
+                    cmd.Parameters.AddWithValue("@id", id);
+
+                    // Ejecutar la consulta
+                    int filasAfectadas = cmd.ExecuteNonQuery();
+
+                    // Verificar si se actualizó algún registro
+                    if (filasAfectadas > 0)
+                    {
+                        Console.WriteLine("El registro ha sido borrado exitosamente.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("No se encontró ningún registro para borrar");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al actualizar el registro: {ex.Message}");
+            }
+            finally
+            {
+                CloseConnection();  // Cierra la conexión a la base de datos
+            }
         }
     }
 }
