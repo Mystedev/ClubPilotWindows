@@ -222,10 +222,10 @@ namespace ClubPilot
             TextBox txtCognoms = new TextBox { Text = compte.cognoms, Width = 80, Font = fontCascadiaCode, Enabled = false };
 
             Label lblCorreu = new Label { Text = "Correu:", Font = fontCascadiaCode, TextAlign = ContentAlignment.TopRight };
-            TextBox txtCorreu = new TextBox { Text = compte.correu, Width = 150, Font = fontCascadiaCode, Enabled = false };
+            TextBox txtCorreu = new TextBox { Text = compte.correu, Width = 100, Font = fontCascadiaCode, Enabled = false };
 
             Label lblRol = new Label { Text = "Rol:", Font = fontCascadiaCode, TextAlign = ContentAlignment.TopRight, Width = 60 };
-            TextBox txtRol = new TextBox { Text = compte.rol, Width = 130, Font = fontCascadiaCode, Enabled = false };
+            TextBox txtRol = new TextBox { Text = compte.rol, Width = 115, Font = fontCascadiaCode, Enabled = false };
 
             int desplazamentY = 5;
             // Definir posicionament

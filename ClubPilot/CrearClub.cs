@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ClubPilot
 {
@@ -22,6 +23,20 @@ namespace ClubPilot
         private void CrearClub_Load(object sender, EventArgs e)
         {
 
+            if (!(Usuari.usuari==null))
+            {
+                List<Dictionary<string, object>> club = db.ClubDusuari(Usuari.usuari.getIdClub().ToString());
+                foreach (var registre in club)
+                {
+                    txtBoxNom.Text = (registre["nom"].ToString());
+                    txtBoxData.Text = (registre["any_fundacio"].ToString());
+                    txtBoxFundador.Text = (registre["fundador"].ToString());
+                    txtBoxEmail.Text = (registre["emailfundador"].ToString());
+                }
+                txtBoxEmail.Enabled = false;
+                txtBoxFundador.Enabled = false;
+
+            }
         }
 
         private void label3_Click(object sender, EventArgs e)
@@ -53,10 +68,12 @@ namespace ClubPilot
         }
         private void button2_Click(object sender, EventArgs e)
         {
+            
             if((!txtBoxData.Text.Equals(""))&& (!txtBoxNom.Text.Equals("")) && (!txtBoxFundador.Text.Equals("")))
             { 
-
-            String idlub=db.CrearClub(txtBoxNom.Text,txtBoxData.Text,txtBoxFundador.Text,txtBoxEmail.Text,"logo");
+                if ((Usuari.usuari == null))
+                { 
+                    String idlub=db.CrearClub(txtBoxNom.Text,txtBoxData.Text,txtBoxFundador.Text,txtBoxEmail.Text,"logo");
             String[] nomCognoms=txtBoxFundador.Text.Split(' ');
 
             String nom = nomCognoms[0];
@@ -69,7 +86,12 @@ namespace ClubPilot
 
                 db.InsertCompte("",nom, cognoms, txtBoxEmail.Text,"administrador","",idlub);
                 MessageBox.Show("club creat");
-
+                }
+                else
+                {
+                 
+                    db.UpdateClub(Usuari.usuari.getIdClub().ToString(),txtBoxNom.Text, txtBoxData.Text, txtBoxFundador.Text, txtBoxEmail.Text);
+                }
             }
             else
             {

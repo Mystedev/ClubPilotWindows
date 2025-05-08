@@ -81,9 +81,6 @@ namespace ClubPilot
        
             if (rol[0]==false && rol[1] == false && rol[2] == false && rol[3] == false)
             {
-            
-
- 
                 this.btnMenSolClubs.Location = new System.Drawing.Point(12, 185);
                 this.btnMenClub.Location = new System.Drawing.Point(12, 250);
                 this.button6.Location = new System.Drawing.Point(12, 317);
@@ -105,6 +102,45 @@ namespace ClubPilot
                 this.menuVertical.Controls.Add(this.btnMenSolClubs);
                 this.menuVertical.Controls.Add(this.btnMenEsdeveniments);
                 this.menuVertical.Controls.Add(this.panel7);
+                this.menuVertical.Controls.Add(this.button6);
+                this.menuVertical.Controls.Add(this.panel6);
+                this.menuVertical.Controls.Add(this.panel5);
+                this.menuVertical.Controls.Add(this.btnMenJugadors);
+                this.menuVertical.Controls.Add(this.panel4);
+                this.menuVertical.Controls.Add(this.btnMenNoticies);
+                this.menuVertical.Controls.Add(this.panel2);
+                this.menuVertical.Controls.Add(this.btnMenComptes);
+                this.menuVertical.Controls.Add(this.btnMenClub);
+                this.menuVertical.Controls.Add(this.panel3);
+                this.menuVertical.Controls.Add(this.panel1);
+                this.menuVertical.Controls.Add(this.pictureBox1);
+                this.menuVertical.Location = new System.Drawing.Point(0, 0);
+                this.menuVertical.Name = "menuVertical";
+                this.menuVertical.Size = new System.Drawing.Size(285, 709);
+                this.menuVertical.TabIndex = 2;
+            }
+            else if (rol[0] == true && rol[2] == true)
+            {
+                
+                this.btnMenClub.Location = new System.Drawing.Point(12, 185);
+                this.button6.Location = new System.Drawing.Point(12, 250);
+                this.btnMenComptes.Location = new System.Drawing.Point(12, 317);
+                this.btnMenNoticies.Location = new System.Drawing.Point(12, 382);
+                this.btnMenJugadors.Location = new System.Drawing.Point(12, 447);
+                this.btnMenEsdeveniments.Location = new System.Drawing.Point(12, 512);
+                this.menuVertical.BackColor = System.Drawing.Color.MidnightBlue;
+                this.menuVertical.Controls.Add(this.panelC);
+                this.menuVertical.Controls.Add(this.pictureBox1);
+                this.menuVertical.Location = new System.Drawing.Point(0, 0);
+                this.menuVertical.Name = "menuVertical";
+                this.menuVertical.Size = new System.Drawing.Size(285, 709);
+                this.menuVertical.TabIndex = 2;
+
+
+
+
+          
+                this.menuVertical.Controls.Add(this.btnMenEsdeveniments);
                 this.menuVertical.Controls.Add(this.button6);
                 this.menuVertical.Controls.Add(this.panel6);
                 this.menuVertical.Controls.Add(this.panel5);
@@ -167,20 +203,15 @@ namespace ClubPilot
                 this.menuVertical.Controls.Add(this.panelC);
                 btnMenSolClubs.Visible = false;
                 btnMenSolClubs.Enabled = false;
-                this.btnMenClub.Location = new System.Drawing.Point(12, 185);
-                this.button6.Location = new System.Drawing.Point(12, 250);
-                this.btnMenComptes.Location = new System.Drawing.Point(12, 317);
-                this.btnMenNoticies.Location = new System.Drawing.Point(12, 382);
-                this.btnMenJugadors.Location = new System.Drawing.Point(12, 317);
-                this.btnMenEsdeveniments.Location = new System.Drawing.Point(12, 382);
+                this.button6.Location = new System.Drawing.Point(12, 185);
+                this.btnMenJugadors.Location = new System.Drawing.Point(12, 250);
+                this.btnMenEsdeveniments.Location = new System.Drawing.Point(12, 317);
               
 
                 this.menuVertical.Controls.Add(this.btnMenEsdeveniments);
                 this.menuVertical.Controls.Add(this.button6);
-                this.menuVertical.Controls.Add(this.panel4);
                 this.menuVertical.Controls.Add(this.btnMenJugadors);
                 this.menuVertical.Controls.Add(this.panel2);
-                this.menuVertical.Controls.Add(this.btnMenClub);
                 this.menuVertical.Controls.Add(this.panel3);
                 this.menuVertical.Controls.Add(this.panel1);
                 this.menuVertical.Controls.Add(this.pictureBox1);

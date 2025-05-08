@@ -161,6 +161,7 @@ namespace ClubPilot
             this.ComboBoxRol1.Items.AddRange(new object[] {
             "administrador",
             "entrenador",
+            "jugador",
            });
             this.ComboBoxRol1.Location = new System.Drawing.Point(90, 146);
             this.ComboBoxRol1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
