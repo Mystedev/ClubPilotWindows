@@ -1326,8 +1326,8 @@ namespace ClubPilot
                 "[La teva informació de contacte]";
         }
 
-
-
+        
+        
         public bool [] ObtenerRol(int id)
         {
            
@@ -1354,6 +1354,7 @@ namespace ClubPilot
             return rols;
           
         }
+
 
         public bool EsRol(int id, string rol, MySqlConnection conn)
         {
