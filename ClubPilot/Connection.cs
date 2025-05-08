@@ -1051,6 +1051,10 @@ namespace ClubPilot
 
                     }
 
+                    if (rol[0]== false && rol[1] == false && rol[2] == false && rol[3] == false)
+                    {
+                        continue;
+                    }
                     int idClubUsuario = Usuari.usuari.getIdClub();
                  
                     List<Dictionary<string, object>> equips = EquipsDeClub(idClubUsuario.ToString());

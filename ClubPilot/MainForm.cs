@@ -203,20 +203,15 @@ namespace ClubPilot
                 this.menuVertical.Controls.Add(this.panelC);
                 btnMenSolClubs.Visible = false;
                 btnMenSolClubs.Enabled = false;
-                this.btnMenClub.Location = new System.Drawing.Point(12, 185);
-                this.button6.Location = new System.Drawing.Point(12, 250);
-                this.btnMenComptes.Location = new System.Drawing.Point(12, 317);
-                this.btnMenNoticies.Location = new System.Drawing.Point(12, 382);
-                this.btnMenJugadors.Location = new System.Drawing.Point(12, 317);
-                this.btnMenEsdeveniments.Location = new System.Drawing.Point(12, 382);
+                this.button6.Location = new System.Drawing.Point(12, 185);
+                this.btnMenJugadors.Location = new System.Drawing.Point(12, 250);
+                this.btnMenEsdeveniments.Location = new System.Drawing.Point(12, 317);
               
 
                 this.menuVertical.Controls.Add(this.btnMenEsdeveniments);
                 this.menuVertical.Controls.Add(this.button6);
-                this.menuVertical.Controls.Add(this.panel4);
                 this.menuVertical.Controls.Add(this.btnMenJugadors);
                 this.menuVertical.Controls.Add(this.panel2);
-                this.menuVertical.Controls.Add(this.btnMenClub);
                 this.menuVertical.Controls.Add(this.panel3);
                 this.menuVertical.Controls.Add(this.panel1);
                 this.menuVertical.Controls.Add(this.pictureBox1);
