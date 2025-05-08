@@ -101,7 +101,7 @@ namespace ClubPilot
         {
             noticias.Clear();
             Connection connection = new Connection();
-            noticias = connection.exportNews();
+            connection.exportNoticia();
             flowLayoutPanel.Controls.Clear();
             for (int i = 0; i < noticias.Count; i++)
             {
@@ -122,6 +122,11 @@ namespace ClubPilot
         private void News_Tab_Load(object sender, EventArgs e)
         {
        
+        }
+
+        private void News_Tab_Load_1(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -137,6 +137,7 @@
             this.Controls.Add(this.label_titulo);
             this.Name = "Add_News";
             this.Text = "Add_News";
+            this.Load += new System.EventHandler(this.Add_News_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

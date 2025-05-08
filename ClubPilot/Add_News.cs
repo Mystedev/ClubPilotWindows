@@ -77,5 +77,10 @@ namespace ClubPilot
             News_Tab.showNews();
             this.Close();
         }
+
+        private void Add_News_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

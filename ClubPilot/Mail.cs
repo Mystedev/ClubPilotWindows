@@ -1,6 +1,6 @@
 ﻿using MailKit.Net.Smtp;
 using MailKit.Security;
-using MimeKit;
+//using MimeKit;
 using System.Net.Mail;
 using System;
 using SmtpClient = MailKit.Net.Smtp.SmtpClient;
@@ -13,7 +13,7 @@ namespace ClubPilot
         {
             try
             {
-                var mensaje = new MimeMessage();
+                /*var mensaje = new MimeMessage();
                 mensaje.From.Add(new MailboxAddress("ClubPilot", "clubpilotapp@gmail.com"));
                 mensaje.To.Add(MailboxAddress.Parse(correoDestino));
                 mensaje.Subject = asunto;
@@ -29,6 +29,7 @@ namespace ClubPilot
                 }
 
                 Console.WriteLine("Correo enviado correctamente con MailKit.");
+                */
             }
             catch (Exception ex)
             {
