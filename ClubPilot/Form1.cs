@@ -120,7 +120,7 @@ namespace ClubPilot
             }
             else
             {
-                MessageBox.Show("Usuario o contraseña incorrectos");
+                MessageBox.Show("Usuari o contrasenya incorrectes");
             }
 
         }

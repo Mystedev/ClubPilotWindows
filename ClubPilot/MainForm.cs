@@ -54,8 +54,8 @@ namespace ClubPilot
                 { btnMenComptes, typeof(Accounts) },
                 { btnMenNoticies, typeof(News_Tab) },
                 { btnMenJugadors, typeof(Players) },
-                { btnMenEsdeveniments, typeof(Esdeveniments) }
-                //{ button6, typeof(EquipsForm) } // Reemplazar con formulario real
+                { btnMenEsdeveniments, typeof(Esdeveniments) },
+                { button6, typeof(Teams) } 
             };
 
            

@@ -235,6 +235,10 @@ namespace ClubPilot
             panell.Controls.Add(btnEsborrar, 2, indexFila);
         }
 
+        private void Teams_Load(object sender, EventArgs e)
+        {
+
+        }
     }
     public class Equip
     {

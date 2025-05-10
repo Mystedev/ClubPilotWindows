@@ -116,6 +116,7 @@
             this.button6.Location = new System.Drawing.Point(12, 317);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(273, 59);
+            this.button6.Click += new System.EventHandler(this.MenuButton_Click);
             this.button6.TabIndex = 10;
             this.button6.Text = "Equips";
             this.button6.UseVisualStyleBackColor = true;
