@@ -53,7 +53,7 @@ namespace ClubPilot
 
             if (response.Length < 1)
             {
-                MessageBox.Show("Usuario o contraseña incorrectos");
+                MessageBox.Show("Usuari o contrasenya incorrectes");
                 return;
             }
             int numero = int.Parse(response[0]);
@@ -76,7 +76,7 @@ namespace ClubPilot
                     clubs = db.ClubsDeUsuari(response[0]);
                 }
 
-                MessageBox.Show("Login correcto");
+                MessageBox.Show("Login correcte");
                 idUsuari = Convert.ToInt32(response[0]);
 
 

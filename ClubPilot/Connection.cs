@@ -1761,20 +1761,55 @@ namespace ClubPilot
 
         public void passarDadesPsp()
         {
-            string javaPath = @"C:\Program Files\Java\jdk-23\bin\java.exe";  // Ruta al ejecutable de Java
-            string classPath = @"C:\Intel\ClubpilotPSP\bin\src\main\java\org\example\Main";  // Ruta al archivo .class sin la extensión
-
-            ProcessStartInfo processStartInfo = new ProcessStartInfo
+            try
             {
-                FileName = javaPath,
-                Arguments = classPath,
-                RedirectStandardOutput = true,
-                UseShellExecute = false,
-                CreateNoWindow = true
-            };
 
-            Process process = Process.Start(processStartInfo);
-            process.WaitForExit();
+                string directori = "C:\\Intel\\ClubpilotPSP\\target\\classes;C:\\Intel\\ClubpilotPSP\\lib\\commons-net-3.9.0.jar";
+                string nomArxiuClass = "org.example.Main";
+                ProcessStartInfo psi = new ProcessStartInfo
+                {
+                    FileName = "java",
+                    Arguments = $"-cp " + directori + " " + nomArxiuClass,
+                    RedirectStandardOutput = true,
+                    RedirectStandardError = true,
+                    UseShellExecute = false,
+                    CreateNoWindow = true
+                };
+
+                using (Process proceso = new Process())
+                {
+                    proceso.StartInfo = psi;
+
+                    StringBuilder salida = new StringBuilder();
+                    StringBuilder errores = new StringBuilder();
+
+                    proceso.OutputDataReceived += (sender, e) =>
+                    {
+                        if (e.Data != null)
+                            salida.AppendLine(e.Data);
+                    };
+
+                    proceso.ErrorDataReceived += (sender, e) =>
+                    {
+                        if (e.Data != null)
+                            errores.AppendLine(e.Data);
+                    };
+
+                    proceso.Start();
+
+                    proceso.BeginOutputReadLine();
+                    proceso.BeginErrorReadLine();
+
+                    proceso.WaitForExit();
+
+                    MessageBox.Show("Salida:\n" + salida.ToString() + "\nErrores:\n" + errores.ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al ejecutar la clase Java: " + ex.Message);
+            }
+
         }
 
         public void InsertJugador(string username, string nom, string cognoms, string email, string posicio, int dorsal, bool disponible, string idEquip)

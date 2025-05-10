@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Text;
 using System.Windows.Forms;
 
 namespace ClubPilot
@@ -15,7 +17,8 @@ namespace ClubPilot
         public MainForm()
         {
             db = new Connection();
-         
+
+            
             InitializeComponent();
             ConfigureInitialState();
             InitializeApplication();
@@ -31,6 +34,7 @@ namespace ClubPilot
             menuVertical.Dock = DockStyle.Left;
             MainForm_Resize(null, null);
         }
+        
         private void MainForm_Resize(object sender, EventArgs e)
         {
             panelContainer1.Location = new Point(menuVertical.Width, 0); 
