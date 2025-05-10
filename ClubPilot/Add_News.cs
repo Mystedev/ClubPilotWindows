@@ -72,7 +72,7 @@ namespace ClubPilot
 
         private void boton_CrearNoticia_Click(object sender, EventArgs e)
         {
-            News noticia = new News(textBox_titulo.Text, textBox_descripcion.Text, textBox_autor.Text, textBox_imagen.Text, fecha);
+            News noticia = new News(textBox_titulo.Text, textBox_descripcion.Text, textBox_imagen.Text, fecha);
             Connection.addNew(noticia);
             
            

@@ -140,6 +140,12 @@
     <Compile Include="Add_News.Designer.cs">
       <DependentUpon>Add_News.cs</DependentUpon>
     </Compile>
+    <Compile Include="Add_Team.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Add_Team.Designer.cs">
+      <DependentUpon>Add_Team.cs</DependentUpon>
+    </Compile>
     <Compile Include="clubs.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -223,6 +229,9 @@
     <EmbeddedResource Include="Add_News.resx">
       <DependentUpon>Add_News.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Add_Team.resx">
+      <DependentUpon>Add_Team.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="clubs.resx">
       <DependentUpon>clubs.cs</DependentUpon>

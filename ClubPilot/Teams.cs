@@ -12,10 +12,10 @@ namespace ClubPilot
 {
     public partial class Teams : Form
     {
-        private List<Equip> equips;
-        private TableLayoutPanel layout;
-        private Panel scrollPanel;
-        private Connection db;
+        private static List<Equip> equips;
+        private static TableLayoutPanel layout;
+        private static Panel scrollPanel;
+        private static Connection db;
         public Teams()
         {
             db = new Connection();
@@ -30,8 +30,17 @@ namespace ClubPilot
                 Font = fontCascadiaCode,
                 AutoSize = true,
                 Dock = DockStyle.None,
-            };
 
+
+            };
+                                                                                                                                            //BOTON ANYADIR 
+            Button btnAfegir = new Button { Image = Properties.Resources.icons8_añadir_30, Width = 36, Height = 36 };
+            btnAfegir.BringToFront();
+            //btnAfegir.Location = new Point(this.ClientSize.Width - btnAfegir.Width - 20, this.ClientSize.Height - btnAfegir.Height - 20);
+            btnAfegir.Click += (s, e) =>
+            {
+                new Add_Team().Show();
+            };
             scrollPanel = new Panel
             {
                 Dock = DockStyle.Fill,
@@ -113,7 +122,7 @@ namespace ClubPilot
         //    //}
         //    //return equips;
         //}
-        private void CarregarEquips()
+        public static void CarregarEquips()
         {
             if (layout != null)
             {
@@ -149,14 +158,14 @@ namespace ClubPilot
             scrollPanel.Controls.Add(layout);
         }
 
-        private void AfegirEquipATaula(TableLayoutPanel panell, Equip equip, int indexFila)
+        private static void AfegirEquipATaula(TableLayoutPanel panell, Equip equip, int indexFila)
         {
             // 1. Panel contenedor
             Panel panellIntern = new Panel { Dock = DockStyle.Fill, AutoSize = true };
             panellIntern.SuspendLayout();
             Font font = new Font("Cascadia Code", 10);
 
-            // 2. Etiquetas y TextBox (sólo lectura)
+            // 2. Etiquetas y TextBox (editable solo tras pulsar Editar)
             Label lblNom = new Label { Text = "Nom:", Font = font };
             TextBox txtNom = new TextBox { Text = equip.nom, Width = 120, Font = font, Enabled = false };
 
@@ -183,7 +192,7 @@ namespace ClubPilot
             lblClub.Location = new Point(txtDiv.Right + padding, y);
             txtClub.Location = new Point(lblClub.Right + padding, y);
 
-            // 4. Añadimos al panel interno
+            // 4. Añadir controles al panel interno
             panellIntern.Controls.AddRange(new Control[] {
         lblNom, txtNom,
         lblCat, txtCat,
@@ -192,22 +201,50 @@ namespace ClubPilot
     });
             panellIntern.ResumeLayout();
 
-            // 5. Botones ✔️ y ❌
-            Button btnAcceptar = new Button { Image = Properties.Resources.icons8_aceptar_30, Width = 36, Height = 36 };
+            // 5. Botones ✔️, ✏️ y ❌
+            Button btnAcceptar = new Button { Image = Properties.Resources.icons8_aceptar_30, Width = 36, Height = 36, Enabled = false };
+            Button btnEditar = new Button { Image = Properties.Resources.icons8_modificar_30, Width = 36, Height = 36 };
             Button btnEsborrar = new Button { Image = Properties.Resources.icons8_eliminar_30, Width = 36, Height = 36 };
 
-            // Deshabilitar “Aceptar” si ya está registrado (si tu modelo tiene ese flag)
-            // if (equip.Registre) btnAcceptar.Enabled = false;
-
-            btnAcceptar.Click += (s, e) =>
+            // Evento del botón Editar
+            btnEditar.Click += (s, e) =>
             {
-                db.UpdateEquip(equip);
-                btnAcceptar.Enabled = false;
+                txtNom.Enabled = true;
+                txtCat.Enabled = true;
+                txtDiv.Enabled = true;
+                txtClub.Enabled = true;
+                btnAcceptar.Enabled = true;
             };
 
+            // Evento del botón Aceptar
+            btnAcceptar.Click += (s, e) =>
+            {
+                try
+                {
+                    equip.nom = txtNom.Text;
+                    equip.categoria = txtCat.Text;
+                    equip.divisio = txtDiv.Text;
+                    equip.id_club = int.Parse(txtClub.Text);
+
+                    db.UpdateEquip(equip);
+
+                    txtNom.Enabled = false;
+                    txtCat.Enabled = false;
+                    txtDiv.Enabled = false;
+                    txtClub.Enabled = false;
+                    btnAcceptar.Enabled = false;
+
+                    MessageBox.Show("Equip actualitzat correctament.");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al actualitzar l'equip: " + ex.Message);
+                }
+            };
+
+            // Evento del botón Eliminar
             btnEsborrar.Click += (s, e) =>
             {
-                // Confirmación
                 var resp = MessageBox.Show(
                     $"Segur que vol esborrar l'equip «{equip.nom}»?",
                     "Confirmar eliminació",
@@ -219,7 +256,6 @@ namespace ClubPilot
                     equips.RemoveAt(indexFila);
                     db.DeleteEquip(equip.id.ToString());
 
-                    // Reconstruir layout
                     if (layout != null)
                     {
                         scrollPanel.Controls.Remove(layout);
@@ -229,11 +265,23 @@ namespace ClubPilot
                 }
             };
 
-            // 6. Añadir fila al TableLayoutPanel
+            // 6. Añadir al panel principal (ajustar columnas si es necesario)
+            if (panell.ColumnCount < 4)
+            {
+                panell.ColumnCount = 4;
+                panell.ColumnStyles.Clear();
+                panell.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 85F)); // Panel info
+                panell.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 5F));  // Aceptar
+                panell.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 5F));  // Editar
+                panell.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 5F));  // Eliminar
+            }
+
             panell.Controls.Add(panellIntern, 0, indexFila);
             panell.Controls.Add(btnAcceptar, 1, indexFila);
-            panell.Controls.Add(btnEsborrar, 2, indexFila);
+            panell.Controls.Add(btnEditar, 2, indexFila);
+            panell.Controls.Add(btnEsborrar, 3, indexFila);
         }
+
 
         private void Teams_Load(object sender, EventArgs e)
         {
@@ -248,13 +296,13 @@ namespace ClubPilot
         public string divisio;
         public int id_club;
 
-        public Equip(int id, string nom, string categoria, string divisio, int id_club)
+        public Equip(string nom, string categoria, string divisio)
         {
-            this.id = id;
             this.nom = nom;
             this.categoria = categoria;
             this.divisio = divisio;
-            this.id_club = id_club;
+            //this.id_club = Usuari.usuari.getIdClub();
+            this.id_club = 1;
         }
     }
 }

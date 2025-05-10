@@ -36,97 +36,85 @@
             this.textBox_imagen = new System.Windows.Forms.TextBox();
             this.label_fecha = new System.Windows.Forms.Label();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBox_autor = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label_titulo
             // 
             this.label_titulo.AutoSize = true;
-            this.label_titulo.Location = new System.Drawing.Point(25, 27);
+            this.label_titulo.Location = new System.Drawing.Point(19, 22);
+            this.label_titulo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label_titulo.Name = "label_titulo";
-            this.label_titulo.Size = new System.Drawing.Size(33, 16);
+            this.label_titulo.Size = new System.Drawing.Size(27, 13);
             this.label_titulo.TabIndex = 0;
             this.label_titulo.Text = "Titol";
             // 
             // textBox_titulo
             // 
-            this.textBox_titulo.Location = new System.Drawing.Point(28, 56);
+            this.textBox_titulo.Location = new System.Drawing.Point(21, 46);
+            this.textBox_titulo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBox_titulo.Name = "textBox_titulo";
-            this.textBox_titulo.Size = new System.Drawing.Size(100, 22);
+            this.textBox_titulo.Size = new System.Drawing.Size(76, 20);
             this.textBox_titulo.TabIndex = 1;
             // 
             // label_descripcion
             // 
             this.label_descripcion.AutoSize = true;
-            this.label_descripcion.Location = new System.Drawing.Point(28, 96);
+            this.label_descripcion.Location = new System.Drawing.Point(21, 78);
+            this.label_descripcion.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label_descripcion.Name = "label_descripcion";
-            this.label_descripcion.Size = new System.Drawing.Size(72, 16);
+            this.label_descripcion.Size = new System.Drawing.Size(57, 13);
             this.label_descripcion.TabIndex = 2;
             this.label_descripcion.Text = "Descripcio";
             // 
             // textBox_descripcion
             // 
-            this.textBox_descripcion.Location = new System.Drawing.Point(28, 127);
+            this.textBox_descripcion.Location = new System.Drawing.Point(21, 103);
+            this.textBox_descripcion.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBox_descripcion.Name = "textBox_descripcion";
-            this.textBox_descripcion.Size = new System.Drawing.Size(100, 22);
+            this.textBox_descripcion.Size = new System.Drawing.Size(76, 20);
             this.textBox_descripcion.TabIndex = 3;
             // 
             // label_imagen
             // 
             this.label_imagen.AutoSize = true;
-            this.label_imagen.Location = new System.Drawing.Point(28, 167);
+            this.label_imagen.Location = new System.Drawing.Point(21, 136);
+            this.label_imagen.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label_imagen.Name = "label_imagen";
-            this.label_imagen.Size = new System.Drawing.Size(48, 16);
+            this.label_imagen.Size = new System.Drawing.Size(39, 13);
             this.label_imagen.TabIndex = 6;
             this.label_imagen.Text = "Imatge";
             // 
             // textBox_imagen
             // 
-            this.textBox_imagen.Location = new System.Drawing.Point(28, 195);
+            this.textBox_imagen.Location = new System.Drawing.Point(21, 158);
+            this.textBox_imagen.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBox_imagen.Name = "textBox_imagen";
-            this.textBox_imagen.Size = new System.Drawing.Size(100, 22);
+            this.textBox_imagen.Size = new System.Drawing.Size(76, 20);
             this.textBox_imagen.TabIndex = 7;
             // 
             // label_fecha
             // 
             this.label_fecha.AutoSize = true;
-            this.label_fecha.Location = new System.Drawing.Point(25, 304);
+            this.label_fecha.Location = new System.Drawing.Point(19, 216);
+            this.label_fecha.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label_fecha.Name = "label_fecha";
-            this.label_fecha.Size = new System.Drawing.Size(36, 16);
+            this.label_fecha.Size = new System.Drawing.Size(30, 13);
             this.label_fecha.TabIndex = 8;
             this.label_fecha.Text = "Data";
             // 
             // dateTimePicker2
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(28, 334);
+            this.dateTimePicker2.Location = new System.Drawing.Point(21, 231);
+            this.dateTimePicker2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(275, 22);
+            this.dateTimePicker2.Size = new System.Drawing.Size(207, 20);
             this.dateTimePicker2.TabIndex = 9;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(28, 234);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(38, 16);
-            this.label1.TabIndex = 10;
-            this.label1.Text = "Autor";
-            // 
-            // textBox_autor
-            // 
-            this.textBox_autor.Location = new System.Drawing.Point(28, 253);
-            this.textBox_autor.Name = "textBox_autor";
-            this.textBox_autor.Size = new System.Drawing.Size(100, 22);
-            this.textBox_autor.TabIndex = 11;
             // 
             // Add_News
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.textBox_autor);
-            this.Controls.Add(this.label1);
+            this.ClientSize = new System.Drawing.Size(600, 366);
             this.Controls.Add(this.dateTimePicker2);
             this.Controls.Add(this.label_fecha);
             this.Controls.Add(this.textBox_imagen);
@@ -135,6 +123,7 @@
             this.Controls.Add(this.label_descripcion);
             this.Controls.Add(this.textBox_titulo);
             this.Controls.Add(this.label_titulo);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Add_News";
             this.Text = "Add_News";
             this.Load += new System.EventHandler(this.Add_News_Load);
@@ -153,7 +142,5 @@
         private System.Windows.Forms.TextBox textBox_imagen;
         private System.Windows.Forms.Label label_fecha;
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox_autor;
     }
 }

@@ -18,16 +18,17 @@ public class News : Panel
     public string Imagen { get; set; }
     public Button borrar { get; set; }
 
-    public News(string titulo, string texto, string autor, string imagen, DateTime fecha)
+    public News(string titulo, string texto, string imagen, DateTime fecha)
     {
+        Connection db = new Connection();
         Titulo = titulo;
         Texto = texto;
         Fecha = fecha;
-        Autor = autor;
+        Autor = db.getUsernameByID(Usuari.usuari.getIdUsuari());
         Imagen = imagen;
 
-        idClub = 2;
-        idUsuari = 2;
+        idClub = Usuari.usuari.getIdClub();
+        idUsuari = Usuari.usuari.getIdUsuari();
 
         // Configurar botón de borrado
         borrar = new Button
