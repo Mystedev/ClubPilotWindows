@@ -20,7 +20,7 @@ namespace ClubPilot
         public News_Tab()
         {
             InitializeComponent();
-
+            this.WindowState = FormWindowState.Maximized;
             // Bloque de código de configuración del layout para organizar noticias
             flowLayoutPanel = new FlowLayoutPanel();
             flowLayoutPanel.Dock = DockStyle.Fill;
@@ -49,8 +49,8 @@ namespace ClubPilot
 
             // Crear un nuevo objeto Connection y obtener la lista de noticias
             Connection connection = new Connection();
-            noticias = connection.exportNews();
-
+            noticias = connection.exportNoticia();
+            showNews();
             // Crear y configurar el botón
             button1.Image = Properties.Resources.icons8_añadir_30;
             button1.Width = 40;
@@ -99,18 +99,17 @@ namespace ClubPilot
         // Meter todas las noticias en una lista y añadir los paneles de estas al FlowLayoutPanel
         static public void showNews()
         {
-            noticias.Clear();
             Connection connection = new Connection();
-            connection.exportNoticia();
-            flowLayoutPanel.Controls.Clear();
-            for (int i = 0; i < noticias.Count; i++)
-            {
-                noticias[i].Show(); 
-                flowLayoutPanel.Controls.Add(noticias[i]);
-            }
+            noticias = connection.exportNoticia(); // ← Rellenamos la lista correctamente
 
-            
+            flowLayoutPanel.Controls.Clear();
+
+            foreach (News noticia in noticias)
+            {
+                flowLayoutPanel.Controls.Add(noticia);
+            }
         }
+
 
         private void News_Tab_ClientSizeChanged(object sender, EventArgs e)
         {

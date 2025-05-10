@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using System;
 using ClubPilot.Properties;
 using System.Drawing;
+using System.IO;
 
 public class News : Panel
 {
@@ -23,112 +24,110 @@ public class News : Panel
         Fecha = fecha;
         Autor = autor;
         Imagen = imagen;
-        //CONFIG BOTON
-        borrar = new Button();
-        borrar.Width = 40;
-        borrar.Height = 40;
-        borrar.Location = new Point(650, 250);
-        borrar.FlatStyle = FlatStyle.Flat;
+
+        idClub = 2;
+        idUsuari = 2;
+
+        // Configurar botón de borrado
+        borrar = new Button
+        {
+            Width = 40,
+            Height = 40,
+            Location = new Point(650, 250),
+            FlatStyle = FlatStyle.Flat,
+            Image = Resources.icons8_eliminar_30,
+            TabStop = false
+        };
         borrar.FlatAppearance.BorderSize = 0;
         borrar.FlatAppearance.MouseOverBackColor = Color.Transparent;
         borrar.FlatAppearance.MouseDownBackColor = Color.Transparent;
-        borrar.Image = Resources.icons8_eliminar_30;
-        borrar.TabStop = false;
-        this.Controls.Add(borrar);
         borrar.Click += Delete_Click;
+        this.Controls.Add(borrar);
 
-        //Config "Panel"
-        this.Size = new System.Drawing.Size(700, 300);
-        this.BackColor = System.Drawing.Color.FromArgb(82, 137, 179);
+        // Configurar panel contenedor
+        this.Size = new Size(700, 300);
+        this.BackColor = Color.FromArgb(82, 137, 179);
         this.AutoSize = false;
-
-        //Asociar el evento Click al panel
-        this.Click += News_Click;
         this.Cursor = Cursors.Hand;
 
-        idClub = 1;
-        idUsuari = 1;
+        // Asociar evento de clic al panel
+        this.Click += News_Click;
 
-        // Llamar a Show para agregar los controles a este panel
-        Show();
-
+        // Inicializar controles visuales
+        InicializarControles();
     }
 
-    public void Show()
+    private void InicializarControles()
     {
-        // Etiqueta para el título
+        // Título
         Label label_titulo = new Label
         {
             Text = Titulo,
-            Font = new System.Drawing.Font("Arial", 14, System.Drawing.FontStyle.Bold),
-            Location = new System.Drawing.Point(10, 10),
-            Size = new System.Drawing.Size(480, 30),
-            ForeColor = System.Drawing.Color.White
+            Font = new Font("Arial", 14, FontStyle.Bold),
+            Location = new Point(10, 10),
+            Size = new Size(480, 30),
+            ForeColor = Color.White
         };
         this.Controls.Add(label_titulo);
 
-        // Etiqueta para el texto
+        // Texto
         Label label_texto = new Label
         {
             Text = Texto,
-            Location = new System.Drawing.Point(10, 50),
+            Location = new Point(10, 50),
             AutoSize = true,
-            MaximumSize = new System.Drawing.Size(480, 0),
-            ForeColor = System.Drawing.Color.White
+            MaximumSize = new Size(480, 0),
+            ForeColor = Color.White
         };
         this.Controls.Add(label_texto);
 
-        // PictureBox para la imagen
+        // Imagen
         PictureBox pictureBox = new PictureBox
         {
-            Location = new System.Drawing.Point(500, 10),
-            Size = new System.Drawing.Size(180, 180),
+            Location = new Point(500, 10),
+            Size = new Size(180, 180),
             SizeMode = PictureBoxSizeMode.StretchImage
         };
 
-        // Cargar la imagen con manejo de errores
-        try
-        {
+        if (File.Exists(Imagen))
             pictureBox.ImageLocation = Imagen;
-        }
-        catch
-        {
-            pictureBox.Image = Resources.icons8_aceptar_30; // HAY QUE CAMBIAR ESTO
-        }
+        else
+            pictureBox.Image = Resources.icons8_aceptar_30;
 
         this.Controls.Add(pictureBox);
 
-        // Etiqueta para la fecha
+        // Fecha
         Label label_fecha = new Label
         {
-            Font = new System.Drawing.Font("Arial", 10, System.Drawing.FontStyle.Italic),
+            Font = new Font("Arial", 10, FontStyle.Italic),
             Text = Fecha.ToString("dd/MM/yyyy HH:mm"),
-            Location = new System.Drawing.Point(10, 280),
-            Size = new System.Drawing.Size(200, 20),
-            ForeColor = System.Drawing.Color.White
+            Location = new Point(10, 280),
+            Size = new Size(200, 20),
+            ForeColor = Color.White
         };
         this.Controls.Add(label_fecha);
 
-        // Etiqueta para el autor
+        // Autor
         Label label_autor = new Label
         {
-            Font = new System.Drawing.Font("Arial", 10, System.Drawing.FontStyle.Italic),
-            Location = new System.Drawing.Point(220, 280),
-            Size = new System.Drawing.Size(200, 20),
-            ForeColor = System.Drawing.Color.White
+            Font = new Font("Arial", 10, FontStyle.Italic),
+            Text = $"Por: {Autor}",
+            Location = new Point(220, 280),
+            Size = new Size(200, 20),
+            ForeColor = Color.White
         };
-
+        this.Controls.Add(label_autor);
     }
 
     private void News_Click(object sender, EventArgs e)
     {
-        EditNews editForm = new EditNews(this);  // Pasar la instancia actual de News
+        EditNews editForm = new EditNews(this);  // Pasa esta instancia
         editForm.Show();
     }
+
     private void Delete_Click(object sender, EventArgs e)
     {
         Connection.deleteNew(this);
         News_Tab.showNews();
     }
-
 }

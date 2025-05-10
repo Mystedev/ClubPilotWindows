@@ -21,6 +21,7 @@ namespace ClubPilot
         public Esdeveniments()
         {
             InitializeComponent();
+            this.WindowState = FormWindowState.Maximized;
             //Organització del layout per mostrar els esdeveniments
             flowLayoutPanel = new FlowLayoutPanel();
             flowLayoutPanel.Dock = DockStyle.Fill;
@@ -69,7 +70,7 @@ namespace ClubPilot
             flowLayoutPanel.Controls.Clear();
 
             Connection connection = new Connection();
-            esdeveniments = connection.exportEsdeveniments();
+            esdeveniments = connection.exportEsdeveniment();
             if(Esdeveniment != null)
             {
                 esdeveniments.Add(Esdeveniment);
