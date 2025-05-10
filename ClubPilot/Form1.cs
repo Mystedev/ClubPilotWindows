@@ -232,6 +232,12 @@ namespace ClubPilot
         {
 
         }
+
+        private void label_Pass_Click(object sender, EventArgs e)
+        {
+            PasswordReset pass = new PasswordReset();
+            pass.Show();
+        }
     }
     public static class Usuari
     {

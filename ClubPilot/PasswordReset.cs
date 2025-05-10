@@ -1,5 +1,4 @@
-﻿using Org.BouncyCastle.Crypto.Macs;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -59,7 +58,7 @@ namespace ClubPilot
                 UserInfo = db.getUserByName(textBox1.Text);
                 string pass = db.GenerarContrasenya();
                 MessageBox.Show("S'ha enviat un correu amb la nova contrasenya.");
-                Mail.EnviarCorreo(UserInfo[5], "Nova contrasenya!", "Aquesta es la nova contrasenya: " + pass);
+                Mail.EnviarCorreo(UserInfo[5].ToString(), "Nova contrasenya!", "Aquesta es la nova contrasenya: " + pass);
                 db.updatePassword(int.Parse(UserInfo[0]), pass);
                 this.Close();
             }

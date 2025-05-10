@@ -1,6 +1,8 @@
-﻿using MySql.Data.MySqlClient;
+﻿using ClubPilot;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Diagnostics;
 using System.IO;
 using System.Security.Cryptography;
@@ -14,7 +16,7 @@ namespace ClubPilot
     class Connection
     {
 
-        private string server = "192.168.1.150";
+        private string server = "webapps.insjoanbrudieu.cat";
         private string database = "clubPilot";
         private string port = "25230";
         private string user_id = "clubPilot";
@@ -32,7 +34,7 @@ namespace ClubPilot
         public Connection(string database)
         {
             this.database = database;
-        
+
             InitializeConnection();
         }
 
@@ -44,7 +46,7 @@ namespace ClubPilot
             this.port = port;
             this.user_id = user_id;
             this.password = password;
-            
+
             InitializeConnection();
         }
         //Funcion que uso en News_Tab.cs cargar las noticias de la db a la lista de noticias
@@ -73,7 +75,7 @@ namespace ClubPilot
                                 news.idUsuari = (int)reader[7];
                                 news.idClub = (int)reader[6];
                                 line += reader[i].ToString() + "#"; // Separa por tabulaciones
-                                
+
 
 
                             }
@@ -104,14 +106,14 @@ namespace ClubPilot
                     using (MySqlCommand cmd = new MySqlCommand(selectEsdeveniment, conn))
                     using (MySqlDataReader reader = cmd.ExecuteReader())
                     {
-                        Esdeveniment esd= null;
+                        Esdeveniment esd = null;
                         while (reader.Read())
                         {
                             string line = "";
                             for (int i = 0; i < reader.FieldCount; i++)
                             {
                                 DateTime fecha = reader.GetDateTime(5);
-                                esd = new Esdeveniment(reader[3].ToString(), reader[4].ToString(), fecha );
+                                esd = new Esdeveniment(reader[3].ToString(), reader[4].ToString(), fecha);
                                 esd.id = (int)reader[0];
                                 esd.id_usuari = (int)reader[1];
                                 esd.id_equip = (int)reader[2];
@@ -145,14 +147,15 @@ namespace ClubPilot
                 string query = @"
 
 
-                INSERT INTO noticia(titol, descripcio, imatge_noticia, data, id_usuari, id_club)
-                VALUES(@titulo, @descripcio, @imatge_noticia, @data, @id_usuari, @id_club); ";
+                INSERT INTO noticia(titol, descripcio, autor,imatge_noticia, data, id_usuari, id_club)
+                VALUES(@titulo, @descripcio, @autor ,@imatge_noticia, @data, @id_usuari, @id_club); ";
 
                 using (MySqlCommand cmd = new MySqlCommand(query, connection))
                 {
                     cmd.Parameters.AddWithValue("@titulo", noticia.Titulo);
                     cmd.Parameters.AddWithValue("@descripcio", noticia.Texto);
                     cmd.Parameters.AddWithValue("@data", noticia.Fecha);
+                    cmd.Parameters.AddWithValue("@autor", noticia.Autor);
                     cmd.Parameters.AddWithValue("@imatge_noticia", noticia.Imagen);
                     cmd.Parameters.AddWithValue("@id_usuari", noticia.idUsuari);
                     cmd.Parameters.AddWithValue("@id_club", noticia.idClub);
@@ -339,7 +342,7 @@ namespace ClubPilot
             }
         }
         //BORRAR ESDEVENIMENT
-        public static void deleteEsdeveniment(Esdeveniment  esd)
+        public static void deleteEsdeveniment(Esdeveniment esd)
         {
             try
             {
@@ -367,7 +370,7 @@ namespace ClubPilot
         // Método para inicializar la conexión
         private void InitializeConnection()
         {
-        
+
             string connectionString = $"Server={server};Database={database};Port={port};User Id={user_id};Password={password};";
             connection = new MySqlConnection(connectionString);
         }
@@ -377,8 +380,8 @@ namespace ClubPilot
         {
             try
             {
-               connection.Open();
-               // MessageBox.Show("Conectado");
+                connection.Open();
+                // MessageBox.Show("Conectado");
             }
             catch (Exception ex)
             {
@@ -391,8 +394,8 @@ namespace ClubPilot
         {
             try
             {
-               connection.Close();
-               // MessageBox.Show("Conexión cerrada");
+                connection.Close();
+                // MessageBox.Show("Conexión cerrada");
             }
             catch (Exception ex)
             {
@@ -401,18 +404,13 @@ namespace ClubPilot
         }
 
         // Metodo para exportar la base de datos a un .txt
-        public void exportNoticia()
+        public List<News> exportNoticia()
         {
-            string selectClub = "SELECT * FROM club";
-            string selectEquip = "SELECT * FROM equip";
-            string selecteEsdeveniment = "SELECT * FROM esdeveniment";
+            List<News> noticias = new List<News>();
             string selectNoticia = "SELECT * FROM noticia";
-            string selectTipusEsdeveniment = "SELECT * FROM tipus_esdeveniment";
-            string selectUsuari = "SELECT * FROM usuari";
-
             string connectionString = $"Server={server};Database={database};Port={port};User Id={user_id};Password={password};";
-
             string filePath = "C:\\Intel\\exportedNoticia.txt";
+
             try
             {
                 using (MySqlConnection conn = new MySqlConnection(connectionString))
@@ -424,12 +422,30 @@ namespace ClubPilot
                     {
                         while (reader.Read())
                         {
+                            // Escribe línea en el archivo
                             string line = "";
                             for (int i = 0; i < reader.FieldCount; i++)
                             {
-                                line += reader[i].ToString() + "#"; // Separa por tabulaciones
+                                line += reader[i].ToString() + "#";
                             }
-                            writer.WriteLine(line.Trim());
+                            writer.WriteLine(line.TrimEnd('#'));
+
+                            // Crea objeto News (ajusta índices si la tabla cambia)
+                            DateTime fecha = reader.GetDateTime(5);
+                            News news = new News(
+                                reader.GetString(1),
+                                reader.GetString(2),
+                                reader.GetString(3),
+                                reader.GetString(4),
+                                fecha
+                            )
+                            {
+                                id = reader.GetInt32(0),
+                                idClub = reader.GetInt32(6),
+                                idUsuari = reader.GetInt32(7)
+                            };
+
+                            noticias.Add(news);
                         }
                     }
                 }
@@ -438,7 +454,10 @@ namespace ClubPilot
             {
                 MessageBox.Show("Error al exportar: " + ex.Message);
             }
+
+            return noticias;
         }
+
 
         public void exportClub()
         {
@@ -450,7 +469,7 @@ namespace ClubPilot
             string selectUsuari = "SELECT * FROM usuari";
 
             string connectionString = $"Server={server};Database={database};Port={port};User Id={user_id};Password={password};";
-           
+
             string filePath = "C:\\Intel\\exportedClub.txt";
             try
             {
@@ -520,89 +539,66 @@ namespace ClubPilot
                 MessageBox.Show("Error al exportar: " + ex.Message);
             }
         }
-        public void exportEsdeveniment()
+        public List<Esdeveniment> exportEsdeveniment()
         {
-            string selectClub = "SELECT * FROM club";
-            string selectEquip = "SELECT * FROM equip";
-            string selecteEsdeveniment = "SELECT * FROM esdeveniment";
-            string selectNoticia = "SELECT * FROM noticia";
-            string selectTipusEsdeveniment = "SELECT * FROM tipus_esdeveniment";
-            string selectUsuari = "SELECT * FROM usuari";
-
+            List<Esdeveniment> esdeveniments = new List<Esdeveniment>();
+            string selectEsdeveniment = "SELECT * FROM esdeveniment";
             string connectionString = $"Server={server};Database={database};Port={port};User Id={user_id};Password={password};";
-
             string filePath = "C:\\Intel\\exportedEsdeveniments.txt";
+
             try
             {
                 using (MySqlConnection conn = new MySqlConnection(connectionString))
                 {
                     conn.Open();
-                    using (MySqlCommand cmd = new MySqlCommand(selectNoticia, conn))
+                    using (MySqlCommand cmd = new MySqlCommand(selectEsdeveniment, conn))
                     using (MySqlDataReader reader = cmd.ExecuteReader())
                     using (StreamWriter writer = new StreamWriter(filePath))
                     {
                         while (reader.Read())
                         {
+                            // Escribir al archivo
                             string line = "";
                             for (int i = 0; i < reader.FieldCount; i++)
                             {
-                                line += reader[i].ToString() + "#"; // Separa por tabulaciones
+                                line += reader[i].ToString() + "#";
                             }
-                            writer.WriteLine(line.Trim());
+                            writer.WriteLine(line.TrimEnd('#'));
+
+                            // Crear objeto Esdeveniment
+                            DateTime fecha = reader.GetDateTime(5); // Ajusta según índice real
+                            Esdeveniment esd = new Esdeveniment(
+                                reader.GetString(3), // Título o nombre
+                                reader.GetString(4), // Descripción
+                                fecha
+                            )
+                            {
+                                id = reader.GetInt32(0),
+                                id_usuari = reader.GetInt32(1),
+                                id_equip = reader.GetInt32(2),
+                                description = reader.GetString(4)
+                            };
+
+                            esdeveniments.Add(esd);
                         }
                     }
-                }
 
-                MessageBox.Show("Exportación exitosa");
+                    MessageBox.Show("Exportación exitosa");
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error al exportar: " + ex.Message);
             }
+
+            return esdeveniments;
         }
-        public void exportTipusEsdeveniment()
-        {
-            string selectClub = "SELECT * FROM club";
-            string selectEquip = "SELECT * FROM equip";
-            string selecteEsdeveniment = "SELECT * FROM esdeveniment";
-            string selectNoticia = "SELECT * FROM noticia";
-            string selectTipusEsdeveniment = "SELECT * FROM tipus_esdeveniment";
-            string selectUsuari = "SELECT * FROM usuari";
 
-            string connectionString = $"Server={server};Database={database};Port={port};User Id={user_id};Password={password};";
 
-            string filePath = "C:\\Intel\\exportedTipusEsdeveniment.txt";
-            try
-            {
-                using (MySqlConnection conn = new MySqlConnection(connectionString))
-                {
-                    conn.Open();
-                    using (MySqlCommand cmd = new MySqlCommand(selectNoticia, conn))
-                    using (MySqlDataReader reader = cmd.ExecuteReader())
-                    using (StreamWriter writer = new StreamWriter(filePath))
-                    {
-                        while (reader.Read())
-                        {
-                            string line = "";
-                            for (int i = 0; i < reader.FieldCount; i++)
-                            {
-                                line += reader[i].ToString() + "#"; // Separa por tabulaciones
-                            }
-                            writer.WriteLine(line.Trim());
-                        }
-                    }
-                }
 
-                MessageBox.Show("Exportación exitosa");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al exportar: " + ex.Message);
-            }
-        }
         public String[] Login(string username, string passwordU)
         {
-            
+
             OpenConnection();
             String result = "";
             string connectionString = $"Server={server};Database={database};Port={port};User Id={user_id};Password={password};";
@@ -702,92 +698,92 @@ namespace ClubPilot
         public List<Dictionary<string, object>> ClubsDeUsuari(string idUsuari)
         {
             string line = "";
-            int id=int.Parse(idUsuari);
+            int id = int.Parse(idUsuari);
             OpenConnection();
-            bool [] rol=ObtenerRol(id);
+            bool[] rol = ObtenerRol(id);
             List<Dictionary<string, object>> resultados = new List<Dictionary<string, object>>();
             if (rol[0] == true)
             {
-            try
-            {
-              
-                string query = @"
+                try
+                {
+
+                    string query = @"
 		           SELECT c.nom, c.id
                    FROM club c 
                    LEFT JOIN administrador a ON a.id_club = c.id
                    WHERE a.id_usuari = @username;";
 
-                using (MySqlCommand cmd = new MySqlCommand(query, connection))
-                {
-                    cmd.Parameters.AddWithValue("@username", idUsuari);
-
-                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    using (MySqlCommand cmd = new MySqlCommand(query, connection))
                     {
-                        while (reader.Read())
-                        {
+                        cmd.Parameters.AddWithValue("@username", idUsuari);
 
-                        Dictionary<string, object> registro = new Dictionary<string, object>
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+
+                                Dictionary<string, object> registro = new Dictionary<string, object>
                         {
                         { "idClub", reader["id"] },
                         { "nomClub", reader["nom"] }
                         };
-                            resultados.Add(registro);
+                                resultados.Add(registro);
+                            }
                         }
                     }
-                }
 
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error en el login: {ex.Message}");
-            }
-            finally
-            {
-                CloseConnection();
-            }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error en el login: {ex.Message}");
+                }
+                finally
+                {
+                    CloseConnection();
+                }
             }
             else
-            { 
-            try
             {
-                string query = @"
+                try
+                {
+                    string query = @"
 		           SELECT eq.nom, eq.id, c.nom as nom_club, c.id as id_club
                    FROM equip eq 
                    LEFT JOIN entrenador e ON e.id_equip = eq.id
                    LEFT JOIN club c ON c.id = eq.id_club 
                    WHERE e.id_usuari = @username;";
-                using (MySqlCommand cmd = new MySqlCommand(query, connection))
-                {
-                    cmd.Parameters.AddWithValue("@username", idUsuari);
-
-                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    using (MySqlCommand cmd = new MySqlCommand(query, connection))
                     {
-                        while (reader.Read())
+                        cmd.Parameters.AddWithValue("@username", idUsuari);
+
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
-                            Dictionary<string, object> registro = new Dictionary<string, object>
+                            while (reader.Read())
+                            {
+                                Dictionary<string, object> registro = new Dictionary<string, object>
                             {
                                 { "nomequip", reader["nom"] },
                                 { "idEquip", reader["id"] },
                                 { "idClub", reader["id_club"]},
                                 { "nomClub", reader["nom_club"]}
                             };
-                            resultados.Add(registro);
+                                resultados.Add(registro);
+                            }
                         }
                     }
+
+
+
+
                 }
-                
-
-
-
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error en el login: {ex.Message}");
-            }
-            finally
-            {
-                CloseConnection();
-            }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error en el login: {ex.Message}");
+                }
+                finally
+                {
+                    CloseConnection();
+                }
             }
 
             return resultados;
@@ -795,7 +791,7 @@ namespace ClubPilot
         public string CrearClub(string nom, string anyDeFundacio, string fundador, string email, string logo)
         {
             string resultado = "Club creado correctamente";
-            int idClub=0;
+            int idClub = 0;
             try
             {
                 OpenConnection();
@@ -825,7 +821,7 @@ namespace ClubPilot
             {
                 CloseConnection();
             }
-            return idClub+"";
+            return idClub + "";
         }
         public string UpdateClub(string id, string nom, string any_fundacio, string fundador, string emailfundador)
         {
@@ -905,7 +901,7 @@ namespace ClubPilot
             {
                 try
                 {
-                    OpenConnection();  
+                    OpenConnection();
                     string query = @"
                     DELETE FROM club
                     WHERE id = @id;";
@@ -934,7 +930,7 @@ namespace ClubPilot
                 }
                 finally
                 {
-                    CloseConnection();  
+                    CloseConnection();
                 }
             }
         }
@@ -946,7 +942,7 @@ namespace ClubPilot
             {
                 OpenConnection();
                 string query = @"
-                  SELECT c.id, c.nom, c.any_fundacio, c.fundador, c.logo, c.emailfundador,c.registre
+                  SELECT c.id, c.nom, c.any_fundacio, c.fundador, c.logo, c.emailfundador,c.registreequip
                   FROM club c
                   ";
 
@@ -1022,7 +1018,7 @@ namespace ClubPilot
                 {
                     int id = Convert.ToInt32(usuario["id"]);
                     OpenConnection();
-                    bool [] rol = ObtenerRol(id);
+                    bool[] rol = ObtenerRol(id);
                     CloseConnection();
                     string tablaRol = "";
                     string columnaId = "";
@@ -1075,7 +1071,7 @@ namespace ClubPilot
                         int idClubOEquipoInt = Convert.ToInt32(idClubOEquipo);
                         if (rol[0] == true)
                         {
-                           usuario.Add("rol", "administrador");
+                            usuario.Add("rol", "administrador");
                         }
                         else if (rol[2] == true)
                         {
@@ -1093,32 +1089,13 @@ namespace ClubPilot
                         {
                             usuario.Add("rol", "");
                         }
-                       
-                        if (!clubOEquip)
+
+                        if (idClubUsuario != idClubOEquipoInt)
                         {
-                            if (idClubUsuario != idClubOEquipoInt)
-                            {
-                                CloseConnection();
-                                continue;
-                            }
-                        } 
-                        else
-                        {
-                            bool trobat=false;
-                            foreach (var registreEquips in equips)
-                            {
-                               if( (registreEquips["id"].ToString().Equals(idClubOEquipoInt.ToString())))
-                               {
-                                    trobat=true;
-                                   
-                               }
-                            }
-                            if (!trobat)
-                            {
-                                CloseConnection();
-                                continue;
-                            }
+                            CloseConnection();
+                            continue;
                         }
+
 
 
                     }
@@ -1160,7 +1137,7 @@ namespace ClubPilot
                 // Crear el comando con la consulta SQL
                 using (MySqlCommand cmd = new MySqlCommand(query, connection))
                 {
-                 
+
                     cmd.Parameters.AddWithValue("@username", username);
                     cmd.Parameters.AddWithValue("@nom", nom);
                     cmd.Parameters.AddWithValue("@cognoms", cognoms);
@@ -1298,21 +1275,21 @@ namespace ClubPilot
                 int idUsuari;
                 String usernameG = GenerarContrasenya();
                 Thread.Sleep(100);
-                String password =  GenerarUsuari();
+                String password = GenerarUsuari();
                 MessageBox.Show(password);
                 String passwordHash = CalcularSHA256(password);
                 using (MySqlCommand cmd = new MySqlCommand(query, connection))
                 {
-                   
+
                     if (username.Equals(""))
                     {
-                    cmd.Parameters.AddWithValue("@username", usernameG);
+                        cmd.Parameters.AddWithValue("@username", usernameG);
                     }
                     else
-                    { 
-                    cmd.Parameters.AddWithValue("@username", username);
+                    {
+                        cmd.Parameters.AddWithValue("@username", username);
                     }
-                    cmd.Parameters.AddWithValue("@password", passwordHash);  
+                    cmd.Parameters.AddWithValue("@password", passwordHash);
                     cmd.Parameters.AddWithValue("@nom", nom);
                     cmd.Parameters.AddWithValue("@cognoms", cognoms);
                     cmd.Parameters.AddWithValue("@email", email);
@@ -1323,13 +1300,13 @@ namespace ClubPilot
 
                 Console.WriteLine("Usuario insertado con ID: " + idUsuari);
 
-              
+
                 string tablaRol;
                 string columnaId;
 
                 if (rol == "administrador")
                 {
-                    tablaRol = "administrador"; 
+                    tablaRol = "administrador";
                     columnaId = "id_club";
                 }
                 else if (rol== "entrenador")
@@ -1350,19 +1327,19 @@ namespace ClubPilot
                     cmd.Parameters.AddWithValue("@id_usuari", idUsuari);
                     if (rol == "administrador" || rol == "aficionat")
                     {
-                    if(idclub.Equals(""))
-                    {
-                     cmd.Parameters.AddWithValue("@id", Usuari.usuari.getIdClub());
-                    }
-                    else
-                    {
-                     cmd.Parameters.AddWithValue("@id", idclub);
-                    }
-                   
+                        if (idclub.Equals(""))
+                        {
+                            cmd.Parameters.AddWithValue("@id", Usuari.usuari.getIdClub());
+                        }
+                        else
+                        {
+                            cmd.Parameters.AddWithValue("@id", idclub);
+                        }
+
                     }
                     else if(rol=="entrenador")
                     {
-                     cmd.Parameters.AddWithValue("@id", idEquip);
+                        cmd.Parameters.AddWithValue("@id", idEquip);
                     }
                     else if (rol=="")
                     { 
@@ -1382,40 +1359,40 @@ namespace ClubPilot
                 String cuerpo = "";
                 if (username.Equals(""))
                 {
-                    cuerpo = CrearAsunto(password,usernameG);
+                    cuerpo = CrearAsunto(password, usernameG);
                 }
-                else 
+                else
                 {
                     cuerpo = CrearAsunto(password, username);
                 }
-                Mail.EnviarCorreo(email,"Informació inici de sesió ClubPilot",cuerpo);
+                Mail.EnviarCorreo(email, "Informació inici de sesió ClubPilot", cuerpo);
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error al insertar el registro: {ex.Message}");
                 CloseConnection();
-                if(username.Equals(""))
-                { 
-                InsertCompte(username, nom, cognoms, email, rol, idEquip, idclub);
+                if (username.Equals(""))
+                {
+                    InsertCompte(username, nom, cognoms, email, rol, idEquip, idclub);
                 }
             }
             finally
             {
 
-                CloseConnection(); 
+                CloseConnection();
             }
         }
-        public  String CrearAsunto(String contrasena, String usuario)
+        public String CrearAsunto(String contrasena, String usuario)
         {
-            
+
             return "Benvolgut/da fundador!,\r\n" +
                 "\r\n" +
                 "Espero que aquest missatge et trobi bé.\r\n" +
                 "\r\n" +
                 "A continuació, et proporcionem el nom d'usuari i la contrasenya que necessites per accedir al teu compte:\r\n" +
                 "\r\n" +
-                "Nom d'usuari: "+ usuario +"\r\n" +
-                "\r\nContrasenya: "+contrasena +"\r\n" +
+                "Nom d'usuari: " + usuario + "\r\n" +
+                "\r\nContrasenya: " + contrasena + "\r\n" +
                 "\r\n" +
                 "Et recomano que, per raons de seguretat, canviïs la contrasenya tan bon punt accedeixis al compte. Si tens qualsevol dubte o necessites ajuda addicional, no dubtis a contactar-me.\r\n" +
                 "\r\nEstic a la teva disposició per a qualsevol consulta.\r\n" +
@@ -1424,9 +1401,9 @@ namespace ClubPilot
                 "[La teva informació de contacte]";
         }
 
-        
-        
-        public bool [] ObtenerRol(int id)
+
+
+        public bool[] ObtenerRol(int id)
         {
            
             bool[] rols = new bool[4];
@@ -1450,7 +1427,7 @@ namespace ClubPilot
             }
 
             return rols;
-          
+            // return rol;
         }
 
 
@@ -1468,14 +1445,14 @@ namespace ClubPilot
                 {
                     cmd.Parameters.AddWithValue("@id", id);
 
-                    
+
                     using (MySqlDataReader reader = cmd.ExecuteReader())
                     {
-                        if (reader.Read())  
+                        if (reader.Read())
                         {
                             tieneRol = true;
                         }
-                      
+
                     }
                 }
             }
@@ -1506,7 +1483,7 @@ namespace ClubPilot
                     {
                         while (reader.Read())
                         {
-                          var registro = new Dictionary<string, object>
+                            var registro = new Dictionary<string, object>
                           {
                             { "id", reader["id"] },
                             { "nom", reader["nom"] }
@@ -1566,137 +1543,134 @@ namespace ClubPilot
                 MessageBox.Show("Error al exportar: " + ex.Message);
             }
         }
-        public List<Dictionary<string, object>> SelectJugadors(int idEquip)
+        public List<Equip> SelectTeam()
         {
-            List<Dictionary<string, object>> resultados = new List<Dictionary<string, object>>();
+            List<Equip> resultados = new List<Equip>();
+            string selectNoticia = "SELECT * FROM equip";
+            string connectionString = $"Server={server};Database={database};Port={port};User Id={user_id};Password={password};";
+            string filePath = "C:\\Intel\\exportedTeam.txt";
 
             try
             {
-                OpenConnection();
-                string query = @"
-                  SELECT u.id, u.nom, u.cognoms, j.posicio, j.dorsal, j.disponibilitat 
-                  FROM jugador j
-                  JOIN usuari u ON j.id_usuari = u.id 
-                  WHERE j.id_equip = @id;
-                  ";
-
-                using (MySqlCommand cmd = new MySqlCommand(query, connection)) { 
-                cmd.Parameters.AddWithValue("@id", idEquip);
-                using (MySqlDataReader reader = cmd.ExecuteReader())
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
                 {
-
-                    while (reader.Read())
+                    conn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(selectNoticia, conn))
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    using (StreamWriter writer = new StreamWriter(filePath))
                     {
-                        Dictionary<string, object> registro = new Dictionary<string, object>
-                    {
-                        { "id", reader["id"] },
-                        { "nom", reader["nom"] },
-                        { "cognoms", reader["cognoms"] },
-                        { "posicio", reader["posicio"] },
-                        { "dorsal", reader["dorsal"] },
-                        { "disponibilitat", reader["disponibilitat"] }
+                        while (reader.Read())
+                        {
+                            // Escribe línea en el archivo
+                            string line = "";
+                            for (int i = 0; i < reader.FieldCount; i++)
+                            {
+                                line += reader[i].ToString() + "#";
+                            }
+                            writer.WriteLine(line.TrimEnd('#'));
 
-                    };
-                        resultados.Add(registro);
+                            // Crea objeto News (ajusta índices si la tabla cambia)
+                            Equip equip = new Equip(
+                                reader.GetInt32(0),
+                                reader.GetString(1),
+                                reader.GetString(2),
+                                reader.GetString(3),
+                                reader.GetInt32(4)
+                            );
+
+                            resultados.Add(equip);
+                        }
                     }
                 }
             }
-            }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error al obtener los registros: {ex.Message}");
-            }
-            finally
-            {
-                CloseConnection();
+                MessageBox.Show("Error al exportar: " + ex.Message);
             }
 
             return resultados;
+
+
         }
-        // Funció que insereix un jugador creant a l'hora el seu compte
-        public void InsertJugador(string username, string nom, string cognoms, string email, string posicio, int dorsal,bool disponible, string idEquip)
+                
+
+        public string UpdateEquip(Equip team)
         {
+            string resultado = "Equip actualitzat correctament";
             try
             {
-                OpenConnection();  // Abre la conexión a la base de datos
+                OpenConnection();
 
-                // 1. INSERTAR EN `usuari`
                 string query = @"
-                INSERT INTO usuari(username, password, nom, cognoms, email)
-                VALUES(@username, @password, @nom, @cognoms, @email);
-                SELECT LAST_INSERT_ID();";  // Obtener el último ID insertado
-
-                int idUsuari;
-                String usernameG = GenerarContrasenya();
-                Thread.Sleep(100);
-                String password = GenerarUsuari();
-                MessageBox.Show(password);
-                String passwordHash = CalcularSHA256(password);
-                using (MySqlCommand cmd = new MySqlCommand(query, connection))
-                {
-
-                    if (username.Equals(""))
-                    {
-                        cmd.Parameters.AddWithValue("@username", usernameG);
-                    }
-                    else
-                    {
-                        cmd.Parameters.AddWithValue("@username", username);
-                    }
-                    cmd.Parameters.AddWithValue("@password", passwordHash);
-                    cmd.Parameters.AddWithValue("@nom", nom);
-                    cmd.Parameters.AddWithValue("@cognoms", cognoms);
-                    cmd.Parameters.AddWithValue("@email", email);
-
-                    // Ejecutar la consulta y obtener el ID del nuevo usuario
-                    idUsuari = Convert.ToInt32(cmd.ExecuteScalar());
-                }
-
-                Console.WriteLine("Usuario insertado con ID: " + idUsuari);
-
-
-                query = $"INSERT INTO jugador (id_usuari, id_Equip, disponibilitat, dorsal, posicio) VALUES (@id_usuari, @id, true, @dorsal, @posicio);";
+        UPDATE equip
+        SET 
+            nom = @nom,
+            categoria = @categoria,
+            divisio = @divisio,
+            id_club = @id_club
+        WHERE id = @id;";
 
                 using (MySqlCommand cmd = new MySqlCommand(query, connection))
                 {
-                    cmd.Parameters.AddWithValue("@id_usuari", idUsuari);
-     
-                    cmd.Parameters.AddWithValue("@id", idEquip);
-                    cmd.Parameters.AddWithValue("@dorsal", dorsal);
-                    cmd.Parameters.AddWithValue("@posicio", posicio);
+                    cmd.Parameters.AddWithValue("@id", team.id);
+                    cmd.Parameters.AddWithValue("@nom", team.nom);
+                    cmd.Parameters.AddWithValue("@categoria", team.categoria);
+                    cmd.Parameters.AddWithValue("@divisio", team.divisio);
+                    cmd.Parameters.AddWithValue("@id_club", team.id_club);
 
                     int filasAfectadas = cmd.ExecuteNonQuery();
 
-                    if (filasAfectadas > 0)
+                    if (filasAfectadas == 0)
                     {
-                        Console.WriteLine("El rol ha sido asignado correctamente.");
-                    }
-                    else
-                    {
-                        Console.WriteLine("Error al asignar el rol.");
+                        resultado = "No s'ha pogut modificar l'equip.";
                     }
                 }
-                String cuerpo = "";
-                if (username.Equals(""))
-                {
-                    cuerpo = CrearAsunto(password, usernameG);
-                }
-                else
-                {
-                    cuerpo = CrearAsunto(password, username);
-                }
-                Mail.EnviarCorreo(email, "Informació inici de sesió ClubPilot", cuerpo);
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error al insertar el registro: {ex.Message}");
-                CloseConnection();
-                MessageBox.Show("Error al insertar el jugador: " + ex.Message);
+                resultado = $"Error al actualitzar l'equip: {ex.Message}";
             }
             finally
             {
-
                 CloseConnection();
+            }
+
+            return resultado;
+        }
+
+        public void DeleteEquip(string id)
+        {
+            {
+                try
+                {
+                    OpenConnection();
+                    string query = @"
+                    DELETE FROM equip
+                    WHERE id = @id;";
+                    using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                    {
+
+                        cmd.Parameters.AddWithValue("@id", id);
+                        int filasAfectadas = cmd.ExecuteNonQuery();
+
+                        if (filasAfectadas > 0)
+                        {
+                            Console.WriteLine("El registro ha sido borrado exitosamente.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("No se encontró ningún registro para borrar");
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error al actualizar el registro: {ex.Message}");
+                }
+                finally
+                {
+                    CloseConnection();
+                }
             }
         }
         public void updateJugador(string id, int dorsal, string posicio)
@@ -1784,6 +1758,7 @@ namespace ClubPilot
                 CloseConnection();  // Cierra la conexión a la base de datos
             }
         }
+
         public void passarDadesPsp()
         {
             string javaPath = @"C:\Program Files\Java\jdk-23\bin\java.exe";  // Ruta al ejecutable de Java
@@ -1801,5 +1776,208 @@ namespace ClubPilot
             Process process = Process.Start(processStartInfo);
             process.WaitForExit();
         }
+
+        public void InsertJugador(string username, string nom, string cognoms, string email, string posicio, int dorsal, bool disponible, string idEquip)
+        {
+            try
+            {
+                OpenConnection();  // Abre la conexión a la base de datos
+
+                // 1. INSERTAR EN `usuari`
+                string query = @"
+                INSERT INTO usuari(username, password, nom, cognoms, email)
+                VALUES(@username, @password, @nom, @cognoms, @email);
+                SELECT LAST_INSERT_ID();";  // Obtener el último ID insertado
+
+                int idUsuari;
+                String usernameG = GenerarContrasenya();
+                Thread.Sleep(100);
+                String password = GenerarUsuari();
+                MessageBox.Show(password);
+                String passwordHash = CalcularSHA256(password);
+                using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                {
+
+                    if (username.Equals(""))
+                    {
+                        cmd.Parameters.AddWithValue("@username", usernameG);
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@username", username);
+                    }
+                    cmd.Parameters.AddWithValue("@password", passwordHash);
+                    cmd.Parameters.AddWithValue("@nom", nom);
+                    cmd.Parameters.AddWithValue("@cognoms", cognoms);
+                    cmd.Parameters.AddWithValue("@email", email);
+
+                    // Ejecutar la consulta y obtener el ID del nuevo usuario
+                    idUsuari = Convert.ToInt32(cmd.ExecuteScalar());
+                }
+
+                Console.WriteLine("Usuario insertado con ID: " + idUsuari);
+
+
+                query = $"INSERT INTO jugador (id_usuari, id_Equip, disponibilitat, dorsal, posicio) VALUES (@id_usuari, @id, true, @dorsal, @posicio);";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@id_usuari", idUsuari);
+
+                    cmd.Parameters.AddWithValue("@id", idEquip);
+                    cmd.Parameters.AddWithValue("@dorsal", dorsal);
+                    cmd.Parameters.AddWithValue("@posicio", posicio);
+
+                    int filasAfectadas = cmd.ExecuteNonQuery();
+
+                    if (filasAfectadas > 0)
+                    {
+                        Console.WriteLine("El rol ha sido asignado correctamente.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Error al asignar el rol.");
+                    }
+                }
+                String cuerpo = "";
+                if (username.Equals(""))
+                {
+                    cuerpo = CrearAsunto(password, usernameG);
+                }
+                else
+                {
+                    cuerpo = CrearAsunto(password, username);
+                }
+                Mail.EnviarCorreo(email, "Informació inici de sesió ClubPilot", cuerpo);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al insertar el registro: {ex.Message}");
+                CloseConnection();
+                MessageBox.Show("Error al insertar el jugador: " + ex.Message);
+            }
+            finally
+            {
+
+                CloseConnection();
+            }
+        }
+        public List<Dictionary<string, object>> SelectJugadors(int idEquip)
+        {
+            List<Dictionary<string, object>> resultados = new List<Dictionary<string, object>>();
+
+            try
+            {
+                OpenConnection();
+                string query = @"
+                  SELECT u.id, u.nom, u.cognoms, j.posicio, j.dorsal, j.disponibilitat 
+                  FROM jugador j
+                  JOIN usuari u ON j.id_usuari = u.id 
+                  WHERE j.id_equip = @id;
+                  ";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@id", idEquip);
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+
+                        while (reader.Read())
+                        {
+                            Dictionary<string, object> registro = new Dictionary<string, object>
+                    {
+                        { "id", reader["id"] },
+                        { "nom", reader["nom"] },
+                        { "cognoms", reader["cognoms"] },
+                        { "posicio", reader["posicio"] },
+                        { "dorsal", reader["dorsal"] },
+                        { "disponibilitat", reader["disponibilitat"] }
+
+                    };
+                            resultados.Add(registro);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al obtener los registros: {ex.Message}");
+            }
+            finally
+            {
+                CloseConnection();
+            }
+
+            return resultados;
+        }
+        public List<string> getUserByName(string user)
+        {
+            List<string> userinfo = new List<string>();
+            string connectionString = $"Server={server};Database={database};Port={port};User Id={user_id};Password={password};";
+            string query = "SELECT * FROM usuari WHERE username = @username";
+
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                {
+                    conn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@username", user);
+
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                userinfo.Add(reader["id"].ToString());
+                                userinfo.Add(reader["username"].ToString());
+                                userinfo.Add(reader["password"].ToString());
+                                userinfo.Add(reader["nom"].ToString());
+                                userinfo.Add(reader["cognoms"].ToString());
+                                userinfo.Add(reader["email"].ToString());
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al encontrar al usuari: " + ex.Message);
+            }
+
+            return userinfo;
+        }
+
+        public void updatePassword(int id, string pass)
+        {
+            OpenConnection();
+            string query = @"UPDATE usuari SET password = @password WHERE id = @id";
+            string connectionString = $"Server={server};Database={database};Port={port};User Id={user_id};Password={password};";
+
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                {
+                    conn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@id", id);
+                        cmd.Parameters.AddWithValue("@password", CalcularSHA256(pass));
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cambiar la contrasenya: " + ex.Message);
+            }
+            finally
+            {
+                CloseConnection();
+            }
+        }
+
+
     }
+
 }
