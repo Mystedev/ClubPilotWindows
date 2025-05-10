@@ -100,7 +100,18 @@ namespace ClubPilot
         static public void showNews()
         {
             Connection connection = new Connection();
+
+            connection.exportNews();
+            connection.passarDadesPsp();
+            flowLayoutPanel.Controls.Clear();
+            for (int i = 0; i < noticias.Count; i++)
+            {
+                noticias[i].Show(); 
+                flowLayoutPanel.Controls.Add(noticias[i]);
+            }
+
             noticias = connection.exportNoticia(); // ← Rellenamos la lista correctamente
+
 
             flowLayoutPanel.Controls.Clear();
 

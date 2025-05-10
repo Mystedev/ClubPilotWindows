@@ -3,6 +3,7 @@ using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
@@ -1757,6 +1758,25 @@ namespace ClubPilot
                 CloseConnection();  // Cierra la conexión a la base de datos
             }
         }
+
+        public void passarDadesPsp()
+        {
+            string javaPath = @"C:\Program Files\Java\jdk-23\bin\java.exe";  // Ruta al ejecutable de Java
+            string classPath = @"C:\Intel\ClubpilotPSP\bin\src\main\java\org\example\Main";  // Ruta al archivo .class sin la extensión
+
+            ProcessStartInfo processStartInfo = new ProcessStartInfo
+            {
+                FileName = javaPath,
+                Arguments = classPath,
+                RedirectStandardOutput = true,
+                UseShellExecute = false,
+                CreateNoWindow = true
+            };
+
+            Process process = Process.Start(processStartInfo);
+            process.WaitForExit();
+        }
+
         public void InsertJugador(string username, string nom, string cognoms, string email, string posicio, int dorsal, bool disponible, string idEquip)
         {
             try
@@ -1956,6 +1976,7 @@ namespace ClubPilot
                 CloseConnection();
             }
         }
+
 
     }
 

@@ -66,10 +66,15 @@ namespace ClubPilot
         }
          public static void showEvents()
         {
+
             esdeveniments.Clear();
             flowLayoutPanel.Controls.Clear();
 
             Connection connection = new Connection();
+
+            esdeveniments = connection.exportEsdeveniments();
+            connection.passarDadesPsp();
+           
             esdeveniments = connection.exportEsdeveniment();
             if(Esdeveniment != null)
             {
@@ -88,6 +93,11 @@ namespace ClubPilot
         private void boton_addevent_Click(object sender, EventArgs e)
         {
             new Add_Esdeveniment().Show();
+        }
+
+        private void Esdeveniments_Load(object sender, EventArgs e)
+        {
+
         }
         //private void Esdeveniments_Resize(object sender, EventArgs e)
         //{

@@ -289,7 +289,7 @@ namespace ClubPilot
                 if (indexFila >= 0 && indexFila < comptes.Count)
                 {
                     DialogResult result = MessageBox.Show(
-                    "Segur que vol esborrar aquest compte? Usuari:" + comptes[indexFila].usuari,
+                    "Segur que vol esborrar aquest compte? Usuari: " + comptes[indexFila].usuari,
                     "Confirmar eliminació",
                     MessageBoxButtons.YesNo,
                     MessageBoxIcon.Question

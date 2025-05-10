@@ -196,7 +196,8 @@ namespace ClubPilot
             fontCascadiaCode = new Font("Cascadia Code", 10);
             TextBox txtPosicio = new TextBox { Text = jugador.posicio, Width = 168, Font = fontCascadiaCode, Enabled = false, Location = new Point(144, 60), BackColor = Color.SeaShell };
             TextBox txtDorsal = new TextBox { Text = jugador.dorsal.ToString(), Width = 54, Font = fontCascadiaCode, Enabled = false, Location = new Point(144, 93), BackColor = Color.SeaShell };
-            Label lblDisponible = new Label { Text = "Disponible:" + " " + (jugador.disponible ? "Sí" : "No"), Font = fontCascadiaCode, Location = new Point(140, 123), ForeColor = Color.White };
+            string disponibleText = jugador.disponible ? "Sí" : "No";
+            Label lblDisponible = new Label { Text = "Disponible:" + " " + disponibleText, Font = fontCascadiaCode, Location = new Point(140, 123), ForeColor = Color.White };
             
 
             int desplazamentY = 5;

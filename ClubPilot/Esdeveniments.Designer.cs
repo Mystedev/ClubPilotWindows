@@ -55,6 +55,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Esdeveniments";
             this.Text = "Esdeveniments";
+            this.Load += new System.EventHandler(this.Esdeveniments_Load);
             this.ResumeLayout(false);
 
         }

@@ -13,6 +13,7 @@ namespace ClubPilot
 {
     public partial class EditNews : Form
     {
+        Connection connection = new Connection();
         private News noticiaOriginal;
         private News noticiaNew;
         public EditNews(News noticia)
@@ -59,6 +60,8 @@ namespace ClubPilot
             noticiaOriginal.Fecha = dateTimePicker1.Value;
 
             Connection.updateNews(noticiaOriginal);
+            connection.exportNews();
+            connection.passarDadesPsp();
             News_Tab.showNews();
             this.Close();
         }

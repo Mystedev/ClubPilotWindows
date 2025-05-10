@@ -77,6 +77,7 @@ namespace ClubPilot
             Esdeveniment eventoActual = new Esdeveniment(textBox_nom.Text, textBox_descripcio.Text, fecha);
             Connection connection = new Connection();
             Connection.addEvent(eventoActual);
+            
             Esdeveniments.showEvents();
             this.Close();
         }
