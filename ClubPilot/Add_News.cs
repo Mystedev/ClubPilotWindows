@@ -74,6 +74,8 @@ namespace ClubPilot
         {
             News noticia = new News(textBox_titulo.Text, textBox_descripcion.Text, textBox_autor.Text, textBox_imagen.Text, fecha);
             Connection.addNew(noticia);
+            
+           
             News_Tab.showNews();
             this.Close();
         }

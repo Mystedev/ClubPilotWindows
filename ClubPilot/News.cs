@@ -6,6 +6,7 @@ using System.Drawing;
 
 public class News : Panel
 {
+    Connection connection = new Connection();
     public int id { get; set; }
     public int idClub { get; set; }
     public int idUsuari { get; set; }
@@ -128,6 +129,8 @@ public class News : Panel
     private void Delete_Click(object sender, EventArgs e)
     {
         Connection.deleteNew(this);
+        connection.exportNews();
+        connection.passarDadesPsp();
         News_Tab.showNews();
     }
 

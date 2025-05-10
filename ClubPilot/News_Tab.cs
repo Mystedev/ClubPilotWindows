@@ -101,7 +101,8 @@ namespace ClubPilot
         {
             noticias.Clear();
             Connection connection = new Connection();
-            connection.exportNoticia();
+            connection.exportNews();
+            connection.passarDadesPsp();
             flowLayoutPanel.Controls.Clear();
             for (int i = 0; i < noticias.Count; i++)
             {
