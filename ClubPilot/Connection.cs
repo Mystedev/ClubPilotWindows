@@ -942,7 +942,7 @@ namespace ClubPilot
             {
                 OpenConnection();
                 string query = @"
-                  SELECT c.id, c.nom, c.any_fundacio, c.fundador, c.logo, c.emailfundador,c.registreequip
+                  SELECT c.id, c.nom, c.any_fundacio, c.fundador, c.logo, c.emailfundador,c.registre
                   FROM club c
                   ";
 
