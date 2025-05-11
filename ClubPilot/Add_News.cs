@@ -40,7 +40,7 @@ namespace ClubPilot
             dtpTime.Format = DateTimePickerFormat.Custom;
             dtpTime.CustomFormat = "HH:mm:ss";
             dtpTime.ShowUpDown = true;
-            dtpTime.Location = new Point(20, 330);
+            dtpTime.Location = new Point(20, 270);
             dtpTime.Width = 100;
             dtpTime.ValueChanged += dtpTime_ValueChanged;
             this.Controls.Add(dtpTime);

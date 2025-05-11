@@ -94,7 +94,7 @@ public class News : Panel
         if (File.Exists(Imagen))
             pictureBox.ImageLocation = Imagen;
         else
-            pictureBox.Image = Resources.icons8_aceptar_30;
+            pictureBox.Image = Resources.icons8_cancelar_30;
 
         this.Controls.Add(pictureBox);
 
