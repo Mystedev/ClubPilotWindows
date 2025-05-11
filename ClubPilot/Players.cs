@@ -25,6 +25,7 @@ namespace ClubPilot
             this.WindowState = FormWindowState.Maximized;
             Font fontCascadiaCode = new Font("Cascadia Code", 30);
             this.Controls.Clear();
+            // Titol del formulari
             Label lblTitulo = new Label
             {
                 Text = "Jugadors",
@@ -43,7 +44,7 @@ namespace ClubPilot
                 AutoSize = true,
                 TextAlign = ContentAlignment.MiddleRight
             };
-            // Boto que al clicar-lo obra el formulari de crear un nou compte
+            // Boto que al clicar-lo obra el formulari de crear un nou compte i un nou jugador
             Button botoAfegir = new Button { Image = Properties.Resources.icons8_añadir_30, Width = 40, Height = 40 };
 
             botoAfegir.Click += (sender, e) =>
@@ -63,7 +64,7 @@ namespace ClubPilot
             scrollPanel.Controls.Add(botoAfegir);
             // Crido a la funció que obté els jugadors i els guardo a una llista
             jugadors = obtenirJugadors();
-            //MessageBox.Show(jugadors.Count.ToString());
+            // Carrego els jugadors al layout
             carregarJugadors();
             this.Resize += new EventHandler(Form_Resize);
         }
@@ -73,6 +74,7 @@ namespace ClubPilot
             colocarControls();
 
         }
+        // Funció que centra els controls al formulari
         private void colocarControls()
         {
             foreach (Control control in scrollPanel.Controls)
@@ -87,10 +89,6 @@ namespace ClubPilot
                             40
                         );
                     }
-                    else if (label.Text == "Informació Comptes")
-                    {
-                        label.Location = new Point(60, 150);
-                    }
                     else if (label.Text == "Afegir Jugador")
                     {
                         label.Location = new Point(this.ClientSize.Width - 300, 150);
@@ -102,14 +100,14 @@ namespace ClubPilot
                 }
             }
         }
-        // Funció que un cop afegit un compte torna a cridar a la funció d'obtenir els comptes per actualitzar la llista i carrego els comptes al layout
-        public void addPlayertolist(Jugador jugador)
+        // Funció que un cop afegit un compte torna a cridar a la funció d'obtenir els jugadors per actualitzar la llista i carrego els jugadores al layout
+        /*public void addPlayertolist(Jugador jugador)
         {
 
             jugadors = obtenirJugadors();
             
             carregarJugadors();
-        }
+        }*/
 
         // Funció que obté els jugadors de la base de dades i els afegeix a una llista
         private List<Jugador> obtenirJugadors()
@@ -134,18 +132,6 @@ namespace ClubPilot
 
                 ));
             }
-            /*jugadorss.Add(new Jugador("1", "Javier", "García", "Delantero", 10,true));
-            jugadorss.Add(new Jugador("2", "Javier", "García", "Delantero", 10, true));
-            jugadorss.Add(new Jugador("3", "Javier", "García", "Delantero", 10, true));
-            jugadorss.Add(new Jugador("4", "Javier", "García", "Delantero", 10, true));
-            jugadorss.Add(new Jugador("5", "Javier", "García", "Delantero", 10, true));
-            jugadorss.Add(new Jugador("6", "Javier", "García", "Delantero", 10, true));
-            jugadorss.Add(new Jugador("7", "Javier", "García", "Delantero", 10, true));
-            jugadorss.Add(new Jugador("8", "Javier", "García", "Delantero", 10, true));
-            jugadorss.Add(new Jugador("9", "Javier", "García", "Delantero", 10, true));
-            jugadorss.Add(new Jugador("10", "Javier", "García", "Delantero", 10, true));
-            jugadorss.Add(new Jugador("11", "Javier", "García", "Delantero", 10, true));
-            jugadorss.Add(new Jugador("12", "Javier", "García", "Delantero", 10, true));*/
 
             return jugadorss;
         }
@@ -168,22 +154,22 @@ namespace ClubPilot
             };
             
             
-            // Afegeixo els comptes a la taula
+            // Afegeixo els jugadores a la taula
             for (int i = 0; i < jugadors.Count; i++)
             {
                 afegirJugadorATaula(layout, jugadors[i], i);
-                //MessageBox.Show(jugadors[i].nom + " " + jugadors[i].cognoms);
             }
             // Afegeixo el layout
             scrollPanel.Controls.Add(layout);
         }
+        // Funció que un cop afegit un compte torna a cridar a la funció d'obtenir els jugadors per actualitzar la llista i carrego els jugadors al layout
         public void addPlayerToList(Jugador jugador)
         {
 
             jugadors = obtenirJugadors();
             carregarJugadors();
         }
-        // Funció que dona el format de com es veuen els comptes al layout
+        // Funció que dona el format de com es veuen els jugadores al layout
         private void afegirJugadorATaula(FlowLayoutPanel panell, Jugador jugador, int indexJugador)
         {
             Panel panellIntern = new Panel { Width= 363, Height= 209, AutoSize = true, BackColor = Color.MidnightBlue };
@@ -196,15 +182,15 @@ namespace ClubPilot
             fontCascadiaCode = new Font("Cascadia Code", 10);
             TextBox txtPosicio = new TextBox { Text = jugador.posicio, Width = 168, Font = fontCascadiaCode, Enabled = false, Location = new Point(144, 60), BackColor = Color.SeaShell };
             TextBox txtDorsal = new TextBox { Text = jugador.dorsal.ToString(), Width = 54, Font = fontCascadiaCode, Enabled = false, Location = new Point(144, 93), BackColor = Color.SeaShell };
-            string disponibleText = jugador.disponible ? "Sí" : "No";
-            Label lblDisponible = new Label { Text = "Disponible:" + " " + disponibleText, Font = fontCascadiaCode, Location = new Point(140, 123), ForeColor = Color.White };
+            string disponibleText = jugador.disponible ? "Disponible: Sí" : "Disponible: No";
+            Label lblDisponible = new Label { Text = disponibleText, Font = fontCascadiaCode, Location = new Point(140, 123), ForeColor = Color.White, Width = 120 };
             
 
             int desplazamentY = 5;
             Button btnModificar = new Button { Image = Properties.Resources.icons8_modificar_30, Width = 40, Height = 40, Location = new Point(272,158), BackColor = Color.SeaShell };
             Button btnGuardar = new Button { Image = Properties.Resources.icons8_guardar_30, Width = 40, Height = 40, Enabled = false, Location = new Point(318, 158), BackColor = Color.SeaShell };
             Button btnEsborrar = new Button { Image = Properties.Resources.icons8_eliminar_30, Width = 40, Height = 40, Location = new Point(318, 14) , BackColor = Color.SeaShell };
-            // Obre els textBox
+            // El boto de modificar els jugadors
             btnModificar.Click += (sender, e) =>
             {
                 txtPosicio.Enabled = true;
@@ -213,7 +199,7 @@ namespace ClubPilot
                 btnModificar.Enabled = false;
                 btnGuardar.Enabled = true;
             };
-            // Tancar els textbox i ho guarda a la base de dades
+            // El boto de guardar els jugadors amb les respectives condicions per a poder guardar
             btnGuardar.Click += (sender, e) =>
             {
                 txtPosicio.Enabled = false;
@@ -244,7 +230,7 @@ namespace ClubPilot
                 }
                    
             };
-            // Esborrar de la base de dades i el layout el compte
+            // Esborrar de la base de dades i el layout el compte i el jugador
             btnEsborrar.Click += (sender, e) =>
             {
                 
@@ -257,18 +243,16 @@ namespace ClubPilot
 
                     if (result == DialogResult.Yes)
                     {
-                        // Eliminar el club si asi lo desea el usuario
-                        jugadors.RemoveAt(indexJugador);
-                        db.deleteJugador(txtId.Text);
                         
-
-
+                        jugadors.RemoveAt(indexJugador);
+                        // Eliminar el compte de la base de dades que a la vegada esborra el jugador
+                        db.deleteJugador(txtId.Text);
                         if (layout != null)
                         {
                             scrollPanel.Controls.Remove(layout);
                             layout.Dispose();
                         }
-                        // Torno a carregar els comptes
+                        // Torno a carregar els jugadors
                         carregarJugadors();
                     }
 
@@ -277,7 +261,7 @@ namespace ClubPilot
 
 
 
-            // Afegeixo els controls al panel
+            // Afegeixo els controls al panel intern
             panellIntern.Controls.Add(txtId);
             panellIntern.Controls.Add(txtNomCognoms);
             panellIntern.Controls.Add(btnCamiseta);
@@ -292,7 +276,7 @@ namespace ClubPilot
 
 
 
-            // Afegeixo els botons
+            // Afegeixo el panel intern al panel
             panell.Controls.Add(panellIntern);
             
         }
@@ -303,20 +287,7 @@ namespace ClubPilot
 
         }
 
-        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            // Boto de equip de futbol
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            // Boto de equip de basketball
-        }
+        
 
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
@@ -345,6 +316,10 @@ namespace ClubPilot
                 this.dorsal = dorsal;
                 this.posicio = posicio;
                 
+            }
+            public string toString()
+            {
+                return nom + " " + cognoms + " " + posicio + " " + dorsal + disponible;
             }
         }
 

@@ -220,6 +220,7 @@
             this.Controls.Add(this.label3);
             this.Name = "AddPlayer";
             this.Text = "AddPlayer";
+            this.Load += new System.EventHandler(this.AddPlayer_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pickNum)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

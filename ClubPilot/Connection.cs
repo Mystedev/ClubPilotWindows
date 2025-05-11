@@ -1398,7 +1398,7 @@ namespace ClubPilot
         public String CrearAsunto(String contrasena, String usuario)
         {
 
-            return "Benvolgut/da fundador!,\r\n" +
+            return "Benvolgut/da a l'aplicació ClubPilot!,\r\n" +
                 "\r\n" +
                 "Espero que aquest missatge et trobi bé.\r\n" +
                 "\r\n" +
@@ -1410,8 +1410,7 @@ namespace ClubPilot
                 "Et recomano que, per raons de seguretat, canviïs la contrasenya tan bon punt accedeixis al compte. Si tens qualsevol dubte o necessites ajuda addicional, no dubtis a contactar-me.\r\n" +
                 "\r\nEstic a la teva disposició per a qualsevol consulta.\r\n" +
                 "\r\nSalutacions cordials,\r\n" +
-                "Next Sphere S.L.\r\n" +
-                "[La teva informació de contacte]";
+                "Next Sphere S.L.\r\n";
         }
 
 
