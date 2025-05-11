@@ -75,7 +75,7 @@ namespace ClubPilot
             esdeveniments = connection.exportEsdeveniments();
             connection.passarDadesPsp();
            
-            esdeveniments = connection.exportEsdeveniment();
+            esdeveniments = connection.exportEsdeveniment(Usuari.usuari.getIdEquip());
             if(Esdeveniment != null)
             {
                 esdeveniments.Add(Esdeveniment);

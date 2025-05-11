@@ -1,9 +1,6 @@
-﻿using MailKit.Net.Smtp;
-using MailKit.Security;
-using MimeKit;
+﻿using System;
+using System.Net;
 using System.Net.Mail;
-using System;
-using SmtpClient = MailKit.Net.Smtp.SmtpClient;
 
 namespace ClubPilot
 {
@@ -13,27 +10,24 @@ namespace ClubPilot
         {
             try
             {
-                var mensaje = new MimeMessage();
-                mensaje.From.Add(new MailboxAddress("ClubPilot", "clubpilotapp@gmail.com"));
-                mensaje.To.Add(MailboxAddress.Parse(correoDestino));
+                MailMessage mensaje = new MailMessage();
+                mensaje.From = new MailAddress("clubpilotapp@gmail.com", "ClubPilot");
+                mensaje.To.Add(correoDestino);
                 mensaje.Subject = asunto;
-                mensaje.Body = new TextPart("plain") { Text = cuerpo };
+                mensaje.Body = cuerpo;
+                mensaje.IsBodyHtml = false; 
 
-                using (var smtp = new SmtpClient())
-                {
-                    smtp.Connect("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
-                    smtp.Authenticate("clubpilotapp@gmail.com", "rbjwgomhfsjlunbd"); // contraseña de aplicación
+                SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
+                smtp.Credentials = new NetworkCredential("clubpilotapp@gmail.com", "rbjwgomhfsjlunbd"); 
+                smtp.EnableSsl = true;
 
-                    smtp.Send(mensaje);
-                    smtp.Disconnect(true);
-                }
+                smtp.Send(mensaje);
 
-                Console.WriteLine("Correo enviado correctamente con MailKit.");
-                
+                Console.WriteLine("Correo enviado correctamente con SmtpClient.");
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error al enviar con MailKit: " + ex.Message);
+                Console.WriteLine("Error al enviar con SmtpClient: " + ex.Message);
             }
         }
     }

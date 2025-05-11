@@ -70,10 +70,11 @@ namespace ClubPilot
                             for (int i = 0; i < reader.FieldCount; i++)
                             {
                                 DateTime fecha = reader.GetDateTime(5);
-                                news = new News(reader[1].ToString(), reader[2].ToString(), reader[3].ToString(), reader[4].ToString(), fecha);
+                                news = new News(reader[1].ToString(), reader[2].ToString(),  reader[4].ToString(), fecha);
                                 news.id = (int)reader[0];
                                 news.idUsuari = (int)reader[7];
                                 news.idClub = (int)reader[6];
+                                news.Autor = reader[3].ToString();
                                 line += reader[i].ToString() + "#"; // Separa por tabulaciones
 
 
@@ -406,7 +407,7 @@ namespace ClubPilot
         // Metodo para exportar la base de datos a un .txt
         public List<News> exportNoticia()
         {
-            List<News> noticias = new List<News>();
+            List<News> noticiasFiltradas = new List<News>();
             string selectNoticia = "SELECT * FROM noticia";
             string connectionString = $"Server={server};Database={database};Port={port};User Id={user_id};Password={password};";
             string filePath = "C:\\Intel\\exportedNoticia.txt";
@@ -422,7 +423,7 @@ namespace ClubPilot
                     {
                         while (reader.Read())
                         {
-                            // Escribe línea en el archivo
+                            // Escribir todas las noticias al archivo
                             string line = "";
                             for (int i = 0; i < reader.FieldCount; i++)
                             {
@@ -430,33 +431,38 @@ namespace ClubPilot
                             }
                             writer.WriteLine(line.TrimEnd('#'));
 
-                            // Crea objeto News (ajusta índices si la tabla cambia)
+                            // Crear objeto News
                             DateTime fecha = reader.GetDateTime(5);
                             News news = new News(
                                 reader.GetString(1),
                                 reader.GetString(2),
-                                reader.GetString(3),
                                 reader.GetString(4),
                                 fecha
                             )
                             {
+                                Autor = reader.GetString(3),
                                 id = reader.GetInt32(0),
                                 idClub = reader.GetInt32(6),
                                 idUsuari = reader.GetInt32(7)
                             };
 
-                            noticias.Add(news);
+                            // Agregar solo si el idClub coincide con el del usuario actual
+                            if (news.idClub == Usuari.usuari.getIdClub())
+                            {
+                                noticiasFiltradas.Add(news);
+                            }
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al exportar: " + ex.Message);
+                //MessageBox.Show("Error al exportar: " + ex.Message);
             }
 
-            return noticias;
+            return noticiasFiltradas;
         }
+
 
 
         public void exportClub()
@@ -539,10 +545,10 @@ namespace ClubPilot
                 MessageBox.Show("Error al exportar: " + ex.Message);
             }
         }
-        public List<Esdeveniment> exportEsdeveniment()
+        public List<Esdeveniment> exportEsdeveniment(int idEquip)
         {
             List<Esdeveniment> esdeveniments = new List<Esdeveniment>();
-            string selectEsdeveniment = "SELECT * FROM esdeveniment";
+            string selectEsdeveniment = "SELECT * FROM esdeveniment WHERE id_equip = @id_equip"; // Filtrar por id_equip
             string connectionString = $"Server={server};Database={database};Port={port};User Id={user_id};Password={password};";
             string filePath = "C:\\Intel\\exportedEsdeveniments.txt";
 
@@ -552,34 +558,39 @@ namespace ClubPilot
                 {
                     conn.Open();
                     using (MySqlCommand cmd = new MySqlCommand(selectEsdeveniment, conn))
-                    using (MySqlDataReader reader = cmd.ExecuteReader())
-                    using (StreamWriter writer = new StreamWriter(filePath))
                     {
-                        while (reader.Read())
+                        // Agregar parámetro para evitar inyecciones SQL
+                        cmd.Parameters.AddWithValue("@id_equip", idEquip);
+
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        using (StreamWriter writer = new StreamWriter(filePath))
                         {
-                            // Escribir al archivo
-                            string line = "";
-                            for (int i = 0; i < reader.FieldCount; i++)
+                            while (reader.Read())
                             {
-                                line += reader[i].ToString() + "#";
+                                // Escribir al archivo
+                                string line = "";
+                                for (int i = 0; i < reader.FieldCount; i++)
+                                {
+                                    line += reader[i].ToString() + "#";
+                                }
+                                writer.WriteLine(line.TrimEnd('#'));
+
+                                // Crear objeto Esdeveniment
+                                DateTime fecha = reader.GetDateTime(5); // Ajusta según índice real
+                                Esdeveniment esd = new Esdeveniment(
+                                    reader.GetString(3), // Título o nombre
+                                    reader.GetString(4), // Descripción
+                                    fecha
+                                )
+                                {
+                                    id = reader.GetInt32(0),
+                                    id_usuari = reader.GetInt32(1),
+                                    id_equip = reader.GetInt32(2),
+                                    description = reader.GetString(4)
+                                };
+
+                                esdeveniments.Add(esd);
                             }
-                            writer.WriteLine(line.TrimEnd('#'));
-
-                            // Crear objeto Esdeveniment
-                            DateTime fecha = reader.GetDateTime(5); // Ajusta según índice real
-                            Esdeveniment esd = new Esdeveniment(
-                                reader.GetString(3), // Título o nombre
-                                reader.GetString(4), // Descripción
-                                fecha
-                            )
-                            {
-                                id = reader.GetInt32(0),
-                                id_usuari = reader.GetInt32(1),
-                                id_equip = reader.GetInt32(2),
-                                description = reader.GetString(4)
-                            };
-
-                            esdeveniments.Add(esd);
                         }
                     }
 
@@ -593,6 +604,8 @@ namespace ClubPilot
 
             return esdeveniments;
         }
+
+
 
 
 
@@ -1385,7 +1398,7 @@ namespace ClubPilot
         public String CrearAsunto(String contrasena, String usuario)
         {
 
-            return "Benvolgut/da fundador!,\r\n" +
+            return "Benvolgut/da a l'aplicació ClubPilot!,\r\n" +
                 "\r\n" +
                 "Espero que aquest missatge et trobi bé.\r\n" +
                 "\r\n" +
@@ -1397,8 +1410,7 @@ namespace ClubPilot
                 "Et recomano que, per raons de seguretat, canviïs la contrasenya tan bon punt accedeixis al compte. Si tens qualsevol dubte o necessites ajuda addicional, no dubtis a contactar-me.\r\n" +
                 "\r\nEstic a la teva disposició per a qualsevol consulta.\r\n" +
                 "\r\nSalutacions cordials,\r\n" +
-                "Next Sphere S.L.\r\n" +
-                "[La teva informació de contacte]";
+                "Next Sphere S.L.\r\n";
         }
 
 
@@ -1546,22 +1558,23 @@ namespace ClubPilot
         public List<Equip> SelectTeam()
         {
             List<Equip> resultados = new List<Equip>();
-            string selectNoticia = "SELECT * FROM equip";
+            string selectEquip = "SELECT * FROM equip";
             string connectionString = $"Server={server};Database={database};Port={port};User Id={user_id};Password={password};";
             string filePath = "C:\\Intel\\exportedTeam.txt";
+            int currentClubId = Usuari.usuari.getIdClub();
 
             try
             {
                 using (MySqlConnection conn = new MySqlConnection(connectionString))
                 {
                     conn.Open();
-                    using (MySqlCommand cmd = new MySqlCommand(selectNoticia, conn))
+                    using (MySqlCommand cmd = new MySqlCommand(selectEquip, conn))
                     using (MySqlDataReader reader = cmd.ExecuteReader())
                     using (StreamWriter writer = new StreamWriter(filePath))
                     {
                         while (reader.Read())
                         {
-                            // Escribe línea en el archivo
+                            // Escribe en archivo
                             string line = "";
                             for (int i = 0; i < reader.FieldCount; i++)
                             {
@@ -1569,16 +1582,20 @@ namespace ClubPilot
                             }
                             writer.WriteLine(line.TrimEnd('#'));
 
-                            // Crea objeto News (ajusta índices si la tabla cambia)
-                            Equip equip = new Equip(
-                                reader.GetInt32(0),
-                                reader.GetString(1),
-                                reader.GetString(2),
-                                reader.GetString(3),
-                                reader.GetInt32(4)
-                            );
+                            // Filtra por id_club
+                            int id_club = reader.GetInt32(4);  
+                            if (id_club == currentClubId)
+                            {
+                                Equip equip = new Equip(
+                                    reader.GetString(1), // nom
+                                    reader.GetString(2), // categoria
+                                    reader.GetString(3) // entrenador
+                                );
+                                equip.id = reader.GetInt32(0);  // id
+                                equip.id_club = reader.GetInt32(4); // id_club
 
-                            resultados.Add(equip);
+                                resultados.Add(equip);
+                            }
                         }
                     }
                 }
@@ -1589,10 +1606,9 @@ namespace ClubPilot
             }
 
             return resultados;
-
-
         }
-                
+
+
 
         public string UpdateEquip(Equip team)
         {
@@ -1617,6 +1633,43 @@ namespace ClubPilot
                     cmd.Parameters.AddWithValue("@categoria", team.categoria);
                     cmd.Parameters.AddWithValue("@divisio", team.divisio);
                     cmd.Parameters.AddWithValue("@id_club", team.id_club);
+
+                    int filasAfectadas = cmd.ExecuteNonQuery();
+
+                    if (filasAfectadas == 0)
+                    {
+                        resultado = "No s'ha pogut modificar l'equip.";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                resultado = $"Error al actualitzar l'equip: {ex.Message}";
+            }
+            finally
+            {
+                CloseConnection();
+            }
+
+            return resultado;
+        }
+        public string InsertEquip(Equip team)
+        {
+            string resultado = "Equip actualitzat correctament";
+
+            try
+            {
+                OpenConnection();
+
+                string query = "INSERT INTO equip (nom, categoria, divisio, id_club) " +
+                               "VALUES (@nom, @categoria, @divisio, @id_club);";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@nom", team.nom);
+                    cmd.Parameters.AddWithValue("@categoria", team.categoria);
+                    cmd.Parameters.AddWithValue("@divisio", team.divisio);
+                    cmd.Parameters.AddWithValue("@id_club", Usuari.usuari.getIdClub());
 
                     int filasAfectadas = cmd.ExecuteNonQuery();
 
@@ -2010,6 +2063,40 @@ namespace ClubPilot
             {
                 CloseConnection();
             }
+        }
+        //TE RETORNA EL USERNAME DE UN USUARIO A PARTIR DEL ID
+        public string getUsernameByID(int id)
+        {
+            string query = @"SELECT username FROM usuari WHERE id = @id";
+            string connectionString = $"Server={server};Database={database};Port={port};User Id={user_id};Password={password};";
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                {
+                    conn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@id", id);
+
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+
+                               return reader["username"].ToString();
+
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al encontrar al usuari: " + ex.Message);
+            }
+
+            return null;
+
         }
 
 

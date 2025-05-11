@@ -59,6 +59,8 @@ namespace ClubPilot
                 string pass = db.GenerarContrasenya();
                 MessageBox.Show("S'ha enviat un correu amb la nova contrasenya.");
                 Mail.EnviarCorreo(UserInfo[5].ToString(), "Nova contrasenya!", "Aquesta es la nova contrasenya: " + pass);
+                MessageBox.Show(pass);
+                Console.Write(pass);
                 db.updatePassword(int.Parse(UserInfo[0]), pass);
                 this.Close();
             }

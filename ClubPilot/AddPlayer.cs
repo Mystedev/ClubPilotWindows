@@ -21,7 +21,7 @@ namespace ClubPilot
             this.playersFormulari = playersFormulari;
 
         }
-
+        // Quan es clica al boto de afegir jugador, es fa la validacio de que els camps estiguin omplerts i es fa la insercio a la base de dades
         private void btn_add_account_Click(object sender, EventArgs e)
         {
             if (txtBoxUsername1.Text == "" || txtBoxEmail1.Text == "" || txtBoxNom1.Text == "" || txtBoxCognoms1.Text == "" || txtBoxPosicio.Text == "" || pickNum.Value.ToString() == "")
@@ -38,11 +38,11 @@ namespace ClubPilot
                 String posicio = txtBoxPosicio.Text;
                 int num = Convert.ToInt32(pickNum.Value);
                 String idEquip = Usuari.usuari.getIdEquip().ToString();
-                
-                //Accounts.Compte jugador = new Accounts.Compte("", usuari, nom, cognoms, correu, "Jugador");
-                Players.Jugador jugador2 = new Players.Jugador("", nom, cognoms, posicio, num, true);
+
+                // Afegeixo el jugador a la base de dades i a la llista de jugadors
+                Players.Jugador jugador = new Players.Jugador("", nom, cognoms, posicio, num, true);
                 db.InsertJugador(usuari, nom, cognoms, correu, posicio, num, true, idEquip);
-                playersFormulari.addPlayerToList(jugador2);
+                playersFormulari.addPlayerToList(jugador);
                 this.Close();
             }
         }
@@ -50,6 +50,11 @@ namespace ClubPilot
         private void btn_cancel_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void AddPlayer_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
