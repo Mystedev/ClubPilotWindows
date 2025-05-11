@@ -23,7 +23,6 @@ namespace ClubPilot
             Connection db = new Connection();
             db.InsertEquip(equipo);
             MessageBox.Show("Equip creat correctament");
-            Teams.CarregarEquips();
             this.Close();
         }
     }
