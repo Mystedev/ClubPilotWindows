@@ -20,7 +20,7 @@ namespace ClubPilot
             InitializeComponent();
             this.WindowState = FormWindowState.Maximized;
 
-            Font fontCascadiaCode = new Font("Cascadia Code", 10);
+            Font fontCascadiaCode = new Font("Cascadia Code", 15);
 
             Label lblAfegir = new Label
             {

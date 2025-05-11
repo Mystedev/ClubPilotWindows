@@ -113,7 +113,7 @@ public class News : Panel
         Label label_autor = new Label
         {
             Font = new Font("Arial", 10, FontStyle.Italic),
-            Text = $"Por: {Autor}",
+            Text =Autor,
             Location = new Point(220, 280),
             Size = new Size(200, 20),
             ForeColor = Color.White

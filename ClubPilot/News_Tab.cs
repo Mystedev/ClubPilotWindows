@@ -30,6 +30,7 @@ namespace ClubPilot
             flowLayoutPanel.BackColor = System.Drawing.Color.SeaShell;
             flowLayoutPanel.WrapContents = true;
             flowLayoutPanel.FlowDirection = FlowDirection.LeftToRight;
+
             // Config del label del titulo
             Label tituloNew = new Label();
             tituloNew.Text = "Noticies";
@@ -86,7 +87,6 @@ namespace ClubPilot
             else
             {
                 MessageBox.Show("No hi ha noticies.");
-                new Add_News().Show();
             }
         }
 
